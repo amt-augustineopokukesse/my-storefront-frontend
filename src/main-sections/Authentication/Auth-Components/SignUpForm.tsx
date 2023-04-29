@@ -1,6 +1,7 @@
 import React, {useState}  from 'react';
 import TextInput from './TextInput';
 import '../../../assets/styles/authentication/SignUpForm.scss';
+import { Link } from 'react-router-dom';
 //import { Link } from 'react-router-dom';
 
 // interface User {
@@ -37,11 +38,10 @@ const SignUpForm: React.FC = () => {
     //   };  
     const formChanger = () => {
         setBusinessAccount(!businessAccount);
-        console.log(businessAccount);
     };
 
   return (
-    <div className='container'>
+    <div className='signup-container'>
       <h1 className='header-text'>Sign Up</h1>  
       <form className='FormContainer'>
         {businessAccount ? (
@@ -63,7 +63,7 @@ const SignUpForm: React.FC = () => {
         </div>
         <button className='submit-button'>Create Account</button>    
       </form>    
-      <p className="old-member"> Already A Member? <span className="login-text">Log In</span> </p>
+      <p className="old-member"> Already A Member? <Link to='/login' className="login-text">Log In</Link> </p>
       <div className='business-signup'>Create <span className='business-signup-link' onClick={formChanger} >{businessAccount ? 'Individual' : 'Business'} Account</span></div>
         
     </div>

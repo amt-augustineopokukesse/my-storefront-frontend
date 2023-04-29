@@ -1,4 +1,4 @@
-.container {
+.signup-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,6 +63,7 @@
         font-family: 'Roboto';
         .login-text {
             color: #0085FF;
+            text-decoration: none;
         }
     }
     .business-signup{
