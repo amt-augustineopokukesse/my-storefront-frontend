@@ -18,8 +18,10 @@
         align-items: center;
         //background-color: blue;
         .user-names {
+            box-sizing: border-box;
             width: 100%;
             display: flex;
+            //gap: 10px;
             justify-content: space-between;
         }
         .email {
@@ -44,6 +46,8 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            font-family: 'Poppins';
+            font-size: 16px;
             &:hover {
                 background: #59AFFF;
             }
@@ -52,13 +56,16 @@
     .old-member{
         margin-top: 26px;
         color: #484848;
+        font-size: 16px;
+        font-family: 'Roboto';
         .login-text {
             color: #0085FF;
         }
     }
     .business-signup{
         margin-top: 26px;
-        color: #484848;
+        color: #222222;
+        font-family: 'Roboto';
         .business-signup-link {
             color: #0085FF;
 

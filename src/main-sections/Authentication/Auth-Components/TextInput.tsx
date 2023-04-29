@@ -6,8 +6,8 @@ const  TextInput: React.FC = ()=> {
     return (
          
       <div className="TextInput">
-        <label className="" >First Name</label><br/>
-        <input className='' placeholder='Write text here'  required /><br/>       
+        <label className="text-label" >First Name</label><br/>
+        <input className='text-input' placeholder='Write text here'  required /><br/>       
       </div>
         
     )

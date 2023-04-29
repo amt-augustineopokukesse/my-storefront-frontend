@@ -7,13 +7,24 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0px 18px;
+    padding: 0px 0px 0px 18px;
     label{
         position: relative;
         top: 14px;
-        //left: 10px;
+        font-family: 'Poppins';
+        font-weight: 300;
+        color: #AAAAAA;
     }
     input {
         border: none;
+        
+        font-size: 16px;
+        font-family: 'Roboto';
+        &::placeholder {
+            color: #DDDDDD;
+        }
+        &:focus {
+            outline: none;
+        }
     }
 }
