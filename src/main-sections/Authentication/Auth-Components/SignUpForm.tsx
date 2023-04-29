@@ -39,15 +39,15 @@ const SignUpForm: React.FC = () => {
       <h1 className='header-text'>Sign Up</h1>  
       <form className='FormContainer'>
         <div className="user-names">
-          <TextInput />
-          <TextInput  />   
+          <TextInput type="text" id="fname" name="firstname" label='First Name'/>
+          <TextInput  type="text" id="lname" name="lastname" label='Last Name'/>   
         </div>    
         <div className="email">
-          <TextInput />  
+          <TextInput type="email" id="email" name="email"  label='Email' />  
         </div>
         <div className="password">
-          <TextInput />  
-          <TextInput />
+          <TextInput type="password" id="pw1" name="password"  label='Password'/>  
+          <TextInput type="password" id="pw2" name="password"  label='Confirm Password'/>
         </div>
         <button className='submit-button'>Create Account</button>    
       </form>    
