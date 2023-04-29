@@ -17,6 +17,9 @@
         justify-content: center;
         align-items: center;
         //background-color: blue;
+        .business-name{
+            width: 100%;
+        }
         .user-names {
             box-sizing: border-box;
             width: 100%;
@@ -68,7 +71,8 @@
         font-family: 'Roboto';
         .business-signup-link {
             color: #0085FF;
-
+            cursor: pointer;
+            text-decoration: underline;
         }
     }
 }
