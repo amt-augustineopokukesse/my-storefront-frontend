@@ -1,11 +1,12 @@
-import './App.scss'
+import './App.scss';
+import SignUp from './main-sections/Authentication/Pages/SignUp/SignUp';
 
 function App() {
   
   return (
-    <>
-      time to build
-    </>
+    <div className='app'>
+      <SignUp/>
+    </div>
   )
 }
 
