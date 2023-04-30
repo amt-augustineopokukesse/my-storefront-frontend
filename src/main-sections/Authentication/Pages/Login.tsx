@@ -17,7 +17,7 @@ const Login: React.FC = () => {
               <label  className='check-label' htmlFor='check' > Remember me </label>
             </div>
             <div className='buttons'>
-              <button className='forgot-password'>Forgot Password</button>
+            <Link to='/resetpw1'><button className='forgot-password'>Forgot Password</button></Link>
               <button className='login-button'>Log In</button>
             </div>
         </form>
