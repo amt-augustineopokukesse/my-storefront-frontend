@@ -4,6 +4,7 @@ import SignUp from './main-sections/Authentication/Pages/SignUp/SignUp';
 import LandingPage from './main-sections/Authentication/Pages/LandingPage';
 import Login from './main-sections/Authentication/Pages/Login';
 import ResetPw1 from './main-sections/Authentication/Pages/ResetPw1';
+import ResetPw2 from './main-sections/Authentication/Pages/ResetPw2';
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/resetpw1' element={<ResetPw1/>}/>
+          <Route path='/resetpw2' element={<ResetPw2/>}/>
         </Routes>
       </div>
     </Router>

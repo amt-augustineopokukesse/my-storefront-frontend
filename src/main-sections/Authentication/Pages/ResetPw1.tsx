@@ -1,6 +1,7 @@
 import React from 'react';
-import '../../../assets/styles/authentication/ResetPw1.scss';
+import '../../../assets/styles/authentication/ResetPw.scss';
 import TextInput from '../Auth-Components/TextInput';
+import { Link } from 'react-router-dom';
 
 const ResetPw1: React.FC = () => {
   return (
@@ -12,7 +13,9 @@ const ResetPw1: React.FC = () => {
             <div className='email-div'>
               <TextInput type="email" id="email" name="email"  label='Email' />
             </div>
-          <button className='send-button'>Send</button>
+            <Link to='/resetpw2'>
+              <button className='send-button'>Send</button>
+            </Link>
         </form>
       </div>
     </div>

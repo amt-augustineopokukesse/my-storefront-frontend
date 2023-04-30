@@ -26,15 +26,18 @@
             color: #222222;
             margin-top: -14px;
         }
-        .emailForm {
+        .emailForm, .passwordForm {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 32px;
             justify-content: center;
             align-items: center;
-            .email-div {
+            .email-div, .password {
                 width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
             }
             .send-button{
                 text-align: center;
