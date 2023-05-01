@@ -5,7 +5,7 @@ export interface NewUserAction {
     payload: NewUser;
 }
   
-export const newUser = (user: NewUser): NewUserAction => ({
+export const addNewUser = (user: NewUser): NewUserAction => ({
     type: "NEW_USER",
     payload: user,
 });

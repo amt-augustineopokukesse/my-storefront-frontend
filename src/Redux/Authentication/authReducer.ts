@@ -9,7 +9,7 @@ const authReducer = (state: RootState = rootInitialState, action: NewUserAction)
         ...state,
         auth: {
           ...state.auth,
-          newUser: action.payload,
+          newUser: [...state.auth.newUser, action.payload],
         },
       };
     default:

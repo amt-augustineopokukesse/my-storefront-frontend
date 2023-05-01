@@ -3,6 +3,7 @@ export interface NewUser {
     lastname: string;
     email: string;
     password: string;
+    business?: string;
 }
 
 export interface User {
@@ -11,7 +12,7 @@ export interface User {
 }
   
 export interface AuthState {
-    newUser: NewUser,
+    newUser: NewUser[],
     user: User
     
 }
