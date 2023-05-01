@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextInput from './TextInput';
 import '../../../assets/styles/authentication/SignUpForm.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { addNewUser } from '../../../Redux/Authentication/authActions';
 import { NewUser } from '../../../Redux/Authentication/initialState';
@@ -20,7 +20,7 @@ const SignUpForm: React.FC = () => {
   
   const [formState, setFormState] = useState<NewUser>(initialFormState);
 
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const newUser = useSelector((state: any) => state.auth.auth.newUser);
   //console.log(newUser)
@@ -30,6 +30,10 @@ const SignUpForm: React.FC = () => {
 //     console.log(newUser);
 //   };
 
+  useEffect (() => {
+    console.log(newUser);
+  },[newUser]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormState(prevState => ({ ...prevState, [name]: value }));
@@ -38,8 +42,9 @@ const SignUpForm: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await dispatch(addNewUser(formState));
-    console.log(newUser);
+    //console.log(newUser);
     setFormState(initialFormState);
+    navigate('/login');
   };
 
   const formChanger = () => {
