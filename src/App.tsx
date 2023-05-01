@@ -5,21 +5,25 @@ import LandingPage from './main-sections/Authentication/Pages/LandingPage';
 import Login from './main-sections/Authentication/Pages/Login';
 import ResetPw1 from './main-sections/Authentication/Pages/ResetPw1';
 import ResetPw2 from './main-sections/Authentication/Pages/ResetPw2';
+import store from './store';
+import { Provider } from 'react-redux';
 
 function App() {
   
   return (
-    <Router>
-      <div className='app'>
-        <Routes>
-          <Route path='/' element={<LandingPage />}/>
-          <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/resetpw1' element={<ResetPw1/>}/>
-          <Route path='/resetpw2' element={<ResetPw2/>}/>
-        </Routes>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className='app'>
+          <Routes>
+            <Route path='/' element={<LandingPage />}/>
+            <Route path='/signup' element={<SignUp/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/resetpw1' element={<ResetPw1/>}/>
+            <Route path='/resetpw2' element={<ResetPw2/>}/>
+          </Routes>
+        </div>
+      </Router>
+    </Provider>
   )
 }
 
