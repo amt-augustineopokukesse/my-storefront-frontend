@@ -16,18 +16,5 @@ export interface AuthState {
     
 }
   
-export const initialState: AuthState = {
-    
-    newUser: {
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-    },
-    user: {
-        email: "",
-        password: "",
-    }
-    
-};
+
   

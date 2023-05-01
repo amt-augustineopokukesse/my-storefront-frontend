@@ -9,7 +9,7 @@ const SignUpForm: React.FC = () => {
     const [businessAccount, setBusinessAccount] = useState<Boolean>(false);
     
     const dispatch = useDispatch();
-    const user = useSelector((state: any) => state.auth.newUser);
+    const user = useSelector((state: any) => state.auth.auth.newUser);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();

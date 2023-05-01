@@ -1,15 +1,16 @@
-import { AuthState, initialState } from "./initialState";
+//import { AuthState } from "./initialState";
 import { NewUserAction } from "./authActions";
+import { rootInitialState, RootState } from "../rootState";
 
-// const initialState = {
-//   newUser: AuthState
-// }
-const authReducer = (state: AuthState = initialState, action: NewUserAction): AuthState => {
+const authReducer = (state: RootState = rootInitialState, action: NewUserAction): RootState => {
   switch (action.type) {
     case "NEW_USER":
       return {
         ...state,
-        newUser: action.payload,
+        auth: {
+          ...state.auth,
+          newUser: action.payload,
+        },
       };
     default:
       return state;
