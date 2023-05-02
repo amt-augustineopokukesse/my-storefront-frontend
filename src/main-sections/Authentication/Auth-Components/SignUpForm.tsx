@@ -61,8 +61,12 @@ const SignUpForm: React.FC = () => {
           </div>
         ) : (
           <div className="user-names">
-            <TextInput type="text" id="fname" name="firstname" label='First Name' onChange={handleInputChange} />
-            <TextInput type="text" id="lname" name="lastname" label='Last Name' onChange={handleInputChange} />   
+            <div className='name'>
+              <TextInput type="text" id="fname" name="firstname" label='First Name' onChange={handleInputChange} />
+            </div>
+            <div className='name'>
+              <TextInput type="text" id="lname" name="lastname" label='Last Name' onChange={handleInputChange} />   
+            </div>
           </div>
         )}    
         <div className="email">

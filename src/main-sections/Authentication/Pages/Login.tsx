@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import AuthHero from '../Auth-Components/AuthHero';
+//import AuthHero from '../Auth-Components/AuthHero';
+import AuthHeroNew from '../Auth-Components/authHeroNew';
 import TextInput from '../Auth-Components/TextInput';
 import '../../../assets/styles/authentication/Login.scss';
 import { User } from '../../../Redux/Authentication/initialState';
@@ -63,7 +64,7 @@ const Login: React.FC = () => {
         </form>
         <p className="not-member"> Not a member? <Link to='/signup' className="sign-up-link">Sign up</Link> </p>
       </div>  
-      <AuthHero />     
+      <AuthHeroNew />     
     </div>
   )
 }
