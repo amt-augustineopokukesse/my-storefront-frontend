@@ -4,7 +4,8 @@ import { AuthState, NewUser, User } from "./Authentication/initialState";
 export interface RootState {
     auth: AuthState & {
       newUser: NewUser[];
-      user: User;
+      user: User[];
+      isLoggedIn: boolean;
     };
   }
 
@@ -23,9 +24,15 @@ export const rootInitialState: RootState = {
             "email": "kojo@yahoo.com",
             "password": "kojo2"
         }],
-        user: {
-          email: "",
-          password: "",
-        },
+        user: [{
+          "email": "aokesse@gmail.com",
+            "password": "firsttest",
+            
+        }, {
+          "email": "kojo@yahoo.com",
+            "password": "kojo2",
+            
+        }],
+        isLoggedIn: false,
       },
 };
