@@ -1,14 +1,14 @@
 import './App.scss';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignUp from './main-sections/Authentication/Pages/SignUp/SignUp';
-import LandingPage from './main-sections/Authentication/Pages/LandingPage';
-import Login from './main-sections/Authentication/Pages/Login';
-import ResetPw1 from './main-sections/Authentication/Pages/ResetPw1';
-import ResetPw2 from './main-sections/Authentication/Pages/ResetPw2';
+import SignUp from './Pages/authenticationPages/SignUp';
+import LandingPage from './Pages/LandingPage';
+import Login from './Pages/authenticationPages/Login';
+import ResetPw1 from './Pages/authenticationPages/ResetPw1';
+import ResetPw2 from './Pages/authenticationPages/ResetPw2';
 import store from './store';
 import { Provider } from 'react-redux';
 
-function App() {
+const App: React.FC =() => {
   
   return (
     <Provider store={store}>

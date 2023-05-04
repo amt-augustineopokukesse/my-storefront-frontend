@@ -1,5 +1,5 @@
 import React from "react";
-import '../../../assets/styles/authentication/TextInput.scss';
+import '../../assets/styles/authenticationStyles/TextInput.scss';
 
 interface inputProps{
     label: string;
@@ -7,6 +7,8 @@ interface inputProps{
     id: string;
     type: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    pattern?: string;
+    disabled?: boolean;
 }
 
 
@@ -23,7 +25,7 @@ const  TextInput: React.FC<inputProps> = (props)=> {
     }
     return (
          
-      <div className="TextInput">
+      <div className="TextInput" id={props.id}>
         <label className="text-label" >{props.label}</label><br/>
         <input className='text-input' placeholder={placeholderText()} type={props.type} id={props.id} name={props.name} onChange={props.onChange} required /><br/>       
       </div>

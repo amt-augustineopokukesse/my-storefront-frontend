@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-//import AuthHero from '../Auth-Components/AuthHero';
-import AuthHeroNew from '../Auth-Components/authHeroNew';
-import TextInput from '../Auth-Components/TextInput';
-import '../../../assets/styles/authentication/Login.scss';
-import { User } from '../../../Redux/Authentication/initialState';
+import AuthHero from '../../components/authComponents/AuthHero';
+import '../../assets/styles/authenticationStyles/Login.scss';
+import { User } from '../../Redux/Authentication/initialState';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginSuccess, loginFailure } from '../../../Redux/Authentication/authActions';
+import { loginSuccess, loginFailure } from '../../Redux/Authentication/authActions';
+import Email from '../../components/authComponents/Email';
+import { emailPattern } from '../../staticDB/authData';
+import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
+import Password from '../../components/authComponents/Password';
+
 const Login: React.FC = () => {
 
     const initialFormState: User = {
@@ -25,25 +28,32 @@ const Login: React.FC = () => {
     const users = useSelector((state: any) => state.auth.auth.newUser);
 
     const login = (formState: User) => {
-        console.log(formState);
         const user = users.find((user: User) => {
             return user.email === formState.email && user.password === formState.password
         });
-        console.log(user)
+        // console.log(user)
         if (user) {
-          console.log("login successful");
+          // console.log("login successful");
           dispatch(loginSuccess());
         } else {
-          console.log("login failed");
+          // console.log("login failed");
           dispatch(loginFailure("Invalid email or password"));
         }
     }
 
+    const valResult = validateEmail(formState.email)
+    
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(formState)
-        login(formState);
-        setFormState(initialFormState);
+        if (valResult) {
+          //console.log(formState)
+          login(formState);
+          setFormState(initialFormState);
+          handleEmailCheck(valResult)
+        } else {
+          handleEmailCheck(valResult)
+        }
       };
 
   return (
@@ -51,8 +61,8 @@ const Login: React.FC = () => {
       <div className='login-form-container'>
         <h1 className='header-text'>Log In</h1>
         <form className='login-form' onSubmit={handleSubmit}>
-            <TextInput type="email" id="email" name="email"  label='Email' onChange={handleInputChange}/>
-            <TextInput type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange}/> 
+          <Email onChange={handleInputChange} pattern={emailPattern}/>
+            <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange}/> 
             <div className='check'>
               <input className='check-box' type="checkbox" name="" id="check" />
               <label  className='check-label' htmlFor='check' > Remember me </label>
@@ -64,7 +74,7 @@ const Login: React.FC = () => {
         </form>
         <p className="not-member"> Not a member? <Link to='/signup' className="sign-up-link">Sign up</Link> </p>
       </div>  
-      <AuthHeroNew />     
+      <AuthHero />     
     </div>
   )
 }

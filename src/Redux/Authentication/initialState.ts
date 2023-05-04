@@ -1,3 +1,7 @@
+export interface NewPassword {
+    password: string;
+}
+
 export interface NewUser {
     firstname: string;
     lastname: string;
