@@ -14,23 +14,25 @@ export const rootInitialState: RootState = {
         newUser: [{
             "firstname": "Augustine",
             "lastname": "Opoku-Kesse",
-            "business": "",
+            "businessname": "",
             "email": "aokesse@gmail.com",
-            "password": "firsttest"
+            "password": "FirstTest@1",
+            "confirmpassword": "FirstTest@1"
         }, {
-            "firstname": "Kojo",
-            "lastname": "Agyei",
-            "business": "",
-            "email": "kojo@yahoo.com",
-            "password": "kojo2"
+            "firstname": "",
+            "lastname": "",
+            "businessname": "Kipfit",
+            "email": "kipfit@yahoo.com",
+            "password": "kipFit@2_",
+            "confirmpassword": "kipFit@2_"
         }],
         user: [{
           "email": "aokesse@gmail.com",
-            "password": "firsttest",
+            "password": "FirstTest@1",
             
         }, {
           "email": "kojo@yahoo.com",
-            "password": "kojo2",
+            "password": "kipFit@2_",
             
         }],
         isLoggedIn: false,

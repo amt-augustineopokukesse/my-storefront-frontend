@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import TextInput from './TextInput';
 import '../../assets/styles/authenticationStyles/SignUpForm.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewUser } from '../../Redux/Authentication/authActions';
 import { NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
 import Password from './Password';
-import { emailPattern } from '../../staticDB/authData';
+//import { emailPattern } from '../../staticDB/authData';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword } from './AuthUtils';
 
 const SignUpForm: React.FC = () => {
@@ -16,9 +16,10 @@ const SignUpForm: React.FC = () => {
   const initialFormState: NewUser & { businessAccount: boolean } = {
     firstname: '',
     lastname: '',
-    business: '',
+    businessname: '',
     email: '',
     password: '',
+    confirmpassword: '',
     businessAccount: false,
   };
 
@@ -27,21 +28,22 @@ const SignUpForm: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const newUser = useSelector((state: any) => state.auth.auth.newUser);
+  const newUser = useSelector((state: any) => state.auth.auth.newUser);
 
-  // useEffect (() => {
-  //   console.log(newUser);
-  // },[newUser]);
+  useEffect (() => {
+    console.log(newUser);
+  },[newUser]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    if (name === 'password2') {
+    if (name === 'confirmpassword') {
       setPassword2(value);
+      setFormState(prevState => ({ ...prevState, [name]: value }));
     } else if(name === 'password') {
       handleValidPassword(value);
       setFormState(prevState => ({ ...prevState, [name]: value }));
     } else if (name === 'business') {
-      setFormState(prevState => ({ ...prevState, business: value, businessAccount: true }));
+      setFormState(prevState => ({ ...prevState, businessname: value, businessAccount: true }));
     } else {
       setFormState(prevState => ({ ...prevState, [name]: value }));
     }
@@ -63,7 +65,7 @@ const SignUpForm: React.FC = () => {
     if (!valResult){
       handleEmailCheck(valResult);
     } else if(!match || !pMatch){
-      //console.log('password mismatch or invalid password')
+      console.log('password mismatch or invalid password')
     } else {
       await dispatch(addNewUser(formState));
       setFormState(initialFormState);
@@ -83,7 +85,7 @@ const SignUpForm: React.FC = () => {
       <form className='FormContainer' onSubmit={handleSubmit}>
         {businessAccount ? (
           <div className='business-name'>
-            <TextInput type="text" id="business" name="business" label='Business Name' onChange={handleInputChange} />
+            <TextInput type="text" id="business" name="businessname" label='Business Name' onChange={handleInputChange} />
           </div>
         ) : (
           <div className="user-names">
@@ -95,11 +97,11 @@ const SignUpForm: React.FC = () => {
             </div>
           </div>
         )}   
-        <Email onChange={handleInputChange} pattern={emailPattern}/>
+        <Email onChange={handleInputChange} />
         
         <div className="password">
           <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange} pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$'/>  
-          <Password type="password" id="pw2" name="password2"  label='Confirm Password' onChange={handleInputChange} disabled />
+          <Password type="password" id="pw2" name="confirmpassword"  label='Confirm Password' onChange={handleInputChange} disabled />
         </div>
         <button className='submit-button'>Create Account</button>    
       </form>    

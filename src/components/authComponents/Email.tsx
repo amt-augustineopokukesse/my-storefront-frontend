@@ -5,7 +5,7 @@ import '../../assets/styles/authenticationStyles/Email.scss';
 
 interface emailProp {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    pattern: string;
+    pattern?: string;
 }
 
 
