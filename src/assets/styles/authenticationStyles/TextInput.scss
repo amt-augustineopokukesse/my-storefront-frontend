@@ -1,4 +1,4 @@
-.TextInput {
+.textInput {
     box-sizing: border-box;
     //width: 100%;
     background: #FFFFFF;
@@ -11,14 +11,15 @@
     border: 1px solid transparent;
     label{
         position: relative;
-        top: 20px;
+        top: 10px;
         font-family: 'Poppins';
         font-weight: 300;
         color: #AAAAAA;
     }
     input {
+        position: relative;
+        top: -10px;
         border: none;
-        
         font-size: 16px;
         font-family: 'Roboto';
         &::placeholder {
@@ -27,5 +28,13 @@
         &:focus {
             outline: none;
         }
+    }
+    .icon-container {
+        position: absolute;
+        right: 5px;
+        cursor: pointer;
+        background-color: #aaaaaa;
+        padding: 5px;
+        border-radius: 5px;
     }
 }
