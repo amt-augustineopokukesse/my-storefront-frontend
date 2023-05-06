@@ -34,7 +34,7 @@ const SignUpForm: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const newUser = useAppSelector((state) => state.auth.newUser);
+  const newUser = useAppSelector((state) => state.auth.auth.newUser);
   
 
   useEffect (() => {

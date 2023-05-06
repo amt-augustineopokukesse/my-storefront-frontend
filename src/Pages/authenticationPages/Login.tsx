@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import AuthHero from '../../components/authComponents/AuthHero';
 import '../../assets/styles/authenticationStyles/Login.scss';
 import { User } from '../../Redux/Authentication/initialState';
-//import { useSelector, useDispatch } from 'react-redux';
-//import { loginSuccess, loginFailure } from '../../Redux/Authentication/authActions';
+import { useAppDispatch, useAppSelector } from '../../store';
 import Email from '../../components/authComponents/Email';
-//import { emailPattern } from '../../staticDB/authData';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import Password from '../../components/authComponents/Password';
+import { userLogin } from '../../Redux/AuthSlice';
 
 const Login: React.FC = () => {
 
@@ -19,36 +18,27 @@ const Login: React.FC = () => {
 
     const [formState, setFormState] = useState<User>(initialFormState);
 
+    const dispatch = useAppDispatch();
+    const user = useAppSelector((state) => state.auth.auth.user);
+  
+
+    useEffect (() => {
+      console.log(user);
+    },[user]);
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormState(prevState => ({ ...prevState, [name]: value }));
     };
 
-    //const dispatch = useDispatch();
-    //const users = useSelector((state: any) => state.auth.auth.newUser);
-
-    // const login = (formState: User) => {
-    //     const user = users.find((user: User) => {
-    //         return user.email === formState.email && user.password === formState.password
-    //     });
-    //     // console.log(user)
-    //     if (user) {
-    //       // console.log("login successful");
-    //       dispatch(loginSuccess());
-    //     } else {
-    //       // console.log("login failed");
-    //       dispatch(loginFailure("Invalid email or password"));
-    //     }
-    // }
 
     const valResult = validateEmail(formState.email)
     
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (valResult) {
-          //console.log(formState)
-          //login(formState);
+          await dispatch(userLogin(formState)).unwrap();
           setFormState(initialFormState);
           handleEmailCheck(valResult)
         } else {
