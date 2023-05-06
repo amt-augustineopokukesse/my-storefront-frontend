@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { NewBusiness, NewUser, User, ResetPwEmail, NewPassword } from './Authentication/initialState';
 
+const API_BASE_URL = 'https://hush-mything-production.up.railway.app';
 interface AuthState {
   auth: {
     newUser: NewUser | NewBusiness | null,
@@ -28,7 +29,7 @@ export const addNewUser = createAsyncThunk(
   'auth/addNewUser',
   async (user: NewUser | NewBusiness, { rejectWithValue }) => {
     try {
-      const response = await axios.post('https://reqres.in/api/users', user);
+      const response = await axios.post(`${API_BASE_URL}/api/customer/signup`, user);
       return response.data;
     } catch (error:any) {
       return rejectWithValue(error.message);
@@ -40,7 +41,7 @@ export const userLogin = createAsyncThunk(
     'auth/userLogin',
     async (user: User, { rejectWithValue }) => {
       try {
-        const response = await axios.post('https://reqres.in/api/users', user);
+        const response = await axios.post(`${API_BASE_URL}/api/customer/login`, user);
         return response.data;
       } catch (error:any) {
         return rejectWithValue(error.message);

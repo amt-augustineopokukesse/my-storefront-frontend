@@ -1,13 +1,13 @@
-import { AuthState, NewUser, User } from "./Authentication/initialState";
+// import { AuthState, NewUser, User } from "./Authentication/initialState";
 
 
-export interface RootState {
-    auth: AuthState & {
-      newUser: NewUser[];
-      user: User[];
-      isLoggedIn: boolean;
-    };
-  }
+// export interface RootState {
+//     auth: AuthState & {
+//       newUser: NewUser[];
+//       user: User[];
+//       isLoggedIn: boolean;
+//     };
+//   }
 
 // export const rootInitialState: RootState = {
 //     auth: {
