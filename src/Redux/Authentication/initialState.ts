@@ -1,3 +1,6 @@
+export interface ResetPwEmail {
+    email: string;
+}
 export interface NewPassword {
     password: string;
 }

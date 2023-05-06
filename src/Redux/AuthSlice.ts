@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { NewBusiness, NewUser, User } from './Authentication/initialState';
+import { NewBusiness, NewUser, User, ResetPwEmail } from './Authentication/initialState';
 
 interface AuthState {
   auth: {
     newUser: NewUser | NewBusiness | null,
-    user: User | null
+    user: User | null,
+    rpdEmail: ResetPwEmail | null
   };
   isLoading: boolean;
   error: string | null;
@@ -14,7 +15,8 @@ interface AuthState {
 const initialState: AuthState = {
   auth: {
     newUser: null,
-    user: null
+    user: null,
+    rpdEmail: null
   },
   isLoading: false,
   error: null,
@@ -42,13 +44,26 @@ export const userLogin = createAsyncThunk(
         return rejectWithValue(error.message);
       }
     }
-  );
+);
+
+export const sendEmail = createAsyncThunk(
+    'auth/sendEmail',
+    async (userEmail: ResetPwEmail, { rejectWithValue }) => {
+      try {
+        const response = await axios.post('https://reqres.in/api/users', userEmail);
+        return response.data;
+      } catch (error:any) {
+        return rejectWithValue(error.message);
+      }
+    }
+);
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
   extraReducers: builder => {
+    /**Signup */
     builder.addCase(addNewUser.pending, state => {
       state.isLoading = true;
       state.error = null;
@@ -62,20 +77,34 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload as string;
     });
-
+    /**Login */
     builder.addCase(userLogin.pending, state => {
         state.isLoading = true;
         state.error = null;
-      });
-      builder.addCase(userLogin.fulfilled, (state, action) => {
+    });
+    builder.addCase(userLogin.fulfilled, (state, action) => {
         state.auth.user = action.payload;
         state.isLoading = false;
         state.error = null;
-      });
-      builder.addCase(userLogin.rejected, (state, action) => {
+    });
+    builder.addCase(userLogin.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
-      });
+    });
+    /**Send email */
+    builder.addCase(sendEmail.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+    });
+    builder.addCase(sendEmail.fulfilled, (state, action) => {
+        state.auth.rpdEmail = action.payload;
+        state.isLoading = false;
+        state.error = null;
+    });
+        builder.addCase(sendEmail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+    });
   },
 });
 
