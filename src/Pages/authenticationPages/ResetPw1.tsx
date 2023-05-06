@@ -16,12 +16,12 @@ const ResetPw1: React.FC = () => {
   const [formState, setFormState] = useState<ResetPwEmail>(initialFormState);
 
   const dispatch = useAppDispatch();
-    const userEmail = useAppSelector((state) => state.auth.auth.rpdEmail);
+  const userEmail = useAppSelector((state) => state.auth.auth.rpdEmail);
   
 
-    useEffect (() => {
-      console.log(userEmail);
-    },[userEmail]);
+  useEffect (() => {
+    console.log(userEmail);
+  },[userEmail]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;

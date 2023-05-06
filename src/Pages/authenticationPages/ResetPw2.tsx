@@ -3,6 +3,8 @@ import '../../assets/styles/authenticationStyles/ResetPw.scss';
 import Password from '../../components/authComponents/Password';
 import { NewPassword } from '../../Redux/Authentication/initialState';
 import { handlePasswordCheck, handleValidPassword, validatePassword } from '../../components/authComponents/AuthUtils';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { resetPassword } from '../../Redux/AuthSlice';
 
 const initialPasswordState: NewPassword = {
   password: '',
@@ -11,6 +13,14 @@ const initialPasswordState: NewPassword = {
 const ResetPw2: React.FC = () => {
   const [newPassword, setNewPassword] = useState<NewPassword>(initialPasswordState);
   const [newPassword2, setNewPassword2] = useState<string>('');
+
+  const dispatch = useAppDispatch();
+  const newPwd = useAppSelector((state) => state.auth.auth.newPassword);
+  
+
+  useEffect (() => {
+    console.log(newPwd);
+  },[newPwd]);
 
   useEffect(() => {
     handlePasswordCheck(newPassword, newPassword2);
@@ -39,7 +49,7 @@ const ResetPw2: React.FC = () => {
     if(!match || !pMatch){
       //console.log('password mismatch or invalid password')
     } else {
-      //console.log('Password change successful');
+      await dispatch(resetPassword(newPassword));
       setNewPassword(initialPasswordState);
       
     }  
