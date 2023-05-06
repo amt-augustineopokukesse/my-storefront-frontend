@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TextInput from './TextInput';
 import '../../assets/styles/authenticationStyles/SignUpForm.scss';
 import { Link, useNavigate } from 'react-router-dom';
-//import { useDispatch, useSelector } from "react-redux";
 import { useAppDispatch, useAppSelector } from '../../store';
-//import { addNewUser } from '../../Redux/Authentication/authActions';
 import { addNewUser } from '../../Redux/AuthSlice';
 import { NewBusiness, NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
@@ -41,8 +39,6 @@ const SignUpForm: React.FC = () => {
 
   useEffect (() => {
     console.log(newUser);
-    //console.log(formState);
-    //console.log(businessAccount);
   },[newUser]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
