@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import TextInput from './TextInput';
 import '../../assets/styles/authenticationStyles/SignUpForm.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { addNewUser } from '../../Redux/Authentication/authActions';
+//import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from '../../store';
+//import { addNewUser } from '../../Redux/Authentication/authActions';
+import { addNewUser } from '../../Redux/AuthSlice';
 import { NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
 import Password from './Password';
-//import { emailPattern } from '../../staticDB/authData';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword } from './AuthUtils';
 
 const SignUpForm: React.FC = () => {
@@ -27,8 +28,8 @@ const SignUpForm: React.FC = () => {
   const [password2, setPassword2] = useState<string>('');
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const newUser = useSelector((state: any) => state.auth.auth.newUser);
+  const dispatch = useAppDispatch();
+  const newUser = useAppSelector((state) => state.auth.newUser);
 
   useEffect (() => {
     console.log(newUser);
@@ -36,7 +37,7 @@ const SignUpForm: React.FC = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    if (name === 'confirmpassword') {
+    if (name === 'confirm_password') {
       setPassword2(value);
       setFormState(prevState => ({ ...prevState, [name]: value }));
     } else if(name === 'password') {

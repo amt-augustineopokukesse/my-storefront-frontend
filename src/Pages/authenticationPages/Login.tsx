@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import AuthHero from '../../components/authComponents/AuthHero';
 import '../../assets/styles/authenticationStyles/Login.scss';
 import { User } from '../../Redux/Authentication/initialState';
-import { useSelector, useDispatch } from 'react-redux';
-import { loginSuccess, loginFailure } from '../../Redux/Authentication/authActions';
+//import { useSelector, useDispatch } from 'react-redux';
+//import { loginSuccess, loginFailure } from '../../Redux/Authentication/authActions';
 import Email from '../../components/authComponents/Email';
-import { emailPattern } from '../../staticDB/authData';
+//import { emailPattern } from '../../staticDB/authData';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import Password from '../../components/authComponents/Password';
 
@@ -24,22 +24,22 @@ const Login: React.FC = () => {
         setFormState(prevState => ({ ...prevState, [name]: value }));
     };
 
-    const dispatch = useDispatch();
-    const users = useSelector((state: any) => state.auth.auth.newUser);
+    //const dispatch = useDispatch();
+    //const users = useSelector((state: any) => state.auth.auth.newUser);
 
-    const login = (formState: User) => {
-        const user = users.find((user: User) => {
-            return user.email === formState.email && user.password === formState.password
-        });
-        // console.log(user)
-        if (user) {
-          // console.log("login successful");
-          dispatch(loginSuccess());
-        } else {
-          // console.log("login failed");
-          dispatch(loginFailure("Invalid email or password"));
-        }
-    }
+    // const login = (formState: User) => {
+    //     const user = users.find((user: User) => {
+    //         return user.email === formState.email && user.password === formState.password
+    //     });
+    //     // console.log(user)
+    //     if (user) {
+    //       // console.log("login successful");
+    //       dispatch(loginSuccess());
+    //     } else {
+    //       // console.log("login failed");
+    //       dispatch(loginFailure("Invalid email or password"));
+    //     }
+    // }
 
     const valResult = validateEmail(formState.email)
     
@@ -48,7 +48,7 @@ const Login: React.FC = () => {
         event.preventDefault();
         if (valResult) {
           //console.log(formState)
-          login(formState);
+          //login(formState);
           setFormState(initialFormState);
           handleEmailCheck(valResult)
         } else {
@@ -61,7 +61,7 @@ const Login: React.FC = () => {
       <div className='login-form-container'>
         <h1 className='header-text'>Log In</h1>
         <form className='login-form' onSubmit={handleSubmit}>
-          <Email onChange={handleInputChange} pattern={emailPattern}/>
+          <Email onChange={handleInputChange} />
             <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange}/> 
             <div className='check'>
               <input className='check-box' type="checkbox" name="" id="check" />
