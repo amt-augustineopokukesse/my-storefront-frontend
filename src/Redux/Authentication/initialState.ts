@@ -8,7 +8,13 @@ export interface NewUser {
     email: string;
     password: string;
     confirm_password: string;
-    businessName?: string;
+}
+
+export interface NewBusiness {
+    businessName: string;
+    email: string;
+    password: string;
+    confirm_password: string;
 }
 
 export interface User {

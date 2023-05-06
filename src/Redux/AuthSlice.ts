@@ -1,17 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { NewUser } from './Authentication/initialState';
-
-// interface NewUser {
-//   firstname: string;
-//   lastname: string;
-//   businessname?: string;
-//   email: string;
-//   password: string;
-// }
+import { NewBusiness, NewUser } from './Authentication/initialState';
 
 interface AuthState {
-  newUser: NewUser | null;
+  newUser: NewUser | NewBusiness | null;
   isLoading: boolean;
   error: string | null;
 }
@@ -24,7 +16,7 @@ const initialState: AuthState = {
 
 export const addNewUser = createAsyncThunk(
   'auth/addNewUser',
-  async (user: NewUser, { rejectWithValue }) => {
+  async (user: NewUser | NewBusiness, { rejectWithValue }) => {
     try {
       const response = await axios.post('https://reqres.in/api/users', user);
       return response.data;

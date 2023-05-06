@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
 //import { addNewUser } from '../../Redux/Authentication/authActions';
 import { addNewUser } from '../../Redux/AuthSlice';
-import { NewUser } from '../../Redux/Authentication/initialState';
+import { NewBusiness, NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
 import Password from './Password';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword } from './AuthUtils';
@@ -14,25 +14,35 @@ import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPasswo
 const SignUpForm: React.FC = () => {
   const [businessAccount, setBusinessAccount] = useState<boolean>(false);
 
-  const initialFormState: NewUser & { businessAccount: boolean } = {
+  const initialNewUserFormState: NewUser = {
     first_name: '',
     last_name: '',
+    email: '',
+    password: '',
+    confirm_password: '',
+  };
+
+  const initialNewBusinessFormState: NewBusiness = {
     businessName: '',
     email: '',
     password: '',
     confirm_password: '',
-    businessAccount: false,
   };
 
-  const [formState, setFormState] = useState<NewUser & { businessAccount: boolean }>(initialFormState);
+
+
+  const [formState, setFormState] = useState<NewUser | NewBusiness>( initialNewUserFormState);
   const [password2, setPassword2] = useState<string>('');
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const newUser = useAppSelector((state) => state.auth.newUser);
+  
 
   useEffect (() => {
     console.log(newUser);
+    //console.log(formState);
+    //console.log(businessAccount);
   },[newUser]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,8 +53,6 @@ const SignUpForm: React.FC = () => {
     } else if(name === 'password') {
       handleValidPassword(value);
       setFormState(prevState => ({ ...prevState, [name]: value }));
-    } else if (name === 'business') {
-      setFormState(prevState => ({ ...prevState, businessname: value, businessAccount: true }));
     } else {
       setFormState(prevState => ({ ...prevState, [name]: value }));
     }
@@ -61,22 +69,30 @@ const SignUpForm: React.FC = () => {
   
   
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!valResult){
       handleEmailCheck(valResult);
     } else if(!match || !pMatch){
       console.log('password mismatch or invalid password')
     } else {
-      dispatch(addNewUser(formState));
-      setFormState(initialFormState);
-      navigate('/login');
+      try {
+        await dispatch(addNewUser(formState)).unwrap();
+        setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
+        navigate('/login');
+      } catch (err) {
+        console.error('Error creating new user', err);
+      }
     }  
   };
 
   const formChanger = () => {
     setBusinessAccount(!businessAccount);
   };
+
+  useEffect(() => {
+    setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
+  }, [businessAccount]);
 
   
 
