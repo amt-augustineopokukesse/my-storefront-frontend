@@ -31,10 +31,14 @@
     }
     .icon-container {
         position: absolute;
-        right: 5px;
+        transform: translateX(380px);
+        //left: 50px;
         cursor: pointer;
-        background-color: #aaaaaa;
+        color: #aaaaaa;
         padding: 5px;
         border-radius: 5px;
+        //.eye-icon {
+            //width: 10px;
+        //}
     }
 }

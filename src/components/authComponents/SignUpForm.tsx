@@ -14,12 +14,12 @@ const SignUpForm: React.FC = () => {
   const [businessAccount, setBusinessAccount] = useState<boolean>(false);
 
   const initialFormState: NewUser & { businessAccount: boolean } = {
-    firstname: '',
-    lastname: '',
-    businessname: '',
+    first_name: '',
+    last_name: '',
+    businessName: '',
     email: '',
     password: '',
-    confirmpassword: '',
+    confirm_password: '',
     businessAccount: false,
   };
 
@@ -60,14 +60,14 @@ const SignUpForm: React.FC = () => {
   
   
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!valResult){
       handleEmailCheck(valResult);
     } else if(!match || !pMatch){
       console.log('password mismatch or invalid password')
     } else {
-      await dispatch(addNewUser(formState));
+      dispatch(addNewUser(formState));
       setFormState(initialFormState);
       navigate('/login');
     }  
@@ -85,23 +85,23 @@ const SignUpForm: React.FC = () => {
       <form className='FormContainer' onSubmit={handleSubmit}>
         {businessAccount ? (
           <div className='business-name'>
-            <TextInput type="text" id="business" name="businessname" label='Business Name' onChange={handleInputChange} />
+            <TextInput type="text" id="business" name="businessName" label='Business Name' onChange={handleInputChange} />
           </div>
         ) : (
           <div className="user-names">
             <div className='name'>
-              <TextInput type="text" id="fname" name="firstname" label='First Name' onChange={handleInputChange} />
+              <TextInput type="text" id="fname" name="first_name" label='First Name' onChange={handleInputChange} />
             </div>
             <div className='name'>
-              <TextInput type="text" id="lname" name="lastname" label='Last Name' onChange={handleInputChange} />   
+              <TextInput type="text" id="lname" name="last_name" label='Last Name' onChange={handleInputChange} />   
             </div>
           </div>
         )}   
         <Email onChange={handleInputChange} />
         
         <div className="password">
-          <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange} pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$'/>  
-          <Password type="password" id="pw2" name="confirmpassword"  label='Confirm Password' onChange={handleInputChange} disabled />
+          <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange} />  
+          <Password type="password" id="pw2" name="confirm_password"  label='Confirm Password' onChange={handleInputChange} disabled />
         </div>
         <button className='submit-button'>Create Account</button>    
       </form>    

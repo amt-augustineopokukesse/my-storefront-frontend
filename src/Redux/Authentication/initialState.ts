@@ -3,12 +3,12 @@ export interface NewPassword {
 }
 
 export interface NewUser {
-    firstname: string;
-    lastname: string;
+    first_name: string;
+    last_name: string;
     email: string;
     password: string;
-    confirmpassword: string;
-    businessname?: string;
+    confirm_password: string;
+    businessName?: string;
 }
 
 export interface User {
