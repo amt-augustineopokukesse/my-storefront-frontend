@@ -1,17 +1,21 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../store';
+import { resetAuthState } from '../../Redux/AuthSlice';
 
 const SignOut:React.FC = () => {
-    const navigate = useNavigate();
-    
-    const signOut = () => {
-        //window.localStorage.removeItem("isLoggedIn");
-        window.localStorage.removeItem("token");
-        navigate('/');
-    }
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const signOut = () => {
+    window.localStorage.removeItem("token");
+    dispatch(resetAuthState());
+    navigate('/');
+  }
+
   return (
     <div>
-        <button onClick={signOut}>Log out</button>
+      <button onClick={signOut}>Log out</button>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { NewBusiness, NewUser, User, ResetPwEmail, NewPassword } from './Authentication/initialState';
 
@@ -75,10 +75,15 @@ export const resetPassword = createAsyncThunk(
     }
 );
 
+export const resetAuthState = createAction<void>('auth/resetAuthState');
+
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    resetAuthState: () => initialState,
+  },
   extraReducers: builder => {
     /**Signup */
     builder.addCase(addNewUser.pending, state => {
