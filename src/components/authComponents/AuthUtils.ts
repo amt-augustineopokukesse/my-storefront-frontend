@@ -28,13 +28,13 @@ export const handleValidPassword = (password:string) => {
 }
 
 export const handleEmailCheck = (valResult:boolean) => {
-    const emailMisMatch = document.querySelector('.email-mismatch') as HTMLElement;
+    //const emailMisMatch = document.querySelector('.email-mismatch') as HTMLElement;
     const textInput = document.getElementById('email') as HTMLElement;
     if(!valResult){
-      emailMisMatch.style.display = 'block';
+      //emailMisMatch.style.display = 'block';
       textInput.style.border = '1px solid #FF3131';
     } else {
-      emailMisMatch.style.display = 'none';
+      //emailMisMatch.style.display = 'none';
       textInput.style.border = '1px solid transparent';
     }
 }

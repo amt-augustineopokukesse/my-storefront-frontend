@@ -40,13 +40,14 @@ export const addNewUser = createAsyncThunk(
 
 export const userLogin = createAsyncThunk(
     'auth/userLogin',
-    async (user: User, { rejectWithValue }) => {
+    async (user: User) => {
       try {
         const response = await axios.post(`${API_BASE_URL}/api/user/login`, user);
         //const response = await axios.post('https://reqres.in/api/users', user);
         return response.data;
       } catch (error:any) {
-        return rejectWithValue(error.message);
+        //console.log(error);
+        return (error.response.data.message);
       }
     }
 );
@@ -112,7 +113,7 @@ const authSlice = createSlice({
     builder.addCase(userLogin.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
-    });
+      });      
     /**Send email */
     builder.addCase(sendEmail.pending, state => {
         state.isLoading = true;

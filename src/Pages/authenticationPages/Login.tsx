@@ -20,16 +20,25 @@ const Login: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const user : any = useAppSelector((state) => state.auth.auth.user);
+  //const errorMsg : any = useAppSelector((state) => state.auth.error);
 
   const navigate = useNavigate();
   const valResult = validateEmail(formState.email)
 
   useEffect (() => {
     console.log(user);
+    //console.log(errorMsg);
     if (user && user.userActivated && user.userActivated.token) {
       window.localStorage.setItem('token', user.userActivated.token)
       //window.localStorage.setItem('isLoggedIn', `${true}`);
       navigate('/homepage');
+    } 
+    else if (user && !user.userActivated){
+      //console.log(`The error message is ${user}`);
+      const errorDiv = document.getElementById('login-error') as HTMLElement;
+      const pwElement = document.getElementById('pw1') as HTMLElement;
+      errorDiv.textContent = user;
+      pwElement.style.border = '1px solid #FF3131';
     }
   },[user, navigate]);
 
@@ -42,7 +51,7 @@ const Login: React.FC = () => {
     event.preventDefault();
     if (valResult) {
       await dispatch(userLogin(formState)).unwrap();
-      setFormState(initialFormState);
+      //setFormState(initialFormState);
       handleEmailCheck(valResult);
     } else {
       handleEmailCheck(valResult);
@@ -53,6 +62,7 @@ const Login: React.FC = () => {
     <div className='login-container'>
       <div className='login-form-container'>
         <h1 className='header-text'>Log In</h1>
+        <div id='login-error'></div>
         <form className='login-form' onSubmit={handleSubmit}>
           <Email onChange={handleInputChange} />
           <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange}/> 
