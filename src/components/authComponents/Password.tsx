@@ -1,8 +1,6 @@
 import React from 'react'
 import TextInput from './TextInput';
 import '../../assets/styles/authenticationStyles/Email.scss';
-//import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-
 
 
 interface passwordProp {
@@ -19,11 +17,7 @@ interface passwordProp {
 
 
 const Password: React.FC<passwordProp> = (props) => {
-  //const [showPassword, setShowPassword] = useState(false);
-
-  // const togglePasswordVisibility = () => {
-  //   setShowPassword(!showPassword);
-  // };
+  
 
   return (
     
@@ -34,11 +28,6 @@ const Password: React.FC<passwordProp> = (props) => {
            label={props.label} 
            onChange={props.onChange} 
            pattern={props.pattern} 
-          //  endAdornment={
-          //   <span onClick={togglePasswordVisibility}>
-          //     {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-          //   </span>
-          //   }
           />  
            
         </div>

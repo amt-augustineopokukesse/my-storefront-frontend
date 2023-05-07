@@ -29,7 +29,8 @@ export const addNewUser = createAsyncThunk(
   'auth/addNewUser',
   async (user: NewUser | NewBusiness, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/customer/signup`, user);
+      const usertype = 'businessName' in user ? 'merchant' : 'customer';  
+      const response = await axios.post(`${API_BASE_URL}/api/${usertype}/signup`, user);
       return response.data;
     } catch (error:any) {
       return rejectWithValue(error.message);

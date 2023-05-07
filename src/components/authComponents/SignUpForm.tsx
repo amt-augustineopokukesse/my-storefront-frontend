@@ -8,6 +8,7 @@ import { NewBusiness, NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
 import Password from './Password';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword } from './AuthUtils';
+import PasswordInfo from './PasswordInfo';
 
 const SignUpForm: React.FC = () => {
   const [businessAccount, setBusinessAccount] = useState<boolean>(false);
@@ -111,7 +112,7 @@ const SignUpForm: React.FC = () => {
           </div>
         )}   
         <Email onChange={handleInputChange} />
-        
+        <PasswordInfo />
         <div className="password">
           <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange} />  
           <Password type="password" id="pw2" name="confirm_password"  label='Confirm Password' onChange={handleInputChange} disabled />
