@@ -23,7 +23,7 @@ const Login: React.FC = () => {
   
 
     useEffect (() => {
-      
+      console.log(user);
       console.log(user.userActivated);
     },[user]);
 
