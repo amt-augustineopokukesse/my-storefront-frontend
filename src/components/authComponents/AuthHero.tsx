@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import '../../assets/styles/authenticationStyles/AuthHero.scss';
 import heroImage1 from '../../assets/images/heroImage1.png';
 import heroImage2 from '../../assets/images/heroImage2.png';
@@ -15,21 +16,28 @@ const messages = authData.messages;
 const title = authData.title;
 
 const AuthHero: React.FC = () => {
-
   const location = useLocation();
-  const randomImgIndex = Math.floor(Math.random() * images.length);
-  const bgImage = {
-    backgroundImage: `url(${images[randomImgIndex]})`,
-  };
+  const [bgImage, setBgImage] = useState({});
+  const [msgIndex, setMsgIndex] = useState(0);
 
-  const randomMsgIndex = Math.floor(Math.random() * messages.length);
+  useEffect(() => {
+    const randomImgIndex = Math.floor(Math.random() * images.length);
+    const randomMsgIndex = Math.floor(Math.random() * messages.length);
+    const bgImage = {
+      backgroundImage: `url(${images[randomImgIndex]})`,
+    };
+    setBgImage(bgImage);
+    setMsgIndex(randomMsgIndex);
+  }, []);
+
+  
 
 
   return (
     <div className='auth-hero' style={bgImage}>
       <h1 style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: 35, textAlign: 'left'}}>{title}</h1>
       <div className='authMessage' style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: `calc((100% - 650px) / 2)`, textAlign: 'right'}}>
-        {messages[randomMsgIndex]}
+        {messages[msgIndex]}
       </div>
     </div>
   );

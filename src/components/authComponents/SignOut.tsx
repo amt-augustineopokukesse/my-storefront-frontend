@@ -5,7 +5,8 @@ const SignOut:React.FC = () => {
     const navigate = useNavigate();
     
     const signOut = () => {
-        window.localStorage.removeItem("isLoggedIn");
+        //window.localStorage.removeItem("isLoggedIn");
+        window.localStorage.removeItem("token");
         navigate('/');
     }
   return (
