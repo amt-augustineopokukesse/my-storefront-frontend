@@ -19,7 +19,7 @@ const Login: React.FC = () => {
     const [formState, setFormState] = useState<User>(initialFormState);
 
     const dispatch = useAppDispatch();
-    const user: any = useAppSelector((state) => state.auth.auth.user);
+    const user : any = useAppSelector((state) => state.auth.auth.user);
   
 
     useEffect (() => {
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
       event.preventDefault();
       if (valResult) {
         await dispatch(userLogin(formState)).unwrap();
-        window.localStorage.setItem('token', JSON.stringify(user.token))
+        window.localStorage.setItem('token', JSON.stringify(user.userActivated.token))
         //window.localStorage.setItem('isLoggedIn', `${true}`);
         navigate('/homepage')
         setFormState(initialFormState);
