@@ -39,8 +39,8 @@ const Login: React.FC = () => {
       event.preventDefault();
       if (valResult) {
         await dispatch(userLogin(formState)).unwrap();
-        //window.localStorage.setItem('token', user.token)
-        window.localStorage.setItem('isLoggedIn', `${true}`);
+        window.localStorage.setItem('token', user.token)
+        //window.localStorage.setItem('isLoggedIn', `${true}`);
         navigate('/homepage')
         setFormState(initialFormState);
         handleEmailCheck(valResult)

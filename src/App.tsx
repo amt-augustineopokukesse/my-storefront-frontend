@@ -10,7 +10,8 @@ import { Provider } from 'react-redux';
 import HomePage from './Pages/HomePage';
 
 const App: React.FC =() => {
-  const loggedIn = window.localStorage.getItem('isLoggedIn');
+  //const loggedIn = window.localStorage.getItem('isLoggedIn');
+  const loggedIn = window.localStorage.getItem('token');
 
   return (
     <Provider store={store}>

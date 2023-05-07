@@ -42,7 +42,7 @@ export const userLogin = createAsyncThunk(
     'auth/userLogin',
     async (user: User, { rejectWithValue }) => {
       try {
-        const response = await axios.post('https://reqres.in/api/users', user);
+        const response = await axios.post(`${API_BASE_URL}/api/user/login`, user);
         return response.data;
       } catch (error:any) {
         return rejectWithValue(error.message);
