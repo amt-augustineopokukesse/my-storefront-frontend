@@ -23,7 +23,8 @@ const Login: React.FC = () => {
   
 
     useEffect (() => {
-      console.log(user);
+      
+      console.log(user.userActivated);
     },[user]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
