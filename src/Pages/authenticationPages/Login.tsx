@@ -19,7 +19,7 @@ const Login: React.FC = () => {
     const [formState, setFormState] = useState<User>(initialFormState);
 
     const dispatch = useAppDispatch();
-    const user = useAppSelector((state) => state.auth.auth.user);
+    const user: any = useAppSelector((state) => state.auth.auth.user);
   
 
     useEffect (() => {
@@ -36,18 +36,18 @@ const Login: React.FC = () => {
     
 
     const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (valResult) {
-          await dispatch(userLogin(formState)).unwrap();
-          //window.localStorage.setItem('token', user.token)
-          window.localStorage.setItem('isLoggedIn', `${true}`);
-          navigate('/homepage')
-          setFormState(initialFormState);
-          handleEmailCheck(valResult)
-        } else {
-          handleEmailCheck(valResult)
-        }
-      };
+      event.preventDefault();
+      if (valResult) {
+        await dispatch(userLogin(formState)).unwrap();
+        //window.localStorage.setItem('token', user.token)
+        window.localStorage.setItem('isLoggedIn', `${true}`);
+        navigate('/homepage')
+        setFormState(initialFormState);
+        handleEmailCheck(valResult)
+      } else {
+        handleEmailCheck(valResult)
+      }
+    };
 
   return (
     <div className='login-container'>
