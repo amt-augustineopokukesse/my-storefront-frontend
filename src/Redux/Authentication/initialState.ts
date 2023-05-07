@@ -14,7 +14,7 @@ export interface NewUser {
 }
 
 export interface NewBusiness {
-    businessName: string;
+    business_name: string;
     email: string;
     password: string;
     confirm_password: string;

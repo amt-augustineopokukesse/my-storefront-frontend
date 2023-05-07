@@ -1,5 +1,5 @@
 import { NewUser, NewPassword } from "../../Redux/Authentication/initialState";
-//import { useLocation } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 export const validateEmail = (email: string): boolean => {
     const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -55,3 +55,4 @@ export const handlePasswordCheck = (formState:NewUser | NewPassword, confirmPass
      pw2.style.border = '1px solid transparent';
   }
 }
+

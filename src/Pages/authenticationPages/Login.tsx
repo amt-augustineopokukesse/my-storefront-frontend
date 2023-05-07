@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthHero from '../../components/authComponents/AuthHero';
 import '../../assets/styles/authenticationStyles/Login.scss';
 import { User } from '../../Redux/Authentication/initialState';
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
         setFormState(prevState => ({ ...prevState, [name]: value }));
     };
 
-
+    const navigate = useNavigate();
     const valResult = validateEmail(formState.email)
     
 
@@ -39,6 +39,9 @@ const Login: React.FC = () => {
         event.preventDefault();
         if (valResult) {
           await dispatch(userLogin(formState)).unwrap();
+          //window.localStorage.setItem('token', user.token)
+          window.localStorage.setItem('isLoggedIn', `${true}`);
+          navigate('/homepage')
           setFormState(initialFormState);
           handleEmailCheck(valResult)
         } else {

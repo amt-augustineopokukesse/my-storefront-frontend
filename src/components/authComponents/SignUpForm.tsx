@@ -22,7 +22,7 @@ const SignUpForm: React.FC = () => {
   };
 
   const initialNewBusinessFormState: NewBusiness = {
-    businessName: '',
+    business_name: '',
     email: '',
     password: '',
     confirm_password: '',
@@ -99,7 +99,7 @@ const SignUpForm: React.FC = () => {
       <form className='FormContainer' onSubmit={handleSubmit}>
         {businessAccount ? (
           <div className='business-name'>
-            <TextInput type="text" id="business" name="businessName" label='Business Name' onChange={handleInputChange} />
+            <TextInput type="text" id="business" name="business_name" label='Business Name' onChange={handleInputChange} />
           </div>
         ) : (
           <div className="user-names">
