@@ -39,7 +39,7 @@ const Login: React.FC = () => {
       event.preventDefault();
       if (valResult) {
         await dispatch(userLogin(formState)).unwrap();
-        window.localStorage.setItem('token', JSON.stringify(user.userActivated.token))
+        window.localStorage.setItem('token', user.userActivated.token)
         //window.localStorage.setItem('isLoggedIn', `${true}`);
         navigate('/homepage')
         setFormState(initialFormState);
