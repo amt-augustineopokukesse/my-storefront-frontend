@@ -1,5 +1,5 @@
 import { AuthHeaderText } from "../../components/authComponents/AuthHeaderText"
-import '../assets/styles/AuthNotification.css'
+import '../assets/styles/EmailAuthNotification.scss'
 
 export const AuthNotification: React.FC = () => {
     return (
