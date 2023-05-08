@@ -1,4 +1,4 @@
-import '../assets/styles/authenticationStyles/AuthHeaderText.scss'
+import '../../assets/styles/authenticationStyles/AuthHeaderText.scss';
 
 export const AuthHeaderText: React.FC = () => {
     return (
