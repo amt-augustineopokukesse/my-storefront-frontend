@@ -8,17 +8,28 @@
     margin: 6rem auto;
     width: 30rem;
     height: 10rem;
-    .auth-header{
+    .note-header{
         margin: 0;
-        font-family: roboto;
+        font-family: 'Roboto';
         font-size: 40px;
         letter-spacing: 2px;
         font-weight: 600;
         color: #0085FF;
     }
-    .auth-text{
+    .note-text{
         margin: 0;
         font-family: roboto;
+    }
+    .note-login-button{
+        width: 11rem;
+        height: 46px;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+        background-color: #0085ff;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
     }
 }
 
