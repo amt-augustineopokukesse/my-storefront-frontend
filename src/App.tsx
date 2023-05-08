@@ -8,6 +8,9 @@ import ResetPw2 from './Pages/authenticationPages/ResetPw2';
 import store from './store';
 import { Provider } from 'react-redux';
 import HomePage from './Pages/HomePage';
+import AuthNotification from './Pages/authenticationPages/AuthNotification';
+import SuccessfulAuthNotification from './Pages/authenticationPages/SuccessfulAuthNotification';
+
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -24,6 +27,8 @@ const App: React.FC =() => {
             <Route path='/resetpw1' element={<ResetPw1/>}/>
             <Route path='/resetpw2' element={<ResetPw2/>}/>
             <Route path='/homepage' element={<HomePage/>}/>
+            <Route path='/authnotification' element={<AuthNotification/>}/>
+            <Route path='/auth-success' element={<SuccessfulAuthNotification/>}/>
           </Routes>
         </div>
       </Router>

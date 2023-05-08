@@ -88,9 +88,10 @@ const SignUpForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (newUser && (newUser.customer || newUser.merchant)){
-      navigate('/login');
-    } else {
+    if (newUser && newUser.success){
+      //if (newUser){
+      navigate('/authnotification');
+    } else if (newUser && !newUser.success){
       const errorDiv = document.getElementById('signup-error') as HTMLElement;
       errorDiv.textContent = newUser;
     }
