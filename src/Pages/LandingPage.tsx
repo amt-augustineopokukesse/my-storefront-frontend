@@ -1,4 +1,4 @@
-import '../assets/styles/landingPage.css'
+import '../assets/styles/landingPage.scss'
 import laptop from '../assets/images/laptop.png'
 import mobile from '../assets/images/mobile.png'
 import team1 from '../assets/images/Ellipse 1.png'
@@ -9,7 +9,7 @@ import templateImg2 from '../assets/images/Desktop - 3 1.png'
 import { TopBar } from '../components/TopBar'
 
 
-export const LandingPage: React.FC = () => {
+const LandingPage: React.FC = () => {
     return (
         <div className="main-container">
             <TopBar />
@@ -86,3 +86,4 @@ export const LandingPage: React.FC = () => {
         </div>
     )
 }
+export default LandingPage;

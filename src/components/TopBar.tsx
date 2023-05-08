@@ -1,5 +1,5 @@
 import { HeaderText } from "./HeaderText"
-import '../assets/styles/TopBar.css'
+import '../assets/styles/TopBar.scss'
 import { useState } from "react"
 import burger from '../assets/images/menu-hamburger.svg'
 
