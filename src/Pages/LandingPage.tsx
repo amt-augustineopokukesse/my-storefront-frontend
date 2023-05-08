@@ -1,12 +1,12 @@
-import '../assets/styles/landingPage.scss'
-import laptop from '../assets/images/laptop.png'
-import mobile from '../assets/images/mobile.png'
-import team1 from '../assets/images/Ellipse 1.png'
-import team2 from '../assets/images/Ellipse 3.png'
-import team3 from '../assets/images/Ellipse 4.png'
-import templateImg1 from '../assets/images/Frame 10.png'
-import templateImg2 from '../assets/images/Desktop - 3 1.png'
-import { TopBar } from '../components/TopBar'
+import '../assets/styles/landingPage.scss';
+import laptop from '../assets/images/laptop.png';
+import mobile from '../assets/images/mobile.png';
+import team1 from '../assets/images/Ellipse 1.png';
+import team2 from '../assets/images/Ellipse 3.png';
+import team3 from '../assets/images/Ellipse 4.png';
+import templateImg1 from '../assets/images/Frame 10.png';
+import templateImg2 from '../assets/images/Desktop - 3 1.png';
+import { TopBar } from '../components/TopBar';
 
 
 const LandingPage: React.FC = () => {

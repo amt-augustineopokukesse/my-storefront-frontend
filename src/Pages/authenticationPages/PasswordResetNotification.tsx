@@ -1,5 +1,5 @@
-import { AuthHeaderText } from '../../components/authComponents/AuthHeaderText'
-import '../assests/styles/authenticationStyles/PasswordResetNotification.scss'
+import { AuthHeaderText } from '../../components/authComponents/AuthHeaderText';
+import '../assests/styles/authenticationStyles/PasswordResetNotification.scss';
 
 export const PasswordResetNotification: React.FC = () => {
     return (
