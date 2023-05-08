@@ -8,6 +8,8 @@ import Email from '../../components/authComponents/Email';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import Password from '../../components/authComponents/Password';
 import { userLogin } from '../../Redux/AuthSlice';
+import facebookButton from '../../assets/svg/fb.svg';
+import googleButton from '../../assets/svg/google.svg';
 
 const Login: React.FC = () => {
 
@@ -79,6 +81,16 @@ const Login: React.FC = () => {
             </div>
           </div>
         </form>
+        <div className='or'>
+          <span className='text'>OR</span>
+          
+        </div>
+        <p className='sm-text'>Log in with</p>
+        <div className='sm-buttons'>
+            <img src={googleButton} alt="google icon" className='sm-icon'/>
+            <img src={facebookButton} alt="facebook icon" className='sm-icon' />
+        </div>
+
         <p className="not-member"> Not a member? <Link to='/signup' className="sign-up-link">Sign up</Link> </p>
       </div>  
       <AuthHero />     
