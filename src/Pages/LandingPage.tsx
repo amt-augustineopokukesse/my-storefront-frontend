@@ -1,4 +1,4 @@
-import '../assets/styles/landingPage.scss';
+import '../assets/styles/LandingPage.scss';
 import laptop from '../assets/images/laptop.png';
 import mobile from '../assets/images/mobile.png';
 import team1 from '../assets/images/Ellipse 1.png';
