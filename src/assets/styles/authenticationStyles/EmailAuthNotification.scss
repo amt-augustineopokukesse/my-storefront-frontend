@@ -1,0 +1,24 @@
+.authentication{
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 6rem auto;
+    width: 30rem;
+    height: 10rem;
+    .auth-header{
+        margin: 0;
+        font-family: roboto;
+        font-size: 40px;
+        letter-spacing: 2px;
+        font-weight: 600;
+        color: #0085FF;
+    }
+    .auth-text{
+        margin: 0;
+        font-family: roboto;
+    }
+}
+
