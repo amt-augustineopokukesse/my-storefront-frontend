@@ -1,7 +1,8 @@
 import { HeaderText } from "./HeaderText"
 import '../assets/styles/TopBar.scss'
 import { useState } from "react"
-import burger from '../assets/images/menu-hamburger.svg'
+import burger from '../assets/images/menu-hamburger.svg';
+import { Link } from "react-router-dom";
 
 export const TopBar = () => {
 
@@ -14,8 +15,14 @@ export const TopBar = () => {
         <div className="top-bar">
             <HeaderText />
             <span className="login-register-buttons">
-                <button className="login-button">Log in</button>
-                <button className="register-button">Register</button>
+                <Link to='/login'>
+                    <button className="login-button">Log in</button>
+                </Link>
+                <Link to='/signup'>
+                    <button className="register-button">Register</button>
+                </Link>
+                
+                
             </span>
             <div className="harmburger-menu">
                 <button className="menu-button" onClick={handleClick}>
