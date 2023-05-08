@@ -36,7 +36,7 @@ const AuthHero: React.FC = () => {
   return (
     <div className='auth-hero' style={bgImage}>
       <h1 style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: 35, textAlign: 'left'}}>{title}</h1>
-      <div className='authMessage' style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: `calc((100% - 650px) / 2)`, textAlign: 'right'}}>
+      <div className='authMessage' style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: `calc((100% - 785px) / 2)`, textAlign: 'right'}}>
         {messages[msgIndex]}
       </div>
     </div>

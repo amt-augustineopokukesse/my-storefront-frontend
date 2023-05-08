@@ -45,8 +45,12 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                gap: 20px;
+                .button {
+                    width: 50%;
+                }
                 .forgot-password {
-                    width: 210px;
+                    width: 100%;
                     height: 46px;
                     border: none;
                     background: #FFFFFF;
@@ -62,7 +66,7 @@
                     }
                 }
                 .login-button {
-                    width: 210px;
+                    width: 100%;
                     height: 46px;
                     border: none;
                     background: #0085FF;

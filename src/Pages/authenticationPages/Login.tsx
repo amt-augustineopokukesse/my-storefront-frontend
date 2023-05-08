@@ -71,8 +71,12 @@ const Login: React.FC = () => {
             <label  className='check-label' htmlFor='check' > Remember me </label>
           </div>
           <div className='buttons'>
-            <Link to='/resetpw1'><button className='forgot-password'>Forgot Password</button></Link>
-            <button className='login-button'>Log In</button>
+            <div className='button'>
+              <Link to='/resetpw1'><button className='forgot-password'>Forgot Password</button></Link>
+            </div>
+            <div className='button'>
+              <button className='login-button'>Log In</button>
+            </div>
           </div>
         </form>
         <p className="not-member"> Not a member? <Link to='/signup' className="sign-up-link">Sign up</Link> </p>
