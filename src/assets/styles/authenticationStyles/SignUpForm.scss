@@ -10,6 +10,13 @@
         font-size: 56px;
         color: #0085FF;
     }
+    #signup-error {
+        font-family: 'Roboto';
+        font-size: 16px;    
+        color: #FF3131;
+        position: relative;
+        top: -15px;
+    }
     .FormContainer {
         width: 65%;
         display: flex;

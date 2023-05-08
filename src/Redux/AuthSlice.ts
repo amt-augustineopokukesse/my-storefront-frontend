@@ -27,13 +27,13 @@ const initialState: AuthState = {
 
 export const addNewUser = createAsyncThunk(
   'auth/addNewUser',
-  async (user: NewUser | NewBusiness, { rejectWithValue }) => {
+  async (user: NewUser | NewBusiness) => {
     try {
       const usertype = 'business_name' in user ? 'merchant' : 'customer';  
       const response = await axios.post(`${API_BASE_URL}/api/${usertype}/signup`, user);
       return response.data;
     } catch (error:any) {
-      return rejectWithValue(error.message);
+      return (error.response.data.message);
     }
   }
 );

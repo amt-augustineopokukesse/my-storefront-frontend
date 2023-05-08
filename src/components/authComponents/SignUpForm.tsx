@@ -12,6 +12,8 @@ import PasswordInfo from './PasswordInfo';
 
 const SignUpForm: React.FC = () => {
   const [businessAccount, setBusinessAccount] = useState<boolean>(false);
+  //const [formError, setFormError] = useState<string>('');
+
 
   const initialNewUserFormState: NewUser = {
     first_name: '',
@@ -35,7 +37,7 @@ const SignUpForm: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const newUser = useAppSelector((state) => state.auth.auth.newUser);
+  const newUser: any = useAppSelector((state) => state.auth.auth.newUser);
   
 
   useEffect (() => {
@@ -76,12 +78,23 @@ const SignUpForm: React.FC = () => {
       try {
         await dispatch(addNewUser(formState)).unwrap();
         setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
-        navigate('/login');
+        
       } catch (err) {
+        //event.preventDefault();
         console.error('Error creating new user', err);
+        //setFormError('Error creating new user');
       }
     }  
   };
+
+  useEffect(() => {
+    if (newUser && (newUser.customer || newUser.merchant)){
+      navigate('/login');
+    } else {
+      const errorDiv = document.getElementById('signup-error') as HTMLElement;
+      errorDiv.textContent = newUser;
+    }
+  }, [newUser, navigate]);
 
   const formChanger = () => {
     setBusinessAccount(!businessAccount);
@@ -96,6 +109,7 @@ const SignUpForm: React.FC = () => {
   return (
     <div className='signup-container'>
       <h1 className='header-text'>Sign Up</h1>  
+      <div id='signup-error'></div>
       <form className='FormContainer' onSubmit={handleSubmit}>
         {businessAccount ? (
           <div className='business-name'>
