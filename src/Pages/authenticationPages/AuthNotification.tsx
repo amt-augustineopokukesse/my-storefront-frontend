@@ -1,4 +1,4 @@
-import { AuthHeaderText } from "../../components/authComponents/AuthHeaderText"
+import { AuthHeaderText } from "../../components/authComponents/AuthHeaderText";
 import '../../assets/styles/authenticationStyles/AuthNotification.scss';
 
 const AuthNotification: React.FC = () => {
