@@ -10,7 +10,7 @@ import Password from '../../components/authComponents/Password';
 import { userLogin } from '../../Redux/AuthSlice';
 import facebookButton from '../../assets/svg/fb.svg';
 import googleButton from '../../assets/svg/google.svg';
-import axios from 'axios';
+//import axios from 'axios';
 
 const Login: React.FC = () => {
 
@@ -50,17 +50,11 @@ const Login: React.FC = () => {
       setFormState(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleFacebook = async() =>{
-    try {
-      return await axios.get('https://hush-mything-production.up.railway.app/auth/facebook',
-      {
-        headers:{"Access-Control-Allow-Original":"*"}
-      });
-      
-    } catch (error) {
-      console.error(error);
+  const handleFacebook = () =>{
+    window.open('https://hush-mything-production.up.railway.app/auth/facebook','_self')
+    
     }
-  }
+  
 
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
