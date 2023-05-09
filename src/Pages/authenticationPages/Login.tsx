@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHero from '../../components/authComponents/AuthHero';
 import '../../assets/styles/authenticationStyles/Login.scss';
@@ -22,11 +22,15 @@ const Login: React.FC = () => {
   const [formState, setFormState] = useState<User>(initialFormState);
 
   const dispatch = useAppDispatch();
+  const formRef = useRef<HTMLFormElement>(null);
+
   const user : any = useAppSelector((state) => state.auth.auth.user);
   //const errorMsg : any = useAppSelector((state) => state.auth.error);
 
   const navigate = useNavigate();
-  const valResult = validateEmail(formState.email)
+  const valResult = validateEmail(formState.email);
+  const errorDiv = document.getElementById('login-error') as HTMLElement;
+
 
   useEffect (() => {
     console.log(user);
@@ -35,19 +39,31 @@ const Login: React.FC = () => {
       window.localStorage.setItem('token', user.userActivated.token)
       //window.localStorage.setItem('isLoggedIn', `${true}`);
       navigate('/homepage');
+      formRef.current?.reset();
+      setFormState(initialFormState);
     } 
     else if (user && !user.userActivated){
       //console.log(`The error message is ${user}`);
-      const errorDiv = document.getElementById('login-error') as HTMLElement;
       const pwElement = document.getElementById('pw1') as HTMLElement;
       errorDiv.textContent = user;
       pwElement.style.border = '1px solid #FF3131';
     }
   },[user, navigate]);
 
+
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
-      setFormState(prevState => ({ ...prevState, [name]: value }));
+      if (name === 'email'){
+          if (errorDiv) {
+            errorDiv.style.display = 'none';
+            const emailDiv = document.getElementById('email') as HTMLElement;
+            emailDiv.style.border = '1px solid transparent';
+          }
+          setFormState(prevState => ({ ...prevState, [name]: value }));
+      } else {
+        setFormState(prevState => ({ ...prevState, [name]: value }));
+      }
   };
 
   const handleFacebook = () =>{
@@ -64,6 +80,8 @@ const Login: React.FC = () => {
       handleEmailCheck(valResult);
     } else {
       handleEmailCheck(valResult);
+      errorDiv.style.display = 'block';
+      errorDiv.textContent = 'Invalid Email format. Kindly check.'
     }
   };
 
@@ -72,7 +90,7 @@ const Login: React.FC = () => {
       <div className='login-form-container'>
         <h1 className='header-text'>Log In</h1>
         <div id='login-error'></div>
-        <form className='login-form' onSubmit={handleSubmit}>
+        <form className='login-form' onSubmit={handleSubmit} ref={formRef}>
           <Email onChange={handleInputChange} />
           <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange}/> 
           <div className='check'>
