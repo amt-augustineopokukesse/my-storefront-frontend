@@ -52,17 +52,19 @@ const ResetPw2: React.FC = () => {
   const match = validatePassword(newPassword.password);
   const pMatch = newPassword.password === newPassword2;
   
-  // const throwError = () => {
-  //   const errorDiv = document.getElementById('login-error') as HTMLElement;
-  //   const pwElement = document.getElementById('pw1') as HTMLElement;
-  //   errorDiv.textContent = user;
-  //   pwElement.style.border = '1px solid #FF3131';
-  // };
+  const errorText = 'Password mismatch or invalid password. Kindly re-enter'
+  const throwError = () => {
+    const errorDiv = document.getElementById('pw-error') as HTMLElement;
+    const pwElement = document.getElementById('pw1') as HTMLElement;
+    errorDiv.textContent = errorText;
+    pwElement.style.border = '1px solid #FF3131';
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if(!match || !pMatch){
-      console.log('password mismatch or invalid password')
+      //console.log('password mismatch or invalid password')
+      throwError();
     } else {
       await dispatch(resetPassword(newPassword));
       setNewPassword(initialPasswordState);
