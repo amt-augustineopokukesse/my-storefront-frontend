@@ -44,6 +44,8 @@ const SignUpForm: React.FC = () => {
     console.log(newUser);
   },[newUser]);
 
+  const errorDiv = document.getElementById('error-div') as HTMLElement;
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === 'confirm_password') {
@@ -52,6 +54,14 @@ const SignUpForm: React.FC = () => {
     } else if(name === 'password') {
       handleValidPassword(value);
       setFormState(prevState => ({ ...prevState, [name]: value }));
+    }
+      else if (name === 'email'){
+        if (errorDiv) {
+          errorDiv.style.display = 'none';
+          const emailDiv = document.getElementById('email') as HTMLElement;
+          emailDiv.style.border = '1px solid transparent';
+        }
+        setFormState(prevState => ({ ...prevState, [name]: value }));
     } else {
       setFormState(prevState => ({ ...prevState, [name]: value }));
     }
@@ -67,11 +77,14 @@ const SignUpForm: React.FC = () => {
   const pMatch = formState.password === password2;
   
   
+  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!valResult){
       handleEmailCheck(valResult);
+      errorDiv.style.display = 'block';
+      errorDiv.textContent = 'Invalid Email format. Kindly check.'
     } else if(!match || !pMatch){
       console.log('password mismatch or invalid password')
     } else {
@@ -88,11 +101,13 @@ const SignUpForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (newUser && newUser.success){
-      //if (newUser){
+    //if (newUser && newUser.success){
+      if (newUser && newUser.createdAt){
       navigate('/authnotification');
-    } else if (newUser && !newUser.success){
-      const errorDiv = document.getElementById('signup-error') as HTMLElement;
+    // } else if (newUser && !newUser.success){
+    } else if (newUser && !newUser.createdAt){
+      //const errorDiv = document.getElementById('error-div') as HTMLElement;
+      errorDiv.style.display = 'block';
       errorDiv.textContent = newUser;
     }
   }, [newUser, navigate]);
@@ -110,7 +125,7 @@ const SignUpForm: React.FC = () => {
   return (
     <div className='signup-container'>
       <h1 className='header-text'>Sign Up</h1>  
-      <div id='signup-error'></div>
+      <div id='error-div'></div>
       <form className='FormContainer' onSubmit={handleSubmit}>
         {businessAccount ? (
           <div className='business-name'>
