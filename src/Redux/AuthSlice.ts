@@ -56,7 +56,7 @@ export const sendEmail = createAsyncThunk(
     'auth/sendEmail',
     async (userEmail: ResetPwEmail, { rejectWithValue }) => {
       try {
-        const response = await axios.post('https://reqres.in/api/users', userEmail);
+        const response = await axios.post(`${API_BASE_URL}/reset`, userEmail);
         return response.data;
       } catch (error:any) {
         return rejectWithValue(error.message);
