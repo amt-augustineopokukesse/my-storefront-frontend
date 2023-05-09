@@ -10,10 +10,20 @@ const signuploader = {
     height: '40px'
 }
 
+const loginloader = {
+    //bottom: '0vh',
+    //position: 'relative',
+    top:'35vh',
+    left: '25vw',
+    width: '40px',
+    height: '40px'
+}
+
 export const AuthLoader: React.FC = () => {
     const location = useLocation();
     return (
-        <div className="lds-spinner" style={location.pathname === '/signup' ? signuploader : {}}>
+        <div className="lds-spinner" style={location.pathname === '/signup' ? signuploader : 
+        location.pathname === '/login' ? loginloader: {}}>
             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     )
 }
