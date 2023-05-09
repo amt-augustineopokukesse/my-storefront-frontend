@@ -1,16 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
 import { resetAuthState } from '../../Redux/AuthSlice';
 
 const SignOut:React.FC = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const signOut = () => {
     window.localStorage.removeItem("token");
     dispatch(resetAuthState());
-    navigate('/');
+    // navigate('/');
+    window.location.href = '/';
   }
 
   return (

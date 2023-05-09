@@ -69,6 +69,7 @@ export const resetPassword = createAsyncThunk(
     async (newpassword: NewPassword, { rejectWithValue }) => {
       try {
         const response = await axios.put(`${API_BASE_URL}/verify/reset`, newpassword);
+        //const response = await axios.put('https://reqres.in/api/users/2', newpassword);
         return response.data;
       } catch (error:any) {
         return rejectWithValue(error.message);
