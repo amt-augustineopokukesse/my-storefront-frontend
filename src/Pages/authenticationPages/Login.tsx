@@ -52,8 +52,11 @@ const Login: React.FC = () => {
 
   const handleFacebook = async() =>{
     try {
-      const response = await axios.get('https://hush-mything-production.up.railway.app/auth/facebook');
-      return response.data
+      return await axios.get('https://hush-mything-production.up.railway.app/auth/facebook',
+      {
+        headers:{"Access-Control-Allow-Original":"*"}
+      });
+      
     } catch (error) {
       console.error(error);
     }

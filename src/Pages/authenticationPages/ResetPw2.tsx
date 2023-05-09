@@ -5,7 +5,7 @@ import { NewPassword } from '../../Redux/Authentication/initialState';
 import { handlePasswordCheck, handleValidPassword, validatePassword } from '../../components/authComponents/AuthUtils';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { resetPassword } from '../../Redux/AuthSlice';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const initialPasswordState: NewPassword = {
   id: '',
@@ -19,16 +19,16 @@ const ResetPw2: React.FC = () => {
   //const [successfulReset, setSuccessfulReset] = useState({});
 
   const dispatch = useAppDispatch();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const newPwd: any = useAppSelector((state) => state.auth.auth.newPassword);
   
 
   useEffect (() => {
     console.log(newPwd);
     console.log(id);
-    //if (newPwd && newPwd.success && newPwd.message){
-      //setSuccessfulReset(newPwd);
-    //}
+    if (newPwd && newPwd.success && newPwd.message){
+      navigate('/SuccessfulReset');
+    }
   },[newPwd]);
 
   useEffect(() => {
@@ -68,12 +68,6 @@ const ResetPw2: React.FC = () => {
   
   return (
     <div className='password-reset-container'>
-      {/* {successfulReset ? (
-        <div className='password-reset'>
-          <h3 className='password-reset-header'>Password reset successful</h3>
-          <p className='password-reset-text'>Kindly check your email.</p>
-        </div>
-      ): ( */}
         <div className='password-reset'>
         <h1 className='container-header'>New Password</h1>
         <p className='request-text'>Enter new password</p>
@@ -83,12 +77,9 @@ const ResetPw2: React.FC = () => {
             <Password type="password" id="new-pw2" name="password2"  label='Confirm Password' onChange={handleInputChange}/>
           </div>
           <button className='send-button'>Send</button>
-        </form>
+        </form>        
       </div>
-      {/* )} */}
-      
     </div>
-  )
-}
+  )}
 
 export default ResetPw2;
