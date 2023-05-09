@@ -10,6 +10,7 @@ import Password from '../../components/authComponents/Password';
 import { userLogin } from '../../Redux/AuthSlice';
 import facebookButton from '../../assets/svg/fb.svg';
 import googleButton from '../../assets/svg/google.svg';
+import axios from 'axios';
 
 const Login: React.FC = () => {
 
@@ -48,6 +49,15 @@ const Login: React.FC = () => {
       const { name, value } = event.target;
       setFormState(prevState => ({ ...prevState, [name]: value }));
   };
+
+  const handleFacebook = async() =>{
+    try {
+      const response = await axios.get('https://hush-mything-production.up.railway.app/auth/facebook');
+      return response.data
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -88,7 +98,7 @@ const Login: React.FC = () => {
         <p className='sm-text'>Log in with</p>
         <div className='sm-buttons'>
             <img src={googleButton} alt="google icon" className='sm-icon'/>
-            <img src={facebookButton} alt="facebook icon" className='sm-icon' />
+            <img src={facebookButton} alt="facebook icon" className='sm-icon' onClick={handleFacebook}/>
         </div>
 
         <p className="not-member"> Not a member? <Link to='/signup' className="sign-up-link">Sign up</Link> </p>

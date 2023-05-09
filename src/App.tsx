@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import HomePage from './Pages/HomePage';
 import AuthNotification from './Pages/authenticationPages/AuthNotification';
 import SuccessfulAuthNotification from './Pages/authenticationPages/SuccessfulAuthNotification';
+import SuccessfulReset from './Pages/authenticationPages/SuccessfulReset';
 
 
 const App: React.FC =() => {
@@ -29,6 +30,7 @@ const App: React.FC =() => {
             <Route path='/homepage' element={<HomePage/>}/>
             <Route path='/authnotification' element={<AuthNotification/>}/>
             <Route path='/auth-success/:id/:token' element={<SuccessfulAuthNotification/>}/>
+            <Route path='/successful-reset' element={<SuccessfulReset/>}/>
           </Routes>
         </div>
       </Router>

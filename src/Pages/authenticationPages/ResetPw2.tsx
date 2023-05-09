@@ -16,13 +16,19 @@ const ResetPw2: React.FC = () => {
   const [newPassword, setNewPassword] = useState<NewPassword>(initialPasswordState);
   const [newPassword2, setNewPassword2] = useState<string>('');
   const { id } = useParams();
+  //const [successfulReset, setSuccessfulReset] = useState({});
 
   const dispatch = useAppDispatch();
-  const newPwd = useAppSelector((state) => state.auth.auth.newPassword);
+  //const navigate = useNavigate();
+  const newPwd: any = useAppSelector((state) => state.auth.auth.newPassword);
   
 
   useEffect (() => {
     console.log(newPwd);
+    console.log(id);
+    //if (newPwd && newPwd.success && newPwd.message){
+      //setSuccessfulReset(newPwd);
+    //}
   },[newPwd]);
 
   useEffect(() => {
@@ -51,7 +57,7 @@ const ResetPw2: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if(!match || !pMatch){
-      //console.log('password mismatch or invalid password')
+      console.log('password mismatch or invalid password')
     } else {
       await dispatch(resetPassword(newPassword));
       setNewPassword(initialPasswordState);
@@ -62,7 +68,13 @@ const ResetPw2: React.FC = () => {
   
   return (
     <div className='password-reset-container'>
-      <div className='password-reset'>
+      {/* {successfulReset ? (
+        <div className='password-reset'>
+          <h3 className='password-reset-header'>Password reset successful</h3>
+          <p className='password-reset-text'>Kindly check your email.</p>
+        </div>
+      ): ( */}
+        <div className='password-reset'>
         <h1 className='container-header'>New Password</h1>
         <p className='request-text'>Enter new password</p>
         <form className='passwordForm' onSubmit={handleSubmit}>
@@ -73,6 +85,8 @@ const ResetPw2: React.FC = () => {
           <button className='send-button'>Send</button>
         </form>
       </div>
+      {/* )} */}
+      
     </div>
   )
 }
