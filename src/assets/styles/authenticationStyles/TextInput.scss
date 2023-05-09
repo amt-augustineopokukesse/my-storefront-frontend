@@ -1,3 +1,4 @@
+@import '../breakpoints.scss';
 .textInput {
     box-sizing: border-box;
     //width: 100%;
@@ -16,6 +17,9 @@
         font-family: 'Poppins';
         font-weight: 300;
         color: #AAAAAA;
+        @include media ('<=768px'){
+            font-size: 13px;
+        }
     }
     input {
         position: relative;
