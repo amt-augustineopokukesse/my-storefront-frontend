@@ -35,7 +35,7 @@ const ResetPw1: React.FC = () => {
     if (valResult){
       await dispatch(sendEmail(formState)).unwrap();
       setFormState(initialFormState);
-      navigate('/resetpw2')
+      navigate('/authnotification')
      } else {
       handleEmailCheck(valResult);
      }

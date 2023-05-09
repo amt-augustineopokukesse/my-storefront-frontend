@@ -1,18 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect } from 'react';
 import '../../assets/styles/authenticationStyles/ResetPw.scss';
 import Password from '../../components/authComponents/Password';
 import { NewPassword } from '../../Redux/Authentication/initialState';
 import { handlePasswordCheck, handleValidPassword, validatePassword } from '../../components/authComponents/AuthUtils';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { resetPassword } from '../../Redux/AuthSlice';
+import { useParams } from 'react-router-dom';
 
 const initialPasswordState: NewPassword = {
+  id: '',
   password: '',
 };
 
 const ResetPw2: React.FC = () => {
   const [newPassword, setNewPassword] = useState<NewPassword>(initialPasswordState);
   const [newPassword2, setNewPassword2] = useState<string>('');
+  const { id } = useParams();
 
   const dispatch = useAppDispatch();
   const newPwd = useAppSelector((state) => state.auth.auth.newPassword);
@@ -34,6 +37,7 @@ const ResetPw2: React.FC = () => {
     } else if(name === 'password') {
       handleValidPassword(value);
       setNewPassword(prevState => ({ ...prevState, [name]: value }));
+      newPassword.id = id;
     }  else {
       setNewPassword(prevState => ({ ...prevState, [name]: value }));
     }
