@@ -22,7 +22,7 @@
     }
     h1 {
         position: absolute;
-        top: 0%;
+        top: -40px;
         //left: 35px;
         @include media ('<=1024px'){
             font-size: 32px;
