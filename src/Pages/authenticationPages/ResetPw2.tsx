@@ -27,7 +27,7 @@ const ResetPw2: React.FC = () => {
     console.log(newPwd);
     console.log(id);
     if (newPwd && newPwd.success && newPwd.message){
-      navigate('/SuccessfulReset');
+      navigate('/successful-reset');
     }
   },[newPwd]);
 
@@ -52,7 +52,12 @@ const ResetPw2: React.FC = () => {
   const match = validatePassword(newPassword.password);
   const pMatch = newPassword.password === newPassword2;
   
-  
+  // const throwError = () => {
+  //   const errorDiv = document.getElementById('login-error') as HTMLElement;
+  //   const pwElement = document.getElementById('pw1') as HTMLElement;
+  //   errorDiv.textContent = user;
+  //   pwElement.style.border = '1px solid #FF3131';
+  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -71,6 +76,7 @@ const ResetPw2: React.FC = () => {
         <div className='password-reset'>
         <h1 className='container-header'>New Password</h1>
         <p className='request-text'>Enter new password</p>
+        <div id='pw-error'></div>
         <form className='passwordForm' onSubmit={handleSubmit}>
           <div className="password">
             <Password type="password" id="new-pw1" name="password"  label='New Password' onChange={handleInputChange}/>  
