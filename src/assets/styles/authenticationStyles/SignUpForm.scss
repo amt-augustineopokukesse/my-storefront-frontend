@@ -1,3 +1,4 @@
+@import '../breakpoints.scss';
 .signup-container {
     display: flex;
     flex-direction: column;
@@ -5,6 +6,15 @@
     align-items: center;
     height: 100%;
     width: 55%;
+    @include media ('<=1024px') {
+        width: 65%;
+    }
+    @include media ('<=768px') {
+        width: 70%;
+        //align-items: flex-start;
+        //height: 70%;
+        //justify-content: flex-start;
+    }
     .header-text {
         font-family: 'Poppins';
         font-size: 56px;
@@ -23,19 +33,38 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        //background-color: blue;
+        @include media ('<=1024px'){
+            width: 70%;
+        }
+        @include media ('<=965px'){
+            width: 75%;
+        }
+        @include media ('<=860px'){
+            width: 90%;
+        }
+        @include media ('<=768px') {
+            width: 80%;
+            //align-items: flex-start;
+        }
         .business-name{
             width: 100%;
         }
         .user-names {
-            // box-sizing: border-box;
             width: 100%;
             display: flex;
             gap: 20px;
             justify-content: space-between;
-            //background-color: #0085FF;
+            @include media ('<=768px') {
+                //width: 97%;
+                gap: 20px;
+                justify-content: center;
+
+            }
             .name {
                 width: 50%;
+                @include media ('<=768px') {
+                    width: 47%;
+                }
             }
         }
         .email {

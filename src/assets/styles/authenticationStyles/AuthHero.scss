@@ -1,3 +1,4 @@
+@import '../breakpoints.scss';
 .auth-hero {
     display: flex;
     justify-content: center;
@@ -6,13 +7,29 @@
     width: 45%;
     background-repeat: no-repeat;
     background-size: cover;
-    //background-position: center;
     color: #FFFFFF;
     font-family: 'Poppins';
+    @include media ('<=1024px'){
+        width: 35%;
+        
+    }
+    @include media ('<=768px'){
+        width: 30%;
+        
+    }
+    @include media ('<=425px'){
+        width: 0%;
+    }
     h1 {
         position: absolute;
         top: 0%;
         //left: 35px;
+        @include media ('<=1024px'){
+            font-size: 32px;
+        }
+        // @include media ('<=710px'){
+        //     font-size: 10px;
+        // }
     }
     .authMessage {
         font-family: 'Roboto';
@@ -20,5 +37,14 @@
         width: 285px;
         position: absolute;
         bottom: 0%;
+        @include media ('<=1024px'){
+            font-size: 24px;
+            width: 205px;
+            bottom: 5%;
+        }
+        // @include media ('<=768px'){
+        //     font-size: 20px;
+        //     //left: calc((100% - 485px) / 2);
+        // }
     }
 }
