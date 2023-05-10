@@ -11,6 +11,7 @@ import HomePage from './Pages/HomePage';
 import AuthNotification from './Pages/authenticationPages/AuthNotification';
 import SuccessfulAuthNotification from './Pages/authenticationPages/SuccessfulAuthNotification';
 import SuccessfulReset from './Pages/authenticationPages/SuccessfulReset';
+//import Dashboard
 
 
 const App: React.FC =() => {
