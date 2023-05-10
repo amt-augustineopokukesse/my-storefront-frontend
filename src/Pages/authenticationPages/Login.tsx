@@ -10,9 +10,11 @@ import Password from '../../components/authComponents/Password';
 import { userLogin } from '../../Redux/AuthSlice';
 import facebookButton from '../../assets/svg/fb.svg';
 import googleButton from '../../assets/svg/google.svg';
-//import axios from 'axios';
+import { AuthLoader } from '../../components/authComponents/AuthLoader';
 
 const Login: React.FC = () => {
+  const [loader, setLoader] = useState<boolean>(false);
+
 
   const initialFormState: User = {
       email: '',
@@ -37,13 +39,18 @@ const Login: React.FC = () => {
     //console.log(errorMsg);
     if (user && user.userActivated && user.userActivated.token) {
       window.localStorage.setItem('token', user.userActivated.token)
+            //if (user && user.createdAt){
+
       //window.localStorage.setItem('isLoggedIn', `${true}`);
       navigate('/homepage');
+      setLoader(false);
       formRef.current?.reset();
       setFormState(initialFormState);
     } 
     else if (user && !user.userActivated){
+      //else if (user && !user.createdAt){
       //console.log(`The error message is ${user}`);
+      setLoader(false);
       const pwElement = document.getElementById('pw1') as HTMLElement;
       errorDiv.textContent = user;
       pwElement.style.border = '1px solid #FF3131';
@@ -75,6 +82,7 @@ const Login: React.FC = () => {
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (valResult) {
+      setLoader(true);
       await dispatch(userLogin(formState)).unwrap();
       //setFormState(initialFormState);
       handleEmailCheck(valResult);
@@ -104,6 +112,7 @@ const Login: React.FC = () => {
             <div className='button'>
               <button className='login-button'>Log In</button>
             </div>
+            {loader ? <AuthLoader /> : ''}
           </div>
         </form>
         <div className='or'>
