@@ -6,6 +6,8 @@ import { handlePasswordCheck, handleValidPassword, validatePassword } from '../.
 import { useAppDispatch, useAppSelector } from '../../store';
 import { resetPassword } from '../../Redux/AuthSlice';
 import { useNavigate, useParams } from 'react-router-dom';
+import { AuthLoader } from '../../components/authComponents/AuthLoader';
+
 
 const initialPasswordState: NewPassword = {
   id: '',
@@ -15,6 +17,7 @@ const initialPasswordState: NewPassword = {
 const ResetPw2: React.FC = () => {
   const [newPassword, setNewPassword] = useState<NewPassword>(initialPasswordState);
   const [newPassword2, setNewPassword2] = useState<string>('');
+  const [loader, setLoader] = useState<boolean>(false);
   const { id } = useParams();
   //const [successfulReset, setSuccessfulReset] = useState({});
 
@@ -30,6 +33,7 @@ const ResetPw2: React.FC = () => {
     if (newPwd && newPwd.success && newPwd.message){
       //if (newPwd && newPwd.updatedAt){
       navigate('/successful-reset');
+      setLoader(false);
     }
   },[newPwd, navigate]);
 
@@ -71,6 +75,7 @@ const ResetPw2: React.FC = () => {
       throwError();
       formRef.current?.reset();
     } else {
+      setLoader(true);
       await dispatch(resetPassword(newPassword));
       formRef.current?.reset();
       setNewPassword(initialPasswordState);
@@ -91,6 +96,7 @@ const ResetPw2: React.FC = () => {
             <Password type="password" id="new-pw2" name="password2"  label='Confirm Password' onChange={handleInputChange}/>
           </div>
           <button className='send-button'>Send</button>
+          {loader ? <AuthLoader /> : ''}
         </form>        
       </div>
     </div>

@@ -9,10 +9,11 @@ import Email from './Email';
 import Password from './Password';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword } from './AuthUtils';
 import PasswordInfo from './PasswordInfo';
+import { AuthLoader } from './AuthLoader';
 
 const SignUpForm: React.FC = () => {
   const [businessAccount, setBusinessAccount] = useState<boolean>(false);
-  //const [formError, setFormError] = useState<string>('');
+  const [loader, setLoader] = useState<boolean>(false);
 
 
   const initialNewUserFormState: NewUser = {
@@ -43,6 +44,7 @@ const SignUpForm: React.FC = () => {
   
 
   useEffect (() => {
+    console.log(loader);
     console.log(newUser);
   },[newUser]);
 
@@ -98,6 +100,7 @@ const SignUpForm: React.FC = () => {
       errorDiv.textContent = 'password mismatch or invalid password'
     } else {
       try {
+        setLoader(true);
         await dispatch(addNewUser(formState)).unwrap();
         formRef.current?.reset();
         setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
@@ -114,12 +117,14 @@ const SignUpForm: React.FC = () => {
     if (newUser && newUser.success){
       //if (newUser && newUser.createdAt){
       navigate('/authnotification');
+      setLoader(false);
      } else if (newUser && !newUser.success){
     //} else if (newUser && !newUser.createdAt){
-      //const errorDiv = document.getElementById('error-div') as HTMLElement;
       errorDiv.style.display = 'block';
       errorDiv.textContent = newUser;
+      setLoader(false);
     }
+    
   }, [newUser, navigate]);
 
   const formChanger = () => {
@@ -157,7 +162,8 @@ const SignUpForm: React.FC = () => {
           <Password type="password" id="pw1" name="password"  label='Password' onChange={handleInputChange} />  
           <Password type="password" id="pw2" name="confirm_password"  label='Confirm Password' onChange={handleInputChange} disabled />
         </div>
-        <button className='submit-button'>Create Account</button>    
+        <button className='submit-button'>Create Account</button>
+        {loader ? <AuthLoader /> : ''}    
       </form>    
       <p className="old-member"> Already A Member? <Link to='/login' className="login-text">Log In</Link> </p>
       <div className='business-signup'>Create <span className='business-signup-link' onClick={formChanger} >{businessAccount ? 'Individual' : 'Business'} Account</span></div>
