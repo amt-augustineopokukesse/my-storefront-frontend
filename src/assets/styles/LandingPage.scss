@@ -8,7 +8,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #F6F6F6;
+    background-color: #EFEFEF;
 }
 .getStarted-text{
     width: 600px;
@@ -59,9 +59,9 @@ p{
     width: 100%;
     display: flex;
     flex-direction: column;
-    height: 33rem;
+    height: 35rem;
     padding-top: 5rem;
-    background-color: #F6F6F6;
+    background-color: #EFEFEF;
 }
 .team{
     display: flex;
@@ -84,10 +84,10 @@ p{
     text-align: left;
 }
 .team-section > .header{
+    padding-left: 15vw;
     font-size: 25px;
     font-family: roboto;
     font-weight: 300;
-    margin-left: 10rem;
 }
 
 .categories-section{
@@ -95,6 +95,7 @@ p{
     padding-top: 4rem;
     display: flex;
     align-items: center;
+    background-color: #FFFFFF;
     justify-content: space-evenly;
     gap: 10rem;
     width: 100%;
@@ -106,6 +107,7 @@ p{
     font-family: roboto;
     font-size: 27px;
 }
+
 .categories-list > h4{
     margin: 0;
 }
@@ -115,7 +117,6 @@ p{
     position: relative;
     gap: 1rem;
 }
-
 .categories-img1{
     position: absolute;
     top: 7rem;
@@ -135,7 +136,7 @@ p{
     align-items: center;
     height: 15rem;
     width: 100%;
-    background-color: #F6F6F6;
+    background-color: #EFEFEF;
 }
 .footer-header{
     margin: 0;
