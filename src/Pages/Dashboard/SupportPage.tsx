@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../assets/styles/dashboardStyles/SupportPage.scss'
+import '../../assets/styles/dashboardStyles/SupportPage.scss'
 
 export const SupportPage: React.FC = () => {
 

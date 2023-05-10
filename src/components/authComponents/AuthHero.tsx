@@ -3,6 +3,7 @@ import '../../assets/styles/authenticationStyles/AuthHero.scss';
 import heroImage1 from '../../assets/images/heroImage1.png';
 import heroImage2 from '../../assets/images/heroImage2.png';
 import heroImage3 from '../../assets/images/heroImage3.png';
+import { Link } from 'react-router-dom';
 
 import { useLocation } from 'react-router-dom';
 
@@ -35,7 +36,9 @@ const AuthHero: React.FC = () => {
 
   return (
     <div className='auth-hero' style={bgImage}>
-      <h1 style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: 35, textAlign: 'left'}}>{title}</h1>
+      <Link to='/'>
+        <h1 style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: 35, textAlign: 'left'}}>{title}</h1>
+      </Link>
       <div className='authMessage' style={location.pathname === '/login' ? {right: 35, textAlign: 'right'} : {left: `calc((100% - 785px) / 2)`, textAlign: 'right'}}>
         {messages[msgIndex]}
       </div>

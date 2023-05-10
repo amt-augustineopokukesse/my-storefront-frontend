@@ -11,17 +11,19 @@
     padding: 0px 0px 0px 18px;
     border: 1px solid transparent;
     position: relative;
-    label{
+    margin: 0%;
+    .text-label{
         position: relative;
         top: 10px;
         font-family: 'Poppins';
+        font-size: 14px;
         font-weight: 300;
         color: #AAAAAA;
         @include media ('<=768px'){
             font-size: 13px;
         }
     }
-    input {
+    .text-input {
         position: relative;
         top: -10px;
         border: none;

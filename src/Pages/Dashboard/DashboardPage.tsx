@@ -1,4 +1,4 @@
-import '../assets/styles/dashboardStyles/DashboardPage.scss'
+import '../../assets/styles/dashboardStyles/DashboardPage.scss'
 
 export const DashboardPage: React.FC = () => {
     return (

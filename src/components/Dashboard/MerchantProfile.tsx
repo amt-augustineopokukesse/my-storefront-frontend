@@ -1,6 +1,6 @@
-import profile from '../assets/images/Ellipse 3.png'
+import profile from '../../assets/images/Ellipse 3.png';
 import { useState } from 'react';
-import '../assets/styles/dashboardStyels/MerchantProfile.scss'
+import '../../assets/styles/dashboardStyles/MerchantProfile.scss';
 
 export const MerchantProfile: React.FC = () => {
 

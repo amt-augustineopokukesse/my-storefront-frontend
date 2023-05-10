@@ -147,11 +147,11 @@ const SignUpForm: React.FC = () => {
             <TextInput type="text" id="business" name="business_name" label='Business Name' onChange={handleInputChange} />
           </div>
         ) : (
-          <div className="user-names">
-            <div className='name'>
+          <div className="input-names">
+            <div className='name-box'>
               <TextInput type="text" id="fname" name="first_name" label='First Name' onChange={handleInputChange} />
             </div>
-            <div className='name'>
+            <div className='name-box'>
               <TextInput type="text" id="lname" name="last_name" label='Last Name' onChange={handleInputChange} />   
             </div>
           </div>

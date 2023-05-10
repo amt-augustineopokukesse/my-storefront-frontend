@@ -42,7 +42,7 @@ const Login: React.FC = () => {
             //if (user && user.createdAt){
 
       //window.localStorage.setItem('isLoggedIn', `${true}`);
-      navigate('/homepage');
+      navigate('/dashboard');
       setLoader(false);
       formRef.current?.reset();
       setFormState(initialFormState);
