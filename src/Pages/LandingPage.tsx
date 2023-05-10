@@ -62,11 +62,11 @@ const LandingPage: React.FC = () => {
             </div>
             <div className="categories-section">
                 <div className="categories-list">
-                    <h4 className='categories-list-item'>Landing page</h4>
-                    <h4 className='categories-list-item'>Eccomerce</h4>
-                    <h4 className='categories-list-item'>Blogs</h4>
-                    <h4 className='categories-list-item'>Portfolio</h4>
-                    <h4 className='categories-list-item'>Hiring</h4>
+                    <h4 className='categories-list-item' id='category1'>Landing page</h4>
+                    <h4 className='categories-list-item' id='category2'>Eccomerce</h4>
+                    <h4 className='categories-list-item' id='category3'>Blogs</h4>
+                    <h4 className='categories-list-item' id='category4'>Portfolio</h4>
+                    <h4 className='categories-list-item'id='category5'>Hiring</h4>
                 </div>
                 <span className="categories-img">
                     <img className='categories-img1' src={templateImg1} alt="" />
