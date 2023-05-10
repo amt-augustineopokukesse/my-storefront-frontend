@@ -55,25 +55,25 @@ export const userLogin = createAsyncThunk(
 
 export const sendEmail = createAsyncThunk(
     'auth/sendEmail',
-    async (userEmail: ResetPwEmail, { rejectWithValue }) => {
+    async (userEmail: ResetPwEmail) => {
       try {
         const response = await axios.post(`${API_BASE_URL}/reset`, userEmail);
         return response.data;
       } catch (error:any) {
-        return rejectWithValue(error.message);
+        return (error.response.data.message);
       }
     }
 );
 
 export const resetPassword = createAsyncThunk(
     'auth/resetPassword',
-    async (newpassword: NewPassword, { rejectWithValue }) => {
+    async (newpassword: NewPassword) => {
       try {
         const response = await axios.put(`${API_BASE_URL}/verify/reset`, newpassword);
         //const response = await axios.put('https://reqres.in/api/users/2', newpassword);
         return response.data;
       } catch (error:any) {
-        return rejectWithValue(error.message);
+        return (error.response.data.message);
       }
     }
 );
