@@ -1,8 +1,8 @@
-import '../assets/styles/dashboardStyles/TemplatesPage.scss'
+import '../../assets/styles/dashboardStyles/TemplatesPage.scss'
 import { useState } from 'react';
-import ecommercelogo from '../assets/house.png'
-import dollarlogo from '../assets/dollar.png'
-import bloglogo from '../assets/blog.png'
+import ecommercelogo from '../../assets/images/house.png';
+import dollarlogo from '../../assets/images/dollar.png'
+import bloglogo from '../../assets/images/blog.png'
 
 export const TemplatesPage: React.FC = () => {
 

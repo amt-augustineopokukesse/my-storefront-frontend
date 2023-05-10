@@ -1,6 +1,6 @@
-import '../assets/styles/dashboardStyles/ProjectPage.scss'
-import filelogo from '../assets/icons8-file.svg'
-import pluslogo from '../assets/icons8-plus-math-50.png'
+import '../../assets/styles/dashboardStyles/ProjectPage.scss'
+import filelogo from '../../assets/svg/icons8-file.svg'
+import pluslogo from '../../assets/svg/icons8-plus-math-50.png'
 import { Link } from 'react-router-dom'
 
 export const ProjectPage: React.FC = () => {

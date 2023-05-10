@@ -1,6 +1,6 @@
-import '../assets/styles/Dashboard/ProfilePage.scss'
-import profilephoto from '../assets/images/Ellipse 15.png'
-import editLogo from '../assets/icons8-edit.svg'
+import '../../assets/styles/dashboardStyles/ProfilePage.scss'
+import profilephoto from '../../assets/images/Ellipse 15.png'
+import editLogo from '../../assets/svg/icons8-edit.svg'
 
 export const ProfilePage: React.FC = () => {
 
