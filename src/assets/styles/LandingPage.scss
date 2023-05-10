@@ -84,7 +84,9 @@ p{
     text-align: left;
 }
 .team-section > .header{
-    padding-left: 15vw;
+    margin-left: 2vh;
+    width: 100%;
+    padding-left: 9vw;
     font-size: 25px;
     font-family: roboto;
     font-weight: 300;
@@ -348,5 +350,22 @@ p{
 @media screen and (max-width: 320px) {
     .getStarted-img{
         left: 2rem;
+    }
+}
+@media screen and (max-width: 1920px){
+    .team-section > .header{
+        padding-left: 18vw;
+        
+    }
+    .team{
+        gap: 10rem;
+        margin: 0;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 1440px){
+    .team-section > .header{
+        padding-left: 8vw;
+        
     }
 }
