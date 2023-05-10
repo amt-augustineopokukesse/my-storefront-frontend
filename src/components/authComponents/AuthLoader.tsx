@@ -31,19 +31,19 @@ const emailLoader = {
 const passwordLoader = {
     //bottom: '0vh',
     //position: 'relative',
-    top:'20vh',
+    top:'10vh',
     left: '17.5vw',
     width: '40px',
     height: '40px'
 }
 
-const resetPwId = /\/([a-zA-Z0-9$-_.+!*'(),]+)$/
+const resetPwId = location.pathname.match(/^\/resetpw2\/([a-zA-Z0-9$-_.+!*'(),]+)$/)
 
 export const AuthLoader: React.FC = () => {
     const location = useLocation();
     return (
         <div className="lds-spinner" style={location.pathname === '/signup' ? signuploader : 
-        location.pathname === '/login' ? loginloader: location.pathname === '/resetpw1' ? emailLoader : location.pathname === `/resetpw2/${resetPwId}` ? passwordLoader : {}}>
+        location.pathname === '/login' ? loginloader: location.pathname === '/resetpw1' ? emailLoader : resetPwId !== null ? passwordLoader : {}}>
             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     )
 }
