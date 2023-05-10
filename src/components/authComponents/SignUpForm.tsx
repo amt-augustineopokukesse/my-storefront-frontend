@@ -7,7 +7,7 @@ import { addNewUser } from '../../Redux/AuthSlice';
 import { NewBusiness, NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
 import Password from './Password';
-import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword } from './AuthUtils';
+import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword, handleValidName } from './AuthUtils';
 import PasswordInfo from './PasswordInfo';
 import { AuthLoader } from './AuthLoader';
 
@@ -64,6 +64,9 @@ const SignUpForm: React.FC = () => {
       if (errorDiv) {
         errorDiv.style.display = 'none';
       }
+    } else if(name === 'first_name' || name === 'last_name') {
+      handleValidName(name, value);
+      setFormState(prevState => ({ ...prevState, [name]: value }));
     }
       else if (name === 'email'){
         if (errorDiv) {
@@ -82,20 +85,22 @@ const SignUpForm: React.FC = () => {
     handlePasswordCheck(formState, password2);
   },[password2])
 
-  const valResult = validateEmail(formState.email);
-  const match = validatePassword(formState.password);
-  const pMatch = formState.password === password2;
+  const validEmail = validateEmail(formState.email);
+  const validPassword = validatePassword(formState.password);
+  const matchedPasswords = formState.password === password2;
+  //const validfirstName = 
   
   
   
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!valResult){
-      handleEmailCheck(valResult);
+    
+    if (!validEmail){
+      handleEmailCheck(validEmail);
       errorDiv.style.display = 'block';
       errorDiv.textContent = 'Invalid Email format. Kindly check.'
-    } else if(!match || !pMatch){
+    } else if(!validPassword || !matchedPasswords){
       errorDiv.style.display = 'block';
       errorDiv.textContent = 'password mismatch or invalid password'
     } else {
