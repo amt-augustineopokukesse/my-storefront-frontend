@@ -50,7 +50,8 @@
         .business-name{
             width: 100%;
         }
-        .user-names {
+        .input-names {
+            height: 58px;
             width: 100%;
             display: flex;
             gap: 20px;
@@ -61,7 +62,8 @@
                 justify-content: center;
 
             }
-            .name {
+            .name-box {
+                //box-sizing: -box;
                 width: 50%;
                 @include media ('<=768px') {
                     width: 47%;

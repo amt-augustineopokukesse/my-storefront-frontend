@@ -1,6 +1,11 @@
-import '../assets/styles/HeaderText.scss'
+import '../assets/styles/HeaderText.scss';
+import { Link } from 'react-router-dom';
+
 export const HeaderText: React.FC = () => {
     return (
-        <h2 className="header-text">Storefront</h2>
+        <Link to='/'>
+            <h2 className="header-text">Storefront</h2>
+        </Link>
+        
     )
 }

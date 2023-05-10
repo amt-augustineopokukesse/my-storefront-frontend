@@ -1,14 +1,14 @@
 import { DashboardTopBar } from "../../components/Dashboard/DashboardTopBar"
 import { DashboardSideBar } from "../../components/Dashboard/DashboardSideBar"
 import { DashboardPages } from "./DashboardPages"
-import { BrowserRouter } from "react-router-dom"
-import '../assets/styles/dashboardStyles/Dashboard.scss'
+//import { BrowserRouter as Router } from "react-router-dom"
+import '../../assets/styles/dashboardStyles/Dashboard.scss';
 
 
 export const Dashboard: React.FC = () => {
     return (
         <div className="dashboard">
-            <BrowserRouter >
+            {/* <Router > */}
                 <DashboardTopBar />
                 <div className="sidebar-pages-conatiner">
                     <DashboardSideBar />
@@ -18,7 +18,7 @@ export const Dashboard: React.FC = () => {
                 </div>
                
                 
-            </BrowserRouter>
+            {/* </Router> */}
             
         </div>
         

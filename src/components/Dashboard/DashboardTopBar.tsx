@@ -1,6 +1,6 @@
-import { HeaderText } from "../HeaderText"
-import { MerchantProfile } from "./MerchantProfile"
-import '../assets/styles/dashboardStyels/DashboardTopBar.scss'
+import { HeaderText } from "../HeaderText";
+import { MerchantProfile } from "./MerchantProfile";
+import '../../assets/styles/dashboardStyles/DashboardTopBar.scss';
 
 export const DashboardTopBar: React.FC = () => {
     return (

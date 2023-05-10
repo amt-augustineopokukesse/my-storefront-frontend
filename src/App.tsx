@@ -7,11 +7,11 @@ import ResetPw1 from './Pages/authenticationPages/ResetPw1';
 import ResetPw2 from './Pages/authenticationPages/ResetPw2';
 import store from './store';
 import { Provider } from 'react-redux';
-import HomePage from './Pages/HomePage';
+//import HomePage from './Pages/HomePage';
 import AuthNotification from './Pages/authenticationPages/AuthNotification';
 import SuccessfulAuthNotification from './Pages/authenticationPages/SuccessfulAuthNotification';
 import SuccessfulReset from './Pages/authenticationPages/SuccessfulReset';
-//import Dashboard
+import { Dashboard } from './Pages/Dashboard/Dashboard';
 
 
 const App: React.FC =() => {
@@ -23,12 +23,13 @@ const App: React.FC =() => {
       <Router>
         <div className='app'>
           <Routes>
-            <Route path='/' element={loggedIn ? <HomePage/> : <LandingPage />}/>
+            <Route path='/' element={loggedIn ? <Dashboard/> : <LandingPage />}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/resetpw1' element={<ResetPw1/>}/>
             <Route path='/resetpw2/:id' element={<ResetPw2/>}/>
-            <Route path='/homepage' element={<HomePage/>}/>
+            {/* <Route path='/homepage' element={<HomePage/>}/> */}
+            <Route path='/dashboard/*' element={<Dashboard/>}/>
             <Route path='/authnotification' element={<AuthNotification/>}/>
             <Route path='/auth-success/:id/:token' element={<SuccessfulAuthNotification/>}/>
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
