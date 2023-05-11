@@ -24,8 +24,8 @@ const SuccessfulReset: React.FC = () => {
         <>
         <AuthHeaderText />
             <div className='password-reset-success'>
-                <h3 className='success-header'>Authentication</h3>
-                <p className='success-text' id='successText'>Authentication Successful</p>
+                <h3 className='success-header'> Success</h3>
+                <p className='success-text' id='successText'>🎊 Your password reset was successful 🎊</p>
                 <div className='button'>
                     <Link to='/login'>
                         <button className='login-button'>Log In</button>

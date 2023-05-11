@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = 'http://localhost:4000';
 
 const SuccessfulAuthNotification: React.FC = () => {
     const { id, token } = useParams();
@@ -12,7 +13,7 @@ const SuccessfulAuthNotification: React.FC = () => {
 
     const getVerified =async () => {
         try {
-            const { data } = await axios.put(`https://hush-mything-production.up.railway.app/verify`, {id, token});
+            const { data } = await axios.put(`${API_BASE_URL}/verify`, {id, token});
             if (data) {
                 setSuccess(data.success);
                 setSuccessMessage(data.message);

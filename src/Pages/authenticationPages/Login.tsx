@@ -37,12 +37,13 @@ const Login: React.FC = () => {
   useEffect (() => {
     console.log(user);
     //console.log(errorMsg);
-    if (user && user.userActivated && user.userActivated.token) {
-      window.localStorage.setItem('token', user.userActivated.token)
+    if (user && user.data && user.data.token) {
+      window.localStorage.setItem('token', user.data.token)
+      window.localStorage.setItem("merchant", JSON.stringify(user.data));
             //if (user && user.createdAt){
 
       //window.localStorage.setItem('isLoggedIn', `${true}`);
-      navigate('/dashboard');
+      navigate(user.data.role === "customer" ? "/landing" : user.data.role === "merchant" ? "/dashboard" : "/login");
       setLoader(false);
       formRef.current?.reset();
       setFormState(initialFormState);
@@ -84,7 +85,7 @@ const Login: React.FC = () => {
     if (valResult) {
       setLoader(true);
       await dispatch(userLogin(formState)).unwrap();
-      //setFormState(initialFormState);
+      setFormState(initialFormState);
       handleEmailCheck(valResult);
     } else {
       handleEmailCheck(valResult);

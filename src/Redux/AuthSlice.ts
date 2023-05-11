@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { NewBusiness, NewUser, User, ResetPwEmail, NewPassword } from './Authentication/initialState';
 
-const API_BASE_URL = 'https://hush-mything-production.up.railway.app';
+const API_BASE_URL = 'http://localhost:4000';
+
 interface AuthState {
   auth: {
     newUser: NewUser | NewBusiness | null,

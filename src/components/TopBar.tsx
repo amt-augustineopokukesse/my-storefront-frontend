@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 export const TopBar = () => {
 
+    const loggedIn = window.localStorage.getItem('token');
+
     const [showMenu, setShowMenu] = useState(false);
 
     const handleClick = () => {
@@ -15,14 +17,13 @@ export const TopBar = () => {
         <div className="top-bar">
             <HeaderText />
             <span className="login-register-buttons">
-                <Link to='/login'>
+                { !loggedIn && <Link to='/login'>
                     <button className="login-button">Log in</button>
-                </Link>
-                <Link to='/signup'>
+                </Link>}
+                { !loggedIn && <Link to='/signup'>
                     <button className="register-button">Register</button>
-                </Link>
-                
-                
+                </Link>}
+                {loggedIn && <button className="register-button">Logout</button>}
             </span>
             <div className="harmburger-menu">
                 <button className="menu-button" onClick={handleClick}>

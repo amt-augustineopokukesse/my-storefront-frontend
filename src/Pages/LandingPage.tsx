@@ -10,6 +10,7 @@ import { TopBar } from '../components/TopBar';
 
 
 const LandingPage: React.FC = () => {
+
     return (
         <div className="main-container">
             <TopBar />

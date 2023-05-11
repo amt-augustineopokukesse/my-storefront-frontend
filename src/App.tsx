@@ -26,6 +26,7 @@ const App: React.FC =() => {
             <Route path='/' element={loggedIn ? <Dashboard/> : <LandingPage />}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/landing' element={<LandingPage/>}/>
             <Route path='/resetpw1' element={<ResetPw1/>}/>
             <Route path='/resetpw2/:id' element={<ResetPw2/>}/>
             {/* <Route path='/homepage' element={<HomePage/>}/> */}
