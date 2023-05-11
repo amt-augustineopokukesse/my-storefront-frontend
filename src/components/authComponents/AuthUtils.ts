@@ -25,7 +25,26 @@ export const handleValidPassword = (password:string) => {
   } else {
     pw1Element.style.border = '1px solid transparent';
   }
-}
+};
+
+export const validateName = (name: string): boolean => {
+  const namePattern = /^[a-zA-Z '.-]+$/;;
+  return namePattern.test(name);
+};
+
+export const handleValidName = (formName:string, formValue:string) => {
+  const validName = validateName(formValue);
+  const nameId = (formName === 'first_name') ? 'fname' : 'lname';
+  const nameElement = document.getElementById(nameId) as HTMLElement;
+
+  if (!validName){
+    nameElement.style.border = '1px solid #FF3131';
+  } else {
+    nameElement.style.border = '1px solid transparent';
+  }
+};
+
+
 
 export const handleEmailCheck = (valResult:boolean) => {
     //const emailMisMatch = document.querySelector('.email-mismatch') as HTMLElement;
