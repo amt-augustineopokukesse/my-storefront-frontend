@@ -108,10 +108,10 @@ const SignUpForm: React.FC = () => {
         setLoader(true);
         await dispatch(addNewUser(formState)).unwrap();
         formRef.current?.reset();
-        setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
-        
+        setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState); 
       } catch (err) {
         //event.preventDefault();
+        setLoader(false);
         console.error('Error creating new user', err);
         //setFormError('Error creating new user');
       }
