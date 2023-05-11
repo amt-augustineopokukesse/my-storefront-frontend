@@ -1,7 +1,7 @@
 import profile from '../../assets/images/Ellipse 3.png';
 import { useState } from 'react';
 import '../../assets/styles/dashboardStyles/MerchantProfile.scss';
-
+import SignOut from './SignOut';
 export const MerchantProfile: React.FC = () => {
 
     const [showMenu, setShowMenu] = useState(false);
@@ -18,7 +18,10 @@ export const MerchantProfile: React.FC = () => {
                 </button>
                 {showMenu && (
                     <ul className="profile-list">
-                        <li className="profile-item"><button className="logout-button">Logout</button></li>
+                        <li className="profile-item">
+                            {/* <button className="logout-button">Logout</button> */}
+                            <SignOut />
+                        </li>
                     </ul>
                 )}
                 
