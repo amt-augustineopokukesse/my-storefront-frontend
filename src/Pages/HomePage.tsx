@@ -1,6 +1,6 @@
 import React from 'react';
 //import { Link } from 'react-router-dom';
-import SignOut from '../components/authComponents/SignOut';
+import SignOut from '../components/Dashboard/SignOut';
 
 const HomePage: React.FC = () => {
   return (

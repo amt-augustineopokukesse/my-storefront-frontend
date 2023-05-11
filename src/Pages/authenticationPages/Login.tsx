@@ -37,8 +37,8 @@ const Login: React.FC = () => {
   useEffect (() => {
     console.log(user);
     //console.log(errorMsg);
-    if (user && user.userActivated && user.userActivated.token) {
-      window.localStorage.setItem('token', user.userActivated.token)
+    if (user && user.data && user.data.token) {
+      window.localStorage.setItem('token', user.data.token)
             //if (user && user.createdAt){
 
       //window.localStorage.setItem('isLoggedIn', `${true}`);
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
       formRef.current?.reset();
       setFormState(initialFormState);
     } 
-    else if (user && !user.userActivated){
+    else if (user && !user.data){
       //else if (user && !user.createdAt){
       //console.log(`The error message is ${user}`);
       setLoader(false);

@@ -17,6 +17,8 @@ import { Dashboard } from './Pages/Dashboard/Dashboard';
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
   const loggedIn = window.localStorage.getItem('token');
+  
+  
 
   return (
     <Provider store={store}>
@@ -29,7 +31,7 @@ const App: React.FC =() => {
             <Route path='/resetpw1' element={<ResetPw1/>}/>
             <Route path='/resetpw2/:id' element={<ResetPw2/>}/>
             {/* <Route path='/homepage' element={<HomePage/>}/> */}
-            <Route path='/dashboard/*' element={<Dashboard/>}/>
+            <Route path='/dashboard/*' element={<Dashboard />}/>
             <Route path='/authnotification' element={<AuthNotification/>}/>
             <Route path='/auth-success/:id/:token' element={<SuccessfulAuthNotification/>}/>
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
