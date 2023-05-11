@@ -1,18 +1,14 @@
 import profile from '../../assets/images/Ellipse 3.png';
 import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/MerchantProfile.scss';
-// import { useAppDispatch, useAppSelector } from '../../store';
 
 type user = {
     [key: string]: any;
 }
 
-let merchantUser: user;
-
 export const MerchantProfile: React.FC<user> = (props) => {
     const { merchantUser } = props;
     const [ merchantExists, setmerchantExists ] = useState(merchantUser)
-    // const user : any = useAppSelector((state) => state.auth.auth.user);
     
     useEffect(() => {
         const merchant = localStorage.getItem("merchant");
