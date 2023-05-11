@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export const ProjectPage: React.FC = () => {
     return (
         <div className='project-page'>
-            <Link to='/project/templates' className='router-link' >
+            <Link to='/templates' className='router-link' >
             <button className='new-project-button'>
                 <span className='filelogo-name-span'>
                     <img src={filelogo} alt="" />

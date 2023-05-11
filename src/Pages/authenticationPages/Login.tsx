@@ -81,15 +81,17 @@ const Login: React.FC = () => {
 
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (valResult) {
-      setLoader(true);
-      await dispatch(userLogin(formState)).unwrap();
-      //setFormState(initialFormState);
-      handleEmailCheck(valResult);
-    } else {
+    if (!valResult) {
       handleEmailCheck(valResult);
       errorDiv.style.display = 'block';
-      errorDiv.textContent = 'Invalid Email format. Kindly check.'
+      errorDiv.textContent = 'Invalid Email format. Kindly check.';
+    } else {
+      try {
+        setLoader(true);
+        await dispatch(userLogin(formState)).unwrap();
+      } catch (error) {
+        console.error('Error creating new user', error);
+      }
     }
   };
 
