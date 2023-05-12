@@ -21,7 +21,7 @@ export const DashboardSideBar: React.FC = () => {
                 </li>
 
                 <li className='project'>
-                    <Link to="/project" className='link'>
+                    <Link to="project" className='link'>
                         <button className='dashboard-button'>
                             <img src={profilelogo} alt="" />
                             Project
@@ -30,7 +30,7 @@ export const DashboardSideBar: React.FC = () => {
                 </li>
 
                 <li className='profile'>
-                    <Link to="/profile" className='link'>
+                    <Link to="profile" className='link'>
                         <button className='dashboard-button'>
                             <img src={projectlogo} alt="" />
                             Profile
@@ -39,7 +39,7 @@ export const DashboardSideBar: React.FC = () => {
                 </li>
 
                 <li className='support'>
-                    <Link to="/support" className='link'>
+                    <Link to="support" className='link'>
                         <button className='dashboard-button'>
                             <img src={supportlogo} alt="" />
                             Support
