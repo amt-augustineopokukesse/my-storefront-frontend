@@ -19,7 +19,7 @@ export const DashboardPage: React.FC = () => {
                 </div>
                 <div className="earnings-div block-view">
                     <h3>Earnings</h3>
-                    <p>GH &#8373; 4303.00</p>
+                    <p>GH &#8373; 0.00</p>
                 </div>
             </div>
             <div className="grid-container">

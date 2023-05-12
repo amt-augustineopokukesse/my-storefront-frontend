@@ -1,6 +1,7 @@
 import profile from '../../assets/images/Ellipse 3.png';
 import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/MerchantProfile.scss';
+import SignOut from './SignOut';
 
 type user = {
     [key: string]: any;
@@ -33,7 +34,7 @@ export const MerchantProfile: React.FC<user> = (props) => {
                 </button>
                 {showMenu && (
                     <ul className="profile-list">
-                        <li className="profile-item"><button className="logout-button">Logout</button></li>
+                        <SignOut />
                     </ul>
                 )}
                 

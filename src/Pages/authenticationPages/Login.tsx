@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHero from '../../components/authComponents/AuthHero';
 import '../../assets/styles/authenticationStyles/Login.scss';
 import { User } from '../../Redux/Authentication/initialState';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import Email from '../../components/authComponents/Email';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import Password from '../../components/authComponents/Password';
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const formRef = useRef<HTMLFormElement>(null);
 
-  const user : any = useAppSelector((state) => state.auth.auth.user);
+  // const user : any = useAppSelector((state) => state.auth.auth.user);
   //const errorMsg : any = useAppSelector((state) => state.auth.error);
 
   const navigate = useNavigate();
@@ -39,40 +39,40 @@ const Login: React.FC = () => {
   const errorDiv = document.getElementById('login-error') as HTMLElement;
 
 
-  useEffect (() => {
-    // console.log(user);
-    //console.log(errorMsg);
-    if (user && user.data && user.data.token) {
-      window.localStorage.setItem('token', user.data.token)
-      window.localStorage.setItem("merchant", JSON.stringify(user.data));
-      toast.success(user.message);
-      setLoader(false);
-      formRef.current?.reset();
-      setFormState(initialFormState);
-      navigate(user.data.role === "customer" ? "/landing" : user.data.role === "merchant" ? "/dashboard" : "/login");
-    } 
-    else if (user && !user.userActivated){
-      //else if (user && !user.createdAt){
-      toast.warn(user.message);
-      //console.log(`The error message is ${user}`);
-      setLoader(false);
-      const pwElement = document.getElementById('pw1') as HTMLElement;
-      errorDiv.textContent = user;
-      pwElement.style.border = '1px solid #FF3131';
-    }
-  },[user, navigate]);
+  // useEffect (() => {
+  //   // console.log(user);
+  //   //console.log(errorMsg);
+  //   if (user && user.data && user.data.token) {
+  //     window.localStorage.setItem('token', user.data.token)
+  //     window.localStorage.setItem("merchant", JSON.stringify(user.data));
+  //     toast.success(user.message);
+  //     setLoader(false);
+  //     formRef.current?.reset();
+  //     setFormState(initialFormState);
+  //     navigate(user.data.role === "customer" ? "/landing" : user.data.role === "merchant" ? "/dashboard" : "/login");
+  //   } 
+  //   else if (user && !user.userActivated){
+  //     //else if (user && !user.createdAt){
+  //     toast.warn(user.message);
+  //     //console.log(`The error message is ${user}`);
+  //     setLoader(false);
+  //     const pwElement = document.getElementById('pw1') as HTMLElement;
+  //     errorDiv.textContent = user;
+  //     pwElement.style.border = '1px solid #FF3131';
+  //   }
+  // },[user, navigate]);
 
 
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
       if (name === 'email'){
+          setFormState(prevState => ({ ...prevState, [name]: value }));
           if (errorDiv) {
             errorDiv.style.display = 'none';
             const emailDiv = document.getElementById('email') as HTMLElement;
             emailDiv.style.border = '1px solid transparent';
           }
-          setFormState(prevState => ({ ...prevState, [name]: value }));
       } else {
         setFormState(prevState => ({ ...prevState, [name]: value }));
       }
@@ -88,15 +88,46 @@ const Login: React.FC = () => {
 
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (valResult) {
-      setLoader(true);
-      await dispatch(userLogin(formState)).unwrap();
+    formRef.current?.reset();
+    if (!valResult) {
+      handleEmailCheck(valResult);
+      formRef.current?.reset();
       setFormState(initialFormState);
-      handleEmailCheck(valResult);
-    } else {
-      handleEmailCheck(valResult);
       errorDiv.style.display = 'block';
-      errorDiv.textContent = 'Invalid Email format. Kindly check.'
+      errorDiv.textContent = 'Invalid Email format. Kindly check.';
+    } else {
+      try {
+        setLoader(true);
+        const userLoginSuccessOrError = await dispatch(userLogin(formState)).unwrap();
+        setFormState(initialFormState);
+        if (userLoginSuccessOrError && userLoginSuccessOrError.success) {
+          toast.success(userLoginSuccessOrError.message);
+          window.localStorage.setItem('token', userLoginSuccessOrError.data.token)
+          window.localStorage.setItem("merchant", JSON.stringify(userLoginSuccessOrError.data));
+          setLoader(false);
+          navigate(userLoginSuccessOrError.data.role === "customer" ? "/landing" : userLoginSuccessOrError.data.role === "merchant" ? "/dashboard" : "/login");
+          return;
+        } else if (userLoginSuccessOrError && !userLoginSuccessOrError.success) {
+          toast.error(userLoginSuccessOrError);
+          errorDiv.style.display = 'block';
+          errorDiv.textContent = userLoginSuccessOrError;
+          setLoader(false);
+          return;
+        } else if (userLoginSuccessOrError && !userLoginSuccessOrError.userActivated) {
+          toast.warn(userLoginSuccessOrError.message);
+          setLoader(false);
+          const pwElement = document.getElementById('pw1') as HTMLElement;
+          errorDiv.textContent = userLoginSuccessOrError.message;
+          pwElement.style.border = '1px solid #FF3131';
+        }
+        return;
+      } catch (error) {
+        console.log(error)
+        setLoader(false);
+        setFormState(initialFormState);
+        toast.error('Oops!! Error logging. Try again or contact Storefront Administrator');
+        return;
+      }
     }
   };
 
