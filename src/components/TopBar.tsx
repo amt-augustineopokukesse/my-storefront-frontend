@@ -3,10 +3,21 @@ import '../assets/styles/TopBar.scss'
 import { useState } from "react"
 import burger from '../assets/images/menu-hamburger.svg';
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../store";
+import { resetAuthState } from "../Redux/AuthSlice";
 
 export const TopBar = () => {
 
-    const loggedIn = window.localStorage.getItem('token');
+    let loggedIn = window.localStorage.getItem('token');
+    const dispatch = useAppDispatch();
+
+    const signOut = () => {
+        window.localStorage.removeItem("token");
+        loggedIn = ""
+        dispatch(resetAuthState());
+        // navigate('/');
+        window.location.href = '/';
+    }
 
     const [showMenu, setShowMenu] = useState(false);
 
@@ -23,7 +34,7 @@ export const TopBar = () => {
                 { !loggedIn && <Link to='/signup'>
                     <button className="register-button">Register</button>
                 </Link>}
-                {loggedIn && <button className="register-button">Logout</button>}
+                {loggedIn && <button onClick={signOut} className="register-button">Logout</button>}
             </span>
             <div className="harmburger-menu">
                 <button className="menu-button" onClick={handleClick}>
