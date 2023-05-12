@@ -7,9 +7,53 @@ import team3 from '../assets/images/Ellipse 4.png';
 import templateImg1 from '../assets/images/Frame 10.png';
 import templateImg2 from '../assets/images/Desktop - 3 1.png';
 import { TopBar } from '../components/TopBar';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { AuthLoader } from '../components/authComponents/AuthLoader';
+import { toast } from 'react-toastify';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const LandingPage: React.FC = () => {
+  const [ loader, setLoader ] = useState<boolean>(false);
+  const [ userid, setUserid ] = useState("");
+
+  const { id } = useParams();
+
+  const getUserData = async (id: any) => {
+    setLoader(true);
+    localStorage.setItem("token", id);
+    // window.location.reload();
+    // const { data } = await axios.post(`${API_BASE_URL}/social`, { id });
+    // if (data) {
+    //     toast.success("Login succesful")
+    //     localStorage.setItem("token", JSON.stringify(data.token));
+    //     localStorage.setItem("user", JSON.stringify(data.data));
+    //     setLoader(false);
+    //     window.location.reload();
+    // } else {
+    //     toast.warn("Login not successful")
+    //     setLoader(false);
+    //     return;
+    // }
+    setLoader(false);
+    return;
+}
+
+  useEffect(() => {
+    
+    if (id) setUserid(id);
+    console.log(id)
+  }, [])
+
+  useEffect(() => {
+    const userID = userid;
+    if (userID) {
+        getUserData(userID);
+    }
+  }, [userid])
+
 
     return (
         <div className="main-container">
@@ -29,6 +73,7 @@ const LandingPage: React.FC = () => {
                 </span>
             </div>
             <div className="team-section">
+                {loader ? <AuthLoader /> : ''}
                 <span className="header">
                     <h3>Meet the team</h3> 
                 </span>

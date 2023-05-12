@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import TextInput from './TextInput';
 import '../../assets/styles/authenticationStyles/SignUpForm.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import { addNewUser } from '../../Redux/AuthSlice';
 import { NewBusiness, NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
@@ -10,6 +10,7 @@ import Password from './Password';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword, handleValidName } from './AuthUtils';
 import PasswordInfo from './PasswordInfo';
 import { AuthLoader } from './AuthLoader';
+import { toast } from 'react-toastify';
 
 const SignUpForm: React.FC = () => {
   const [businessAccount, setBusinessAccount] = useState<boolean>(false);
@@ -40,13 +41,13 @@ const SignUpForm: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const dispatch = useAppDispatch();
-  const newUser: any = useAppSelector((state) => state.auth.auth.newUser);
+  // const newUser: any = useAppSelector((state) => state.auth.auth.newUser);
   
 
-  useEffect (() => {
-    console.log(loader);
-    console.log(newUser);
-  },[newUser]);
+  // useEffect (() => {
+  //   console.log(loader);
+  //   console.log(newUser);
+  // },[newUser]);
 
   const errorDiv = document.getElementById('error-div') as HTMLElement;
 
@@ -69,12 +70,12 @@ const SignUpForm: React.FC = () => {
       setFormState(prevState => ({ ...prevState, [name]: value }));
     }
       else if (name === 'email'){
+        setFormState(prevState => ({ ...prevState, [name]: value }));
         if (errorDiv) {
           errorDiv.style.display = 'none';
           const emailDiv = document.getElementById('email') as HTMLElement;
           emailDiv.style.border = '1px solid transparent';
         }
-        setFormState(prevState => ({ ...prevState, [name]: value }));
     } else {
       setFormState(prevState => ({ ...prevState, [name]: value }));
     }
@@ -88,49 +89,74 @@ const SignUpForm: React.FC = () => {
   const validEmail = validateEmail(formState.email);
   const validPassword = validatePassword(formState.password);
   const matchedPasswords = formState.password === password2;
-  //const validfirstName = 
   
   
   
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+    formRef.current?.reset();
+    console.log("line 100", formState)
     if (!validEmail){
       handleEmailCheck(validEmail);
       errorDiv.style.display = 'block';
       errorDiv.textContent = 'Invalid Email format. Kindly check.'
+      setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
+      console.log("line 106", formState)
+      return;
     } else if(!validPassword || !matchedPasswords){
       errorDiv.style.display = 'block';
-      errorDiv.textContent = 'password mismatch or invalid password'
+      errorDiv.textContent = 'password mismatch or invalid password';
+      setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
+      return;
     } else {
       try {
         setLoader(true);
-        await dispatch(addNewUser(formState)).unwrap();
-        formRef.current?.reset();
+        const userSignupSuccessOrError = await dispatch(addNewUser(formState)).unwrap();
         setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
+        console.log("line 118 error")
         
+        if (userSignupSuccessOrError && userSignupSuccessOrError.success) {
+          toast.success(userSignupSuccessOrError.message);
+          setLoader(false);
+          navigate("/authnotification");
+        } else if (userSignupSuccessOrError && !userSignupSuccessOrError.success) {
+          toast.error(userSignupSuccessOrError);
+          errorDiv.style.display = 'block';
+          errorDiv.textContent = userSignupSuccessOrError;
+          setLoader(false);
+        }
+        return;
       } catch (err) {
         //event.preventDefault();
+        setLoader(false);
+        setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
         console.error('Error creating new user', err);
+        return;
         //setFormError('Error creating new user');
       }
     }  
   };
 
-  useEffect(() => {
-    if (newUser && newUser.success){
-      //if (newUser && newUser.createdAt){
-      navigate('/authnotification');
-      setLoader(false);
-     } else if (newUser && !newUser.success){
-    //} else if (newUser && !newUser.createdAt){
-      errorDiv.style.display = 'block';
-      errorDiv.textContent = newUser;
-      setLoader(false);
-    }
+  // const userSignupSuccessOrError = (user: any) => {
+  //   if (user && user.success){
+  //     toast.success(user.message);
+  //     setLoader(false);
+  //     navigate("/authnotification");
+  //    } else if (user && !user.success){
+  //   //} else if (newUser && !newUser.createdAt){
+  //     toast.error(user);
+  //     errorDiv.style.display = 'block';
+  //     errorDiv.textContent = user;
+  //     setLoader(false);
+  //   }
+  //   return;
+  // }
+
+  // useEffect(() => {
     
-  }, [newUser, navigate]);
+    
+  // }, [newUser, navigate]);
 
   const formChanger = () => {
     setBusinessAccount(!businessAccount);
@@ -146,7 +172,7 @@ const SignUpForm: React.FC = () => {
     <div className='signup-container'>
       <h1 className='header-text'>Sign Up</h1>  
       <div id='error-div'></div>
-      <form className='FormContainer' onSubmit={handleSubmit} ref={formRef}>
+      <form id='signup-form' className='FormContainer' onSubmit={handleSubmit} ref={formRef}>
         {businessAccount ? (
           <div className='business-name'>
             <TextInput type="text" id="business" name="business_name" label='Business Name' onChange={handleInputChange} />

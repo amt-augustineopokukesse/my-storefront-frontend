@@ -11,6 +11,11 @@ import { userLogin } from '../../Redux/AuthSlice';
 import facebookButton from '../../assets/svg/fb.svg';
 import googleButton from '../../assets/svg/google.svg';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
+import { toast } from 'react-toastify';
+
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 const Login: React.FC = () => {
   const [loader, setLoader] = useState<boolean>(false);
@@ -35,21 +40,20 @@ const Login: React.FC = () => {
 
 
   useEffect (() => {
-    console.log(user);
+    // console.log(user);
     //console.log(errorMsg);
     if (user && user.data && user.data.token) {
       window.localStorage.setItem('token', user.data.token)
       window.localStorage.setItem("merchant", JSON.stringify(user.data));
-            //if (user && user.createdAt){
-
-      //window.localStorage.setItem('isLoggedIn', `${true}`);
-      navigate(user.data.role === "customer" ? "/landing" : user.data.role === "merchant" ? "/dashboard" : "/login");
+      toast.success(user.message);
       setLoader(false);
       formRef.current?.reset();
       setFormState(initialFormState);
+      navigate(user.data.role === "customer" ? "/landing" : user.data.role === "merchant" ? "/dashboard" : "/login");
     } 
     else if (user && !user.userActivated){
       //else if (user && !user.createdAt){
+      toast.warn(user.message);
       //console.log(`The error message is ${user}`);
       setLoader(false);
       const pwElement = document.getElementById('pw1') as HTMLElement;
@@ -75,10 +79,12 @@ const Login: React.FC = () => {
   };
 
   const handleFacebook = () =>{
-    window.open('https://hush-mything-production.up.railway.app/auth/facebook','_self')
-    
+    window.open(`${API_BASE_URL}/auth/facebook`,'_self')    
     }
   
+  const handleGoogle = () =>{
+    window.open(`${API_BASE_URL}/auth/google`,'_self')     
+    }
 
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -122,7 +128,7 @@ const Login: React.FC = () => {
         </div>
         <p className='sm-text'>Log in with</p>
         <div className='sm-buttons'>
-            <img src={googleButton} alt="google icon" className='sm-icon'/>
+            <img src={googleButton} alt="google icon" className='sm-icon' onClick={handleGoogle} />
             <img src={facebookButton} alt="facebook icon" className='sm-icon' onClick={handleFacebook}/>
         </div>
 

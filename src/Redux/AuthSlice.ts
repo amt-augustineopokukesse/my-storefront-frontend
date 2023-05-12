@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { NewBusiness, NewUser, User, ResetPwEmail, NewPassword } from './Authentication/initialState';
 
-const API_BASE_URL = 'http://localhost:4000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 interface AuthState {
   auth: {
@@ -33,7 +33,7 @@ export const addNewUser = createAsyncThunk(
       //const response = await axios.post('https://reqres.in/api/users', user);
       const usertype = 'business_name' in user ? 'merchant' : 'customer';  
       const response = await axios.post(`${API_BASE_URL}/api/${usertype}/signup`, user);
-      return response.data;
+      if (response.data) return response.data;
     } catch (error:any) {
       return (error.response.data.message);
     }

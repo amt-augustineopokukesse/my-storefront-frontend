@@ -24,17 +24,16 @@ export const MerchantProfile: React.FC<user> = (props) => {
         setShowMenu(!showMenu);
     }
 
-    const handleSee = () => console.log(merchantExists)
     return (
         <div className='profile-photo-menu'>
             <img className="profile-photo" src={profile} alt="" />
             <div className="profile-menu">
                 <button className="profile-button" onClick={handleClick}>
-                    { merchantExists? merchantExists.business_name : "nothing here"}
+                    { merchantExists? merchantExists.business_name : "Merchant"}
                 </button>
                 {showMenu && (
                     <ul className="profile-list">
-                        <li className="profile-item"><button onClick={handleSee} className="logout-button">Logout</button></li>
+                        <li className="profile-item"><button className="logout-button">Logout</button></li>
                     </ul>
                 )}
                 

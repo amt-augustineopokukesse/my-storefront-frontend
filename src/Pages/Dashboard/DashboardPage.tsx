@@ -6,24 +6,24 @@ export const DashboardPage: React.FC = () => {
             <div className='top-containers'>
                 <div className='site-created-div block-view'>
                     <h3>Sites Created</h3>
-                    <p>2</p>
+                    <p>0</p>
 
                 </div>
                 <div className='views-div block-view'>
                     <h3>Views</h3>
-                    <p>8993</p>
+                    <p>0</p>
                 </div>
                 <div className='order-div block-view'>
                     <h3>Orders</h3>
-                    <p>433</p>
+                    <p>0</p>
                 </div>
                 <div className="earnings-div block-view">
                     <h3>Earnings</h3>
-                    <p>GH<span>&#8373;</span>4303.00</p>
+                    <p>GH &#8373; 4303.00</p>
                 </div>
             </div>
             <div className="grid-container">
-                  <h3 className='grid-header'>Vendors</h3>  
+                  <h3 className='grid-header'></h3>  
             </div>
         </div>
     )

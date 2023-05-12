@@ -12,7 +12,8 @@ import AuthNotification from './Pages/authenticationPages/AuthNotification';
 import SuccessfulAuthNotification from './Pages/authenticationPages/SuccessfulAuthNotification';
 import SuccessfulReset from './Pages/authenticationPages/SuccessfulReset';
 import { Dashboard } from './Pages/Dashboard/Dashboard';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -22,11 +23,23 @@ const App: React.FC =() => {
     <Provider store={store}>
       <Router>
         <div className='app'>
+          <ToastContainer 
+            newestOnTop
+            rtl={false}
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick={true}
+            pauseOnHover={true}
+            draggable={true}
+            theme="colored"
+          />
           <Routes>
             <Route path='/' element={loggedIn ? <Dashboard/> : <LandingPage />}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/landing' element={<LandingPage/>}/>
+            <Route path='/social/landing/:id' element={<LandingPage/>}/>
             <Route path='/resetpw1' element={<ResetPw1/>}/>
             <Route path='/resetpw2/:id' element={<ResetPw2/>}/>
             {/* <Route path='/homepage' element={<HomePage/>}/> */}
