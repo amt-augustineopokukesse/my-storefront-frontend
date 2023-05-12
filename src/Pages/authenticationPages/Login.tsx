@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHero from '../../components/authComponents/AuthHero';
 import '../../assets/styles/authenticationStyles/Login.scss';
 import { User } from '../../Redux/Authentication/initialState';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import Email from '../../components/authComponents/Email';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import Password from '../../components/authComponents/Password';
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const formRef = useRef<HTMLFormElement>(null);
 
-  const user : any = useAppSelector((state) => state.auth.auth.user);
+  // const user : any = useAppSelector((state) => state.auth.auth.user);
   //const errorMsg : any = useAppSelector((state) => state.auth.error);
 
   const navigate = useNavigate();
