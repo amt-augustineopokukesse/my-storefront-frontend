@@ -114,7 +114,6 @@ const SignUpForm: React.FC = () => {
         setLoader(true);
         const userSignupSuccessOrError = await dispatch(addNewUser(formState)).unwrap();
         setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
-        console.log("line 118 error")
         
         if (userSignupSuccessOrError && userSignupSuccessOrError.success) {
           toast.success(userSignupSuccessOrError.message);
@@ -131,7 +130,7 @@ const SignUpForm: React.FC = () => {
         //event.preventDefault();
         setLoader(false);
         setFormState(businessAccount ? initialNewBusinessFormState : initialNewUserFormState);
-        console.error('Error creating new user', err);
+        toast.error('Oops!! Error logging. Try again or contact Storefront Administrator');
         return;
         //setFormError('Error creating new user');
       }

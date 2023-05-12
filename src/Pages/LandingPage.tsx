@@ -9,16 +9,13 @@ import templateImg2 from '../assets/images/Desktop - 3 1.png';
 import { TopBar } from '../components/TopBar';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { AuthLoader } from '../components/authComponents/AuthLoader';
 import { toast } from 'react-toastify';
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const LandingPage: React.FC = () => {
   const [ loader, setLoader ] = useState<boolean>(false);
-  const [ userid, setUserid ] = useState("");
 
   const { id } = useParams();
 
