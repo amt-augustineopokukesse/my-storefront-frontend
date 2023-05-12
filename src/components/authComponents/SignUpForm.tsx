@@ -7,8 +7,8 @@ import { addNewUser } from '../../Redux/AuthSlice';
 import { NewBusiness, NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
 import Password from './Password';
-import facebookButton from '../../assets/svg/fb.svg';
-import googleButton from '../../assets/svg/google.svg';
+//import facebookButton from '../../assets/svg/fb.svg';
+//import googleButton from '../../assets/svg/google.svg';
 import '../../assets/styles/authenticationStyles/Login.scss';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword, handleValidName } from './AuthUtils';
 import PasswordInfo from './PasswordInfo';
@@ -16,7 +16,7 @@ import { AuthLoader } from './AuthLoader';
 import { toast } from 'react-toastify';
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const SignUpForm: React.FC = () => {
@@ -55,13 +55,13 @@ const SignUpForm: React.FC = () => {
   //   console.log(loader);
   //   console.log(newUser);
   // },[newUser]);
-  const handleFacebook = () =>{
-    window.open(`${API_BASE_URL}/auth/facebook`,'_self')    
-    }
+  // const handleFacebook = () =>{
+  //   window.open(`${API_BASE_URL}/auth/facebook`,'_self')    
+  //   }
   
-  const handleGoogle = () =>{
-    window.open(`${API_BASE_URL}/auth/google`,'_self')     
-    }
+  // const handleGoogle = () =>{
+  //   window.open(`${API_BASE_URL}/auth/google`,'_self')     
+  //   }
 
   const errorDiv = document.getElementById('error-div') as HTMLElement;
 
@@ -210,11 +210,11 @@ const SignUpForm: React.FC = () => {
         {loader ? <AuthLoader /> : ''}    
       </form>    
       
-      <p className='sm-text'>Signup in with</p>
+      {/* <p className='sm-text'>Sign up with</p>
       <div className='sm-buttons'>
           <img src={googleButton} alt="google icon" className='sm-icon' onClick={handleGoogle} />
           <img src={facebookButton} alt="facebook icon" className='sm-icon' onClick={handleFacebook}/>
-      </div>
+      </div> */}
 
       <p className="old-member"> Already A Member? <Link to='/login' className="login-text">Log In</Link> </p>
       <div className='business-signup'>Create <span className='business-signup-link' onClick={formChanger} >{businessAccount ? 'Individual' : 'Business'} Account</span></div>
