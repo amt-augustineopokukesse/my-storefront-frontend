@@ -2,6 +2,7 @@ import React from 'react'
 //import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
 import { resetAuthState } from '../../Redux/AuthSlice';
+import '../../assets/styles/dashboardStyles/SignOut.scss';
 
 const SignOut:React.FC = () => {
   //const navigate = useNavigate();
@@ -15,9 +16,7 @@ const SignOut:React.FC = () => {
   }
 
   return (
-    <div>
-      <button onClick={signOut}>Log out</button>
-    </div>
+      <button onClick={signOut} className='logout-button'>Log out</button>
   )
 }
 
