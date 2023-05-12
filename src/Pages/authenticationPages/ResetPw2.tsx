@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { resetPassword } from '../../Redux/AuthSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
+import { toast } from 'react-toastify';
+
 
 
 const initialPasswordState: NewPassword = {
@@ -32,6 +34,7 @@ const ResetPw2: React.FC = () => {
     console.log(id);
     if (newPwd && newPwd.success && newPwd.message){
       //if (newPwd && newPwd.updatedAt){
+      toast.success(newPwd.message);
       navigate('/successful-reset');
       setLoader(false);
     }

@@ -67,12 +67,12 @@ const Login: React.FC = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
       if (name === 'email'){
+          setFormState(prevState => ({ ...prevState, [name]: value }));
           if (errorDiv) {
             errorDiv.style.display = 'none';
             const emailDiv = document.getElementById('email') as HTMLElement;
             emailDiv.style.border = '1px solid transparent';
           }
-          setFormState(prevState => ({ ...prevState, [name]: value }));
       } else {
         setFormState(prevState => ({ ...prevState, [name]: value }));
       }
