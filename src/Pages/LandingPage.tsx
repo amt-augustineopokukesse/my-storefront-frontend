@@ -24,7 +24,7 @@ const LandingPage: React.FC = () => {
   const getUserData = async (id: any) => {
     setLoader(true);
     localStorage.setItem("token", id);
-    // window.location.reload();
+    window.location.href = "/landing";
     // const { data } = await axios.post(`${API_BASE_URL}/social`, { id });
     // if (data) {
     //     toast.success("Login succesful")
@@ -43,16 +43,18 @@ const LandingPage: React.FC = () => {
 
   useEffect(() => {
     
-    if (id) setUserid(id);
+    if (id) {
+        getUserData(id)
+    }
     console.log(id)
   }, [])
 
-  useEffect(() => {
-    const userID = userid;
-    if (userID) {
-        getUserData(userID);
-    }
-  }, [userid])
+//   useEffect(() => {
+//     const userID = userid;
+//     if (userID) {
+//         getUserData(userID);
+//     }
+//   }, [userid])
 
 
     return (
