@@ -13,6 +13,7 @@ import axios from 'axios';
 import { AuthLoader } from '../components/authComponents/AuthLoader';
 import { toast } from 'react-toastify';
 
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const LandingPage: React.FC = () => {
@@ -24,6 +25,7 @@ const LandingPage: React.FC = () => {
   const getUserData = async (id: any) => {
     setLoader(true);
     localStorage.setItem("token", id);
+    toast.success("Login succesful")
     window.location.href = "/landing";
     // const { data } = await axios.post(`${API_BASE_URL}/social`, { id });
     // if (data) {
