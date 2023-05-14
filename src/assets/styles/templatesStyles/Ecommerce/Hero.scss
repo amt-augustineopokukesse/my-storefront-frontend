@@ -7,6 +7,7 @@
     align-items: center;
     flex-direction: column;
     color: #FFFFFF;
+    box-sizing: border-box;
     .hero-header {
         font-family: 'Poppins';
         font-weight: 700;
@@ -20,7 +21,7 @@
         margin: 0px;
     }
     .subscribe {
-        
+        box-sizing: border-box;
         width: 451px;
         height: 46px;
         position: relative;
