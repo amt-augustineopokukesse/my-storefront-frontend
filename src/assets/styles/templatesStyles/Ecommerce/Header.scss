@@ -1,0 +1,19 @@
+.header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 96px;
+        .menu-item {
+            list-style-type: none;
+            font-size: 20px;
+            font-family: 'Roboto';
+            color: #15616B;
+        }
+    }
+}
