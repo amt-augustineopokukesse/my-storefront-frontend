@@ -14,6 +14,7 @@ import SuccessfulReset from './Pages/authenticationPages/SuccessfulReset';
 import { Dashboard } from './Pages/Dashboard/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -47,6 +48,7 @@ const App: React.FC =() => {
             <Route path='/authnotification' element={<AuthNotification/>}/>
             <Route path='/auth-success/:id/:token' element={<SuccessfulAuthNotification/>}/>
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
+            <Route path='/ecommerce' element={<EcommerceHome/>}/>
           </Routes>
         </div>
       </Router>

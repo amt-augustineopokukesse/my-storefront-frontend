@@ -1,0 +1,63 @@
+.navbar {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 70px;
+    left: 0px;
+    top: 0px;
+    background: #15616B;
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+    padding: 0% 60px;
+    gap: 75px;
+    font-family: 'Roboto';
+    .logo {
+        font-family: inherit;
+        font-size: 24px;
+        font-weight: 800;
+        color: #FFFFFF;
+    }
+    .whole-sale-button {
+        width: 148px;
+        height: 40px;
+        outline: none;
+        border: none;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 20px;
+        font-weight: 600;
+        color: #15616B;
+        line-height: 23px;
+        cursor: pointer;
+    }
+    .login-signup-buttons {
+        display: flex;
+        align-items: center;
+        font-family: inherit;
+        gap: 40px;
+        .login {
+            width: 50px;
+            height: 23px;
+            font-size: 20px;
+            color: #FFFFFF;
+            background-color: inherit;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+        .signup {
+            width: 148px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: #FFFFFF;
+            color: #15616B;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 20px;
+        }
+    }
+}
