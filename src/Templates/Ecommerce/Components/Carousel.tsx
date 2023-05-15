@@ -26,6 +26,9 @@ const items = carousel.map((item)=>{
         512:{
             items: 4,
         },
+        1024:{
+            items: 5,
+        },
     };
 
   return <div className='carousel'>

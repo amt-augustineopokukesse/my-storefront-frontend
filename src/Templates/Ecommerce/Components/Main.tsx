@@ -9,11 +9,11 @@ const Main: React.FC = () => {
         <h2 className="content-header">Today's Deals</h2>
 
         {/* Women */}
-        <div className="sub-section">
+        <div className="section">
           <h2 className="">Women</h2>
           <p className="">more...</p>
         </div>
-        <div className="women-section">
+        <div className="section-items">
           {women.map((item) => (
             <div className="tile" key={item}>
               <div className="image">
@@ -31,11 +31,11 @@ const Main: React.FC = () => {
         </div>
 
         {/* Men */}
-        <div className="sub-section">
+        <div className="section">
           <h2 className="">Men</h2>
           <p className="">more...</p>
         </div>
-        <div className="women-section">
+        <div className="section-items">
           {men.map((item) => (
             <div className="tile" key={item}>
               <div className="image">
@@ -53,11 +53,11 @@ const Main: React.FC = () => {
         </div>
 
         {/* Kids */}
-        <div className="sub-section">
+        <div className="section">
           <h2 className="">Kids</h2>
           <p className="">more...</p>
         </div>
-        <div className="women-section">
+        <div className="section-items">
           {kids.map((item) => (
             <div className="tile" key={item}>
               <div className="image">
