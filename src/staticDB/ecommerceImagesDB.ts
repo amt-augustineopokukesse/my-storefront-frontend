@@ -18,6 +18,8 @@ import kids2 from '../assets/images/Templates/Ecommerce/kids2.png';
 import kids3 from '../assets/images/Templates/Ecommerce/kids3.png';
 import kids4 from '../assets/images/Templates/Ecommerce/kids4.png';
 
+
+
 export const carousel = [carousel1, carousel2, carousel3, carousel4, women4, kids3];
 export const women = [women1, women2, women3, women4];
 export const men = [men1, men2, men3, men4];

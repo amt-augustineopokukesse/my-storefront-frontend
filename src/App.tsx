@@ -16,6 +16,7 @@ import { Dashboard } from './Pages/Dashboard/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
+import ProductDescription from './Templates/Ecommerce/Pages/ProductDescription';
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -50,6 +51,7 @@ const App: React.FC =() => {
             <Route path='/auth-success/:id/:token' element={<SuccessfulAuthNotification/>}/>
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
             <Route path='/ecommerce' element={<EcommerceHome/>}/>
+            <Route path='/product-description' element={<ProductDescription/>}/>
           </Routes>
         </div>
       </Router>
