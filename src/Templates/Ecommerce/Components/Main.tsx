@@ -10,8 +10,8 @@ const Main: React.FC = () => {
 
         {/* Women */}
         <div className="section">
-          <h2 className="">Women</h2>
-          <p className="">more...</p>
+          <h2 className="section-name">Women</h2>
+          <p className="more">more...</p>
         </div>
         <div className="section-items">
           {women.map((item) => (
@@ -32,8 +32,8 @@ const Main: React.FC = () => {
 
         {/* Men */}
         <div className="section">
-          <h2 className="">Men</h2>
-          <p className="">more...</p>
+          <h2 className="section-name">Men</h2>
+          <p className="more">more...</p>
         </div>
         <div className="section-items">
           {men.map((item) => (
@@ -54,8 +54,8 @@ const Main: React.FC = () => {
 
         {/* Kids */}
         <div className="section">
-          <h2 className="">Kids</h2>
-          <p className="">more...</p>
+          <h2 className="section-name">Kids</h2>
+          <p className="more">more...</p>
         </div>
         <div className="section-items">
           {kids.map((item) => (
