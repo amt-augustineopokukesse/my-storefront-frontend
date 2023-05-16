@@ -1,0 +1,55 @@
+.hero {
+    width: 100%;
+    height: 418px;
+    background-image: url('../../../images/Templates/Ecommerce/heroBackground.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    .hero-header {
+        font-family: 'Poppins';
+        font-weight: 700;
+        font-size: 96px;
+        margin: 0 auto;
+    }
+    .hero-text {
+        font-family: 'Roboto';
+        font-weight: 500;
+        font-size: 24px;
+        margin: 0px;
+    }
+    .subscribe {
+        box-sizing: border-box;
+        width: 30%;
+        height: 46px;
+        position: relative;
+        right: -30%;
+        bottom: -40px;
+        font-family: 'Roboto';
+        display: flex;
+        .subscribe-input {
+            box-sizing: border-box;
+            height: 100%;
+            width: 70%;
+            padding: 0 24px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            &::placeholder {
+                color: #D5D5D5; 
+            }
+        }
+        .subscribe-button {
+            height: 100%;
+            width: 30%;
+            border: none;
+            cursor: pointer;
+            color: #FFFFFF;
+            background-color: #15616B;
+            font-size: 24px;
+            
+        }
+    }
+}
