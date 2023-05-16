@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
 import ProductDescription from './Templates/Ecommerce/Pages/ProductDescription';
+import Cart from './Templates/Ecommerce/Pages/Cart';
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -52,6 +53,7 @@ const App: React.FC =() => {
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
             <Route path='/ecommerce' element={<EcommerceHome/>}/>
             <Route path='/product-description' element={<ProductDescription/>}/>
+            <Route path='/cart' element={<Cart/>}/>
           </Routes>
         </div>
       </Router>

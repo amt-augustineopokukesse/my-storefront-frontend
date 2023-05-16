@@ -21,7 +21,7 @@ const Main: React.FC = () => {
                 <img src={item} alt="" />
               </div>
               <div className="price">
-                GHS 1,093.00
+                GH&#8373; 1,093.00
               </div>
               <Rating />
               <div className="available">
@@ -44,7 +44,7 @@ const Main: React.FC = () => {
                 <img src={item} alt="" />
               </div>
               <div className="price">
-                GHS 1,093.00
+                GH&#8373; 1,093.00
               </div>
               <Rating />
               <div className="available">
@@ -67,7 +67,7 @@ const Main: React.FC = () => {
                 <img src={item} alt="" />
               </div>
               <div className="price">
-                GHS 1,093.00
+                GH&#8373; 1,093.00
               </div>
               <Rating />
               <div className="available">

@@ -22,7 +22,7 @@ const ProductDescription: React.FC = () => {
               <p className='rating-text'>Seller: James cottage</p>
             </div>
             <div className="price">
-                GHS 2,093.00
+                GH&#8373; 2,093.00
             </div>
             <div className="colors">
               <button className="color-button black">Black</button>
