@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
 import ProductDescription from './Templates/Ecommerce/Pages/ProductDescription';
 import Cart from './Templates/Ecommerce/Pages/Cart';
+import Checkout from './Templates/Ecommerce/Pages/Checkout';
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -54,6 +55,7 @@ const App: React.FC =() => {
             <Route path='/ecommerce' element={<EcommerceHome/>}/>
             <Route path='/product-description' element={<ProductDescription/>}/>
             <Route path='/cart' element={<Cart/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
           </Routes>
         </div>
       </Router>
