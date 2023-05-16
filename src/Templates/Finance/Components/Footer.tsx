@@ -1,6 +1,6 @@
-import facebooklogo from '../assets/facbook.svg'
-import instagramlogo from '../assets/instagram.svg'
-import twitterlogo from '../assets/twitter.svg'
+import facebooklogo from '../../../assets/svg/templates-svg/facebook.svg'
+import instagramlogo from '../../../assets/svg/templates-svg/instagram.svg'
+import twitterlogo from '../../../assets/svg/templates-svg/twitter.svg'
 import '../../../assets/styles/templatesStyles/Finance/Footer.scss'
 import TemplateData from '../../../staticDB/FinanceData'
 

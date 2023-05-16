@@ -1,9 +1,9 @@
-import arrowImg from './assets/images/finance Vector.png'
-import houselogo from './assets/images/house Vector.png'
-import houseImg from './assets/images/houseImg.png'
-import familyImg from './assets/images/boy-with-his-father.png'
-import teamImg from './assets/images/team-high-five.png'
-import pepperImg from './assets/images/pepper.png'
+import arrowImg from '../assets/images/finance Vector.png'
+import houselogo from '../assets/images/house Vector.png'
+import houseImg from '../assets/images/houseImg.png'
+import familyImg from '../assets/images/boy-with-his-father.png'
+import teamImg from '../assets/images/team-high-five.png'
+import pepperImg from '../assets/images/pepper.png'
 
 const TemplateData = {
     topBar: {
