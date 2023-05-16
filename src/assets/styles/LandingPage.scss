@@ -1,6 +1,11 @@
 body{
     font-family: 'roboto','poppins' sans-serif;
 }
+.main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .getStarted-section{
     width: 100%;
     height: 30rem;
