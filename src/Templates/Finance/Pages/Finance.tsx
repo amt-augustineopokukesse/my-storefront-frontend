@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { MessageForm } from '../Components/MessageForm'
 import { Footer } from '../Components/Footer'
 
-export const FinanceTemplate1: React.FC = () => {
+export const Finance: React.FC = () => {
     const [currentButton, setCurrentButton] = useState('personal');
     const handleActive = (event: React.MouseEvent<HTMLButtonElement>) => {
         setCurrentButton(event.currentTarget.id);
