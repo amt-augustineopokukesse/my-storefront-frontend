@@ -50,56 +50,77 @@ const TemplateCustomizationForm: React.FC = () => {
       </div>
       <form className="form">
         <h2>Template Customization</h2>
-        <label className="label">Template Name:</label>
-        <input
-          type="text"
-          value={template.templateName}
-          onChange={handleTemplateNameChange}
-          className="input"
-        />
-        <label className="label">Primary Color:</label>
-        <input
-          type="color"
-          value={template.primaryColor}
-          onChange={handlePrimaryColorChange}
-          className="input"
-        />
-        <label className="label">Secondary Color:</label>
-        <input
-          type="color"
-          value={template.secondaryColor}
-          onChange={handleSecondaryColorChange}
-          className="input"
-        />
-        <label className="label">Body Font Color:</label>
-        <input
-          type="color"
-          value={template.bodyFontColor}
-          onChange={handleBodyFontColorChange}
-          className="input"
-        />
-        <label className="label">Name Font:</label>
-        <select
-          value={template.nameFont}
-          onChange={handleHeadingFontChange}
-          className="select"
-        >
-          <option value="Poppins, sans-serif">Poppins</option>
-          <option value="Helvetica, sans-serif">Helvetica</option>
-          <option value="Times New Roman, serif">Times New Roman</option>
-          {/* Add more font options as needed */}
-        </select>
-        <label className="label">Body Font:</label>
-        <select
-          value={template.bodyFont}
-          onChange={handleBodyFontChange}
-          className="select"
-        >
-          <option value="Roboto, sans-serif">Roboto</option>
-          <option value="Helvetica, sans-serif">Helvetica</option>
-          <option value="Times New Roman, serif">Times New Roman</option>
-          {/* Add more font options as needed */}
-        </select>
+        <div className='input-containers'>
+          <label className="label">Template Name:</label>
+          <input
+            type="text"
+            value={template.templateName}
+            onChange={handleTemplateNameChange}
+            className="input"
+          />
+        </div>
+        <div className='input-containers'>
+          <label className="label">Primary Color:</label>
+          <input
+            type="color"
+            value={template.primaryColor}
+            onChange={handlePrimaryColorChange}
+            className="input"
+          />
+        </div>
+        <div className='input-containers'>
+          <label className="label">Secondary Color:</label>
+          <input
+            type="color"
+            value={template.secondaryColor}
+            onChange={handleSecondaryColorChange}
+            className="input"
+          />
+        </div>
+        <div className='input-containers'>
+          <label className="label">Body Font Color:</label>
+          <input
+            type="color"
+            value={template.bodyFontColor}
+            onChange={handleBodyFontColorChange}
+            className="input"
+          />
+        </div>
+        <div className='input-containers'>
+          <label className="label">Name Font:</label>
+          <select
+            value={template.nameFont}
+            onChange={handleHeadingFontChange}
+            className="select"
+          >
+            <option value="Poppins, sans-serif">Poppins</option>
+            <option value="Helvetica, sans-serif">Helvetica</option>
+            <option value="Times New Roman, serif">Times New Roman</option>
+            {/* Add more font options as needed */}
+          </select>
+        </div>
+        <div className='input-containers'>
+          <label className="label">Body Font:</label>
+          <select
+            value={template.bodyFont}
+            onChange={handleBodyFontChange}
+            className="select"
+          >
+            <option value="Roboto, sans-serif">Roboto</option>
+            <option value="Helvetica, sans-serif">Helvetica</option>
+            <option value="Times New Roman, serif">Times New Roman</option>
+            {/* Add more font options as needed */}
+          </select>
+        </div>
+        <div className='input-containers'>
+
+        </div>
+        
+        
+        
+        
+        
+        
         <button type="submit" className="button">
           Save
         </button>
