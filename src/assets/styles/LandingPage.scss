@@ -1,157 +1,169 @@
 body{
     font-family: 'roboto','poppins' sans-serif;
-}
-.getStarted-section{
-    width: 100%;
-    height: 30rem;
-    padding-top: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #EFEFEF;
-}
-.getStarted-text{
-    width: 600px;
-    height: inherit;
-}
-.getStarted-button{
-    width: 8rem;
-    margin-top: 4rem;
-    height: 2.5rem;
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-    background-color: #0085ff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-}
-
-.getStarted-img{
-    position: relative;
-   
-}
-.getStarted-h1{
-    margin: 2rem 0 0 0;
-    font-family: poppins;
-    width: 100%;
-}
-.getStarted-p{
-    font-weight: 100;
-}
-#mobile{
-    position: absolute;
-    left: 26.5rem;
-    top: 1rem;
-}
-h1{
-    font-size: 4rem;
-    font-weight: 800;
-    display: flex;
-    flex-direction: column;
-}
-p{
-    margin-top: 2rem;
-    max-width: 30rem;
-}
-
-.team-section{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 35rem;
-    padding-top: 5rem;
-    background-color: #EFEFEF;
-}
-.team{
-    display: flex;
-    justify-content: space-evenly;
-    gap: 3rem;
-}
-.team-text-img{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.team-img{
-    width: 16rem;
-    height: 16rem;
-}
-.team-text{
-    max-width: 20rem;
-    font-weight: 100;
-    text-align: left;
-}
-.team-section > .header{
-    margin-left: 2vh;
-    width: 100%;
-    padding-left: 9vw;
-    font-size: 25px;
-    font-family: roboto;
-    font-weight: 300;
-}
-
-.categories-section{
-    height: 42rem;
-    padding-top: 4rem;
-    display: flex;
-    align-items: center;
-    background-color: #FFFFFF;
-    justify-content: space-evenly;
-    gap: 10rem;
-    width: 100%;
-}
-.categories-list{
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    font-family: roboto;
-    font-size: 27px;
-}
-
-.categories-list > h4{
+    padding: 0;
     margin: 0;
 }
-.categories-img{
-    display: flex;
-    align-items: center;
-    position: relative;
-    gap: 1rem;
-}
-.categories-img1{
-    position: absolute;
-    top: 7rem;
-    right: 21rem;
-    width: 10rem;
-    height: 28rem;
-}
-.categories-img2{
-    width: 20rem;
-    height: 35rem;
-}
-.footer-section{
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    justify-content: center;
-    align-items: center;
-    height: 15rem;
+
+.main-container{
+    margin: 0;
     width: 100%;
-    background-color: #EFEFEF;
-}
-.footer-header{
-    margin: 0;
-    font-size: 35px;
-    font-family: roboto;
-    font-weight: 700;
-}
-.footer-text{
-    margin: 0;
-    font-size: 18px;
-    line-height: 28px;
-    text-align: center;
-    max-width: 40rem;
+    display: flex;
+    justify-content: stretch;
+    flex-direction: column;
+    .getStarted-section{
+        width: 100%;
+        height: 30rem;
+        padding-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #EFEFEF;
+        .getStarted-text{
+            width: 600px;
+            height: inherit;
+        }
+        .getStarted-button{
+            width: 8rem;
+            margin-top: 4rem;
+            height: 2.5rem;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            background-color: #0085ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .getStarted-img{
+            position: relative;
+           
+        }
+        .getStarted-h1{
+            margin: 2rem 0 0 0;
+            font-family: poppins;
+            width: 100%;
+        }
+        .getStarted-p{
+            font-weight: 100;
+        }
+        #mobile{
+            position: absolute;
+            left: 26.5rem;
+            top: 1rem;
+        }
+        h1{
+            font-size: 4rem;
+            font-weight: 800;
+            display: flex;
+            flex-direction: column;
+        }
+        p{
+            margin-top: 2rem;
+            max-width: 30rem;
+        }
+        
+    }
+    .team-section{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 35rem;
+        padding-top: 5rem;
+        background-color: #EFEFEF;
+        .team{
+            display: flex;
+            justify-content: space-evenly;
+            gap: 3rem;
+        }
+        .header{
+            width: 20rem;
+            margin: 0 0 0 10vw;
+            padding: 0;
+            font-size: 25px;
+            font-family: roboto;
+            font-weight: 300;
+        }
+        .team-text-img{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .team-img{
+                width: 16rem;
+                height: 16rem;
+            }
+            .team-text{
+                max-width: 20rem;
+                font-weight: 100;
+                text-align: left;
+            }
+        }
+    }
+    .categories-section{
+        height: 42rem;
+        padding-top: 4rem;
+        display: flex;
+        align-items: center;
+        background-color: #FFFFFF;
+        justify-content: space-evenly;
+        gap: 10rem;
+        width: 100%;
+        .categories-list{
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            font-family: roboto;
+            font-size: 27px;
+            h4{
+                margin: 0;
+            }
+        }
+        .categories-img{
+            display: flex;
+            align-items: center;
+            position: relative;
+            gap: 1rem;
+            .categories-img1{
+                position: absolute;
+                top: 7rem;
+                right: 21rem;
+                width: 10rem;
+                height: 28rem;
+            }
+            .categories-img2{
+                width: 20rem;
+                height: 35rem;
+            }
+        }
+    }
+    
+    .footer-section{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        justify-content: center;
+        align-items: center;
+        height: 15rem;
+        width: 100%;
+        background-color: #EFEFEF;
+        .footer-header{
+            margin: 0;
+            font-size: 35px;
+            font-family: 'roboto';
+            font-weight: 700;
+            
+        }
+        .footer-text{
+            margin: 0;
+            font-size: 18px;
+            line-height: 28px;
+            font-weight: 400;
+            text-align: center;
+            font-family: 'roboto';
+            max-width: 40rem;
+        }
+    }    
 }
 
 @media screen and (max-width: 768px) {
