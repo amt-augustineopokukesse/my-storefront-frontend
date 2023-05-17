@@ -19,6 +19,8 @@ import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
 import ProductDescription from './Templates/Ecommerce/Pages/ProductDescription';
 import Cart from './Templates/Ecommerce/Pages/Cart';
 import Checkout from './Templates/Ecommerce/Pages/Checkout';
+import TemplateCustomizationForm from './Templates/Ecommerce/Components/TemplateCustomizationForm';
+
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -56,6 +58,7 @@ const App: React.FC =() => {
             <Route path='/product-description' element={<ProductDescription/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/template-editor' element={<TemplateCustomizationForm/>}/>
           </Routes>
         </div>
       </Router>
