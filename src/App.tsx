@@ -18,7 +18,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
 import ProductDescription from './Templates/Ecommerce/Pages/ProductDescription';
 import Cart from './Templates/Ecommerce/Pages/Cart';
-import { Finance } from './Templates/Finance/Pages/Finance';
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
@@ -52,7 +51,6 @@ const App: React.FC =() => {
             <Route path='/authnotification' element={<AuthNotification/>}/>
             <Route path='/auth-success/:id/:token' element={<SuccessfulAuthNotification/>}/>
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
-            <Route path='/finance' element={<Finance />} />
             <Route path='/ecommerce' element={<EcommerceHome/>}/>
             <Route path='/product-description' element={<ProductDescription/>}/>
             <Route path='/cart' element={<Cart/>}/>
