@@ -1,21 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface TemplateState {
-  templateName: string;
-  primaryColor: string;
-  secondaryColor: string;
-  bodyFontColor: string;
-  nameFont: string;
-  bodyFont: string;
+  name: string,
+  colors: {
+    primary: string;
+    secondary: string;
+    bodyFontColor: string;
+  },
+  fonts: {
+    nameFont: string;
+    bodyFont: string;
+  }
+  
+  
+  
 }
 
 const initialState: TemplateState = {
-  templateName: '',
-  primaryColor: '#15616B',
-  secondaryColor: '#ffffff',
-  bodyFontColor: '#222222',
-  nameFont: 'Poppins, sans-serif',
-  bodyFont: 'Roboto, sans-serif',
+  name: 'Lorem Emporium',
+  colors: {
+    primary: '#15616B',
+    secondary: '#ffffff',
+    bodyFontColor: '#222222',
+  },
+  fonts: {
+    nameFont: 'Poppins, sans-serif',
+    bodyFont: 'Roboto, sans-serif',
+  }
+  
+  
 };
 
 const templateSlice = createSlice({
@@ -23,22 +36,22 @@ const templateSlice = createSlice({
   initialState,
   reducers: {
     setTemplateName: (state, action: PayloadAction<string>) => {
-      state.templateName = action.payload;
+      state.name = action.payload;
     },
     setPrimaryColor: (state, action: PayloadAction<string>) => {
-      state.primaryColor = action.payload;
+      state.colors.primary = action.payload;
     },
     setSecondaryColor: (state, action: PayloadAction<string>) => {
-      state.secondaryColor = action.payload;
+      state.colors.secondary = action.payload;
     },
     setBodyFontColor: (state, action: PayloadAction<string>) => {
-      state.bodyFontColor = action.payload;
+      state.colors.bodyFontColor = action.payload;
     },
     setHeadingFont: (state, action: PayloadAction<string>) => {
-      state.nameFont = action.payload;
+      state.fonts.nameFont = action.payload;
     },
     setBodyFont: (state, action: PayloadAction<string>) => {
-      state.bodyFont = action.payload;
+      state.fonts.bodyFont = action.payload;
     },
   },
 });

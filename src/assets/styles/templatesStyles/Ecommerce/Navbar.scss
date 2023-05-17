@@ -5,13 +5,13 @@
     height: 70px;
     left: 0px;
     top: 0px;
-    background: #15616B;
+    background: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0% 5%;
     gap: 5%;
-    font-family: 'Roboto';
+    font-family: var(--body-font);
     .logo {
         font-family: inherit;
         font-size: 24px;
@@ -23,12 +23,12 @@
         height: 40px;
         outline: none;
         border: none;
-        background-color: #FFFFFF;
+        background-color: var(--secondary-color);
         border-radius: 10px;
         font-family: inherit;
         font-size: 20px;
         font-weight: 600;
-        color: #15616B;
+        color: var(--primary-color);
         line-height: 23px;
         cursor: pointer;
     }
@@ -41,7 +41,7 @@
             width: 50px;
             height: 23px;
             font-size: 20px;
-            color: #FFFFFF;
+            color: var(--secondary-color);
             background-color: inherit;
             outline: none;
             border: none;
@@ -51,8 +51,8 @@
             width: 148px;
             height: 40px;
             border-radius: 10px;
-            background-color: #FFFFFF;
-            color: #15616B;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
             outline: none;
             border: none;
             cursor: pointer;

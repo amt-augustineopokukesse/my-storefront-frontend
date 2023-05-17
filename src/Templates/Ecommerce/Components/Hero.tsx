@@ -1,11 +1,14 @@
 import React from 'react';
 import '../../../assets/styles/templatesStyles/Ecommerce/Hero.scss';
+import { useAppSelector } from '../../../store';
 
 const Hero: React.FC = () => {
+  const templateName = useAppSelector((state) => state.template.name);
+
   return (
     <div className="hero">
       <h1 className="hero-header">
-        Lorem Emporium
+        {templateName}
       </h1>
       <p className="hero-text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit.

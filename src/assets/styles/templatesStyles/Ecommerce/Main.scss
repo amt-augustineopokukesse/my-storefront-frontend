@@ -13,10 +13,10 @@
         width: 100%;
         height: inherit;
         .content-header {
-            font-family: 'Poppins';
+            font-family: var(--name-font);
             font-weight: 700;
             font-size: 40px;
-            color: #222222;
+            color: var(--body-font-color);
         }
         .section {
             display: flex;
@@ -24,14 +24,14 @@
             align-items: flex-end;
             width: 100%;
             margin: 0 auto;
-            color: #222222;
+            color: var(--body-font-color);
             .section-name {
-                font-family: 'Poppins';
+                font-family: var(--name-font);
                 font-weight: 700;
                 font-size: 40px;
             }
             .more {
-                font-family: 'Roboto';
+                font-family: var(--body-font);
                 font-weight: 500;
                 font-size: 24px;
             }
@@ -45,18 +45,18 @@
             .tile {
                 width: 300px;
                 height: 480px;
-                background: #FFFFFF;
+                background: var(--secondary-color);
                 border-radius: 10px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 gap: 24px;
                 flex-direction: column;
-                font-family: 'Roboto';
+                font-family: var(--body-font);
                 .price {
                     font-weight: 700;
                     font-size: 24px;
-                    color: #222222;
+                    color: var(--body-font-color);
                 }
                 .available {
                     display: flex;
@@ -65,7 +65,7 @@
                     flex-direction: column;
                     .number-available {
                         font-size: 16px;
-                        color: #222222;
+                        color: var(--body-font-color);
                         margin: 0%;
                         position: relative;
                         top: -15%;

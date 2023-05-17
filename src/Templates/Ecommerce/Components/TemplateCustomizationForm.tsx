@@ -54,7 +54,7 @@ const TemplateCustomizationForm: React.FC = () => {
           <label className="label">Template Name:</label>
           <input
             type="text"
-            value={template.templateName}
+            value={template.name}
             onChange={handleTemplateNameChange}
             className="input"
           />
@@ -63,7 +63,7 @@ const TemplateCustomizationForm: React.FC = () => {
           <label className="label">Primary Color:</label>
           <input
             type="color"
-            value={template.primaryColor}
+            value={template.colors.primary}
             onChange={handlePrimaryColorChange}
             className="input"
           />
@@ -72,7 +72,7 @@ const TemplateCustomizationForm: React.FC = () => {
           <label className="label">Secondary Color:</label>
           <input
             type="color"
-            value={template.secondaryColor}
+            value={template.colors.secondary}
             onChange={handleSecondaryColorChange}
             className="input"
           />
@@ -81,7 +81,7 @@ const TemplateCustomizationForm: React.FC = () => {
           <label className="label">Body Font Color:</label>
           <input
             type="color"
-            value={template.bodyFontColor}
+            value={template.colors.bodyFontColor}
             onChange={handleBodyFontColorChange}
             className="input"
           />
@@ -89,7 +89,7 @@ const TemplateCustomizationForm: React.FC = () => {
         <div className='input-containers'>
           <label className="label">Name Font:</label>
           <select
-            value={template.nameFont}
+            value={template.fonts.nameFont}
             onChange={handleHeadingFontChange}
             className="select"
           >
@@ -102,7 +102,7 @@ const TemplateCustomizationForm: React.FC = () => {
         <div className='input-containers'>
           <label className="label">Body Font:</label>
           <select
-            value={template.bodyFont}
+            value={template.fonts.bodyFont}
             onChange={handleBodyFontChange}
             className="select"
           >

@@ -12,21 +12,21 @@ const Rating: React.FC = () => {
       if (i < Math.floor(rating)) {
         // Full star
         stars.push(
-          <span key={i} style={{ color: '#15616B', fontSize: '30px' }}>
+          <span key={i} style={{ color: `{var(--primary-color)}`, fontSize: '30px' }}>
             &#9733;
           </span>
         );
       } else if (i === Math.floor(rating) && rating % 1 !== 0) {
         // Half star
         stars.push(
-          <span key={i} style={{ color: '#15616B', fontSize: '30px' }}>
+          <span key={i} style={{ color: `{var(--primary-color)}`, fontSize: '30px' }}>
             &#x2605;
           </span>
         );
       } else {
         // Empty star
         stars.push(
-          <span key={i} style={{ color: '#15616B', fontSize: '30px' }}>
+          <span key={i} style={{ color: `{var(--primary-color)}`, fontSize: '30px' }}>
             &#9734;
           </span>
         );
