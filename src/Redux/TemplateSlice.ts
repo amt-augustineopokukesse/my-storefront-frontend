@@ -4,16 +4,18 @@ export interface TemplateState {
   templateName: string;
   primaryColor: string;
   secondaryColor: string;
+  bodyFontColor: string;
   nameFont: string;
   bodyFont: string;
 }
 
 const initialState: TemplateState = {
   templateName: '',
-  primaryColor: '#000000',
+  primaryColor: '#15616B',
   secondaryColor: '#ffffff',
-  nameFont: 'Arial, sans-serif',
-  bodyFont: 'Helvetica, sans-serif',
+  bodyFontColor: '#222222',
+  nameFont: 'Poppins, sans-serif',
+  bodyFont: 'Roboto, sans-serif',
 };
 
 const templateSlice = createSlice({
@@ -29,6 +31,9 @@ const templateSlice = createSlice({
     setSecondaryColor: (state, action: PayloadAction<string>) => {
       state.secondaryColor = action.payload;
     },
+    setBodyFontColor: (state, action: PayloadAction<string>) => {
+      state.bodyFontColor = action.payload;
+    },
     setHeadingFont: (state, action: PayloadAction<string>) => {
       state.nameFont = action.payload;
     },
@@ -42,6 +47,7 @@ export const {
   setTemplateName,
   setPrimaryColor,
   setSecondaryColor,
+  setBodyFontColor,
   setHeadingFont,
   setBodyFont,
 } = templateSlice.actions;

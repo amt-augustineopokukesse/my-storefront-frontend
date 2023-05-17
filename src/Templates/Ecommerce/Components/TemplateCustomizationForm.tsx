@@ -6,6 +6,7 @@ import {
   setSecondaryColor,
   setHeadingFont,
   setBodyFont,
+  setBodyFontColor,
 } from '../../../Redux/TemplateSlice';
 import '../../../assets/styles/templatesStyles/Ecommerce/TemplateCustomizationForm.scss';
 
@@ -27,6 +28,10 @@ const TemplateCustomizationForm: React.FC = () => {
 
   const handleSecondaryColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSecondaryColor(e.target.value));
+  };
+
+  const handleBodyFontColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setBodyFontColor(e.target.value));
   };
 
   const handleHeadingFontChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -66,13 +71,20 @@ const TemplateCustomizationForm: React.FC = () => {
           onChange={handleSecondaryColorChange}
           className="input"
         />
+        <label className="label">Body Font Color:</label>
+        <input
+          type="color"
+          value={template.bodyFontColor}
+          onChange={handleBodyFontColorChange}
+          className="input"
+        />
         <label className="label">Name Font:</label>
         <select
           value={template.nameFont}
           onChange={handleHeadingFontChange}
           className="select"
         >
-          <option value="Arial, sans-serif">Arial</option>
+          <option value="Poppins, sans-serif">Poppins</option>
           <option value="Helvetica, sans-serif">Helvetica</option>
           <option value="Times New Roman, serif">Times New Roman</option>
           {/* Add more font options as needed */}
@@ -83,7 +95,7 @@ const TemplateCustomizationForm: React.FC = () => {
           onChange={handleBodyFontChange}
           className="select"
         >
-          <option value="Arial, sans-serif">Arial</option>
+          <option value="Roboto, sans-serif">Roboto</option>
           <option value="Helvetica, sans-serif">Helvetica</option>
           <option value="Times New Roman, serif">Times New Roman</option>
           {/* Add more font options as needed */}

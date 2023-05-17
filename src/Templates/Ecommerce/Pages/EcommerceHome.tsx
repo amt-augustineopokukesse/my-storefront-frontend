@@ -5,6 +5,7 @@ import Hero from '../Components/Hero';
 import Carousel from '../Components/Carousel';
 import Main from '../Components/Main';
 import Footer from '../Components/Footer';
+import FloatingButton from '../Components/FloatingButton';
 
 const EcommerceHome:React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const EcommerceHome:React.FC = () => {
         <Carousel />
         <Main />
         <Footer />
+        <FloatingButton />
     </div>
   )
 }
