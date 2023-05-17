@@ -8,11 +8,18 @@ const Templates = [
         {
           name: 'Template 1',
           imgSrc: Blogimg1,
+          description: 'Blog1'
         },
         {
           name: 'Template 2',
           imgSrc: Blogimg3,
+          description: 'Blog2'
         },
+        {
+          name: 'Template 3',
+          imgSrc: Blogimg1,
+          description: 'Blog3'
+        }
       ]
     },
     {
@@ -20,12 +27,9 @@ const Templates = [
         templates: [
           {
             name: 'Template 1',
-            imgSrc: Blogimg1,
-          },
-          {
-            name: 'Template 2',
             imgSrc: Blogimg3,
-          },
+            description: 'Finance1'
+          }
         ]
       },
       {
@@ -34,10 +38,12 @@ const Templates = [
           {
             name: 'Template 1',
             imgSrc: Blogimg1,
+            description: 'Eccommerce1'
           },
           {
             name: 'Template 2',
             imgSrc: Blogimg3,
+            description: 'Eccommerce2'
           },
         ]
       },
