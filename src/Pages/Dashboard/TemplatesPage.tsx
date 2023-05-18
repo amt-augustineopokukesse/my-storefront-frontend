@@ -17,7 +17,6 @@ export const TemplatesPage: React.FC = () => {
     const handleCategoryView = (event: React.MouseEvent<HTMLButtonElement>) => {
         const buttonText = event.currentTarget.innerText;
         setCategory(buttonText);
-        console.log(buttonText)
         setShowMenu(!showMenu);
         setButtonText(buttonText);
     }
