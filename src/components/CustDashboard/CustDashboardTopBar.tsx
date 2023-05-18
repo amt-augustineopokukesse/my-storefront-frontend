@@ -1,9 +1,11 @@
 import { HeaderText } from "../HeaderText";
-import '../../assets/styles/customerDashboardStyles/CustomerDashboardTopBar.scss';
+import '../../assets/styles/custDashboardStyles/CustDashboardTopBar.scss';
+import { CustProfile } from "./CustProfile";
 
-export const DashboardTopBar: React.FC = () => {
+export const CustDashboardTopBar: React.FC = () => {
     return (
         <div className="dashboard-top-bar">
+            <CustProfile />
             <HeaderText />
         </div>
     )

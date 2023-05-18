@@ -7,7 +7,7 @@ type user = {
     [key: string]: any;
 }
 
-export const MerchantProfile: React.FC<user> = (props) => {
+export const CustProfile: React.FC<user> = (props) => {
     const { merchantUser } = props;
     const [ merchantExists, setmerchantExists ] = useState(merchantUser)
     
