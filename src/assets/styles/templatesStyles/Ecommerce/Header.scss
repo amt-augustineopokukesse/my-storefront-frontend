@@ -13,8 +13,8 @@
         .menu-item {
             list-style-type: none;
             font-size: 20px;
-            font-family: 'Roboto';
-            color: #15616B;
+            font-family: var(--body-font);
+            color: var(--primary-color);
         }
     }
 }

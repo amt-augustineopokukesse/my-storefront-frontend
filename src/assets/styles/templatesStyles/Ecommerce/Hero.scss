@@ -6,16 +6,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFFFFF;
+    color: var(--secondary-color);
     box-sizing: border-box;
     .hero-header {
-        font-family: 'Poppins';
+        font-family: var(--name-font);
         font-weight: 700;
         font-size: 96px;
         margin: 0 auto;
     }
     .hero-text {
-        font-family: 'Roboto';
+        font-family: var(--body-font);
         font-weight: 500;
         font-size: 24px;
         margin: 0px;
@@ -27,7 +27,7 @@
         position: relative;
         right: -30%;
         bottom: -40px;
-        font-family: 'Roboto';
+        font-family: var(--body-font);
         display: flex;
         .subscribe-input {
             box-sizing: border-box;
@@ -46,8 +46,8 @@
             width: 30%;
             border: none;
             cursor: pointer;
-            color: #FFFFFF;
-            background-color: #15616B;
+            color: var(--secondary-color);
+            background-color: var(--primary-color);
             font-size: 24px;
             
         }
