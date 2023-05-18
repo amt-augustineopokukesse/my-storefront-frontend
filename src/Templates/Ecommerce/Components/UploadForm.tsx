@@ -1,7 +1,7 @@
 import React from 'react';
-import { TemplateState } from '../../../Redux/TemplateSlice';
+import { ProjectState } from '../../../Redux/ProjectSlice';
 
-const UploadForm: React.FC<{ template: TemplateState }> = ({ template }) => {
+const UploadForm: React.FC<{ project: ProjectState }> = ({ project }) => {
   return (
     <div>
         <form className="form">
@@ -10,8 +10,8 @@ const UploadForm: React.FC<{ template: TemplateState }> = ({ template }) => {
           <label className="label">Body Font Color:</label>
           <input
             type="color"
-            value={template.colors.bodyFontColor}
-            //onChange={handleBodyFontColorChange}
+            value={project.template.bodyFontColor}
+            // onChange={handleBodyFontColorChange}
             className="color-input"
           />
         </div>

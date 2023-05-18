@@ -19,7 +19,7 @@ import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
 import ProductDescription from './Templates/Ecommerce/Pages/ProductDescription';
 import Cart from './Templates/Ecommerce/Pages/Cart';
 import Checkout from './Templates/Ecommerce/Pages/Checkout';
-import TemplateCustomizationForm from './Templates/Ecommerce/Components/TemplateCustomizationForm';
+import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectCustomizationForm';
 
 
 const App: React.FC =() => {

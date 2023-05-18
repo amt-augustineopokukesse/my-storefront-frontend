@@ -7,27 +7,27 @@ import ProductsForm from './ProductsForm';
 import AddPagesForm from './AddPagesForm';
 import ProjectDetailsForm from './ProjectDetailsForm';
 
-const TemplateCustomizationForm: React.FC = () => {
+const ProjectCustomizationForm: React.FC = () => {
   //const dispatch = useAppDispatch();
-  const template = useAppSelector((state) => state.template);
+  const project = useAppSelector((state) => state.project);
   const [activeMenu, setActiveMenu] = useState('Styling');
 
 
   useEffect(() => {
-    console.log(template);
-  }, [template]);
+    console.log(project);
+  }, [project]);
 
   const renderForm = () => {
     // Render the appropriate form based on the active menu
     switch (activeMenu) {
       case 'Details':
-        return <ProjectDetailsForm template={template} />;
+        return <ProjectDetailsForm project={project} />;
       case 'Styling':
-        return <StylingForm template={template}/>;
+        return <StylingForm project={project}/>;
       case 'Upload':
-        return <UploadForm template={template}/>;
+        return <UploadForm project={project}/>;
       case 'Products':
-        return <ProductsForm template={template}/>;
+        return <ProductsForm project={project}/>;
       case 'AddPages':
         return <AddPagesForm />;
       default:
@@ -69,4 +69,4 @@ const TemplateCustomizationForm: React.FC = () => {
   );
 };
 
-export default TemplateCustomizationForm;
+export default ProjectCustomizationForm;

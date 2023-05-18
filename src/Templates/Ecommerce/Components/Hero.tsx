@@ -1,17 +1,18 @@
 import React from 'react';
+// import '../../../assets/styles/projectsStyles/Ecommerce/Hero.scss';
 import '../../../assets/styles/templatesStyles/Ecommerce/Hero.scss';
 import { useAppSelector } from '../../../store';
 
 const Hero: React.FC = () => {
-  const template = useAppSelector((state) => state.template);
+  const project = useAppSelector((state) => state.project);
 
   return (
     <div className="hero">
       <h1 className="hero-header">
-        {template.name}
+        {project.name}
       </h1>
       <p className="hero-text">
-        {template.description}
+        {project.description}
       </p>
       <div className="subscribe">
         <input

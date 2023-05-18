@@ -1,5 +1,5 @@
 import React from 'react';
-import TemplateCustomizationForm from './Ecommerce/Components/TemplateCustomizationForm';
+import TemplateCustomizationForm from './Ecommerce/Components/ProjectCustomizationForm';
 import '../assets/styles/templatesStyles/Ecommerce/CustomizationModal.scss';
 
 const CustomizationModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {

@@ -7,31 +7,31 @@ import Main from '../Components/Main';
 import Footer from '../Components/Footer';
 import FloatingButton from '../Components/FloatingButton';
 import { useAppSelector } from '../../../store';
-import { TemplateState } from '../../../Redux/TemplateSlice';
+import { ProjectState } from '../../../Redux/ProjectSlice';
 
 
 const EcommerceHome:React.FC = () => {
-  const template = useAppSelector((state) => state.template);
+  const project = useAppSelector((state) => state.project);
 
   useEffect(() => {
-    console.log(template);
-  }, [template]);
+    console.log(project);
+  }, [project]);
 
-  const applyTemplateCustomizations = (template: TemplateState) => {
+  const applyTemplateCustomizations = (project: ProjectState) => {
     const root = document.documentElement;
 
-    root.style.setProperty('--primary-color', template.primaryColor);
-    root.style.setProperty('--secondary-color', template.secondaryColor);
-    root.style.setProperty('--body-font-color', template.bodyFontColor);
-    root.style.setProperty('--name-font', template.nameFont);
-    root.style.setProperty('--body-font', template.bodyFont);
-    root.style.setProperty('--template-name', template.name);
-    root.style.setProperty('--template-description', template.description);
+    root.style.setProperty('--primary-color', project.template.primaryColor);
+    root.style.setProperty('--secondary-color', project.template.secondaryColor);
+    root.style.setProperty('--body-font-color', project.template.bodyFontColor);
+    root.style.setProperty('--name-font', project.template.nameFontFamily);
+    root.style.setProperty('--body-font', project.template.bodyFontFamily );
+    root.style.setProperty('--project-name', project.name);
+    root.style.setProperty('--project-description', project.description);
   };
 
   useEffect(() => {
-    applyTemplateCustomizations(template);
-  }, [template]);
+    applyTemplateCustomizations(project);
+  }, [project]);
 
   return (
     <div>

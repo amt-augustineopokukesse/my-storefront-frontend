@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 //import authReducer from "./Authentication/authReducer";
 import authReducer from "./AuthSlice";
-import templateReducer from "./TemplateSlice"
+import projectReducer from "./ProjectSlice"
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  template: templateReducer,
+  project: projectReducer,
 });
 
 export default rootReducer;

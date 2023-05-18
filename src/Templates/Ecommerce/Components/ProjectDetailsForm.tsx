@@ -1,24 +1,24 @@
 import React from 'react';
 import { useAppDispatch } from '../../../store';
-import { TemplateState, setTemplateDescription, setTemplateName, setPhoneNumber, setTemplateCategory, setCurrency, setFacebookURL, setInstagramURL, setTwitterURL } from '../../../Redux/TemplateSlice';
+import { ProjectState, setDescription, setName, setPhoneNumber, setCategory, setCurrency, setFacebookURL, setInstagramURL, setTwitterURL } from '../../../Redux/ProjectSlice';
 
-const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template }) => {
+const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) => {
   const dispatch = useAppDispatch();
 
-  const handleTemplateNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setTemplateName(e.target.value));
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setName(e.target.value));
   };
 
-  const handleTemplateDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setTemplateDescription(e.target.value));
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setDescription(e.target.value));
   };
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setPhoneNumber(e.target.value));
   };
 
-  const handleTemplateCategoryChange = () => {
-    dispatch(setTemplateCategory(template.templateCategory === 'Ecommerce' ? '' : 'Ecommerce'));
+  const handleCategoryChange = () => {
+    dispatch(setCategory(project.category === 'Ecommerce' ? '' : 'Ecommerce'));
   };
 
   const handleCurrencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,8 +43,8 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
         <label className="label">Store Name:</label>
         <input
           type="text"
-          value={template.name}
-          onChange={handleTemplateNameChange}
+          value={project.name}
+          onChange={handleNameChange}
           className="input"
         />
       </div>
@@ -53,8 +53,8 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
         <label className="label">Store Description:</label>
         <input
           type="text"
-          value={template.description}
-          onChange={handleTemplateDescriptionChange}
+          value={project.description}
+          onChange={handleDescriptionChange}
           className="input"
         />
       </div>
@@ -63,7 +63,7 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
         <label className="label">Phone Number:</label>
         <input
           type="tel"
-          value={template.phoneNumber}
+          value={project.phoneNumber}
           onChange={handlePhoneNumberChange}
           className="input"
         />
@@ -73,8 +73,8 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
         <label className="label">Template Category:</label>
         <input
           type="checkbox"
-          checked={template.templateCategory === 'Ecommerce'}
-          onChange={handleTemplateCategoryChange}
+          checked={project.category === 'Ecommerce'}
+          onChange={handleCategoryChange}
           className="input"
         />
       </div>
@@ -82,7 +82,7 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
       <div className='input-containers'>
         <label className="label">Currency:</label>
         <select
-          value={template.currency}
+          value={project.currency}
           onChange={handleCurrencyChange}
           className="select"
         >
@@ -97,7 +97,7 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
         <label className="label">Facebook URL:</label>
         <input
           type="text"
-          value={template.facebookURL}
+          value={project.facebookURL}
           onChange={handleFacebookURLChange}
           className="input"
         />
@@ -107,7 +107,7 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
         <label className="label">Instagram URL:</label>
         <input
           type="text"
-          value={template.instagramURL}
+          value={project.instagramURL}
           onChange={handleInstagramURLChange}
           className="input"
         />
@@ -117,7 +117,7 @@ const ProjectDetailsForm: React.FC<{ template: TemplateState }> = ({ template })
         <label className="label">Twitter URL:</label>
         <input
           type="text"
-          value={template.twitterURL}
+          value={project.twitterURL}
           onChange={handleTwitterURLChange}
           className="input"
         />

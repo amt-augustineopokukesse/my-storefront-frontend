@@ -1,7 +1,7 @@
 import React from 'react';
-import { TemplateState } from '../../../Redux/TemplateSlice';
+import { ProjectState } from '../../../Redux/ProjectSlice';
 
-const ProductsForm: React.FC<{ template: TemplateState }> = ({ template }) => {
+const ProductsForm: React.FC<{ project: ProjectState }> = ({ project }) => {
   return (
     <div>
         <form className="form">
@@ -10,7 +10,7 @@ const ProductsForm: React.FC<{ template: TemplateState }> = ({ template }) => {
           <label className="label">Store Name:</label>
           <input
             type="text"
-            value={template.name}
+            value={project.name}
             //onChange={}
             className="input"
           />
