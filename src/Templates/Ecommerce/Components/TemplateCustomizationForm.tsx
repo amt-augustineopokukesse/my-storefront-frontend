@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   setTemplateName,
+  setTemplateDescription,
   setPrimaryColor,
   setSecondaryColor,
   setHeadingFont,
@@ -20,6 +21,9 @@ const TemplateCustomizationForm: React.FC = () => {
 
   const handleTemplateNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setTemplateName(e.target.value));
+  };
+  const handleTemplateDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setTemplateDescription(e.target.value));
   };
 
   const handlePrimaryColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +52,7 @@ const TemplateCustomizationForm: React.FC = () => {
         <h2>Product Upload Categories</h2>
         {/* Add your product upload categories here */}
       </div>
+      <div className='formDiv'>
       <form className="form">
         <h2>Template Customization</h2>
         <div className='input-containers'>
@@ -56,6 +61,15 @@ const TemplateCustomizationForm: React.FC = () => {
             type="text"
             value={template.name}
             onChange={handleTemplateNameChange}
+            className="input"
+          />
+        </div>
+        <div className='input-containers'>
+          <label className="label">Shop description:</label>
+          <input
+            type="text"
+            value={template.description}
+            onChange={handleTemplateDescriptionChange}
             className="input"
           />
         </div>
@@ -112,19 +126,14 @@ const TemplateCustomizationForm: React.FC = () => {
             {/* Add more font options as needed */}
           </select>
         </div>
-        <div className='input-containers'>
-
-        </div>
         
         
         
-        
-        
-        
-        <button type="submit" className="button">
-          Save
-        </button>
       </form>
+      <button type="submit" className="button">
+        Save
+      </button>
+      </div>
     </div>
   );
 };

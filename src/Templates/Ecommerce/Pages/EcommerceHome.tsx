@@ -26,6 +26,7 @@ const EcommerceHome:React.FC = () => {
     root.style.setProperty('--name-font', template.fonts.nameFont);
     root.style.setProperty('--body-font', template.fonts.bodyFont);
     root.style.setProperty('--template-name', template.name);
+    root.style.setProperty('--template-description', template.description);
   };
 
   useEffect(() => {

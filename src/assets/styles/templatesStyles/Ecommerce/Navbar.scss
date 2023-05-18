@@ -35,7 +35,7 @@
     .login-signup-buttons {
         display: flex;
         align-items: center;
-        font-family: inherit;
+        font-family: var(--body-font);
         gap: 40px;
         .login {
             width: 50px;
@@ -46,6 +46,7 @@
             outline: none;
             border: none;
             cursor: pointer;
+            font-family: inherit;
         }
         .signup {
             width: 148px;
@@ -58,6 +59,7 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 20px;
+            font-family: inherit;
         }
     }
 }

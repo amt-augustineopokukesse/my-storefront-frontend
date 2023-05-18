@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface TemplateState {
   name: string,
+  description: string,
   colors: {
     primary: string;
     secondary: string;
@@ -12,12 +13,11 @@ export interface TemplateState {
     bodyFont: string;
   }
   
-  
-  
 }
 
 const initialState: TemplateState = {
   name: 'Lorem Emporium',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit.',
   colors: {
     primary: '#15616B',
     secondary: '#ffffff',
@@ -37,6 +37,9 @@ const templateSlice = createSlice({
   reducers: {
     setTemplateName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
+    },
+    setTemplateDescription: (state, action: PayloadAction<string>) => {
+      state.description = action.payload;
     },
     setPrimaryColor: (state, action: PayloadAction<string>) => {
       state.colors.primary = action.payload;
@@ -58,6 +61,7 @@ const templateSlice = createSlice({
 
 export const {
   setTemplateName,
+  setTemplateDescription,
   setPrimaryColor,
   setSecondaryColor,
   setBodyFontColor,
