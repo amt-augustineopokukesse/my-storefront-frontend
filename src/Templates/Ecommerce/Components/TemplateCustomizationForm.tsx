@@ -47,14 +47,16 @@ const TemplateCustomizationForm: React.FC = () => {
   };
 
   return (
-    <div className="template-customization">
+    <div className="customization-container">
+      <h2>Template Customization</h2>
+      <div className='template-customization'>
       <div className="sidebar">
         <h2>Product Upload Categories</h2>
         {/* Add your product upload categories here */}
       </div>
       <div className='formDiv'>
       <form className="form">
-        <h2>Template Customization</h2>
+        
         <div className='input-containers'>
           <label className="label">Template Name:</label>
           <input
@@ -79,7 +81,7 @@ const TemplateCustomizationForm: React.FC = () => {
             type="color"
             value={template.colors.primary}
             onChange={handlePrimaryColorChange}
-            className="input"
+            className="color-input"
           />
         </div>
         <div className='input-containers'>
@@ -88,7 +90,7 @@ const TemplateCustomizationForm: React.FC = () => {
             type="color"
             value={template.colors.secondary}
             onChange={handleSecondaryColorChange}
-            className="input"
+            className="color-input"
           />
         </div>
         <div className='input-containers'>
@@ -97,7 +99,7 @@ const TemplateCustomizationForm: React.FC = () => {
             type="color"
             value={template.colors.bodyFontColor}
             onChange={handleBodyFontColorChange}
-            className="input"
+            className="color-input"
           />
         </div>
         <div className='input-containers'>
@@ -125,14 +127,20 @@ const TemplateCustomizationForm: React.FC = () => {
             <option value="Times New Roman, serif">Times New Roman</option>
             {/* Add more font options as needed */}
           </select>
-        </div>
-        
-        
-        
+        </div>        
       </form>
-      <button type="submit" className="button">
+      <div className='form-buttons'>
+      <button type="submit" className="button save">
         Save
       </button>
+
+      <button type="submit" className="button">
+        Publish
+      </button>
+      </div>
+      </div>
+      
+      
       </div>
     </div>
   );
