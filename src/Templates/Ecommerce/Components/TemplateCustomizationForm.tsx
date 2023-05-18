@@ -48,17 +48,21 @@ const TemplateCustomizationForm: React.FC = () => {
 
   return (
     <div className="customization-container">
-      <h2>Template Customization</h2>
+      <h2>Customise Your Store</h2>
       <div className='template-customization'>
       <div className="sidebar">
-        <h2>Product Upload Categories</h2>
-        {/* Add your product upload categories here */}
+        {/* <h2>Product Upload Categories</h2> */}
+        <ul>
+          <li>Styling</li>
+          <li>Upload</li>
+          <li>Products</li>
+        </ul>
       </div>
       <div className='formDiv'>
       <form className="form">
         
         <div className='input-containers'>
-          <label className="label">Template Name:</label>
+          <label className="label">Store Name:</label>
           <input
             type="text"
             value={template.name}
@@ -67,7 +71,7 @@ const TemplateCustomizationForm: React.FC = () => {
           />
         </div>
         <div className='input-containers'>
-          <label className="label">Shop description:</label>
+          <label className="label">Store description:</label>
           <input
             type="text"
             value={template.description}
