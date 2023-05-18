@@ -9,7 +9,7 @@ const SignOut:React.FC = () => {
   const dispatch = useAppDispatch();
 
   const signOut = () => {
-    window.localStorage.removeItem("token");
+    window.localStorage.clear();
     dispatch(resetAuthState());
     // navigate('/');
     window.location.href = '/';

@@ -1,6 +1,16 @@
+//import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/DashboardPage.scss'
+import { useAppSelector } from '../../store';
+
 
 export const DashboardPage: React.FC = () => {
+
+    const user = useAppSelector(state => state.auth.auth.user);
+    console.log(user)
+    // useEffect(() => {
+        
+    // }, [])
+
     return (
         <div className='dashboard-page'>
             <div className='top-containers'>

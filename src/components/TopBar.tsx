@@ -12,7 +12,7 @@ export const TopBar = () => {
     const dispatch = useAppDispatch();
 
     const signOut = () => {
-        window.localStorage.removeItem("token");
+        window.localStorage.clear();
         loggedIn = ""
         dispatch(resetAuthState());
         // navigate('/');
