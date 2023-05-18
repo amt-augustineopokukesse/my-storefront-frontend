@@ -1,34 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface TemplateState {
-  name: string,
-  description: string,
-  colors: {
-    primary: string;
-    secondary: string;
-    bodyFontColor: string;
-  },
-  fonts: {
-    nameFont: string;
-    bodyFont: string;
-  }
-  
+  name: string;
+  description: string;
+  primaryColor: string;
+  secondaryColor: string;
+  bodyFontColor: string;
+  nameFont: string;
+  bodyFont: string;
+  phoneNumber: string;
+  templateCategory: string;
+  currency: string;
+  facebookURL: string;
+  instagramURL: string;
+  twitterURL: string;
 }
 
 const initialState: TemplateState = {
   name: 'Lorem Emporium',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit.',
-  colors: {
-    primary: '#15616B',
-    secondary: '#ffffff',
-    bodyFontColor: '#222222',
-  },
-  fonts: {
-    nameFont: 'Poppins, sans-serif',
-    bodyFont: 'Roboto, sans-serif',
-  }
-  
-  
+  primaryColor: '#15616B',
+  secondaryColor: '#ffffff',
+  bodyFontColor: '#222222',
+  nameFont: 'Poppins, sans-serif',
+  bodyFont: 'Roboto, sans-serif',
+  phoneNumber: '',
+  templateCategory: 'Ecommerce',
+  currency: 'Ghanaian Cedi',
+  facebookURL: '',
+  instagramURL: '',
+  twitterURL: '',
 };
 
 const templateSlice = createSlice({
@@ -42,19 +43,37 @@ const templateSlice = createSlice({
       state.description = action.payload;
     },
     setPrimaryColor: (state, action: PayloadAction<string>) => {
-      state.colors.primary = action.payload;
+      state.primaryColor = action.payload;
     },
     setSecondaryColor: (state, action: PayloadAction<string>) => {
-      state.colors.secondary = action.payload;
+      state.secondaryColor = action.payload;
     },
     setBodyFontColor: (state, action: PayloadAction<string>) => {
-      state.colors.bodyFontColor = action.payload;
+      state.bodyFontColor = action.payload;
     },
     setHeadingFont: (state, action: PayloadAction<string>) => {
-      state.fonts.nameFont = action.payload;
+      state.nameFont = action.payload;
     },
     setBodyFont: (state, action: PayloadAction<string>) => {
-      state.fonts.bodyFont = action.payload;
+      state.bodyFont = action.payload;
+    },
+    setPhoneNumber: (state, action: PayloadAction<string>) => {
+      state.phoneNumber = action.payload;
+    },
+    setTemplateCategory: (state, action: PayloadAction<string>) => {
+      state.templateCategory = action.payload;
+    },
+    setCurrency: (state, action: PayloadAction<string>) => {
+      state.currency = action.payload;
+    },
+    setFacebookURL: (state, action: PayloadAction<string>) => {
+      state.facebookURL = action.payload;
+    },
+    setInstagramURL: (state, action: PayloadAction<string>) => {
+      state.instagramURL = action.payload;
+    },
+    setTwitterURL: (state, action: PayloadAction<string>) => {
+      state.twitterURL = action.payload;
     },
   },
 });
@@ -67,6 +86,12 @@ export const {
   setBodyFontColor,
   setHeadingFont,
   setBodyFont,
+  setPhoneNumber,
+  setTemplateCategory,
+  setCurrency,
+  setFacebookURL,
+  setInstagramURL,
+  setTwitterURL,
 } = templateSlice.actions;
 
 export default templateSlice.reducer;

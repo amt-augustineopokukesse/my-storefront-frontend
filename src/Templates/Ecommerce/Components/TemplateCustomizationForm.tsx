@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../store';
-
 import '../../../assets/styles/templatesStyles/Ecommerce/TemplateCustomizationForm.scss';
 import { StylingForm } from './StylingForm';
 import UploadForm from './UploadForm';
 import ProductsForm from './ProductsForm';
 import AddPagesForm from './AddPagesForm';
+import ProjectDetailsForm from './ProjectDetailsForm';
 
 const TemplateCustomizationForm: React.FC = () => {
   //const dispatch = useAppDispatch();
@@ -20,6 +20,8 @@ const TemplateCustomizationForm: React.FC = () => {
   const renderForm = () => {
     // Render the appropriate form based on the active menu
     switch (activeMenu) {
+      case 'Details':
+        return <ProjectDetailsForm template={template} />;
       case 'Styling':
         return <StylingForm template={template}/>;
       case 'Upload':
@@ -41,6 +43,7 @@ const TemplateCustomizationForm: React.FC = () => {
         <div className="sidebar">
           {/* <h2>Product Upload Categories</h2> */}
           <ul>
+            <li onClick={() => setActiveMenu('Details')}>Project Details</li>
             <li onClick={() => setActiveMenu('Styling')}>Styling</li>
             <li onClick={() => setActiveMenu('Upload')}>Upload</li>
             <li onClick={() => setActiveMenu('Products')}>Products</li>
