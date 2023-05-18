@@ -20,11 +20,11 @@ const EcommerceHome:React.FC = () => {
   const applyTemplateCustomizations = (template: TemplateState) => {
     const root = document.documentElement;
 
-    root.style.setProperty('--primary-color', template.colors.primary);
-    root.style.setProperty('--secondary-color', template.colors.secondary);
-    root.style.setProperty('--body-font-color', template.colors.bodyFontColor);
-    root.style.setProperty('--name-font', template.fonts.nameFont);
-    root.style.setProperty('--body-font', template.fonts.bodyFont);
+    root.style.setProperty('--primary-color', template.primaryColor);
+    root.style.setProperty('--secondary-color', template.secondaryColor);
+    root.style.setProperty('--body-font-color', template.bodyFontColor);
+    root.style.setProperty('--name-font', template.nameFont);
+    root.style.setProperty('--body-font', template.bodyFont);
     root.style.setProperty('--template-name', template.name);
     root.style.setProperty('--template-description', template.description);
   };

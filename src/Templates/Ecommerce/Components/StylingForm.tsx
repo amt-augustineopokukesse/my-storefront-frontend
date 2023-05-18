@@ -1,8 +1,6 @@
 import React from "react";
 import { TemplateState } from "../../../Redux/TemplateSlice";
 import {
-    setTemplateName,
-    setTemplateDescription,
     setPrimaryColor,
     setSecondaryColor,
     setHeadingFont,
@@ -15,12 +13,7 @@ export const StylingForm: React.FC<{ template: TemplateState }> = ({ template })
     // const { template } = props;
     const dispatch = useAppDispatch();
 
-    const handleTemplateNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setTemplateName(e.target.value));
-      };
-      const handleTemplateDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setTemplateDescription(e.target.value));
-      };
+    
     
       const handlePrimaryColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setPrimaryColor(e.target.value));
@@ -43,30 +36,11 @@ export const StylingForm: React.FC<{ template: TemplateState }> = ({ template })
       };
     return (
         <form className="form">
-        
-        <div className='input-containers'>
-          <label className="label">Store Name:</label>
-          <input
-            type="text"
-            value={template.name}
-            onChange={handleTemplateNameChange}
-            className="input"
-          />
-        </div>
-        <div className='input-containers'>
-          <label className="label">Store description:</label>
-          <input
-            type="text"
-            value={template.description}
-            onChange={handleTemplateDescriptionChange}
-            className="input"
-          />
-        </div>
         <div className='input-containers'>
           <label className="label">Primary Color:</label>
           <input
             type="color"
-            value={template.colors.primary}
+            value={template.primaryColor}
             onChange={handlePrimaryColorChange}
             className="color-input"
           />
@@ -75,7 +49,7 @@ export const StylingForm: React.FC<{ template: TemplateState }> = ({ template })
           <label className="label">Secondary Color:</label>
           <input
             type="color"
-            value={template.colors.secondary}
+            value={template.secondaryColor}
             onChange={handleSecondaryColorChange}
             className="color-input"
           />
@@ -84,7 +58,7 @@ export const StylingForm: React.FC<{ template: TemplateState }> = ({ template })
           <label className="label">Body Font Color:</label>
           <input
             type="color"
-            value={template.colors.bodyFontColor}
+            value={template.bodyFontColor}
             onChange={handleBodyFontColorChange}
             className="color-input"
           />
@@ -92,7 +66,7 @@ export const StylingForm: React.FC<{ template: TemplateState }> = ({ template })
         <div className='input-containers'>
           <label className="label">Name Font:</label>
           <select
-            value={template.fonts.nameFont}
+            value={template.nameFont}
             onChange={handleHeadingFontChange}
             className="select"
           >
@@ -105,7 +79,7 @@ export const StylingForm: React.FC<{ template: TemplateState }> = ({ template })
         <div className='input-containers'>
           <label className="label">Body Font:</label>
           <select
-            value={template.fonts.bodyFont}
+            value={template.bodyFont}
             onChange={handleBodyFontChange}
             className="select"
           >
