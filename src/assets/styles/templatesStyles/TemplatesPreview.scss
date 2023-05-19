@@ -1,7 +1,7 @@
 .template-preview-container{
     display: flex;
-    margin-top: 5rem;
-    padding: 0 3rem 0 3rem;
+    margin-top: 0rem;
+    padding: 0 3rem 0 1.5rem;
     justify-content: flex-start;
     gap: 5rem;
     align-items: center;
@@ -49,4 +49,22 @@
     width: 100%;
     margin: 0;
     height: 100%;
+}
+.edit-template-button{
+    width: 11rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+    top: 65vh;
+    left: 70vw;
+    z-index: 100;
+    background-color: #00284C;
+    border-radius: 0;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'poppins';
 }

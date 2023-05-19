@@ -4,6 +4,7 @@ import { ProfilePage } from "./ProfilePage";
 import { SupportPage } from "./SupportPage";
 import '../../assets/styles/dashboardStyles/DashboardPages.scss';
 import ProjectsAndTemplates from "./ProjectsAndTemplates";
+import TemplatesAndCustomize from "./TemplatesAndCustomize";
 
 export const DashboardPages: React.FC = () => {
     return (

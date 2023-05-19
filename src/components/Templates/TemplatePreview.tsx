@@ -3,6 +3,7 @@ import '../../assets/styles/templatesStyles/TemplatesPreview.scss'
 import Templates from '../../staticDB/templateData'
 import Modal from 'react-modal'
 import { Finance } from '../../Templates/Finance/Pages/Finance'
+import { Link } from 'react-router-dom'
 export interface templatesType{
     name: string,
     imgSrc: string,
@@ -41,7 +42,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                         height: '100vh',
                         display: 'flex',
                         position: 'absolute',
-                        top: '5rem',
+                        top: '0rem',
                         overflow: 'hidden',
                         contain: 'content',
                         WebkitOverflowScrolling: 'touch',
@@ -55,6 +56,11 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                     }
                 }}>
                     { selectedTemplate === 'Finance1' ? <Finance /> : '' }
+                      <Link to='ecommerce'>
+                    <button className='edit-template-button'>
+                        Edit
+                    </button>
+                    </Link>
                 </Modal>
             </div>
             ))}
