@@ -1,5 +1,6 @@
 import Blogimg1 from '../assets/images/Blog-template1.png'
 import Blogimg3 from '../assets/images/Blog-template3.png'
+import Blogimg2 from '../assets/images/image for mountain blog.png'
 
 const Templates = [
     {
@@ -17,7 +18,7 @@ const Templates = [
         },
         {
           name: 'Template 3',
-          imgSrc: Blogimg1,
+          imgSrc: Blogimg2,
           description: 'Blog3'
         }
       ]

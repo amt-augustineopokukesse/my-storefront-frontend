@@ -28,6 +28,9 @@ const EcommerceHome:React.FC = () => {
     root.style.setProperty('--project-name', project.name);
     root.style.setProperty('--project-description', project.description);
     root.style.setProperty('--project-banner', project.bannerUrl);
+    root.style.setProperty('--name-font-size', project.template.nameFontSize);
+    root.style.setProperty('--body-font-size', project.template.bodyFontSize);
+    root.style.setProperty('--other-font-size', project.template.otherFontSize);
   };
 
   useEffect(() => {

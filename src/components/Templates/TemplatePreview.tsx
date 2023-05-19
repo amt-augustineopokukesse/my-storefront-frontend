@@ -42,7 +42,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                         height: '100vh',
                         display: 'flex',
                         position: 'absolute',
-                        top: '0rem',
+                        top: '0',
                         overflow: 'hidden',
                         contain: 'content',
                         WebkitOverflowScrolling: 'touch',

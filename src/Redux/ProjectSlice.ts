@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import image from '../assets/images/Templates/Ecommerce/heroBackground.png'
+import axios, { AxiosError } from 'axios';
 export interface ProductState {
   productName: string;
   description: string;
@@ -9,8 +10,8 @@ export interface ProductState {
   initialStock: number;
   stockAvailable: number;
   sku: string;
-  createdAt: number;
-  updatedAt: number;
+  // createdAt: number;
+  // updatedAt: number;
 }
 
 export interface ProjectState {
@@ -49,8 +50,8 @@ const initialProductState: ProductState = {
   initialStock: 0,
   stockAvailable: 0,
   sku: 'carton',
-  createdAt: Date.now(),
-  updatedAt: Date.now(),
+  // createdAt: Date.now(),
+  // updatedAt: Date.now(),
 }
 
 const initialState: ProjectState = {
@@ -72,13 +73,33 @@ const initialState: ProjectState = {
     bodyFontColor: '#222222',
     nameFontFamily: 'Poppins, sans-serif',
     bodyFontFamily: 'Roboto, sans-serif',
-    nameFontSize: '30px',
-    bodyFontSize: '14px',
-    otherFontSize: '20px',
+    nameFontSize: '96px',
+    bodyFontSize: '24px',
+    otherFontSize: '40px',
     carouselInclude: true,
   },
   products: [initialProductState],
 };
+
+export const saveProject = createAsyncThunk(
+  'project/saveProject',
+  async (project: ProjectState) => {
+    try {
+        const response = await axios.post('https://reqres.in/api/users', project);
+        return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.log('API error:', error.response.data.message); // Log the API error message
+          return error.response.data.message;
+        }
+      }
+      console.log('An error occurred:', error); // Log any other errors that occur
+      return 'An error occurred';
+    }
+  }
+);
+
 
 const ProjectSlice = createSlice({
   name: 'project',
@@ -151,6 +172,12 @@ const ProjectSlice = createSlice({
       state.products = [...state.products, action.payload];
     },
   },
+  extraReducers: builder => {
+    /**Signup */
+    builder.addCase(saveProject.fulfilled, (state, action) => {
+      state =  action.payload;
+    });
+  }  
 });
 
 export const {
