@@ -88,9 +88,9 @@ export const saveProject = createAsyncThunk(
   'project/saveProject',
   async (project: ProjectState) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/project/new/${user.id}`, 
+        const response = await axios.post(`${API_BASE_URL}/project/new/${{/**add user id */}}`, 
           {
-            business_id: "893cad15-3746-4917-9206-03032820bd72",
+            business_id: `${{/**add business id */}}`,
             ...project
           }
         );
