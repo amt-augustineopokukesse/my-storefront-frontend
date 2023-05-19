@@ -4,8 +4,10 @@ import facebook from '../../../assets/svg/templates-svg/facebook.svg';
 import instagram from '../../../assets/svg/templates-svg/instagram.svg';
 import phone from '../../../assets/svg/templates-svg/phone.svg';
 import twitter from '../../../assets/svg/templates-svg/twitter.svg';
+import { useAppSelector } from '../../../store';
 
 const Footer: React.FC = () => {
+  const project = useAppSelector((state) => state.project);
   return (
     <section className="footer-container">
       <div className="footer">
@@ -14,14 +16,14 @@ const Footer: React.FC = () => {
         </div>
         <div>
           <p className="text">
-            Address: consectetur adipiscing elit.
+            Address: {project.address}
           </p>
           <p className="text">
-            Location: Lorem ipsum dolor sit amet
+            Location: {project.location}
           </p>
-          <p className="text">
+          {/* <p className="text">
             Nulla est purus, ultrices in porttitor in, accumsan non quam.
-          </p>
+          </p> */}
         </div>
         <div className='contact'>
           <div className='sm-icons'>
@@ -30,7 +32,7 @@ const Footer: React.FC = () => {
             <span><img src={twitter} alt="twitter icon" /></span>
           </div>
           <p className="text">Customer Care</p>
-          <p className="text"><span><img src={phone} alt="twitter icon" /></span> +233 24 123 4567</p>
+          <p className="text"><span><img src={phone} alt="twitter icon" /></span> {project.phoneNumber}</p>
         </div>
       </div>
     </section>

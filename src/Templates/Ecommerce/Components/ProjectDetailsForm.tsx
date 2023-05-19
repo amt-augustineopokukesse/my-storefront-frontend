@@ -1,6 +1,12 @@
 import React from 'react';
 import { useAppDispatch } from '../../../store';
-import { ProjectState, setDescription, setName, setPhoneNumber, setCategory, setCurrency, setFacebookURL, setInstagramURL, setTwitterURL, setLocation, setAddress, setBannerUrl } from '../../../Redux/ProjectSlice';
+import { ProjectState,
+     setDescription, 
+     setName, 
+     setPhoneNumber, 
+     setCategory, 
+     setCurrency, 
+     setFacebookURL, setInstagramURL, setTwitterURL, setLocation, setAddress } from '../../../Redux/ProjectSlice';
 
 const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) => {
   const dispatch = useAppDispatch();
@@ -43,9 +49,9 @@ const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) =>
   const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setLocation(e.target.value));
   };
-  const handleBannerUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setBannerUrl(e.target.value));
-  };
+//   const handleBannerUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     dispatch(setBannerUrl(e.target.value));
+//   };
 
   return (
     <form className='form'>

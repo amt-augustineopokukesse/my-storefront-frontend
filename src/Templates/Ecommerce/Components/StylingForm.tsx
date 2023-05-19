@@ -106,7 +106,7 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
           <label className="label">Name Font Size:</label>
           <select
             value={project.template.nameFontSize}
-            onChange={handleBodyFontSizeChange}
+            onChange={handleNameFontSizeChange}
             className="select"
           >
             <option value="96px">96 pixels</option>
