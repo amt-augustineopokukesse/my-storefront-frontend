@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import image from '../assets/images/Templates/Ecommerce/heroBackground.png'
 export interface ProductState {
   productName: string;
   description: string;
@@ -65,7 +65,7 @@ const initialState: ProjectState = {
   published: false,
   address: '',
   location: '',
-  bannerUrl: '',
+  bannerUrl: image,
   template: {
     primaryColor: "#15616B",
     secondaryColor: '#ffffff',

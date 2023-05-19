@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from '../../../store';
-import { ProjectState, setDescription, setName, setPhoneNumber, setCategory, setCurrency, setFacebookURL, setInstagramURL, setTwitterURL } from '../../../Redux/ProjectSlice';
+import { ProjectState, setDescription, setName, setPhoneNumber, setCategory, setCurrency, setFacebookURL, setInstagramURL, setTwitterURL, setLocation, setAddress, setBannerUrl } from '../../../Redux/ProjectSlice';
 
 const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) => {
   const dispatch = useAppDispatch();
@@ -37,11 +37,22 @@ const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) =>
     dispatch(setTwitterURL(e.target.value));
   };
 
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setAddress(e.target.value));
+  };
+  const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setLocation(e.target.value));
+  };
+  const handleBannerUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setBannerUrl(e.target.value));
+  };
+
   return (
     <form className='form'>
       <div className='input-containers'>
-        <label className="label">Store Name:</label>
+        <label className="label">Add Store Name:</label>
         <input
+          required
           type="text"
           value={project.name}
           onChange={handleNameChange}
@@ -50,7 +61,7 @@ const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) =>
       </div>
 
       <div className='input-containers'>
-        <label className="label">Store Description:</label>
+        <label className="label">Add Store Description:</label>
         <input
           type="text"
           value={project.description}
@@ -60,7 +71,7 @@ const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) =>
       </div>
 
       <div className='input-containers'>
-        <label className="label">Phone Number:</label>
+        <label className="label">Store Contact Number:</label>
         <input
           type="tel"
           value={project.phoneNumber}
@@ -70,26 +81,28 @@ const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) =>
       </div>
 
       <div className='input-containers'>
-        <label className="label">Template Category:</label>
-        <input
-          type="checkbox"
-          checked={project.category === 'Ecommerce'}
+        <label className="label">Store Category:</label>
+        <select
+          defaultValue={'Ecommerce'}          
           onChange={handleCategoryChange}
           className="input"
-        />
+        >
+          <option value="Ecommerce">Ecommerce</option>
+        </select>
       </div>
 
       <div className='input-containers'>
         <label className="label">Currency:</label>
         <select
+          defaultValue="US$"
           value={project.currency}
           onChange={handleCurrencyChange}
           className="select"
         >
-          <option value="Ghanaian Cedi">Ghanaian Cedi</option>
-          <option value="Euro">Euro</option>
-          <option value="Pounds">Pounds</option>
-          <option value="Dollar">Dollar</option>
+          <option value="GHC">Ghanaian Cedi</option>
+          <option value="€">Euro</option>
+          <option value="£">Pounds</option>
+          <option selected value="US$">US Dollar</option>
         </select>
       </div>
 
@@ -122,6 +135,36 @@ const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) =>
           className="input"
         />
       </div>
+
+      <div className='input-containers'>
+        <label className="label">Your Store Address:</label>
+        <input
+          type="text"
+          value={project.address}
+          onChange={handleAddressChange}
+          className="input"
+        />
+      </div>
+
+      <div className='input-containers'>
+        <label className="label">Location:</label>
+        <input
+          type="text"
+          value={project.location}
+          onChange={handleLocationChange}
+          className="input"
+        />
+      </div>
+
+      {/* <div className='input-containers'>
+        <label className="label">Hero Image:</label>
+        <input
+          type="file"
+          // value={project.bannerUrl}
+          onChange={handleBannerUrlChange}
+          className="input"
+        />
+      </div> */}
     </form>
   );
 };

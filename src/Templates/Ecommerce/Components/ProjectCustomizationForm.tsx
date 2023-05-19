@@ -4,7 +4,6 @@ import '../../../assets/styles/templatesStyles/Ecommerce/TemplateCustomizationFo
 import { StylingForm } from './StylingForm';
 import UploadForm from './UploadForm';
 import ProductsForm from './ProductsForm';
-import AddPagesForm from './AddPagesForm';
 import ProjectDetailsForm from './ProjectDetailsForm';
 
 const ProjectCustomizationForm: React.FC = () => {
@@ -28,8 +27,6 @@ const ProjectCustomizationForm: React.FC = () => {
         return <UploadForm project={project}/>;
       case 'Products':
         return <ProductsForm project={project}/>;
-      case 'AddPages':
-        return <AddPagesForm />;
       default:
         return null;
     }
@@ -47,7 +44,6 @@ const ProjectCustomizationForm: React.FC = () => {
             <li onClick={() => setActiveMenu('Styling')}>Styling</li>
             <li onClick={() => setActiveMenu('Upload')}>Upload</li>
             <li onClick={() => setActiveMenu('Products')}>Products</li>
-            <li onClick={() => setActiveMenu('AddPages')}>Pages</li>
           </ul>
         </div>
         <div className='formDiv'>

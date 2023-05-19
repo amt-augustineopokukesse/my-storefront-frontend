@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectState } from "../../../Redux/ProjectSlice";
+import { ProjectState, setBodyFontSize, setNameFontSize, setOtherFontSize } from "../../../Redux/ProjectSlice";
 import {
   setSecondaryColor,
   setPrimaryColor,
@@ -30,9 +30,21 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
       const handleHeadingFontChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch(setNameFontFamily(e.target.value));
       };
-    
+      
       const handleBodyFontChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch(setBodyFontFamily(e.target.value));
+      };
+
+      const handleBodyFontSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setBodyFontSize(e.target.value));
+      };
+
+      const handleNameFontSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setNameFontSize(e.target.value));
+      };
+
+      const handleOtherFontSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setOtherFontSize(e.target.value));
       };
     return (
         <form className="form">
@@ -88,7 +100,45 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             <option value="Times New Roman, serif">Times New Roman</option>
             {/* Add more font options as needed */}
           </select>
-        </div>        
+        </div>  
+
+        <div className='input-containers'>
+          <label className="label">Name Font Size:</label>
+          <select
+            value={project.template.nameFontSize}
+            onChange={handleBodyFontSizeChange}
+            className="select"
+          >
+            <option value="96px">96 pixels</option>
+            <option value="76px">76 pixels</option>
+            <option value="56px">56 pixels</option>
+          </select>
+        </div>
+        <div className='input-containers'>
+          <label className="label">Body Font Size:</label>
+          <select
+            value={project.template.bodyFontSize}
+            onChange={handleBodyFontSizeChange}
+            className="select"
+          >
+            <option value="16px">16 pixels</option>
+            <option value="14px">14 pixels</option>
+            <option value="13px">13 pixels</option>
+          </select>
+        </div>
+        <div className='input-containers'>
+          <label className="label">Other Font Size:</label>
+          <select
+            value={project.template.otherFontSize}
+            onChange={handleOtherFontSizeChange}
+            className="select"
+          >
+            <option value="26px">26 pixels</option>
+            <option value="22px">22 pixels</option>
+            <option value="20px">20 pixels</option>
+            {/* Add more font options as needed */}
+          </select>
+        </div>      
       </form>
     )
 }

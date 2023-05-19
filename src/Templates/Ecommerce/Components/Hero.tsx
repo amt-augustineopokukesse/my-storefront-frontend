@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
   const project = useAppSelector((state) => state.project);
 
   return (
-    <div className="hero">
+    <div className="hero" style={{backgroundImage: `url(${project.bannerUrl})`}}>
       <h1 className="hero-header">
         {project.name}
       </h1>
