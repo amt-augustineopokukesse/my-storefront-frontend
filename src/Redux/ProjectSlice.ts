@@ -9,8 +9,8 @@ export interface ProductState {
   initialStock: number;
   stockAvailable: number;
   sku: string;
-  createdAt: number;
-  updatedAt: number;
+  // createdAt: number;
+  // updatedAt: number;
 }
 
 export interface ProjectState {
@@ -49,8 +49,8 @@ const initialProductState: ProductState = {
   initialStock: 0,
   stockAvailable: 0,
   sku: 'carton',
-  createdAt: Date.now(),
-  updatedAt: Date.now(),
+  // createdAt: Date.now(),
+  // updatedAt: Date.now(),
 }
 
 const initialState: ProjectState = {
@@ -72,9 +72,9 @@ const initialState: ProjectState = {
     bodyFontColor: '#222222',
     nameFontFamily: 'Poppins, sans-serif',
     bodyFontFamily: 'Roboto, sans-serif',
-    nameFontSize: '30px',
-    bodyFontSize: '14px',
-    otherFontSize: '20px',
+    nameFontSize: '96px',
+    bodyFontSize: '24px',
+    otherFontSize: '40px',
     carouselInclude: true,
   },
   products: [initialProductState],

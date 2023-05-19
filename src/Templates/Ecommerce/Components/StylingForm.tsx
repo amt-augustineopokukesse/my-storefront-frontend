@@ -121,9 +121,9 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             onChange={handleBodyFontSizeChange}
             className="select"
           >
+            <option value="24px">24 pixels</option>
+            <option value="20px">20 pixels</option>
             <option value="16px">16 pixels</option>
-            <option value="14px">14 pixels</option>
-            <option value="13px">13 pixels</option>
           </select>
         </div>
         <div className='input-containers'>
@@ -133,9 +133,9 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             onChange={handleOtherFontSizeChange}
             className="select"
           >
-            <option value="26px">26 pixels</option>
-            <option value="22px">22 pixels</option>
-            <option value="20px">20 pixels</option>
+            <option value="40px">40 pixels</option>
+            <option value="35px">35 pixels</option>
+            <option value="30px">30 pixels</option>
             {/* Add more font options as needed */}
           </select>
         </div>      
