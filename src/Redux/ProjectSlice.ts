@@ -169,15 +169,17 @@ const ProjectSlice = createSlice({
       state.template.carouselInclude = action.payload;
     },
     setProducts: (state, action: PayloadAction<ProductState>) => {
-      state.products = [...state.products, action.payload];
+      state.products.push(action.payload);
     },
   },
-  extraReducers: builder => {
-    /**Signup */
+  extraReducers: (builder) => {
     builder.addCase(saveProject.fulfilled, (state, action) => {
-      state =  action.payload;
+      return {
+        ...state,
+        ...action.payload,
+      };
     });
-  }  
+  },
 });
 
 export const {
