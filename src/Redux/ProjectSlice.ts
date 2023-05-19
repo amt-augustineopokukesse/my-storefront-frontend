@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import image from '../assets/images/Templates/Ecommerce/heroBackground.png'
 import axios, { AxiosError } from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export interface ProductState {
   productName: string;
   description: string;
@@ -78,14 +81,19 @@ const initialState: ProjectState = {
     otherFontSize: '40px',
     carouselInclude: true,
   },
-  products: [initialProductState],
+  products: [],
 };
 
 export const saveProject = createAsyncThunk(
   'project/saveProject',
   async (project: ProjectState) => {
     try {
-        const response = await axios.post('https://reqres.in/api/users', project);
+        const response = await axios.post(`${API_BASE_URL}/project/new/${{/**add user id */}}`, 
+          {
+            business_id: `${{/**add business id */}}`,
+            ...project
+          }
+        );
         return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
@@ -169,15 +177,17 @@ const ProjectSlice = createSlice({
       state.template.carouselInclude = action.payload;
     },
     setProducts: (state, action: PayloadAction<ProductState>) => {
-      state.products = [...state.products, action.payload];
+      state.products.push(action.payload);
     },
   },
-  extraReducers: builder => {
-    /**Signup */
+  extraReducers: (builder) => {
     builder.addCase(saveProject.fulfilled, (state, action) => {
-      state =  action.payload;
+      return {
+        ...state,
+        ...action.payload,
+      };
     });
-  }  
+  },
 });
 
 export const {
