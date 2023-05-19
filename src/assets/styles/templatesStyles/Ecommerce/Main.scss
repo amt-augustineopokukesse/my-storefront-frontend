@@ -15,7 +15,7 @@
         .content-header {
             font-family: var(--name-font);
             font-weight: 700;
-            font-size: 40px;
+            font-size: var(--other-font-size);
             color: var(--body-font-color);
         }
         .section {
@@ -28,12 +28,12 @@
             .section-name {
                 font-family: var(--name-font);
                 font-weight: 700;
-                font-size: 40px;
+                font-size: var(--other-font-size);
             }
             .more {
                 font-family: var(--body-font);
                 font-weight: 500;
-                font-size: 24px;
+                font-size: var(--body-font-size);
             }
         }
         .section-items {
@@ -55,7 +55,7 @@
                 font-family: var(--body-font);
                 .price {
                     font-weight: 700;
-                    font-size: 24px;
+                    font-size: var(--body-font-size);
                     color: var(--body-font-color);
                 }
                 .available {

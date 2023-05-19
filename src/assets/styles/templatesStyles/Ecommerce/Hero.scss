@@ -12,13 +12,13 @@
     .hero-header {
         font-family: var(--name-font);
         font-weight: 700;
-        font-size: 96px;
+        font-size: var(--name-font-size);
         margin: 0 auto;
     }
     .hero-text {
         font-family: var(--body-font);
         font-weight: 500;
-        font-size: 24px;
+        font-size: var(--body-font-size);;
         margin: 0px;
     }
     .subscribe {
