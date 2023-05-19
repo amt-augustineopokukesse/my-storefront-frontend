@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../store';
 
-import '../../../assets/styles/templatesStyles/Ecommerce/TemplateCustomizationForm.scss';
+import '../../../assets/styles/templatesStyles/Ecommerce/ProjectCustomizationForm.scss';
 import { StylingForm } from './StylingForm';
 import UploadForm from './UploadForm';
 import ProductsForm from './ProductsForm';
@@ -30,7 +30,7 @@ const ProjectCustomizationForm: React.FC = () => {
       case 'Styling':
         return <StylingForm project={project}/>;
       case 'Upload':
-        return <UploadForm project={project}/>;
+        return <UploadForm />;
       case 'Products':
         return <ProductsForm project={project}/>;
       // case 'AddPages':
