@@ -14,9 +14,12 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 4px;
-    width: 35%;
-    height: 80%;
-    opacity: 0.9;
+    width: 660px;
+    height: 70%;
+    opacity: 0.98;
+    position: absolute;
+    top: 100px;
+    z-index: 4;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
