@@ -41,7 +41,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                         height: '100vh',
                         display: 'flex',
                         position: 'absolute',
-                        top: '5rem',
+                        top: '0',
                         overflow: 'hidden',
                         contain: 'content',
                         WebkitOverflowScrolling: 'touch',
@@ -55,6 +55,9 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                     }
                 }}>
                     { selectedTemplate === 'Finance1' ? <Finance /> : '' }
+                    <button className='edit-template-button'>
+                        Edit
+                    </button>
                 </Modal>
             </div>
             ))}
