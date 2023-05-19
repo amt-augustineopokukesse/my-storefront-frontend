@@ -56,15 +56,15 @@ const initialProductState: ProductState = {
 const initialState: ProjectState = {
   name: 'Lorem Emporium',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit.',
-  phoneNumber: '',
+  phoneNumber: '024 12 345 6789',
   category: 'Ecommerce',
   currency: 'GHC',
   facebookURL: '',
   instagramURL: '',
   twitterURL: '',
   published: false,
-  address: '',
-  location: '',
+  address: 'Add your Address',
+  location: 'Add your location',
   bannerUrl: image,
   template: {
     primaryColor: "#15616B",
