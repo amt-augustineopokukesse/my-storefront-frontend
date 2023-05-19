@@ -44,18 +44,18 @@ export interface ProjectState {
   products: ProductState[];
 }
 
-const initialProductState: ProductState = {
-  productName: '',
-  description: '',
-  price: 0,
-  image: '',
-  discount: 0,
-  initialStock: 0,
-  stockAvailable: 0,
-  sku: 'carton',
-  // createdAt: Date.now(),
-  // updatedAt: Date.now(),
-}
+// const initialProductState: ProductState = {
+//   productName: '',
+//   description: '',
+//   price: 0,
+//   image: '',
+//   discount: 0,
+//   initialStock: 0,
+//   stockAvailable: 0,
+//   sku: 'carton',
+//   // createdAt: Date.now(),
+//   // updatedAt: Date.now(),
+// }
 
 const initialState: ProjectState = {
   name: 'Lorem Emporium',
