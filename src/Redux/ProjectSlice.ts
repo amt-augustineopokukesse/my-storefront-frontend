@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import image from '../assets/images/Templates/Ecommerce/heroBackground.png'
+import axios, { AxiosError } from 'axios';
 export interface ProductState {
   productName: string;
   description: string;
@@ -80,6 +81,26 @@ const initialState: ProjectState = {
   products: [initialProductState],
 };
 
+export const saveProject = createAsyncThunk(
+  'project/saveProject',
+  async (project: ProjectState) => {
+    try {
+        const response = await axios.post('https://reqres.in/api/users', project);
+        return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.log('API error:', error.response.data.message); // Log the API error message
+          return error.response.data.message;
+        }
+      }
+      console.log('An error occurred:', error); // Log any other errors that occur
+      return 'An error occurred';
+    }
+  }
+);
+
+
 const ProjectSlice = createSlice({
   name: 'project',
   initialState,
@@ -151,6 +172,12 @@ const ProjectSlice = createSlice({
       state.products = [...state.products, action.payload];
     },
   },
+  extraReducers: builder => {
+    /**Signup */
+    builder.addCase(saveProject.fulfilled, (state, action) => {
+      state =  action.payload;
+    });
+  }  
 });
 
 export const {
