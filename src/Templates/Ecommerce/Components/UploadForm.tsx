@@ -2,12 +2,15 @@ import React, { ChangeEvent, useState } from 'react';
 import { setBannerUrl } from '../../../Redux/ProjectSlice';
 import axios from 'axios';
 import { useAppDispatch } from '../../../store';
+import { AuthLoader } from '../../../components/authComponents/AuthLoader';
 
 const IMAGE_UPLOAD_API_KEY = import.meta.env.VITE_IMAGE_UPLOAD_URL_KEY;
 
 const UploadForm: React.FC = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [loader, setLoader] = useState<boolean>(false);
+
   const dispatch = useAppDispatch();
 
   const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +31,9 @@ const UploadForm: React.FC = () => {
   };
 
   const handleUploadButtonClick = async () => {
+    
     if (selectedFile) {
+      setLoader(true);
       try {
         const formData = new FormData();
         formData.append('key', IMAGE_UPLOAD_API_KEY);
@@ -37,15 +42,17 @@ const UploadForm: React.FC = () => {
         const response = await axios.post('https://api.imgbb.com/1/upload', formData);
         const imageUrl = response.data.data.url;
         console.log(imageUrl);
+        setLoader(false);
         dispatch(setBannerUrl(imageUrl));
       } catch (error) {
+        setLoader(false);
         console.log('An error occurred:', error);
       }
     }
   };
 
   return (
-    <div>
+    
       <form className="form">
         <div className="input-containers">
           <label className="label">Hero Background Image:</label>
@@ -55,20 +62,20 @@ const UploadForm: React.FC = () => {
             onChange={handleFileInputChange}
             className="file-input"
           />
+          {imagePreview && (
+            <div className="image-preview-container">
+              <h4>Image Preview:</h4>
+              <div className="image-preview">
+                <img src={imagePreview} alt="Preview" />
+              </div>
+            </div>
+          )}
         </div>
+        {loader ? <AuthLoader /> : ''}
+        <button type="button" onClick={handleUploadButtonClick}>
+          Upload
+        </button>
       </form>
-      {imagePreview && (
-        <div className="image-preview-container">
-          <h4>Image Preview:</h4>
-          <div className="image-preview">
-            <img src={imagePreview} alt="Preview" />
-          </div>
-        </div>
-      )}
-      <button type="button" onClick={handleUploadButtonClick}>
-        Upload
-      </button>
-    </div>
   );
 };
 
