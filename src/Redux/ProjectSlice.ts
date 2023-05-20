@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import image from '../assets/images/Templates/Ecommerce/heroBackground.png'
 import axios, { AxiosError } from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export interface ProductState {
   productName?: string;
@@ -75,12 +75,13 @@ export const saveProject = createAsyncThunk(
   'project/saveProject',
   async (project: ProjectState) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/project/new/${{/**add user id */}}`, 
-          {
-            business_id: `${{/**add business id */}}`,
-            ...project
-          }
-        );
+        // const response = await axios.post(`${API_BASE_URL}/project/new/${{/**add user id */}}`, 
+        //   {
+        //     business_id: `${{/**add business id */}}`,
+        //     ...project
+        //   }
+        // );
+        const response = await axios.post('https://reqres.in/api/users', project);
         return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
