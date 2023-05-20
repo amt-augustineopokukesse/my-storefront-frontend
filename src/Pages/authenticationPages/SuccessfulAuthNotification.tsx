@@ -7,13 +7,13 @@ import axios from 'axios';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SuccessfulAuthNotification: React.FC = () => {
-    const { id, token } = useParams();
+    const { token } = useParams();
     const [success, setSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
 
     const getVerified =async () => {
         try {
-            const { data } = await axios.put(`${API_BASE_URL}/verify`, {id, token});
+            const { data } = await axios.get(`${API_BASE_URL}/verify/${token}`);
             if (data) {
                 setSuccess(data.success);
                 setSuccessMessage(data.message);

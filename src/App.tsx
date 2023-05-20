@@ -52,7 +52,7 @@ const App: React.FC =() => {
             {/* <Route path='/homepage' element={<HomePage/>}/> */}
             <Route path='/dashboard/*' element={<Dashboard/>}/>
             <Route path='/authnotification' element={<AuthNotification/>}/>
-            <Route path='/auth-success/:id/:token' element={<SuccessfulAuthNotification/>}/>
+            <Route path='/auth-success/:token' element={<SuccessfulAuthNotification/>}/>
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
             <Route path='/ecommerce' element={<EcommerceHome/>}/>
             <Route path='/product-description' element={<ProductDescription/>}/>
