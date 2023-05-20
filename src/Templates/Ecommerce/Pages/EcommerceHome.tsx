@@ -42,7 +42,7 @@ const EcommerceHome:React.FC = () => {
         <Navbar />
         <Header />
         <Hero />
-        <Carousel />
+        {project.template.carouselInclude ? <Carousel /> : ''}
         <Main />
         <Footer />
         <FloatingButton />

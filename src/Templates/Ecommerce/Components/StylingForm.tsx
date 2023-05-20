@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectState, setBodyFontSize, setNameFontSize, setOtherFontSize } from "../../../Redux/ProjectSlice";
+import { ProjectState, setBodyFontSize, setCarouselInclude, setNameFontSize, setOtherFontSize } from "../../../Redux/ProjectSlice";
 import {
   setSecondaryColor,
   setPrimaryColor,
@@ -45,6 +45,9 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
 
       const handleOtherFontSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch(setOtherFontSize(e.target.value));
+      };
+      const handleCarouselToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(setCarouselInclude(e.target.value === "on"));
       };
     return (
         <form className="form">
@@ -138,7 +141,28 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             <option value="30px">30 pixels</option>
             {/* Add more font options as needed */}
           </select>
-        </div>      
+        </div>  
+        <div className="input-containers">
+        <label className="label">Carousel:</label>
+        <div className="radio-group">
+          <input
+            type="radio"
+            name="carousel"
+            value="on"
+            checked={project.template.carouselInclude}
+            onChange={handleCarouselToggle}
+          />
+          <label className="radio-label">On</label>
+          <input
+            type="radio"
+            name="carousel"
+            value="off"
+            checked={!project.template.carouselInclude}
+            onChange={handleCarouselToggle}
+          />
+          <label className="radio-label">Off</label>
+        </div>
+      </div>    
       </form>
     )
 }
