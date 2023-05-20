@@ -40,6 +40,15 @@
     position: relative;
 }
 
+.form-div .profile-label {
+    color: #978f8f;
+    padding: 0 5px;
+    position: absolute;
+    top: -13px;
+    left: 15px;
+    background-color: #efefef;
+}
+
 .form > .form-div > input {
     height: 50px;
     width: 30rem;
@@ -50,8 +59,13 @@
     line-height: 19px;
     box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.25);
     outline: none;
+    border: 2px solid #978fa8;
+}
+
+.form > .form-div > input:disabled {
     border: none;
 }
+
 input[type="file"]{
     width: 13rem;
     height: 13rem;

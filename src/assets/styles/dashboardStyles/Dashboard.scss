@@ -7,13 +7,14 @@
 .sidebar-pages-conatiner{
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 100vw;
     height: 93.5vh;
     display: flex;
-    align-items: center;
-    justify-content: space-between
+    flex-flow: row;
 }
+
 .pages-container{
-    width: 100%;
+    width: 87%;
     height: 100%;
+    overflow-x: auto;
 }
