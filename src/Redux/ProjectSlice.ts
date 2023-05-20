@@ -5,16 +5,15 @@ import axios, { AxiosError } from 'axios';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export interface ProductState {
-  productName: string;
-  description: string;
-  price: number;
-  image: string;
-  discount: number;
-  initialStock: number;
-  stockAvailable: number;
-  sku: string;
-  // createdAt: number;
-  // updatedAt: number;
+  productName?: string;
+  category?: string;
+  unit?: string;
+  description?: string;
+  price?: number;
+  image?: string;
+  discount?: number;
+  initialStock?: number;
+  sku?: string;
 }
 
 export interface ProjectState {
@@ -44,18 +43,6 @@ export interface ProjectState {
   products: ProductState[];
 }
 
-// const initialProductState: ProductState = {
-//   productName: '',
-//   description: '',
-//   price: 0,
-//   image: '',
-//   discount: 0,
-//   initialStock: 0,
-//   stockAvailable: 0,
-//   sku: 'carton',
-//   // createdAt: Date.now(),
-//   // updatedAt: Date.now(),
-// }
 
 const initialState: ProjectState = {
   name: 'Lorem Emporium',
@@ -176,7 +163,7 @@ const ProjectSlice = createSlice({
     setCarouselInclude: (state, action: PayloadAction<boolean>) => {
       state.template.carouselInclude = action.payload;
     },
-    setProducts: (state, action: PayloadAction<ProductState>) => {
+    addProduct: (state, action: PayloadAction<ProductState>) => {
       state.products.push(action.payload);
     },
   },
@@ -191,7 +178,7 @@ const ProjectSlice = createSlice({
 });
 
 export const {
-  setProducts,
+  addProduct,
   setCarouselInclude,
   setOtherFontSize,
   setBodyFontSize,

@@ -32,7 +32,7 @@ const ProjectCustomizationForm: React.FC = () => {
       case 'Upload':
         return <UploadForm />;
       case 'Products':
-        return <ProductsForm project={project}/>;
+        return <ProductsForm />;
       // case 'AddPages':
       //   return <AddPagesForm />;
       default:
