@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch } from '../../../store';
 import { addProduct } from '../../../Redux/ProjectSlice';
 import axios from 'axios';
+import { resizeImage } from './ProductEditUtils';
 
 const IMAGE_UPLOAD_API_KEY = import.meta.env.VITE_IMAGE_UPLOAD_URL_KEY;
 
@@ -32,20 +33,14 @@ const ProductsForm: React.FC = () => {
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      const reader = new FileReader();
-  
-      reader.onload = () => {
-        setImagePreview(reader.result as string);
-      };
-  
-      // Read the image file as a data URL
-      reader.readAsDataURL(file);
+      const resizedImage = await resizeImage(file);
+      setImagePreview(URL.createObjectURL(resizedImage));
   
   
       try {
         const formData = new FormData();
         formData.append('key', IMAGE_UPLOAD_API_KEY);
-        formData.append('image', file);
+        formData.append('image', resizedImage);
   
         const response = await axios.post('https://api.imgbb.com/1/upload', formData);
         const imageUrl = response.data.data.url;
@@ -101,8 +96,7 @@ const ProductsForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <form className="form">
+    <form className="form">
         <div className="input-containers">
           <label className="label">Product Name:</label>
           <input
@@ -189,7 +183,6 @@ const ProductsForm: React.FC = () => {
           Add Product
         </button>
       </form>
-    </div>
   );
 };
 
