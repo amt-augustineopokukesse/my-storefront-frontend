@@ -23,7 +23,7 @@ export const TemplatesPage: React.FC = () => {
 
     return (
         <div className='template-page'>
-            <button className='category-button' onClick={handleClick}>
+            <button className='category-button' onBlur={handleClick} onClick={handleClick}>
                 {buttonText}
             </button>
             {showMenu && (
@@ -32,7 +32,7 @@ export const TemplatesPage: React.FC = () => {
                             <button className="category-list-buttons" onClick={handleCategoryView}>
                                 <span className='logo-name-span'>
                                     <img src={ecommercelogo} alt="" className='category-logos'/>
-                                    <span>Eccommerce</span> 
+                                    <span>Ecommerce</span> 
                                 </span>
                                 
                             </button>

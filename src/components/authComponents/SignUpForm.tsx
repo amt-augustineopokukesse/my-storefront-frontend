@@ -7,8 +7,6 @@ import { addNewUser } from '../../Redux/AuthSlice';
 import { NewBusiness, NewUser } from '../../Redux/Authentication/initialState';
 import Email from './Email';
 import Password from './Password';
-//import facebookButton from '../../assets/svg/fb.svg';
-//import googleButton from '../../assets/svg/google.svg';
 import '../../assets/styles/authenticationStyles/Login.scss';
 import { validateEmail, handleEmailCheck, handlePasswordCheck, handleValidPassword, validatePassword, handleValidName } from './AuthUtils';
 import PasswordInfo from './PasswordInfo';
@@ -16,7 +14,6 @@ import { AuthLoader } from './AuthLoader';
 import { toast } from 'react-toastify';
 
 
-//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const SignUpForm: React.FC = () => {
@@ -48,20 +45,6 @@ const SignUpForm: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const dispatch = useAppDispatch();
-  // const newUser: any = useAppSelector((state) => state.auth.auth.newUser);
-  
-
-  // useEffect (() => {
-  //   console.log(loader);
-  //   console.log(newUser);
-  // },[newUser]);
-  // const handleFacebook = () =>{
-  //   window.open(`${API_BASE_URL}/auth/facebook`,'_self')    
-  //   }
-  
-  // const handleGoogle = () =>{
-  //   window.open(`${API_BASE_URL}/auth/google`,'_self')     
-  //   }
 
   const errorDiv = document.getElementById('error-div') as HTMLElement;
 
@@ -110,7 +93,6 @@ const SignUpForm: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     formRef.current?.reset();
-    console.log("line 100", formState)
     if (!validEmail){
       handleEmailCheck(validEmail);
       errorDiv.style.display = 'block';
@@ -151,25 +133,6 @@ const SignUpForm: React.FC = () => {
     }  
   };
 
-  // const userSignupSuccessOrError = (user: any) => {
-  //   if (user && user.success){
-  //     toast.success(user.message);
-  //     setLoader(false);
-  //     navigate("/authnotification");
-  //    } else if (user && !user.success){
-  //   //} else if (newUser && !newUser.createdAt){
-  //     toast.error(user);
-  //     errorDiv.style.display = 'block';
-  //     errorDiv.textContent = user;
-  //     setLoader(false);
-  //   }
-  //   return;
-  // }
-
-  // useEffect(() => {
-    
-    
-  // }, [newUser, navigate]);
 
   const formChanger = () => {
     setBusinessAccount(!businessAccount);

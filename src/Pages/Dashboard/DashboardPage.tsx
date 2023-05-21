@@ -1,7 +1,6 @@
-//import { useEffect, useState } from 'react';
 import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/DashboardPage.scss'
-import { useAppSelector } from '../../store';
+
 
 type user = {
     [key: string]: any;
