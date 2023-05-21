@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/DashboardPage.scss'
 
-
 type user = {
     [key: string]: any;
 }

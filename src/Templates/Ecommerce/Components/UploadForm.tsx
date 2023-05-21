@@ -54,7 +54,7 @@ const UploadForm: React.FC = () => {
   return (
     
       <form className="form">
-        <div className="input-containers">
+        <div className="upload-container">
           <label className="label">Hero Background Image:</label>
           <input
             type="file"
@@ -64,7 +64,6 @@ const UploadForm: React.FC = () => {
           />
           {imagePreview && (
             <div className="image-preview-container">
-              <h4>Image Preview:</h4>
               <div className="image-preview">
                 <img src={imagePreview} alt="Preview" />
               </div>
@@ -72,7 +71,7 @@ const UploadForm: React.FC = () => {
           )}
         </div>
         {loader ? <AuthLoader /> : ''}
-        <button type="button" onClick={handleUploadButtonClick}>
+        <button type="button" onClick={handleUploadButtonClick} className='upload'>
           Upload
         </button>
       </form>

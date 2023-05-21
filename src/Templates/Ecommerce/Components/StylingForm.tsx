@@ -53,7 +53,7 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
     return (
         <form className="form">
         <div className='input-containers'>
-          <label className="label">Primary Color:</label>
+          <label className="label">Primary Color</label>
           <input
             type="color"
             value={project.template.primaryColor}
@@ -62,7 +62,7 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
           />
         </div>
         <div className='input-containers'>
-          <label className="label">Secondary Color:</label>
+          <label className="label">Secondary Color</label>
           <input
             type="color"
             value={project.template.secondaryColor}
@@ -71,7 +71,7 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
           />
         </div>
         <div className='input-containers'>
-          <label className="label">Body Font Color:</label>
+          <label className="label">Body Font Color</label>
           <input
             type="color"
             value={project.template.bodyFontColor}
@@ -79,8 +79,8 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             className="color-input"
           />
         </div>
-        <div className='input-containers'>
-          <label className="label">Name Font:</label>
+        <div className='select-containers'>
+          <label className="label">Name Font</label>
           <select
             value={project.template.nameFontFamily}
             onChange={handleHeadingFontChange}
@@ -92,8 +92,8 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             {/* Add more font options as needed */}
           </select>
         </div>
-        <div className='input-containers'>
-          <label className="label">Body Font:</label>
+        <div className='select-containers'>
+          <label className="label">Body Font</label>
           <select
             value={project.template.bodyFontFamily}
             onChange={handleBodyFontChange}
@@ -106,8 +106,8 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
           </select>
         </div>  
 
-        <div className='input-containers'>
-          <label className="label">Name Font Size:</label>
+        <div className='select-containers'>
+          <label className="label">Name Font Size</label>
           <select
             value={project.template.nameFontSize}
             onChange={handleNameFontSizeChange}
@@ -118,8 +118,8 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             <option value="56px">56 pixels</option>
           </select>
         </div>
-        <div className='input-containers'>
-          <label className="label">Body Font Size:</label>
+        <div className='select-containers'>
+          <label className="label">Body Font Size</label>
           <select
             value={project.template.bodyFontSize}
             onChange={handleBodyFontSizeChange}
@@ -130,8 +130,8 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
             <option value="16px">16 pixels</option>
           </select>
         </div>
-        <div className='input-containers'>
-          <label className="label">Other Font Size:</label>
+        <div className='select-containers'>
+          <label className="label">Other Font Size</label>
           <select
             value={project.template.otherFontSize}
             onChange={handleOtherFontSizeChange}
