@@ -39,7 +39,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                 <Modal isOpen={openModal} preventScroll={true} style={{
                     content: {
                         width: '80vw',
-                        height: '100vh',
+                        height: '80vh',
                         display: 'flex',
                         position: 'absolute',
                         top: '0',
@@ -47,7 +47,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                         contain: 'content',
                         WebkitOverflowScrolling: 'touch',
                         justifyContent: 'center',
-                        margin: ' 7% auto 0 auto',
+                        margin: ' 5vh auto 5vh auto',
                     },
                     overlay: {
                         background: 'rgba(0, 0, 0, 0.25)',
@@ -56,7 +56,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                     }
                 }}>
                     { selectedTemplate === 'Finance1' ? <Finance /> : '' }
-                      <Link to='ecommerce'>
+                    <Link to={selectedTemplate === 'Ecommerce1' ? 'ecommerce' : ''}>
                     <button className='edit-template-button'>
                         Edit
                     </button>

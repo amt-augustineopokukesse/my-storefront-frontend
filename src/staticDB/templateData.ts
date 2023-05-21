@@ -34,17 +34,17 @@ const Templates = [
         ]
       },
       {
-        name: 'Eccommerce',
+        name: 'Ecommerce',
         templates: [
           {
             name: 'Template 1',
             imgSrc: Blogimg1,
-            description: 'Eccommerce1'
+            description: 'Ecommerce1'
           },
           {
             name: 'Template 2',
             imgSrc: Blogimg3,
-            description: 'Eccommerce2'
+            description: 'Ecommerce2'
           },
         ]
       },

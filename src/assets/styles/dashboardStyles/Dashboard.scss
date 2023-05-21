@@ -14,7 +14,24 @@
 }
 
 .pages-container{
-    width: 87%;
+    // width: 87%;
+    flex: 9.5;
     height: 100%;
-    overflow-x: auto;
+    // overflow-x: auto;
+}
+
+.sidebar-tray {
+    width: 50px;
+    height: 30px;
+    top: 9.8vh;
+    left: 0px;
+    background-color: #667e93;
+    cursor: pointer;
+    z-index: 3;
+    position: absolute;
+    outline-offset: 2px;
+    outline: 2px solid #667e93;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
