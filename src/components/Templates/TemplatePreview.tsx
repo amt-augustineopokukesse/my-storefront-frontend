@@ -4,6 +4,7 @@ import Templates from '../../staticDB/templateData'
 import Modal from 'react-modal'
 import { Finance } from '../../Templates/Finance/Pages/Finance'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../store'
 export interface templatesType{
     name: string,
     imgSrc: string,
@@ -14,6 +15,21 @@ interface TemplatePreviewProps{
 }
 
 export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
+
+    // let merchant = localStorage.getItem("merchant") || "";
+    // let business_id;
+
+    // try {
+    //   let parsedId = JSON.parse(merchant);
+    //   business_id = parsedId.business.id;
+    //   console.log(business_id);
+    // } catch (error) {
+    //   // Handle the error or provide a default value
+    //   console.error("Error parsing JSON: ", error);
+    //   business_id = null; // Or assign a default value
+    // }
+    
+    // const business_id = useAppSelector(state=>)
 
     const [openModal, setModal] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('');
@@ -28,6 +44,13 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
     const handleModal = (event: React.MouseEvent<HTMLDivElement>) => {
         setModal(!openModal);
         setSelectedTemplate(event.currentTarget.id);
+    }
+
+    //add to code 
+    const gotoTemplate = async() => {
+        
+        window.location.href =
+          selectedTemplate === "Ecommerce1" ? "./templates/ecommerce" : "";
     }
     
     return(
@@ -55,12 +78,12 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                         padding: '0',
                     }
                 }}>
-                    { selectedTemplate === 'Finance1' ? <Finance /> : '' }
-                    <Link to={selectedTemplate === 'Ecommerce1' ? 'ecommerce' : ''}>
-                    <button className='edit-template-button'>
+                    
+                    
+                    <button className='edit-template-button' onClick={gotoTemplate} >
                         Edit
                     </button>
-                    </Link>
+                    
                 </Modal>
             </div>
             ))}
