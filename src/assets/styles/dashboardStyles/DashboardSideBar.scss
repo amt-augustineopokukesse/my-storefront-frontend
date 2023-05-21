@@ -1,7 +1,10 @@
 .navigation-sidebar{
     background-color: #00284C;
-    width: 13vw;
+    // width: 13vw;
     height: 94vh;
+    flex: 1.5;
+    overflow: hidden;
+    transition: display 500ms;
 
 }
 

@@ -23,7 +23,7 @@ export const TemplatesPage: React.FC = () => {
 
     return (
         <div className='template-page'>
-            <button className='category-button' onBlur={handleClick} onClick={handleClick}>
+            <button className='category-button'  onClick={handleClick}>
                 {buttonText}
             </button>
             {showMenu && (

@@ -6,10 +6,13 @@ import profilelogo from '../../assets/svg/briefcase-svgrepo-com.svg';
 import { Outlet, Link } from 'react-router-dom';
 import supportlogo from '../../assets/images/Vector (1).png';
 
-export const DashboardSideBar: React.FC = () => {
+
+
+export const DashboardSideBar: React.FC<{display: string}> = (props) => {
+    const { display } = props
     return (
         <>
-        <div className="navigation-sidebar">
+        <div className="navigation-sidebar" style={{display: display}}>
             <ul className='navigation-sidebar-list'>
                 <li className='dashboard'>
                     <Link to="/dashboard" className='link'>

@@ -67,12 +67,7 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
 
             try {
                 setLoader(true)
-                const projectUpdated = await axios.put(`${API_BASE_URL}/merchant/update/${merchantExists.id}`, 
-                {
-                    email: vals.email,
-                    contact: vals.contact
-                }
-                )
+                const projectUpdated = await axios.put(`${API_BASE_URL}/merchant/update/${merchantExists.id}`, vals)
                 if (projectUpdated) {
                     toast.info("You have updated your information!!");
                     localStorage.setItem("merchant", JSON.stringify(projectUpdated.data.data));
