@@ -144,7 +144,7 @@ const ProductsForm: React.FC = () => {
             className="input"
           />
         </div>
-        <div className="input-containers">
+        <div className="upload-container">
           <label className="label">Product Images:</label>
           <input
             type="file"
@@ -154,7 +154,6 @@ const ProductsForm: React.FC = () => {
           />
           {imagePreview && (
             <div className="image-preview-container">
-              <h4>Image Preview:</h4>
               <div className="image-preview">
                 <img src={imagePreview} alt="Preview" />
               </div>
