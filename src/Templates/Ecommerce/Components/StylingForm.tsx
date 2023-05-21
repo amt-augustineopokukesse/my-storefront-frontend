@@ -49,6 +49,7 @@ export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) =>
       const handleCarouselToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setCarouselInclude(e.target.value === "on"));
       };
+    
     return (
         <form className="form">
         <div className='input-containers'>
