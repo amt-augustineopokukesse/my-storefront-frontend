@@ -2,9 +2,9 @@ import '../../assets/styles/dashboardStyles/ProfilePage.scss'
 import profilephoto from '../../assets/images/Ellipse 15.png'
 import editLogo from '../../assets/svg/icons8-edit.svg'
 import { useEffect, useState } from 'react';
-import * as Yup from 'yup';
+//import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import axios from 'axios';
+//import axios from 'axios';
 
 type User = {
     [key: string]: any;
@@ -20,10 +20,10 @@ interface EditUser {
     editForm: EditForm;
 }
 
-const me: EditUser = {
-    user: {},
-    editForm: {value: '', editmode: true}
-}
+// const me: EditUser = {
+//     user: {},
+//     editForm: {value: '', editmode: true}
+// }
 
 export const ProfilePage: React.FC<EditUser> = (props) => {
 
