@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import '../../assets/styles/dashboardStyles/ProjectPage.scss'
 import filelogo from '../../assets/svg/icons8-file.svg'
 import pluslogo from '../../assets/svg/icons8-plus-math-50.png'
