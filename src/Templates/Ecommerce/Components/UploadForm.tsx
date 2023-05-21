@@ -72,7 +72,7 @@ const UploadForm: React.FC = () => {
           )}
         </div>
         {loader ? <AuthLoader /> : ''}
-        <button type="button" onClick={handleUploadButtonClick}>
+        <button type="button" onClick={handleUploadButtonClick} className='upload'>
           Upload
         </button>
       </form>

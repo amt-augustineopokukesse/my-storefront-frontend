@@ -179,7 +179,7 @@ const ProductsForm: React.FC = () => {
             className="input"
           />
         </div>
-        <button type="button" onClick={handleAddProduct} className="button">
+        <button type="button" onClick={handleAddProduct} className="add-product">
           Add Product
         </button>
       </form>
