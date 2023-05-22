@@ -38,9 +38,11 @@ const UploadForm: React.FC = () => {
         const imageUrl = response.data.data.url;
         dispatch(setBannerUrl(imageUrl));
         setLoader(false);
+        alert('Image upload successful');
       } catch (error) {
         setLoader(false);
         console.error("An error occurred:", error);
+        alert(`An error occurred: ${error}`);
       }
     }
   };
