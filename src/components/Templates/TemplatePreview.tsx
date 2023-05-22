@@ -2,9 +2,9 @@ import { useState } from 'react'
 import '../../assets/styles/templatesStyles/TemplatesPreview.scss'
 import Templates from '../../staticDB/templateData'
 import Modal from 'react-modal'
-import { Finance } from '../../Templates/Finance/Pages/Finance'
-import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../store'
+// import { Finance } from '../../Templates/Finance/Pages/Finance'
+// import { Link } from 'react-router-dom'
+// import { useAppSelector } from '../../store'
 export interface templatesType{
     name: string,
     imgSrc: string,
