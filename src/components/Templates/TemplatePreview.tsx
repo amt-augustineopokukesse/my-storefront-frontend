@@ -65,7 +65,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                     <button className='edit-template-button'>
                         Edit
                     </button>
-                    </Link>
+                    
                 </Modal>
             </div>
             ))}

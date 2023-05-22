@@ -1,8 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import image from '../assets/images/Templates/Ecommerce/heroBackground.png'
-import axios, { AxiosError } from 'axios';
-
-//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import image from "../assets/images/Templates/Ecommerce/heroBackground.png";
+import { AxiosError } from "axios";
+import api from "./Authentication/axiosClient";
 
 export interface ProductState {
   productName?: string;
@@ -43,62 +42,89 @@ export interface ProjectState {
   products: ProductState[];
 }
 
+const getBusinessId = async() => {
+  const merchant = localStorage.getItem("merchant") || ""; 
+  let parsedId = null;
+  let id = null;
 
-const initialState: ProjectState = {
-  name: 'Lorem Emporium',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit.',
-  phoneNumber: '024 12 345 6789',
-  category: 'Ecommerce',
-  currency: 'GHC',
-  facebookURL: '',
-  instagramURL: '',
-  twitterURL: '',
+  try {
+    parsedId = JSON.parse(merchant); 
+
+    
+    if (parsedId && parsedId.business && parsedId.business.id) {
+      id = parsedId.business.id; 
+      return id
+    } else {
+      
+      console.error("Invalid JSON structure");
+    }
+  } catch (error) {
+    // Handle the case where JSON parsing fails
+    console.error("Error parsing JSON:", error);
+  }
+};
+const business_id = await getBusinessId();
+
+
+const initialState: ProjectState ={
+  name: "Lorem Emporium",
+  description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit.",
+  phoneNumber: "024 12 345 6789",
+  category: "Ecommerce",
+  currency: "GHC",
+  facebookURL: "",
+  instagramURL: "",
+  twitterURL: "",
   published: false,
-  address: 'Add your Address',
-  location: 'Add your location',
+  address: "Add your Address",
+  location: "Add your location",
   bannerUrl: image,
   template: {
     primaryColor: "#15616B",
-    secondaryColor: '#ffffff',
-    bodyFontColor: '#222222',
-    nameFontFamily: 'Poppins, sans-serif',
-    bodyFontFamily: 'Roboto, sans-serif',
-    nameFontSize: '96px',
-    bodyFontSize: '24px',
-    otherFontSize: '40px',
+    secondaryColor: "#ffffff",
+    bodyFontColor: "#222222",
+    nameFontFamily: "Poppins, sans-serif",
+    bodyFontFamily: "Roboto, sans-serif",
+    nameFontSize: "96px",
+    bodyFontSize: "24px",
+    otherFontSize: "40px",
     carouselInclude: true,
   },
   products: [],
 };
 
-export const saveProject = createAsyncThunk(
-  'project/saveProject',
+export const saveProject =  createAsyncThunk(
+  "project/saveProject",
   async (project: ProjectState) => {
     try {
-        // const response = await axios.post(`${API_BASE_URL}/project/new/${{/**add user id */}}`, 
-        //   {
-        //     business_id: `${{/**add business id */}}`,
-        //     ...project
-        //   }
-        // );
-        const response = await axios.post('https://reqres.in/api/users', project);
-        return response.data;
+      // const response = await axios.post(`${API_BASE_URL}/project/new/${{/**add user id */}}`,
+      //   {
+      //     business_id: `${{/**add business id */}}`,
+      //     ...project
+      //   }
+      // );
+      const response = await api.post("/project/new", {
+        business_id,
+        ...project,
+      });
+      console.log(response.data);
+      // return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         if (error.response) {
-          console.log('API error:', error.response.data.message); // Log the API error message
+          console.log("API error:", error.response.data.message); // Log the API error message
           return error.response.data.message;
         }
       }
-      console.log('An error occurred:', error); // Log any other errors that occur
-      return 'An error occurred';
+      console.log("An error occurred:", error); // Log any other errors that occur
+      return "An error occurred";
     }
   }
 );
 
-
 const ProjectSlice = createSlice({
-  name: 'project',
+  name: "project",
   initialState,
   reducers: {
     setName: (state, action: PayloadAction<string>) => {

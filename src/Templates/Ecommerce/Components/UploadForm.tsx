@@ -120,7 +120,7 @@ export default UploadForm;
 //     }
     
 //    const sendData = await axios.post(
-//      `http://localhost:4000/api/merchant/upload/3samkus@gmail.com`,
+//      `http://localhost:4000/api/merchant/upload`,
 //      imageData
 //    );
 //    const response = sendData?.data;
