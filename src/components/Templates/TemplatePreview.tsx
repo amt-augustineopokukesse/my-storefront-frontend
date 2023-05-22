@@ -4,6 +4,9 @@ import Templates from '../../staticDB/templateData'
 import Modal from 'react-modal'
 import { Finance } from '../../Templates/Finance/Pages/Finance'
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../store'
+import { setSelectedTemplate } from '../../Redux/SelectedTemplateSlice'
+import EcommerceHome from '../../Templates/Ecommerce/Pages/EcommerceHome'
 export interface templatesType{
     name: string,
     imgSrc: string,
@@ -14,9 +17,9 @@ interface TemplatePreviewProps{
 }
 
 export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
-
+    const dispatch = useAppDispatch();
     const [openModal, setModal] = useState(false);
-    const [selectedTemplate, setSelectedTemplate] = useState('');
+    const [selectedTemplate, setClickedTemplate] = useState('');
     const { category } = props;
     
     const categoryData = Templates.find((c) => c.name === category);
@@ -27,7 +30,8 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
 
     const handleModal = (event: React.MouseEvent<HTMLDivElement>) => {
         setModal(!openModal);
-        setSelectedTemplate(event.currentTarget.id);
+        setClickedTemplate(event.currentTarget.id);
+        dispatch(setSelectedTemplate(event.currentTarget.id));
     }
     
     return(
@@ -56,7 +60,8 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                     }
                 }}>
                     { selectedTemplate === 'Finance1' ? <Finance /> : '' }
-                    <Link to={selectedTemplate === 'Ecommerce1' ? 'ecommerce' : ''}>
+                    { selectedTemplate === 'Ecommerce1' ? <EcommerceHome /> : '' }
+                    <Link to='edit-template-page'>
                     <button className='edit-template-button'>
                         Edit
                     </button>
