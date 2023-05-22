@@ -5,7 +5,6 @@ import Hero from '../Components/Hero';
 import Carousel from '../Components/Carousel';
 import Main from '../Components/Main';
 import Footer from '../Components/Footer';
-import FloatingButton from '../Components/FloatingButton';
 import { useAppSelector } from '../../../store';
 import { ProjectState } from '../../../Redux/ProjectSlice';
 import CustomizedMain from '../Components/CustomizedMain';
@@ -46,7 +45,6 @@ const EcommerceHome:React.FC = () => {
         {project.template.carouselInclude ? <Carousel /> : ''}
         {project.products.length > 0 ? <CustomizedMain/> : <Main />}
         <Footer />
-        <FloatingButton />
     </div>
   )
 }
