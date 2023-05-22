@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../../store';
 import { addProduct } from '../../../Redux/ProjectSlice';
-import axios from 'axios';
+//import axios from 'axios';
 import { resizeImage } from './ProductEditUtils';
+import api from '../../../Redux/Authentication/axiosClient';
+import { AuthLoader } from "../../../components/authComponents/AuthLoader";
 
-const IMAGE_UPLOAD_API_KEY = import.meta.env.VITE_IMAGE_UPLOAD_URL_KEY;
+
+//const IMAGE_UPLOAD_API_KEY = import.meta.env.VITE_IMAGE_UPLOAD_URL_KEY;
 
 const ProductsForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +20,8 @@ const ProductsForm: React.FC = () => {
   const [unit, setUnit] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [loader, setLoader] = useState<boolean>(false);
+
 
   const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
@@ -38,16 +43,18 @@ const ProductsForm: React.FC = () => {
   
   
       try {
-        const formData = new FormData();
-        formData.append('key', IMAGE_UPLOAD_API_KEY);
-        formData.append('image', resizedImage);
-  
-        const response = await axios.post('https://api.imgbb.com/1/upload', formData);
+        const response = await api.post(
+          "/api/merchant/upload-picture",
+          { imagePreview }
+        );
         const imageUrl = response.data.data.url;
-        console.log(imageUrl);
         setImage(imageUrl);
+        setLoader(false);
+        alert('Image upload successful');
       } catch (error) {
-        console.log('An error occurred:', error);
+        setLoader(false);
+        console.error("An error occurred:", error);
+        alert(`An error occurred: ${error}`);
       }
     }  
   };
@@ -159,6 +166,7 @@ const ProductsForm: React.FC = () => {
               </div>
             </div>
           )}
+          {loader ? <AuthLoader /> : ""}
         </div>
         <div className="input-containers">
           <label className="label">Discount:</label>
