@@ -73,11 +73,11 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                 }}>
                     { selectedTemplate === 'Finance1' ? <Finance /> : '' }
                     { selectedTemplate === 'Ecommerce1' ? <EcommerceHome /> : '' }
-                    <Link to='edit-template-page'>
+                    
                     <button className='edit-template-button' onClick={getId}>
                         Edit
                     </button>
-                    </Link>
+                    
                 </Modal>
             </div>
             ))}

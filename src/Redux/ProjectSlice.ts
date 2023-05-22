@@ -63,7 +63,8 @@ const getBusinessId = async() => {
     console.error("Error parsing JSON:", error);
   }
 };
-const business_id = getBusinessId();
+const business_id = await getBusinessId();
+console.log(business_id)
 
 
 const initialState: ProjectState ={
