@@ -33,6 +33,18 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
         setClickedTemplate(event.currentTarget.id);
         dispatch(setSelectedTemplate(event.currentTarget.id));
     }
+
+    const getId = () => {
+        if (selectedTemplate === 'Ecommerce1') {
+            window.location.href= './templates/ecommerce'
+        } else if(selectedTemplate === 'Ecommerce2'){
+            window.location.href = ''
+        }
+
+        
+    }
+
+
     
     return(
         <div className='template-preview-container'>
@@ -62,7 +74,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                     { selectedTemplate === 'Finance1' ? <Finance /> : '' }
                     { selectedTemplate === 'Ecommerce1' ? <EcommerceHome /> : '' }
                     <Link to='edit-template-page'>
-                    <button className='edit-template-button'>
+                    <button className='edit-template-button' onClick={getId}>
                         Edit
                     </button>
                     </Link>
