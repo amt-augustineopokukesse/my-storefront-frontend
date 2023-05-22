@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
 import { setBannerUrl } from "../../../Redux/ProjectSlice";
-import axios from "axios";
 import { useAppDispatch } from "../../../store";
 import { AuthLoader } from "../../../components/authComponents/AuthLoader";
+import api from "../../../Redux/Authentication/axiosClient";
 
 // const IMAGE_UPLOAD_API_KEY = import.meta.env.VITE_IMAGE_UPLOAD_URL_KEY;
 
@@ -31,8 +31,8 @@ const UploadForm: React.FC = () => {
     if (imagePreview) {
       setLoader(true);
       try {
-        const response = await axios.post(
-          "http://localhost:4000/api/merchant/upload-picture",
+        const response = await api.post(
+          "/api/merchant/upload-picture",
           { imagePreview }
         );
         const imageUrl = response.data.data.url;
