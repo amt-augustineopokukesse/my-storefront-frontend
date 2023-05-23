@@ -1,4 +1,4 @@
-import { ProjectState } from "../../../Redux/ProjectSlice";
+import { ProjectState } from "../../../Redux/ProjectInitialState";
 
 export const resizeImage = (file: File) => {
     return new Promise<File>((resolve) => {

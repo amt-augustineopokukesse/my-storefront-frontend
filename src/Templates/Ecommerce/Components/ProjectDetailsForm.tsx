@@ -1,12 +1,13 @@
 import React from 'react';
 import { useAppDispatch } from '../../../store';
-import { ProjectState,
+import {
      setDescription, 
      setName, 
      setPhoneNumber, 
      setCategory, 
      setCurrency, 
      setFacebookURL, setInstagramURL, setTwitterURL, setLocation, setAddress } from '../../../Redux/ProjectSlice';
+import { ProjectState } from '../../../Redux/ProjectInitialState';
 
 const ProjectDetailsForm: React.FC<{ project: ProjectState }> = ({ project }) => {
   const dispatch = useAppDispatch();
