@@ -78,3 +78,4 @@ export const applyTemplateCustomizations = (project: ProjectState) => {
   root.style.setProperty('--body-font-size', project.template.bodyFontSize);
   root.style.setProperty('--other-font-size', project.template.otherFontSize);
 };
+
