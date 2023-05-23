@@ -1,3 +1,5 @@
+import { ProjectState } from "../../../Redux/ProjectSlice";
+
 export const resizeImage = (file: File) => {
     return new Promise<File>((resolve) => {
       const MAX_SIZE = 300;
@@ -49,3 +51,13 @@ export const resizeImage = (file: File) => {
     });
   };
   
+  /**Extract products categories */
+export const extractCategories = (project: ProjectState) => {
+  const categoriesArray: string[] = [];
+  project.products.map(product => {
+    if (product.category !== '' && !categoriesArray.includes(product.category)){
+      categoriesArray.push(product.category);
+    }
+  });
+  return categoriesArray;
+}

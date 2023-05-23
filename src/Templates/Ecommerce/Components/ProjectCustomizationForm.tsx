@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../store';
+import { useNavigate } from 'react-router-dom';
 
 import '../../../assets/styles/templatesStyles/Ecommerce/ProjectCustomizationForm.scss';
 import { StylingForm } from './StylingForm';
@@ -12,11 +13,24 @@ import { AuthLoader } from '../../../components/authComponents/AuthLoader';
 
 const ProjectCustomizationForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const project = useAppSelector((state) => state.project);
+  const navigate = useNavigate();
+  var project = useAppSelector((state) => state.project);
   const [activeMenu, setActiveMenu] = useState('Details');
   const [loader, setLoader] = useState<boolean>(false);
+  const [active, setActive] = useState(false);
+  
 
+  useEffect(() => {
+    const storedProject = localStorage.getItem('project');
+    if (storedProject) {
+    const savedProject = JSON.parse(storedProject)
 
+    if (savedProject && savedProject?.id){
+      setActive(true);
+      
+    }
+    }
+  },[]);
 
   useEffect(() => {
     console.log(project);
@@ -44,10 +58,34 @@ const ProjectCustomizationForm: React.FC = () => {
     setLoader(true);
     console.log('Saving project:', project); // Check the project data before dispatching
     const response = await dispatch(saveProject(project));
+    localStorage.setItem('project', JSON.stringify(response.payload));
+    console.log('Save response:', response); // Check the response data after the API call
+    setLoader(false);
+  }
+
+  const handleUpdate = async () => {
+    setLoader(true);
+    console.log('Saving project:', project); // Check the project data before dispatching
+    const localProject = localStorage.getItem('project');
+    if (localProject){
+      project = JSON.parse(localProject);
+    }
+    
+
+    const response = await dispatch(saveProject(project));
+    localStorage.setItem('project', JSON.stringify(response.payload));
     console.log('Save response:', response); // Check the response data after the API call
     setLoader(false);
   }
   
+  const handlePublish = async () => {
+    setLoader(true);
+    console.log('Publishing project:', project); // Check the project data before dispatching
+    const response = await dispatch(saveProject({...project, published: true}));
+    console.log('Save response:', response); // Check the response data after the API call
+    setLoader(false);
+    navigate('/dashboard/project/');
+  }
   
 
   return (
@@ -67,11 +105,16 @@ const ProjectCustomizationForm: React.FC = () => {
         <div className='formDiv'>
           {renderForm()}
         <div className='form-buttons'>
-          <button onClick={handleSave} className="button save">
-            Save
-          </button>
-
-          <button type="submit" className="button">
+          {active ? (
+            <button onClick={handleUpdate} className="button update">
+              Update
+            </button>
+          ) : (
+            <button onClick={handleSave} className="button save">
+              Save
+            </button>)
+          }
+          <button disabled={!active} type="submit" className="button" onClick={handlePublish}>
             Publish
           </button>
         </div>
