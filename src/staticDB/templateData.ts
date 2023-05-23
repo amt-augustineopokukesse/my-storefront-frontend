@@ -2,6 +2,7 @@ import Blogimg1 from '../assets/images/Blog-template1.png'
 import Blogimg3 from '../assets/images/Blog-template3.png'
 import Blogimg2 from '../assets/images/image for mountain blog.png'
 import financeImg from '../assets/images/finance1.png'
+import ecommImg1 from '../assets/images/ecomm1.png'
 
 const Templates = [
     {
@@ -44,7 +45,7 @@ const Templates = [
           },
           {
             name: 'Template 2',
-            imgSrc: Blogimg3,
+            imgSrc: ecommImg1,
             description: 'Ecommerce2'
           },
         ]
