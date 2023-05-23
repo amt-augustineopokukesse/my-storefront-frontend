@@ -78,6 +78,7 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                         Edit
                     </button>
                     
+                    
                 </Modal>
             </div>
             ))}

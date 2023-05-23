@@ -1,14 +1,13 @@
-import React, { ChangeEvent, useState } from 'react';
-import { setBannerUrl } from '../../../Redux/ProjectSlice';
-import axios from 'axios';
-import { useAppDispatch } from '../../../store';
-import { AuthLoader } from '../../../components/authComponents/AuthLoader';
+import React, { ChangeEvent, useState } from "react";
+import { setBannerUrl } from "../../../Redux/ProjectSlice";
+import { useAppDispatch } from "../../../store";
+import { AuthLoader } from "../../../components/authComponents/AuthLoader";
+import api from "../../../Redux/Authentication/axiosClient";
 
-const IMAGE_UPLOAD_API_KEY = import.meta.env.VITE_IMAGE_UPLOAD_URL_KEY;
+// const IMAGE_UPLOAD_API_KEY = import.meta.env.VITE_IMAGE_UPLOAD_URL_KEY;
 
 const UploadForm: React.FC = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [loader, setLoader] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
@@ -18,68 +17,67 @@ const UploadForm: React.FC = () => {
       const file = e.target.files[0];
       const reader = new FileReader();
 
-      reader.onload = () => {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
         // Set the image preview URL
         setImagePreview(reader.result as string);
       };
 
       // Read the image file as a data URL
-      reader.readAsDataURL(file);
-
-      setSelectedFile(file);
     }
   };
 
   const handleUploadButtonClick = async () => {
-    
-    if (selectedFile) {
+    if (imagePreview) {
       setLoader(true);
       try {
-        const formData = new FormData();
-        formData.append('key', IMAGE_UPLOAD_API_KEY);
-        formData.append('image', selectedFile);
-
-        const response = await axios.post('https://api.imgbb.com/1/upload', formData);
+        const response = await api.post(
+          "/api/merchant/upload-picture",
+          { imagePreview }
+        );
         const imageUrl = response.data.data.url;
-        console.log(imageUrl);
-        setLoader(false);
         dispatch(setBannerUrl(imageUrl));
+        setLoader(false);
+        alert('Image upload successful');
       } catch (error) {
         setLoader(false);
-        console.log('An error occurred:', error);
+        console.error("An error occurred:", error);
+        alert(`An error occurred: ${error}`);
       }
     }
   };
 
   return (
-    
-      <form className="form">
-        <div className="upload-container">
-          <label className="label">Hero Background Image:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileInputChange}
-            className="file-input"
-          />
-          {imagePreview && (
-            <div className="image-preview-container">
-              <div className="image-preview">
-                <img src={imagePreview} alt="Preview" />
-              </div>
+    <form className="form">
+      <div className="upload-container">
+        <label className="label">Hero Background Image:</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileInputChange}
+          className="file-input"
+        />
+        {imagePreview && (
+          <div className="image-preview-container">
+            <div className="image-preview">
+              <img src={imagePreview} alt="Preview" />
             </div>
-          )}
-        </div>
-        {loader ? <AuthLoader /> : ''}
-        <button type="button" onClick={handleUploadButtonClick} className='upload'>
-          Upload
-        </button>
-      </form>
+          </div>
+        )}
+      </div>
+      {loader ? <AuthLoader /> : ""}
+      <button
+        type="button"
+        onClick={handleUploadButtonClick}
+        className="upload"
+      >
+        Upload
+      </button>
+    </form>
   );
 };
 
 export default UploadForm;
-
 
 //New code
 
@@ -96,10 +94,10 @@ export default UploadForm;
 //   const handleFileInput = async (e: ChangeEvent<HTMLInputElement>) => {
 //     e.preventDefault()
 //     if (e.target.files && e.target.files.length > 0) {
-      
+
 //       const file = e.target.files[0];
 //       previewFile(file);
-      
+
 //     }
 //   };
 
@@ -114,20 +112,19 @@ export default UploadForm;
 //   const handleSubmit = async(e:any) => {
 //     e.preventDefault()
 //     if (!imagePreview) return;
-    
+
 //     const imageData = {
 //       imagePreview:imagePreview
 //     }
-    
+
 //    const sendData = await axios.post(
 //      `http://localhost:4000/api/merchant/upload`,
 //      imageData
 //    );
 //    const response = sendData?.data;
 //    dispatch(setBannerUrl(response?.imgURL));
-    
-//   };
 
+//   };
 
 //   return (
 //     <div>
