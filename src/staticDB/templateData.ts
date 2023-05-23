@@ -1,6 +1,7 @@
 import Blogimg1 from '../assets/images/Blog-template1.png'
 import Blogimg3 from '../assets/images/Blog-template3.png'
 import Blogimg2 from '../assets/images/image for mountain blog.png'
+import financeImg from '../assets/images/finance1.png'
 
 const Templates = [
     {
@@ -28,7 +29,7 @@ const Templates = [
         templates: [
           {
             name: 'Template 1',
-            imgSrc: Blogimg3,
+            imgSrc: financeImg,
             description: 'Finance1'
           }
         ]
