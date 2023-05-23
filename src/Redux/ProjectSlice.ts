@@ -52,7 +52,7 @@ const getBusinessId = async() => {
 
     
     if (parsedId && parsedId.business && parsedId.business.id) {
-      id = parsedId.business.id; 
+      id = await parsedId.business.id; 
       return id
     } else {
       
@@ -63,7 +63,7 @@ const getBusinessId = async() => {
     console.error("Error parsing JSON:", error);
   }
 };
-const business_id = await getBusinessId();
+const business_id = getBusinessId();
 console.log(business_id)
 
 
