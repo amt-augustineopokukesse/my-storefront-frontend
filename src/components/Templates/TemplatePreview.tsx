@@ -3,9 +3,6 @@ import '../../assets/styles/templatesStyles/TemplatesPreview.scss'
 import Templates from '../../staticDB/templateData'
 import Modal from 'react-modal'
 import { Finance } from '../../Templates/Finance/Pages/Finance'
-import { Link } from 'react-router-dom'
-import { useAppDispatch } from '../../store'
-import { setSelectedTemplate } from '../../Redux/SelectedTemplateSlice'
 import EcommerceHome from '../../Templates/Ecommerce/Pages/EcommerceHome'
 export interface templatesType{
     name: string,
@@ -17,10 +14,10 @@ interface TemplatePreviewProps{
 }
 
 export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
-    const dispatch = useAppDispatch();
     const [openModal, setModal] = useState(false);
     const [clickedTemplate, setClickedTemplate] = useState('');
     const { category } = props;
+    
     
     const categoryData = Templates.find((c) => c.name === category);
 
@@ -31,8 +28,23 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
     const handleModal = (event: React.MouseEvent<HTMLDivElement>) => {
         setModal(!openModal);
         setClickedTemplate(event.currentTarget.id);
-        dispatch(setSelectedTemplate(event.currentTarget.id));
+        
+        if(!localStorage.getItem('clickedTemplate')){
+            localStorage.setItem('clickedTemplate', clickedTemplate);
+        } else {
+            localStorage.setItem('clickedTemplate', clickedTemplate);
+        }
     }
+        
+    const getId = () => {
+        if (clickedTemplate === 'Ecommerce1') {
+            window.location.href= './templates/edit-template-page'
+        } else if(clickedTemplate === 'Finance1'){
+            window.location.href = './templates/edit-template-page'
+        }
+    }
+    console.log(`clicked on ${clickedTemplate}`)
+    
     
     return(
         <div className='template-preview-container'>
@@ -61,11 +73,11 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                 }}>
                     { clickedTemplate === 'Finance1' ? <Finance /> : '' }
                     { clickedTemplate === 'Ecommerce1' ? <EcommerceHome /> : '' }
-                    <Link to='edit-template-page'>
-                    <button className='edit-template-button'>
+                    
+                    <button className='edit-template-button' onClick={getId}>
                         Edit
                     </button>
-                    </Link>
+                    
                 </Modal>
             </div>
             ))}
