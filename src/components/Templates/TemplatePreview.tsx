@@ -19,7 +19,7 @@ interface TemplatePreviewProps{
 export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
     const dispatch = useAppDispatch();
     const [openModal, setModal] = useState(false);
-    const [selectedTemplate, setClickedTemplate] = useState('');
+    const [clickedTemplate, setClickedTemplate] = useState('');
     const { category } = props;
     
     const categoryData = Templates.find((c) => c.name === category);
@@ -59,8 +59,8 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                         padding: '0',
                     }
                 }}>
-                    { selectedTemplate === 'Finance1' ? <Finance /> : '' }
-                    { selectedTemplate === 'Ecommerce1' ? <EcommerceHome /> : '' }
+                    { clickedTemplate === 'Finance1' ? <Finance /> : '' }
+                    { clickedTemplate === 'Ecommerce1' ? <EcommerceHome /> : '' }
                     <Link to='edit-template-page'>
                     <button className='edit-template-button'>
                         Edit
