@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../Components/Navbar';
 import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
 import leatherJacketSmall from '../../../assets/images/Templates/Ecommerce/leatherJacketSmall.png';
+import { useAppSelector } from '../../../store';
+import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 
 
 const Checkout:React.FC = () => {
+  const project = useAppSelector((state) => state.project);
+  console.log(project);
+
+  useEffect(() => {
+    applyTemplateCustomizations(project);
+  }, [project]);
+  
   return (
     <>
       <Navbar />
