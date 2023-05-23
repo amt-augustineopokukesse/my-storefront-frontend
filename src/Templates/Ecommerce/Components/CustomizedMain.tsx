@@ -2,7 +2,7 @@ import React from 'react';
 import AddToCart from './AddToCart';
 import { useAppSelector } from '../../../store';
 import '../../../assets/styles/templatesStyles/Ecommerce/CustomizedMain.scss';
-import { ProductState } from '../../../Redux/ProjectSlice';
+import { ProductState } from '../../../Redux/ProjectInitialState';
 
 interface GroupedProducts {
   [category: string]: ProductState[];
