@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import api from "./Authentication/axiosClient";
+import axios, { AxiosError } from "axios";
+//import api from "./Authentication/axiosClient";
 import { ProductState, ProjectState, initialProjectState } from "./ProjectInitialState";
 
 
@@ -35,12 +35,12 @@ export const saveProject =  createAsyncThunk(
   async (project: ProjectState) => {
     try {
       
-      const response = await api.post("/project/new", {
-        business_id,
-        ...project,
-      });
-      console.log(response.data);
-      //const response = await axios.post('https://reqres.in/api/users', project);
+      // const response = await api.post("/project/new", {
+      //   business_id,
+      //   ...project,
+      // });
+      // console.log(response.data);
+      const response = await axios.post('https://reqres.in/api/users', project);
       return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
@@ -125,6 +125,12 @@ const ProjectSlice = createSlice({
     addProduct: (state, action: PayloadAction<ProductState>) => {
       state.products.push(action.payload);
     },
+    setProject: (state, action: PayloadAction<ProjectState>) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(saveProject.fulfilled, (state, action) => {
@@ -158,6 +164,7 @@ export const {
   setCategory,
   setPhoneNumber,
   setDescription,
+  setProject,
   setName,
 } = ProjectSlice.actions;
 

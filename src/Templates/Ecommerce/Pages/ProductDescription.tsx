@@ -4,10 +4,22 @@ import Navbar from "../Components/Navbar";
 import leatherJacket from '../../../assets/images/Templates/Ecommerce/leather-jacket.png';
 import '../../../assets/styles/templatesStyles/Ecommerce/ProductDescription.scss';
 import Rating from '../Components/Rating';
-import { useAppSelector } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
+import { setProject } from '../../../Redux/ProjectSlice';
 
 const ProductDescription: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const storedProject = localStorage.getItem('project');
+    if (storedProject) {
+      const savedProject = JSON.parse(storedProject);
+      dispatch(setProject(savedProject));
+      //setActive(true);
+    }
+  }, [dispatch]);
+
   const project = useAppSelector((state) => state.project);
   console.log(project);
 

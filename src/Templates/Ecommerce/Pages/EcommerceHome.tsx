@@ -5,25 +5,35 @@ import Hero from '../Components/Hero';
 import Carousel from '../Components/Carousel';
 import Main from '../Components/Main';
 import Footer from '../Components/Footer';
-import { useAppSelector } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 //import { ProjectState } from '../../../Redux/ProjectSlice';
 import CustomizedMain from '../Components/CustomizedMain';
 import FloatingButton from '../Components/FloatingButton';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
+import { setProject } from '../../../Redux/ProjectSlice';
 
 
 const EcommerceHome:React.FC = () => {
   const project = useAppSelector((state) => state.project);
+  const dispatch = useAppDispatch();
+
 
   useEffect(() => {
     console.log(project);
   }, [project]);
 
-  
-
   useEffect(() => {
     applyTemplateCustomizations(project);
   }, [project]);
+
+  useEffect(() => {
+    const storedProject = localStorage.getItem('project');
+    if (storedProject) {
+      const savedProject = JSON.parse(storedProject);
+      dispatch(setProject(savedProject));
+      //setActive(true);
+    }
+  }, [dispatch]);
 
   return (
     <div>
