@@ -55,7 +55,7 @@ const getBusinessId = async() => {
 
     
     if (parsedId && parsedId.business && parsedId.business.id) {
-      id = parsedId.business.id; 
+      id = await parsedId.business.id; 
       return id
     } else {
       
@@ -67,6 +67,7 @@ const getBusinessId = async() => {
   }
 };
 const business_id = getBusinessId();
+console.log(business_id)
 
 
 const initialState: ProjectState ={

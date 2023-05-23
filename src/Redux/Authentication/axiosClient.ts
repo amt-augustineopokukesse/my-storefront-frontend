@@ -8,4 +8,5 @@ const api = axios.create({
     Authorization: "Bearer " + localStorage.getItem("accessToken"),
   },
 });
+
 export default api;

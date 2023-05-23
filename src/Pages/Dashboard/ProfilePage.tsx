@@ -3,9 +3,9 @@ import profilephoto from '../../assets/images/Ellipse 15.png'
 import editLogo from '../../assets/svg/icons8-edit.svg'
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
+import api from '../../Redux/Authentication/axiosClient';
 
 type User = {
     [key: string]: any;
@@ -67,7 +67,7 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
 
             try {
                 setLoader(true)
-                const projectUpdated = await axios.put(`${API_BASE_URL}/merchant/update/${merchantExists.id}`, vals)
+                const projectUpdated = await api.put(`${API_BASE_URL}/merchant/update`, vals)
                 if (projectUpdated) {
                     toast.info("You have updated your information!!");
                     localStorage.setItem("merchant", JSON.stringify(projectUpdated.data.data));
