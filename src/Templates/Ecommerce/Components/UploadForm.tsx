@@ -29,6 +29,7 @@ const UploadForm: React.FC = () => {
 
   const handleUploadButtonClick = async () => {
     if (imagePreview) {
+      console.log(imagePreview)
       setLoader(true);
       try {
         const response = await api.post(
@@ -41,8 +42,9 @@ const UploadForm: React.FC = () => {
         alert('Image upload successful');
       } catch (error) {
         setLoader(false);
+        // console.error("An error occurred:", error.response.data.message);
         console.error("An error occurred:", error);
-        alert(`An error occurred: ${error}`);
+        alert(`Something went wrong, cannot upload image. Kindly contact storefront administrator`);
       }
     }
   };
@@ -65,7 +67,6 @@ const UploadForm: React.FC = () => {
           </div>
         )}
       </div>
-      {loader ? <AuthLoader /> : ""}
       <button
         type="button"
         onClick={handleUploadButtonClick}
@@ -73,6 +74,7 @@ const UploadForm: React.FC = () => {
       >
         Upload
       </button>
+      {loader ? <AuthLoader /> : ""}
     </form>
   );
 };

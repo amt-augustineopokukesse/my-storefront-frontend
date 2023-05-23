@@ -1,86 +1,60 @@
-//import { women, men, kids } from "../../../staticDB/ecommerceImagesDB";
-import AddToCart from "./AddToCart";
-import '../../../assets/styles/templatesStyles/Ecommerce/Main.scss';
-import { useAppSelector } from "../../../store";
-//import Rating from '../../../Templates/Ecommerce/Components/Rating';
+import React from 'react';
+import AddToCart from './AddToCart';
+import { useAppSelector } from '../../../store';
+import '../../../assets/styles/templatesStyles/Ecommerce/CustomizedMain.scss';
+import { ProductState } from '../../../Redux/ProjectSlice';
+
+interface GroupedProducts {
+  [category: string]: ProductState[];
+}
 
 const CustomizedMain: React.FC = () => {
   const project = useAppSelector((state) => state.project);
+
+  // Group products by category
+  const groupedProducts: GroupedProducts = project.products.reduce((grouped, product) => {
+    if (!grouped[product.category]) {
+      grouped[product.category] = [];
+    }
+    grouped[product.category].push(product);
+    return grouped;
+  }, {} as GroupedProducts); // Specify the type assertion here
+
   return (
     <section className="main-container">
       <div className="main-content">
         <h2 className="content-header">Available Products</h2>
 
-        {/* Women */}
-        <div className="section">
-          <h2 className="section-name"></h2>
-          <p className="more">more...</p>
-        </div>
-        <div className="section-items">
-          {project.products.map((item) => (
-            <div className="tile" key={item.productName}>
-              <div className="image">
-                <img src={item.image} alt="" className="item-image"/>
-              </div>
-              <div className="price">
-                GH&#8373; {item.price}
-              </div>
-              <div className="available">
-                <p className="number-available">{item.initialStock} Available</p>
-                <AddToCart />
-              </div>
+        {/* Display products by categories */}
+        {Object.entries(groupedProducts).map(([category, products]) => (
+          <div key={category} className='customised-section'>
+            <div className="section">
+              <h2 className="section-name">{category}</h2>
+              <p className="more">more...</p>
             </div>
-          ))}
-        </div>
 
-        {/* Men */}
-        {/* <div className="section">
-          <h2 className="section-name">Men</h2>
-          <p className="more">more...</p>
-        </div>
-        <div className="section-items">
-          {men.map((item) => (
-            <div className="tile" key={item}>
-              <div className="image">
-                <img src={item} alt="" />
-              </div>
-              <div className="price">
-                GH&#8373; 1,093.00
-              </div>
-              <Rating />
-              <div className="available">
-                <p className="number-available">2 Available</p>
-                <AddToCart />
-              </div>
+            <div className="section-items">
+              {products.map((product) => (
+                <div className="tile" key={product.productName}>
+                  <div className="image">
+                    <img src={product.image} alt="" className="item-image" />
+                    <p>{product.productName}</p>
+                  </div>
+                  <div className="price">
+                    GH&#8373; {product.price}
+                  </div>
+                  <div className="available">
+                    <p className="number-available">{product.initialStock} Available</p>
+                    <AddToCart />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div> */}
-
-        {/* Kids */}
-        {/* <div className="section">
-          <h2 className="section-name">Kids</h2>
-          <p className="more">more...</p>
-        </div>
-        <div className="section-items">
-          {kids.map((item) => (
-            <div className="tile" key={item}>
-              <div className="image">
-                <img src={item} alt="" />
-              </div>
-              <div className="price">
-                GH&#8373; 1,093.00
-              </div>
-              <Rating />
-              <div className="available">
-                <p className="number-available">2 Available</p>
-                <AddToCart />
-              </div>
-            </div>
-          ))}
-        </div> */}
+          </div>
+        ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default CustomizedMain;

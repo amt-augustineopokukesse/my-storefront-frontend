@@ -8,6 +8,7 @@ import Footer from '../Components/Footer';
 import { useAppSelector } from '../../../store';
 import { ProjectState } from '../../../Redux/ProjectSlice';
 import CustomizedMain from '../Components/CustomizedMain';
+import FloatingButton from '../Components/FloatingButton';
 
 
 const EcommerceHome:React.FC = () => {
@@ -45,6 +46,7 @@ const EcommerceHome:React.FC = () => {
         {project.template.carouselInclude ? <Carousel /> : ''}
         {project.products.length > 0 ? <CustomizedMain/> : <Main />}
         <Footer />
+        <FloatingButton/>
     </div>
   )
 }

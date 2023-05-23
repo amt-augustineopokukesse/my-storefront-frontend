@@ -1,0 +1,91 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    .main-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: inherit;
+        .content-header {
+            font-family: var(--name-font);
+            font-weight: 700;
+            font-size: var(--other-font-size);
+            color: var(--body-font-color);
+        }
+        .customised-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            //background-color: aqua;
+            .section {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                width: 100%;
+                margin: 0 auto;
+                color: var(--body-font-color);
+                .section-name {
+                    font-family: var(--name-font);
+                    font-weight: 700;
+                    font-size: var(--other-font-size);
+                }
+                .more {
+                    font-family: var(--body-font);
+                    font-weight: 500;
+                    font-size: var(--body-font-size);
+                }
+            }
+            .section-items {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                row-gap: 30px;
+                column-gap: 5%;
+                margin-bottom: 50px;
+                .tile {
+                    width: 300px;
+                    height: 480px;
+                    background: var(--secondary-color);
+                    border-radius: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 24px;
+                    flex-direction: column;
+                    font-family: var(--body-font);
+                    // .image {
+                    //     width: 250px;
+                    //     height: 50%;
+                    // }
+                    .price {
+                        font-weight: 700;
+                        font-size: var(--body-font-size);
+                        color: var(--body-font-color);
+                    }
+                    .available {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        .number-available {
+                            font-size: 16px;
+                            color: var(--body-font-color);
+                            margin: 0%;
+                            position: relative;
+                            top: -15%;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}

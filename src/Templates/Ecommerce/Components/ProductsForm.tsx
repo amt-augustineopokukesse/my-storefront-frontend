@@ -39,25 +39,31 @@ const ProductsForm: React.FC = () => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       const resizedImage = await resizeImage(file);
-      setImagePreview(URL.createObjectURL(resizedImage));
-  
-  
-      try {
-        const response = await api.post(
-          "/api/merchant/upload-picture",
-          { imagePreview }
-        );
-        const imageUrl = response.data.data.url;
-        setImage(imageUrl);
-        setLoader(false);
-        alert('Image upload successful');
-      } catch (error) {
-        setLoader(false);
-        console.error("An error occurred:", error);
-        alert(`An error occurred: ${error}`);
-      }
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        // Set the image preview synchronously after the reader onloadend event
+        setImagePreview(reader.result as string);
+        
+        try {
+          setLoader(true);
+          const response = await api.post(
+            "/api/merchant/upload-picture",
+            { imagePreview: reader.result as string }
+          );
+          const imageUrl = response.data.data.url;
+          setImage(imageUrl);
+          setLoader(false);
+          alert('Image upload successful');
+        } catch (error) {
+          setLoader(false);
+          console.error("An error occurred:", error);
+          alert(`An error occurred: ${error}`);
+        }
+      };
+      reader.readAsDataURL(resizedImage);
     }  
   };
+  
   
 
   const handleDiscountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +79,9 @@ const ProductsForm: React.FC = () => {
   };
   
   const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(e.target.value);
+    const { value } = e.target;
+    const category = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    setCategory(category);
   };
   
 

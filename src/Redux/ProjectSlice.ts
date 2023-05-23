@@ -1,18 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import image from "../assets/images/Templates/Ecommerce/heroBackground.png";
-import { AxiosError } from "axios";
-import api from "./Authentication/axiosClient";
+import axios, { AxiosError } from "axios";
+//import api from "./Authentication/axiosClient";
 
 export interface ProductState {
-  productName?: string;
-  category?: string;
+  productName: string;
+  category: string;
   unit?: string;
   description?: string;
-  price?: number;
+  price: number;
   image?: string;
   discount?: number;
   initialStock?: number;
   sku?: string;
+  [key:string]: any;
 }
 
 export interface ProjectState {
@@ -38,8 +39,10 @@ export interface ProjectState {
     bodyFontSize: string;
     otherFontSize: string;
     carouselInclude: boolean;
+    [key:string]: any;
   };
   products: ProductState[];
+  [key:string]: any;
 }
 
 const getBusinessId = async() => {
@@ -99,12 +102,13 @@ export const saveProject =  createAsyncThunk(
   async (project: ProjectState) => {
     try {
       
-      const response = await api.post("/project/new", {
-        business_id,
-        ...project,
-      });
-      console.log(response.data);
-      // return response.data;
+      // const response = await api.post("/project/new", {
+      //   business_id,
+      //   ...project,
+      // });
+      // console.log(response.data);
+      const response = await axios.post('https://reqres.in/api/users', project);
+      return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         if (error.response) {
