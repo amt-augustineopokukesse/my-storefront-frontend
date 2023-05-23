@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectState, setBodyFontSize, setCarouselInclude, setNameFontSize, setOtherFontSize } from "../../../Redux/ProjectSlice";
+import { setBodyFontSize, setCarouselInclude, setNameFontSize, setOtherFontSize } from "../../../Redux/ProjectSlice";
 import {
   setSecondaryColor,
   setPrimaryColor,
@@ -7,6 +7,7 @@ import {
   setBodyFontFamily,
   setNameFontFamily,
   } from '../../../Redux/ProjectSlice';
+  import { ProjectState } from "../../../Redux/ProjectInitialState";
 import { useAppDispatch } from "../../../store";
 
 export const StylingForm: React.FC<{ project: ProjectState }> = ({ project }) => {
