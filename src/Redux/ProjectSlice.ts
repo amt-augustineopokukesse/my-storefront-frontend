@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import image from "../assets/images/Templates/Ecommerce/heroBackground.png";
-import axios, { AxiosError } from "axios";
-//import api from "./Authentication/axiosClient";
+import { AxiosError } from "axios";
+import api from "./Authentication/axiosClient";
 
 export interface ProductState {
   productName: string;
@@ -103,12 +103,12 @@ export const saveProject =  createAsyncThunk(
   async (project: ProjectState) => {
     try {
       
-      // const response = await api.post("/project/new", {
-      //   business_id,
-      //   ...project,
-      // });
-      // console.log(response.data);
-      const response = await axios.post('https://reqres.in/api/users', project);
+      const response = await api.post("/project/new", {
+        business_id,
+        ...project,
+      });
+      console.log(response.data);
+      //const response = await axios.post('https://reqres.in/api/users', project);
       return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
