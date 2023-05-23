@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import leatherJacketSmall from '../../../assets/images/Templates/Ecommerce/leatherJacketSmall.png';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
+import { useAppSelector } from '../../../store';
+import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
+
 const Cart:React.FC = () => {
+  const project = useAppSelector((state) => state.project);
+  console.log(project);
+
+  useEffect(() => {
+    applyTemplateCustomizations(project);
+  }, [project]);
+
   return (
     <>
       <Navbar />

@@ -60,4 +60,21 @@ export const extractCategories = (project: ProjectState) => {
     }
   });
   return categoriesArray;
-}
+};
+
+/**Style customizers */
+export const applyTemplateCustomizations = (project: ProjectState) => {
+  const root = document.documentElement;
+
+  root.style.setProperty('--primary-color', project.template.primaryColor);
+  root.style.setProperty('--secondary-color', project.template.secondaryColor);
+  root.style.setProperty('--body-font-color', project.template.bodyFontColor);
+  root.style.setProperty('--name-font', project.template.nameFontFamily);
+  root.style.setProperty('--body-font', project.template.bodyFontFamily );
+  root.style.setProperty('--project-name', project.name);
+  root.style.setProperty('--project-description', project.description);
+  root.style.setProperty('--project-banner', project.bannerUrl);
+  root.style.setProperty('--name-font-size', project.template.nameFontSize);
+  root.style.setProperty('--body-font-size', project.template.bodyFontSize);
+  root.style.setProperty('--other-font-size', project.template.otherFontSize);
+};

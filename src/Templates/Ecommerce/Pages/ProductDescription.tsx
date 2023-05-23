@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import leatherJacket from '../../../assets/images/Templates/Ecommerce/leather-jacket.png';
 import '../../../assets/styles/templatesStyles/Ecommerce/ProductDescription.scss';
 import Rating from '../Components/Rating';
+import { useAppSelector } from '../../../store';
+import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 
 const ProductDescription: React.FC = () => {
+  const project = useAppSelector((state) => state.project);
+  console.log(project);
+
+  useEffect(() => {
+    applyTemplateCustomizations(project);
+  }, [project]);
   return (
     <>
       <Navbar />
