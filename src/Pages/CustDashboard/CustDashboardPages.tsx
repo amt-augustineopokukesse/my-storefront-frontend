@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { CustDashboardPage } from "./CustDashboardPage";
 import { CustProfilePage } from "./CustProfilePage";
 import { CustSupportPage } from "./CustSupportPage";
-import '../../assets/styles/dashboardStyles/DashboardPages.scss';
+import '../../assets/styles/custDashboardStyles/CustDashboardPages.scss';
 
 export const CustDashboardPages: React.FC = () => {
     return (
