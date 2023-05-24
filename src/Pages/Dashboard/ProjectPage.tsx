@@ -78,13 +78,16 @@ export const ProjectPage: React.FC<user> = (props) => {
                 {
                     merchantExists && merchantExists.business.projects.length ? 
                     
-                    merchantExists.business.projects.map((project:any, index: number) => <Link to="templates/edit-template-page" state={{linkedProject: project}}><div key={index} className='project-display' style={{backgroundImage: `url(${project.bannerUrl})`}}>
-                        <div className='project-words'>
-                            <p><b>Store:</b> {project.name}</p>
-                            <p><b>Category:</b> {project.category}</p>
-                            <p><b>Published:</b> {project.published ? "True" : "False"}</p>
+                    merchantExists.business.projects.map((project:any, index: number) => 
+                    <Link to="templates/edit-template-page" state={{linkedProject: project}}>
+                        <div key={index} className='project-display' style={{backgroundImage: `url(${project.bannerUrl})`}}>
+                            <div className='project-words'>
+                                <p><b>Store:</b> {project.name}</p>
+                                <p><b>Category:</b> {project.category}</p>
+                                <p><b>Published:</b> {project.published ? "True" : "False"}</p>
+                            </div>
                         </div>
-                    </div></Link>)
+                    </Link>)
                     
                 :   ""
                 }

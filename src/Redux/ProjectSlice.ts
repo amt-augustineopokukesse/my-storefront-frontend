@@ -19,7 +19,6 @@ export const saveProject =  createAsyncThunk(
   "project/saveProject",
   async (project: ProjectState) => {
     try {
-      
       const response = await api.post("/project/new", {
         business_id: await getBusinessId(),
         ...project,

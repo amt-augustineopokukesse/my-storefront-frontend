@@ -11,22 +11,27 @@ import CustomizedMain from '../Components/CustomizedMain';
 import FloatingButton from '../Components/FloatingButton';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 import { setProject } from '../../../Redux/ProjectSlice';
+import { useLocation } from 'react-router-dom';
 
 
 const EcommerceHome:React.FC = () => {
   const project = useAppSelector((state) => state.project);
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
-
-  useEffect(() => {
-    console.log(project);
-  }, [project]);
 
   useEffect(() => {
     applyTemplateCustomizations(project);
   }, [project]);
 
   useEffect(() => {
+    if (location && location.state) {
+      if (location.state.linkedProject !== null) {
+        const incomingProject = location.state.linkedProject;
+        console.log(incomingProject)
+        localStorage.setItem('project', JSON.stringify(location.state.linkedProject))
+      }
+    }
     const storedProject = localStorage.getItem('project');
     if (storedProject) {
       const savedProject = JSON.parse(storedProject);

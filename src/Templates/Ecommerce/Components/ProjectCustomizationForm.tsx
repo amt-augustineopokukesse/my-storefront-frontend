@@ -67,6 +67,7 @@ const ProjectCustomizationForm: React.FC = () => {
       toast.success("Created project successfully")
       setLoader(false);
       setActive(true);
+      navigate("/dashboard/project/");
     } catch (error) {
       console.log(error)
       toast.error("Error Saving Project")
@@ -89,7 +90,7 @@ const ProjectCustomizationForm: React.FC = () => {
 
   const handlePublish = async () => {
     setLoader(true);
-    const response = await dispatch(saveProject({...project, published: true}));
+    await dispatch(saveProject({...project, published: true}));
     setLoader(false);
     navigate('/dashboard/project/');
   }
