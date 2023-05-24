@@ -46,7 +46,7 @@ const CustomizedMain: React.FC = () => {
                   </div>
                   <div className="available">
                     <p className="number-available">{product.initialStock} Available</p>
-                    <AddToCart />
+                    <AddToCart product={product}/>
                   </div>
                 </Link>
               ))}

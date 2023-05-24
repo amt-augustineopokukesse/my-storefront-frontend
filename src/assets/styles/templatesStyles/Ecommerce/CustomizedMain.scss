@@ -61,6 +61,8 @@
                     gap: 24px;
                     flex-direction: column;
                     font-family: var(--body-font);
+                    position: relative;
+                    z-index: 1;
                     // .image {
                     //     width: 250px;
                     //     height: 50%;
