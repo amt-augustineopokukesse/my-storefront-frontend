@@ -8,7 +8,8 @@ import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 
 const Cart:React.FC = () => {
   const project = useAppSelector((state) => state.project);
-  console.log(project);
+  const cartProducts = useAppSelector((state) => state.cart);
+  console.log(cartProducts);
 
   useEffect(() => {
     applyTemplateCustomizations(project);

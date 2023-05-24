@@ -3,6 +3,7 @@ import AddToCart from './AddToCart';
 import { useAppSelector } from '../../../store';
 import '../../../assets/styles/templatesStyles/Ecommerce/CustomizedMain.scss';
 import { ProductState } from '../../../Redux/ProjectInitialState';
+import { Link } from 'react-router-dom';
 
 interface GroupedProducts {
   [category: string]: ProductState[];
@@ -12,7 +13,7 @@ const CustomizedMain: React.FC = () => {
   const project = useAppSelector((state) => state.project);
 
   // Group products by category
-  const groupedProducts: GroupedProducts = project.products.reduce((grouped, product) => {
+  const groupedProducts: GroupedProducts = project.products.reduce((grouped: GroupedProducts, product: ProductState) => {
     if (!grouped[product.category]) {
       grouped[product.category] = [];
     }
@@ -35,7 +36,7 @@ const CustomizedMain: React.FC = () => {
 
             <div className="section-items">
               {products.map((product) => (
-                <div className="tile" key={product.productName}>
+                <Link to={`/product/${encodeURIComponent(product.productName)}`} key={product.productName} className="tile">
                   <div className="image">
                     <img src={product.image} alt="" className="item-image" />
                     <p>{product.productName}</p>
@@ -45,9 +46,9 @@ const CustomizedMain: React.FC = () => {
                   </div>
                   <div className="available">
                     <p className="number-available">{product.initialStock} Available</p>
-                    <AddToCart />
+                    <AddToCart product={product}/>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
