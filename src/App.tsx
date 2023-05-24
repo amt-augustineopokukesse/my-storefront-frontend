@@ -13,6 +13,7 @@ import AuthNotification from './Pages/authenticationPages/AuthNotification';
 import SuccessfulAuthNotification from './Pages/authenticationPages/SuccessfulAuthNotification';
 import SuccessfulReset from './Pages/authenticationPages/SuccessfulReset';
 import { Dashboard } from './Pages/Dashboard/Dashboard';
+import { CustDashboard } from './Pages/CustDashboard/CustDashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
@@ -44,6 +45,7 @@ const App: React.FC =() => {
           />
           <Routes>
             <Route path='/' element={loggedIn ? <Dashboard/> : <LandingPage />}/>
+            <Route path='/CustDashboard/*' element={<CustDashboard />} />
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/landing' element={<LandingPage/>}/>
