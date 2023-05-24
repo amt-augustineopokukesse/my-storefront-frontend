@@ -11,8 +11,6 @@
     font-family: var(--body-font);
     cursor: pointer;
     border: 1px solid transparent;
-    position: relative;
-    z-index: 0;
     &:hover {
         border: 1px solid var(--body-font-color);
         color: var(--body-font-color);

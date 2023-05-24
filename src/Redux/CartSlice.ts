@@ -28,7 +28,7 @@ const CartSlice = createSlice({
     addToCart: (state, action: PayloadAction<ProductState>) => {
       const productToAdd = action.payload;
       const existingProduct = state.products.find(
-        (product) => product.productName === productToAdd.productName
+        (product) => product.id === productToAdd.id
       );
 
       if (existingProduct) {

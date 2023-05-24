@@ -16,10 +16,10 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
   }, [cartProducts]);
   
 
-  const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    dispatch(addToCart(product));
-  }
+  const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation(); // Stop the click event from propagating to the Link component
+    dispatch(addToCart(product)); 
+  };
 
   return (
     <>

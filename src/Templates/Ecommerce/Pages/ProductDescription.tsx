@@ -23,15 +23,15 @@ const ProductDescription: React.FC = () => {
   }, [dispatch]);
 
   const project = useAppSelector((state) => state.project);
-  console.log(project);
+  // console.log(project);
 
   useEffect(() => {
     applyTemplateCustomizations(project);
   }, [project]);
 
-  const { productName } = useParams<{ productName: string }>();
-  const [product] = project.products.filter(item => item.productName === productName);
-  console.log(product);
+  const { id } = useParams<{ id: string }>();
+  const [product] = project.products.filter(item => item.id === id);
+  // console.log(product);
 
   return (
     <>
@@ -52,19 +52,7 @@ const ProductDescription: React.FC = () => {
               <div className="price">
                   GH&#8373; {product.price}
               </div>
-              {/* <div className="colors">
-                <button className="color-button black">Black</button>
-                <button className="color-button brown">Brown</button>
-                <button className="color-button grey">Grey</button>
-              </div>
-              <p className="size-text">Size</p>
-              <div className="sizes">
-                <button className="size medium">M</button>
-                <button className="size large">L</button>
-                <button className="size extra">X</button>
-                <button className="size xlarge">XL</button>
-                <button className="size xxlarge">XXL</button>
-              </div> */}
+              
               <div className='number-selector'>
                 <p className="minus">-</p>
                 <p className='number'>1</p>
