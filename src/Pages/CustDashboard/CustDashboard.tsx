@@ -2,7 +2,7 @@ import { CustDashboardTopBar } from "../../components/CustDashboard/CustDashboar
 import { CustDashboardSideBar } from "../../components/CustDashboard/CustDashboardSideBar"
 import { CustDashboardPages } from "./CustDashboardPages"
 //import { BrowserRouter as Router } from "react-router-dom"
-import '../../assets/styles/custdashboardStyles/CustDashboard.scss';
+import '../../assets/styles/custDashboardStyles/CustDashboard.scss';
 
 
 export const CustDashboard: React.FC = () => {
