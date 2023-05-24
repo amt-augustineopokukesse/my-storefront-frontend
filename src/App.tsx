@@ -22,6 +22,7 @@ import Cart from './Templates/Ecommerce/Pages/Cart';
 import Checkout from './Templates/Ecommerce/Pages/Checkout';
 import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectCustomizationForm';
 import { EditTemplatePage } from './Pages/EditTemplate/EditTemplatePage';
+import { Payment } from './Templates/Ecommerce/Pages/Payment';
 
 
 const App: React.FC =() => {
@@ -61,6 +62,7 @@ const App: React.FC =() => {
             <Route path='/product/:productName' element={<ProductDescription />} />
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/payment' element={<Payment />} />
             <Route path='/template-editor' element={<TemplateCustomizationForm/>}/>
             <Route path='/dashboard/project/templates/edit-template-page' element={<EditTemplatePage />} />
           </Routes>
