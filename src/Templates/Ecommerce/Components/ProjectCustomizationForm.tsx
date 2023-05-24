@@ -7,7 +7,7 @@ import { StylingForm } from './StylingForm';
 import UploadForm from './UploadForm';
 import ProductsForm from './ProductsForm';
 import ProjectDetailsForm from './ProjectDetailsForm';
-import { saveProject, setProject } from '../../../Redux/ProjectSlice';
+import { publishProject, saveProject, setProject, updateProject } from '../../../Redux/ProjectSlice';
 import { AuthLoader } from '../../../components/authComponents/AuthLoader';
 import { toast } from 'react-toastify';
 //import AddPagesForm from './AddPagesForm';
@@ -57,7 +57,7 @@ const ProjectCustomizationForm: React.FC = () => {
       const response = await dispatch(saveProject(project));
       localStorage.setItem('project', JSON.stringify(response.payload.data));
       const merchant = localStorage.getItem('merchant');
-      if (merchant) {
+      if (merchant && response.payload.data) {
         var oldMerchant = JSON.parse(merchant);
         var { business, ...values } = oldMerchant;
         var { projects, ...items } = business;
@@ -77,22 +77,53 @@ const ProjectCustomizationForm: React.FC = () => {
 
   const handleUpdate = async () => {
     setLoader(true);
-    console.log('Saving project:', project);
-    const localProject = localStorage.getItem('project');
-    if (localProject) {
-      dispatch(setProject(JSON.parse(localProject)));
+    try {
+      const response = await dispatch(updateProject(project));
+      localStorage.setItem('project', JSON.stringify(response.payload.data));
+      const merchant = localStorage.getItem('merchant');
+      if (merchant && response.payload.data) {
+        var oldMerchant = JSON.parse(merchant);
+        var { business, ...values } = oldMerchant;
+        var { projects, ...items } = business;
+        const index = projects.findIndex((x: { id: string; [key: string]: any }) => x.id === response.payload.data.id)
+        projects[index] = response.payload.data;
+        localStorage.setItem('merchant', JSON.stringify({ ...values, business: {...items, projects} }));
+      } else return;
+      toast.info("You have updated the Project successfully!")
+      setLoader(false);
+      setActive(true);
+      navigate("/dashboard/project/");
+      // localStorage.setItem('project', JSON.stringify(updateResponse.payload.data));
+    } catch (error) {
+      console.log(error)
+      toast.error("Error Saving Project")
+      return;
     }
-    const response = await dispatch(saveProject(project));
-    localStorage.setItem('project', JSON.stringify(response.payload));
-    console.log('Save response:', response);
-    setLoader(false);
   };
 
   const handlePublish = async () => {
     setLoader(true);
-    await dispatch(saveProject({...project, published: true}));
-    setLoader(false);
-    navigate('/dashboard/project/');
+    try {
+      const response = await dispatch(publishProject(project));
+      localStorage.setItem('project', JSON.stringify(response.payload.data));
+      const merchant = localStorage.getItem('merchant');
+      if (merchant && response.payload.data) {
+        var oldMerchant = JSON.parse(merchant);
+        var { business, ...values } = oldMerchant;
+        var { projects, ...items } = business;
+        const index = projects.findIndex((x: { id: string; [key: string]: any }) => x.id === response.payload.data.id)
+        projects[index] = response.payload.data;
+        localStorage.setItem('merchant', JSON.stringify({ ...values, business: {...items, projects} }));
+      } else return;
+      toast.info("You have published the Project successfully!")
+      setLoader(false);
+      setActive(true);
+      navigate("/dashboard/project/");
+    } catch (error) {
+      console.log(error)
+      toast.error("Error Publishing Project")
+      return;
+    }
   }
 
   return (

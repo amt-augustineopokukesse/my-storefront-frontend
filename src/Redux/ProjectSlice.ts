@@ -15,6 +15,17 @@ const getBusinessId = async () => {
   } else return ""
 };
 
+const getProjectId = async () => {
+  const project = localStorage.getItem("project"); 
+  
+  if (project) {
+    const pX = JSON.parse(project)
+    console.log("project ID: ", pX.id)
+    return pX.id;
+  } else return ""
+};
+
+// handle save
 export const saveProject =  createAsyncThunk(
   "project/saveProject",
   async (project: ProjectState) => {
@@ -38,6 +49,61 @@ export const saveProject =  createAsyncThunk(
     }
   }
 );
+
+
+// handleUpdate
+export const updateProject =  createAsyncThunk(
+  "project/updateProject",
+  async (project: ProjectState) => {
+    try {
+      const { template, ...values } = project;
+      const response = await api.put("/project/update", {
+        project_id: await getProjectId(),
+        template: template,
+        ...values
+      });
+      // console.log(response.data);
+      //const response = await axios.post('https://reqres.in/api/users', project);
+      return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.log("API error:", error.response.data.message); // Log the API error message
+          return error.response.data.message;
+        }
+      }
+      console.log("An error occurred:", error); // Log any other errors that occur
+      return "An error occurred";
+    }
+  }
+);
+
+
+
+// handlePublish
+export const publishProject =  createAsyncThunk(
+  "project/publishProject",
+  async (project: ProjectState) => {
+    try {
+      const response = await api.put("/project/publish", {
+        project_id: await getProjectId(),
+      });
+      // console.log(response.data);
+      //const response = await axios.post('https://reqres.in/api/users', project);
+      return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.log("API error:", error.response.data.message); // Log the API error message
+          return error.response.data.message;
+        }
+      }
+      console.log("An error occurred:", error); // Log any other errors that occur
+      return "An error occurred";
+    }
+  }
+);
+
 
 const ProjectSlice = createSlice({
   name: "project",
