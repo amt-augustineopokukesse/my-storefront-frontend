@@ -143,6 +143,7 @@
                 align-items: center;
                 .minus, .plus, .number {
                     width: 33%;
+                    height: 100%;
                     margin: 0%;
                     display: flex;
                     justify-content: center;
@@ -153,6 +154,13 @@
                     font-size: 32px;
                     line-height: 38px;
                     color: #222222;
+                }
+                .minus, .plus {
+                    cursor: pointer;
+                    &:hover {
+                        //background-color: #999898;
+                        color: #999898;
+                    }
                 }
                 .number {
                     background: #FFFFFF;
@@ -184,7 +192,7 @@
                 }
                 .buy {
                     background-color: #FFFFFF;
-                    color: #15616B;
+                    color: var(--primary-color);
                 }
                 .cart {
                     background-color: #15616B;

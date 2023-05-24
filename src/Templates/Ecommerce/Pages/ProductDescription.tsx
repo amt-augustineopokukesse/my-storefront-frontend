@@ -9,6 +9,8 @@ import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { useParams } from 'react-router-dom';
 import StaticProductDescription from '../../../staticDB/StaticProductDescription';
+import AddToCart from '../Components/AddToCart';
+import { decreaseQuantity, increaseQuantity } from '../../../Redux/CartSlice';
 
 const ProductDescription: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +25,7 @@ const ProductDescription: React.FC = () => {
   }, [dispatch]);
 
   const project = useAppSelector((state) => state.project);
+  const products = useAppSelector((state) => state.cart.products);
   // console.log(project);
 
   useEffect(() => {
@@ -30,8 +33,16 @@ const ProductDescription: React.FC = () => {
   }, [project]);
 
   const { id } = useParams<{ id: string }>();
-  const [product] = project.products.filter(item => item.id === id);
-  // console.log(product);
+  const [product] = products.filter(item => item.id === id);
+  
+  
+  const handleQuantityIncrement = () => {
+    dispatch(increaseQuantity(product.id));
+  };
+
+  const handleQuantityDecrement = () => {
+    dispatch(decreaseQuantity(product.id));
+  };
 
   return (
     <>
@@ -50,17 +61,17 @@ const ProductDescription: React.FC = () => {
                 <p className='rating-text'>Seller: James cottage</p>
               </div>
               <div className="price">
-                  GH&#8373; {product.price}
+                  {project.currency} {(product.price * product.quantity).toLocaleString()}
               </div>
               
               <div className='number-selector'>
-                <p className="minus">-</p>
-                <p className='number'>1</p>
-                <p className="plus">+</p>
+                <p className="minus" onClick={handleQuantityDecrement}>-</p>
+                <p className='number'>{product.quantity}</p>
+                <p className="plus" onClick={handleQuantityIncrement}>+</p>
               </div>
               <div className="buttons">
                 <button className="buy">Buy Now</button>
-                <button className="cart">Add to cart</button>
+                <AddToCart product={product}/>
               </div>
             </div>
           </div>
