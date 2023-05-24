@@ -1,4 +1,4 @@
-import { ProjectState } from "../../../Redux/ProjectSlice";
+import { ProjectState } from "../../../Redux/ProjectInitialState";
 
 export const resizeImage = (file: File) => {
     return new Promise<File>((resolve) => {
@@ -76,7 +76,5 @@ export const applyTemplateCustomizations = (project: ProjectState) => {
   root.style.setProperty('--name-font-size', project.template.nameFontSize);
   root.style.setProperty('--body-font-size', project.template.bodyFontSize);
   root.style.setProperty('--other-font-size', project.template.otherFontSize);
-
-  // document.documentElement
-          // .style.setProperty('--project-name', project.name)
 };
+

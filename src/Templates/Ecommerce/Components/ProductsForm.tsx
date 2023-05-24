@@ -47,7 +47,7 @@ const ProductsForm: React.FC = () => {
         try {
           setLoader(true);
           const response = await api.post(
-            "/api/merchant/upload-picture",
+            "/merchant/upload-picture",
             { imagePreview: reader.result as string }
           );
           const imageUrl = response.data.data.url;

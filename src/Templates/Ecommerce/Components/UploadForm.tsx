@@ -29,7 +29,7 @@ const UploadForm: React.FC = () => {
 
   const handleUploadButtonClick = async () => {
     if (imagePreview) {
-      console.log(imagePreview)
+      //console.log(imagePreview)
       setLoader(true);
       try {
         const response = await api.post(
