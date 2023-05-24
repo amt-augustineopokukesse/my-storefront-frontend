@@ -45,30 +45,14 @@ export interface ProjectState {
   [key:string]: any;
 }
 
-const getBusinessId = async() => {
-  const merchant = localStorage.getItem("merchant") || ""; 
-  let parsedId = null;
-  let id = null;
-
-  try {
-    parsedId = JSON.parse(merchant); 
-
-    
-    if (parsedId && parsedId.business && parsedId.business.id) {
-      id = await parsedId.business.id; 
-      return id
-    } else {
-      
-      console.error("Invalid JSON structure");
-    }
-  } catch (error) {
-    // Handle the case where JSON parsing fails
-    console.error("Error parsing JSON:", error);
-  }
+const getBusinessId = async () => {
+  const merchant = localStorage.getItem("merchant"); 
+  
+  if (merchant) {
+    const mX = JSON.parse(merchant)
+    return mX.business.id;
+  } else return ""
 };
-const business_id = getBusinessId();
-console.log(business_id)
-
 
 const initialState: ProjectState ={
   name: "Lorem Emporium",
@@ -104,7 +88,7 @@ export const saveProject =  createAsyncThunk(
     try {
       
       const response = await api.post("/project/new", {
-        business_id,
+        business_id: await getBusinessId(),
         ...project,
       });
       console.log(response.data);

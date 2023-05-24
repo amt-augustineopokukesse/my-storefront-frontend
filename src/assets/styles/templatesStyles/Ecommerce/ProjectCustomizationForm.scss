@@ -39,10 +39,10 @@
     justify-content: space-between;
     //background-color: #0056b3;
     .sidebar {
-      width: 30%;
+      width: 20%;
       height: 100%;
       background-color: rgb(222, 223, 228);
-      padding: 20px;
+      padding-left: 20px;
       // display: flex;
       // align-items: center;
       ul {
@@ -54,11 +54,16 @@
         margin-bottom: 10px;
         cursor: pointer;
         transition: color 0.3s ease;
-        color: royalblue;
-        font-size: 20px;
-        text-align: center;
+        color: rgb(38, 39, 41);
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        text-align: right;
+        border-radius: 4px 0 0 4px;
+        padding: 8px 5px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         &:hover {
-          color: rgb(119, 71, 71);
+          background-color: #fff;
         }
         // &:active {
         //   color: blue;

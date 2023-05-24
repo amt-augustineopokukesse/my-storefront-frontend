@@ -8,8 +8,9 @@ export const EditTemplatePage: React.FC = () => {
     return (
         <div>
             <div>
-                {template === 'Finance1' ? <Finance /> : '' }
-                {template === 'Ecommerce1' ? <EcommerceHome /> : ''}
+            <EcommerceHome />
+                {/* {template === 'Finance1' ? <Finance /> : '' }
+                {template === 'Ecommerce1' ? <EcommerceHome /> : ''} */}
             </div>
             <FloatingButton />
         </div>

@@ -33,7 +33,7 @@ const UploadForm: React.FC = () => {
       setLoader(true);
       try {
         const response = await api.post(
-          "/api/merchant/upload-picture",
+          "/merchant/upload-picture",
           { imagePreview }
         );
         const imageUrl = response.data.data.url;

@@ -65,7 +65,6 @@ export const extractCategories = (project: ProjectState) => {
 /**Style customizers */
 export const applyTemplateCustomizations = (project: ProjectState) => {
   const root = document.documentElement;
-
   root.style.setProperty('--primary-color', project.template.primaryColor);
   root.style.setProperty('--secondary-color', project.template.secondaryColor);
   root.style.setProperty('--body-font-color', project.template.bodyFontColor);
@@ -77,4 +76,7 @@ export const applyTemplateCustomizations = (project: ProjectState) => {
   root.style.setProperty('--name-font-size', project.template.nameFontSize);
   root.style.setProperty('--body-font-size', project.template.bodyFontSize);
   root.style.setProperty('--other-font-size', project.template.otherFontSize);
+
+  // document.documentElement
+          // .style.setProperty('--project-name', project.name)
 };

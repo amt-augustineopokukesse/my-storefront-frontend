@@ -9,6 +9,7 @@ import ProductsForm from './ProductsForm';
 import ProjectDetailsForm from './ProjectDetailsForm';
 import { saveProject } from '../../../Redux/ProjectSlice';
 import { AuthLoader } from '../../../components/authComponents/AuthLoader';
+import { toast } from 'react-toastify';
 //import AddPagesForm from './AddPagesForm';
 
 const ProjectCustomizationForm: React.FC = () => {
@@ -22,19 +23,18 @@ const ProjectCustomizationForm: React.FC = () => {
 
   useEffect(() => {
     const storedProject = localStorage.getItem('project');
-    if (storedProject) {
-    const savedProject = JSON.parse(storedProject)
+    if (storedProject?.length) {
+      const savedProject = JSON.parse(storedProject)
 
-    if (savedProject && savedProject?.id){
-      setActive(true);
-      
-    }
+      if (savedProject && savedProject.id) {
+        setActive(true);
+     }
     }
   },[]);
 
-  useEffect(() => {
-    console.log(project);
-  }, [project]);
+  // useEffect(() => {
+  //   console.log(project);
+  // }, [project]);
 
   const renderForm = () => {
     // Render the appropriate form based on the active menu
@@ -56,38 +56,47 @@ const ProjectCustomizationForm: React.FC = () => {
 
   const handleSave = async () => {
     setLoader(true);
-    console.log('Saving project:', project); // Check the project data before dispatching
-    const response = await dispatch(saveProject(project));
-    localStorage.setItem('project', JSON.stringify(response.payload));
-    console.log('Save response:', response); // Check the response data after the API call
-    setLoader(false);
+    try {
+      const response = await dispatch(saveProject(project));
+      localStorage.setItem('project', JSON.stringify(response.payload.data));
+      const merchant = localStorage.getItem('merchant');
+      if (merchant) {
+        var oldMerchant = JSON.parse(merchant);
+        var { business, ...values } = oldMerchant;
+        var { projects, ...items } = business;
+        projects = [...projects, response.payload.data]
+        localStorage.setItem('merchant', JSON.stringify({ ...values, business: {...items, projects} }));
+      } else return;
+      toast.success("Created project successfully")
+      setLoader(false);
+      setActive(true);
+    } catch (error) {
+      console.log(error)
+      toast.error("Error Saving Project")
+      return;
+    }
   }
 
   const handleUpdate = async () => {
     setLoader(true);
-    console.log('Saving project:', project); // Check the project data before dispatching
     const localProject = localStorage.getItem('project');
     if (localProject){
       project = JSON.parse(localProject);
     }
-    
 
     const response = await dispatch(saveProject(project));
     localStorage.setItem('project', JSON.stringify(response.payload));
-    console.log('Save response:', response); // Check the response data after the API call
     setLoader(false);
   }
   
   const handlePublish = async () => {
     setLoader(true);
-    console.log('Publishing project:', project); // Check the project data before dispatching
     const response = await dispatch(saveProject({...project, published: true}));
-    console.log('Save response:', response); // Check the response data after the API call
     setLoader(false);
     navigate('/dashboard/project/');
   }
   
-
+  
   return (
     <div className="customization-container">
       <h2 className='header'>Customise Your Store</h2>
@@ -95,10 +104,10 @@ const ProjectCustomizationForm: React.FC = () => {
         <div className="sidebar">
           {/* <h2>Product Upload Categories</h2> */}
           <ul>
-            <li onClick={() => setActiveMenu('Details')}>Project Details</li> 
-            <li onClick={() => setActiveMenu('Styling')}>Styling</li>
-            <li onClick={() => setActiveMenu('Upload')}>Upload</li>
-            <li onClick={() => setActiveMenu('Products')}>Products</li>
+            <li style={{ backgroundColor: `${activeMenu === 'Details' ? "#007bff" : ""}`, color: `${activeMenu === 'Details' ? "#fff" : ""}`}} onClick={() => setActiveMenu('Details')}>Project Details </li> 
+            <li style={{backgroundColor: `${activeMenu === 'Styling' ? "#007bff" : ""}`, color: `${activeMenu === 'Styling' ? "#fff" : ""}`}} onClick={() => setActiveMenu('Styling')}>Styling</li>
+            <li style={{backgroundColor: `${activeMenu === 'Upload' ? "#007bff" : ""}`, color: `${activeMenu === 'Upload' ? "#fff" : ""}`}} onClick={() => setActiveMenu('Upload')}>Upload</li>
+            <li style={{backgroundColor: `${activeMenu === 'Products' ? "#007bff" : ""}`, color: `${activeMenu === 'Products' ? "#fff" : ""}`}} onClick={() => setActiveMenu('Products')}>Products</li>
             {/* <li onClick={() => setActiveMenu('AddPages')}>Pages</li> */}
           </ul>
         </div>

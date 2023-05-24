@@ -10,6 +10,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   text-decoration: inherit;
 }
@@ -23,5 +27,4 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #f6f6f6;
-
 }
