@@ -12,18 +12,16 @@ const Header: React.FC = () => {
   return (
     <>
       <div className="header">
-        {project.products.length !== 0 ? (
-          <ul className="menu">
-            {categories.map(category => (
-              <li key={category} className="menu-item">{category}</li>
-            ))}
+        <ul className="menu">
+          <Link to={"."}><li className="menu-item">Home</li></Link>
+          {
+            project.products.length !== 0 ?
+                categories.map(category => (
+                  <a href={`#${category}`}><li key={category} className="menu-item">{category}</li></a>
+                ))
+            : ""
+          }
         </ul>
-        ) : (
-          <ul className="menu">
-            <li className="menu-item"><Link to="/stores/ecommerce">Home</Link></li>
-        </ul>
-        )}
-        
       </div>
     </>
   );

@@ -25,20 +25,22 @@
             //background-color: aqua;
             .section {
                 display: flex;
-                justify-content: space-between;
-                align-items: flex-end;
-                width: 100%;
-                margin: 0 auto;
+                justify-content: center;
+                align-items: baseline;
+                width: auto;
+                gap: 25px;
+                margin: 100px auto 30px;
                 color: var(--body-font-color);
                 .section-name {
                     font-family: var(--name-font);
                     font-weight: 700;
-                    font-size: var(--other-font-size);
+                    font-size: 30px;
                 }
                 .more {
                     font-family: var(--body-font);
-                    font-weight: 500;
-                    font-size: var(--body-font-size);
+                    font-weight: 200;
+                    font-size: 13px;
+                    display: none;
                 }
             }
             .section-items {

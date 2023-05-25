@@ -28,7 +28,7 @@ const CustomizedMain: React.FC = () => {
 
         {/* Display products by categories */}
         {Object.entries(groupedProducts).map(([category, products]) => (
-          <div key={category} className='customised-section'>
+          <div id={category}  key={category} className='customised-section'>
             <div className="section">
               <h2 className="section-name">{category}</h2>
               <p className="more">more...</p>
