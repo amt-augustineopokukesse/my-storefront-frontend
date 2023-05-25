@@ -17,7 +17,7 @@ p {
         height: 182px;
         background: #FFFFFF;
         box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
+        border-radius: 4px;
         margin-bottom: 1%;
     }
     .address-header {
@@ -64,7 +64,7 @@ p {
             .change-button {
                 width: 100%;
                 height: 40px;
-                border-radius: 10px;
+                border-radius: 4px;
                 background-color: #15616B;
                 border: none;
                 outline: none;
@@ -91,7 +91,7 @@ p {
             padding: 0 3%;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -120,7 +120,7 @@ p {
             align-items: center;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             font-weight: 700;
             font-style: normal;
             font-size: 24px;
@@ -136,14 +136,14 @@ p {
             align-items: center;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             .number-selector {
                 position: relative;
                 width: 90%;
                 height: 42px;
                 background-color: #F6F6F6;
                 box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-                border-radius: 10px;
+                border-radius: 4px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -162,7 +162,7 @@ p {
                 .number {
                     background: #FFFFFF;
                     box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-                    border-radius: 10px;
+                    border-radius: 4px;
                     height: 100%;
                     padding: 0 5px;
                 }
@@ -179,12 +179,12 @@ p {
             align-items: center;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             .buy, .remove {
                 width: 80%;
                 height: 40px;
                 box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-                border-radius: 10px;
+                border-radius: 4px;
                 outline: none;
                 border: none;
                 font-family: 'Roboto';
