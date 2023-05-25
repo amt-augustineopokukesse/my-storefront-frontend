@@ -3,7 +3,6 @@ import instagramlogo from '../../../assets/svg/templates-svg/instagram.svg'
 import twitterlogo from '../../../assets/svg/templates-svg/twitter.svg'
 import '../../../assets/styles/templatesStyles/Finance/Footer.scss'
 import TemplateData from '../../../staticDB/FinanceData'
-import { useState } from 'react'
 import { useAppSelector } from '../../../store'
   
 export const Footer: React.FC = () => {
