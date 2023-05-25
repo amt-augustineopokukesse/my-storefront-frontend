@@ -6,7 +6,6 @@ import Carousel from '../Components/Carousel';
 import Main from '../Components/Main';
 import Footer from '../Components/Footer';
 import { useAppDispatch, useAppSelector } from '../../../store';
-//import { ProjectState } from '../../../Redux/ProjectSlice';
 import CustomizedMain from '../Components/CustomizedMain';
 import FloatingButton from '../Components/FloatingButton';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';

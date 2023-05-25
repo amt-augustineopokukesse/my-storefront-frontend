@@ -105,7 +105,7 @@ export const updateProject =  createAsyncThunk(
 // handlePublish
 export const publishProject =  createAsyncThunk(
   "project/publishProject",
-  async (project: ProjectState) => {
+  async () => {
     try {
       const response = await api.put("/project/publish", {
         project_id: await getProjectId(),

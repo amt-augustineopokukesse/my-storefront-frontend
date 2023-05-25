@@ -28,6 +28,7 @@ import StoreHome from './Pages/CustDashboard/EcommerceStore/StoreHome';
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
   const loggedIn = window.localStorage.getItem('token');
+  const customerRole = window.localStorage.getItem('customer');
 
   return (
     <Provider store={store}>
@@ -45,7 +46,7 @@ const App: React.FC =() => {
             theme="colored"
           />
           <Routes>
-            <Route path='/' element={loggedIn ? <Dashboard/> : <LandingPage />}/>
+            <Route path='/' element={loggedIn && customerRole ? < CustDashboard/> : loggedIn && !customerRole ?<Dashboard/> : <LandingPage />}/>
             <Route path='/custdashboard/*' element={<CustDashboard />} />
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
