@@ -1,7 +1,8 @@
+import '../../../assets/styles/templatesStyles/Ecommerce/MobileMoneyPayment.scss'
 export const MobileMoneyPayment: React.FC = () => {
     return (
         <div>
-            Mobile Money Payment
+            mobile payment
         </div>
     )
 }
