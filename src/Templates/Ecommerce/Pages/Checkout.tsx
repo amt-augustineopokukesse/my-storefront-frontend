@@ -8,6 +8,7 @@ import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Red
 import { setProject } from '../../../Redux/ProjectSlice';
 import { Link } from 'react-router-dom';
 import ShippingAddressEditModal from '../Components/ShippingAddressEditModal.tsx';
+import { setCustomerShippingAddress } from '../../../Redux/PaymentSlice.ts';
 
 interface ShippingAddressState {
   name: string;
@@ -46,6 +47,9 @@ const Checkout:React.FC = () => {
 
   const project = useAppSelector((state) => state.project);
   const cartProducts = useAppSelector((state) => state.cart.products);
+  const payment = useAppSelector((state) => state.payment);
+
+  console.log(payment);
   
   useEffect(() => {
     applyTemplateCustomizations(project);
@@ -67,6 +71,7 @@ const Checkout:React.FC = () => {
   const handleAddressSubmit = (data: ShippingAddressState) => {
     setShippingAddress(data);
     closeModal();
+    dispatch(setCustomerShippingAddress(data));
   };
 
   return (
