@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <div className="navbar">
-        <h3 className="logo">{project.name}</h3>
+        <Link to={"/stores/ecommerce"}><h3 className="logo">{project.name}</h3></Link>
         <Search />
         <Link to="/cart" className="cart-link">
           <img src={shoppingCart} alt="shopping cart" />
