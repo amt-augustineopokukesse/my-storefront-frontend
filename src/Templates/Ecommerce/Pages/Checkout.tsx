@@ -139,7 +139,7 @@ const Checkout:React.FC = () => {
           <div className="checkout-amount">
             GH&#8373; {totalAmount.toLocaleString()}
           </div>
-          <Link to='/checkout' className="checkout-button">
+          <Link to='/payment' className="checkout-button">
             Checkout
           </Link>
         </div>

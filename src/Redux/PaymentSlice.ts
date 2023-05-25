@@ -14,9 +14,15 @@ interface ShippingAddress {
   pickupMode: string;
 }
 
-interface PaymentDetails {
-  paymentMethod: 'visa' | 'mobileMoney';
-  // Add more properties for payment details (e.g., card information, mobile money details)
+export interface PaymentDetails {
+  paymentMethod: 'visa';
+  bank: string;
+  accountHolder: string;
+  branch: string;
+  cardNumber: string;
+  cvc: string;
+  expiryDate: string;
+
 }
 
 const initialState: PaymentState = {
@@ -28,6 +34,12 @@ const initialState: PaymentState = {
   },
   paymentDetails: {
     paymentMethod: 'visa',
+    bank: '',
+    accountHolder: '',
+    branch: '',
+    cardNumber: '',
+    cvc: '',
+    expiryDate: '',
   },
 //   loading: false,
 //   error: null,
