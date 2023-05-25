@@ -19,8 +19,10 @@
                 border-radius: 10px;
                 input{
                     margin: 0;
-                    width: 100%;
+                    width:100%;
                     border: none;
+                    border-bottom-left-radius: inherit;
+                    border-bottom-right-radius:inherit;
                     height: 2rem;
                     
                     &[type="text"]{
