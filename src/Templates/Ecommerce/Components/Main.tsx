@@ -1,5 +1,4 @@
 import { women, men, kids } from "../../../staticDB/ecommerceImagesDB";
-import AddToCart from "./AddToCart";
 import '../../../assets/styles/templatesStyles/Ecommerce/Main.scss';
 import Rating from '../../../Templates/Ecommerce/Components/Rating';
 
@@ -26,7 +25,7 @@ const Main: React.FC = () => {
               <Rating />
               <div className="available">
                 <p className="number-available">2 Available</p>
-                <AddToCart />
+                <button className="addToCart">Add To Cart</button>
               </div>
             </div>
           ))}
@@ -49,7 +48,7 @@ const Main: React.FC = () => {
               <Rating />
               <div className="available">
                 <p className="number-available">2 Available</p>
-                <AddToCart />
+                <button className="addToCart">Add To Cart</button>
               </div>
             </div>
           ))}
@@ -72,7 +71,7 @@ const Main: React.FC = () => {
               <Rating />
               <div className="available">
                 <p className="number-available">2 Available</p>
-                <AddToCart />
+                <button className="addToCart">Add To Cart</button>
               </div>
             </div>
           ))}
