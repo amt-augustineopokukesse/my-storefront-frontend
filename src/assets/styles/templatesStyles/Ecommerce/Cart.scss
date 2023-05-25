@@ -59,6 +59,7 @@ h2, p {
     letter-spacing: 0.5px;
     margin: 10px 0px;
     font-weight: 400;
+    font-size: 18px;
 }
 
 .product-seller {
@@ -78,7 +79,15 @@ h2, p {
     -webkit-box-align: center;
     align-items: center;
     justify-content: space-evenly;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
+    .math-calc-sign {
+        font-size: 25px;
+        padding: 5px;
+        cursor: pointer;
+        &:hover {
+            color: gold;
+        }
+    }
 }
 
 .product-value {
@@ -89,12 +98,12 @@ h2, p {
 
 .math-space {
     font-size: 15px;
-    max-width: 41px;
     margin: 5px;
     padding: 2px;
     border-radius: 3px;
     border: 1px solid gold;
     text-align: center;
+    width: 70px;
 }
     .container-header {
         font-family: var(--body-font);
@@ -105,12 +114,26 @@ h2, p {
     }
     .cart-info {
         display: flex;
+        width: 100%;
         flex-wrap: wrap;
         -webkit-box-pack: justify;
         justify-content: space-between;
         border-bottom: 1px solid rgb(238, 238, 238);
         margin-bottom: 10px;
         transition: all 300ms ease 0s;
+        position: relative;
+        svg {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            cursor: pointer;
+            fill: #f9a7a7;
+            :hover {
+                fill: red;
+            }
+        }
         .cart-product-image {
             //height: 100%;
             position: relative;
@@ -280,10 +303,11 @@ h2, p {
             cursor: pointer;
             display: flex;
             justify-content: center;
+            transition: all 300ms;
             align-items: center;
             &:hover {
-                background-color: var(--secondary-color);
-                color: var(--primary-color);
+                background-color: rgb(241, 111, 111);
+                // color: var(--primary-color);
             }
         }
     }

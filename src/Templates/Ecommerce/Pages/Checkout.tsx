@@ -105,35 +105,6 @@ const Checkout:React.FC = () => {
           </div>
         </div>
       </div>
-      <section className="container">
-        {cartProducts.map(product => (
-          <div className="cart-info">
-            <img src={product.image} className='cart-product-image'/>
-            <div className="cart-product-info">
-              <h2 className="cart-product-name">{product.productName}</h2>
-              <p className="cart-product-seller">Seller: {project.name}</p>
-              <p className="product-number-available">{product.initialStock} available</p>
-            </div>
-            <div className="cart-product-price">
-              {project.currency} {(product.price * product.quantity).toLocaleString()}
-            </div>
-            <div className="quantity">
-              <div className="number-selector">
-                <p className="minus" onClick={() => handleQuantityDecrement(product.id)}>
-                  -
-                </p>
-                <p className="number">{product.quantity}</p>
-                <p className="plus" onClick={() => handleQuantityIncrement(product.id)}>
-                  +
-                </p>
-              </div>
-            </div>
-            <div className="cart-buttons">
-              <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
-              {/* <button className="buy">Buy Now</button> */}
-            </div>
-          </div>
-        ))}
         
         <div className="checkout">
           <div className="checkout-amount">
@@ -143,7 +114,6 @@ const Checkout:React.FC = () => {
             Checkout
           </Link>
         </div>
-      </section>
     </>
   )
 }

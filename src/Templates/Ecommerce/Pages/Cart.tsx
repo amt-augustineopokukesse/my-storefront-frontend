@@ -1,15 +1,63 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
-import { Link } from 'react-router-dom';
+import { MdCancel } from "react-icons/md";
+import ShippingAddressEditModal from '../Components/ShippingAddressEditModal';
+import { setCustomerShippingAddress } from '../../../Redux/PaymentSlice';
 
-const Cart:React.FC = () => {
+interface ShippingAddressState {
+  name: string;
+  phoneNumber: string;
+  address: string;
+  pickupMode: string;
+}
+
+type user = {
+  [key: string]: any;
+}
+
+const Cart:React.FC<user> = (props) => {
   const dispatch = useAppDispatch();
+
+  const { custUser } = props;
+  const [ customerExists, setCustomerExists ] = useState(custUser)
+
+  useEffect(() => {
+    const customer = localStorage.getItem("customer");
+    if (customer) {
+        setCustomerExists(JSON.parse(customer));
+    }
+  }, [])
+  
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [shippingAddress, setShippingAddress] = useState<ShippingAddressState>({
+    name: '',
+    phoneNumber: '',
+    address: '',
+    pickupMode: '',
+  });
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleAddressSubmit = (data: ShippingAddressState) => {
+    setShippingAddress(data);
+    closeModal();
+    dispatch(setCustomerShippingAddress(data));
+  };
+
   
   useEffect(() => {
     const storedProject = localStorage.getItem('project');
@@ -22,6 +70,24 @@ const Cart:React.FC = () => {
 
   const project = useAppSelector((state) => state.project);
   const cartProducts = useAppSelector((state) => state.cart.products);
+  const payment = useAppSelector((state) => state.payment);
+
+  console.log(payment);
+  
+  useEffect(() => {
+    applyTemplateCustomizations(project);
+  }, [project]);
+
+  
+  useEffect(() => {
+    const storedProject = localStorage.getItem('project');
+    if (storedProject) {
+      const savedProject = JSON.parse(storedProject);
+      dispatch(setProject(savedProject));
+      //setActive(true);
+    }
+  }, [dispatch]);
+
   
   useEffect(() => {
     applyTemplateCustomizations(project);
@@ -58,9 +124,9 @@ const Cart:React.FC = () => {
             </div>
             <div className='cart-div-two'>
               <div className='math-calc'>
-                <p onClick={() => handleQuantityDecrement(product.id)}>-</p>
+                <p className='math-calc-sign' onClick={() => handleQuantityDecrement(product.id)}>—</p>
                 <p className='math-space'>{product.quantity}</p>
-                <p onClick={() => handleQuantityIncrement(product.id)}>+</p>
+                <p className='math-calc-sign' onClick={() => handleQuantityIncrement(product.id)}>+</p>
               </div>
               <h4 className='product-value'>{project.currency} {(product.price * product.quantity).toLocaleString()}</h4>
             </div>
@@ -84,9 +150,11 @@ const Cart:React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="cart-buttons">
-              <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
-            </div> */}
+            
+             */}
+             
+              <MdCancel onClick={() => handleRemove(product.id)} />
+            
           </div>
         ))}
         
@@ -94,9 +162,33 @@ const Cart:React.FC = () => {
           <div className="checkout-amount">
             GH&#8373; {totalAmount.toLocaleString()}
           </div>
-          <Link to='/checkout' className="checkout-button">
-            Checkout
-          </Link>
+          <div onClick={openModal} className="checkout-button">
+            Order Now
+          </div>
+        </div>
+        <div className="shipping-info">
+          <div className="information">
+            <div className="name-and-number">
+              <h2>{ customerExists? customerExists.first_name + " " +  customerExists.last_name : "Customer"}</h2>
+              <p>No contact added for Delivery</p>
+            </div>
+            <div className="address">
+              <p>No address added for delivery</p>
+              <p>No pickup mode set for delivery</p>
+            </div>
+          </div>
+          <div className="change">
+            <button className="change-button" onClick={openModal}>
+              Change
+            </button>
+            {isModalOpen && (
+              <ShippingAddressEditModal
+                onClose={closeModal}
+                initialData={shippingAddress}
+                onSubmit={handleAddressSubmit}
+              />
+            )}
+          </div>
         </div>
       </section>
       <Footer />
