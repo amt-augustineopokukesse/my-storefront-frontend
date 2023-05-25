@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
-//import leatherJacket from '../../../assets/images/Templates/Ecommerce/leather-jacket.png';
+import React, { useEffect } from 'react';
 import '../../../assets/styles/templatesStyles/Ecommerce/ProductDescription.scss';
-//import Rating from '../Components/Rating';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { useParams } from 'react-router-dom';
 //import StaticProductDescription from '../../../staticDB/StaticProductDescription';
-import AddToCart from '../Components/AddToCart';
 import { decreaseQuantity, increaseQuantity } from '../../../Redux/CartSlice';
-import { InitialProductState, ProductState } from '../../../Redux/ProjectInitialState';
+import { applyTemplateCustomizations } from '../../../Templates/Ecommerce/Components/ProductEditUtils';
+import Navbar from '../../../Templates/Ecommerce/Components/Navbar';
+import AddToCart from '../../../Templates/Ecommerce/Components/AddToCart';
+import { Footer } from '../../../Templates/Finance/Components/Footer';
 
 const ProductDescription: React.FC = () => {
-  const [product, setProduct] = useState<ProductState>(InitialProductState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -35,17 +31,9 @@ const ProductDescription: React.FC = () => {
   }, [project]);
 
   const { id } = useParams<{ id: string }>();
-  const [storeProduct] = products.filter(item => item.id === id);
+  const [product] = products.filter(item => item.id === id);
   const [projectProduct] = project.products.filter(item => item.id === id);
   console.log(projectProduct);
-
-  useEffect(() => {
-    if(storeProduct){
-      setProduct(storeProduct)
-    } else {
-      setProduct(projectProduct);
-    }
-  });
   
   const handleQuantityIncrement = () => {
     dispatch(increaseQuantity(product.id));
@@ -54,8 +42,6 @@ const ProductDescription: React.FC = () => {
   const handleQuantityDecrement = () => {
     dispatch(decreaseQuantity(product.id));
   };
-
-
 
   return (
     <>
@@ -95,7 +81,9 @@ const ProductDescription: React.FC = () => {
               
             </ul>
           </div>
-        </section>): "" }
+        </section>) : (
+          'Sorry page unavailable'
+        )}
       <Footer />
     </>
   );

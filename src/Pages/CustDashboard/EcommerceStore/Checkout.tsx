@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Components/Navbar';
 import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
-import { useAppDispatch, useAppSelector } from '../../../store';
-import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
-import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
-import { setProject } from '../../../Redux/ProjectSlice';
+import { useAppDispatch, useAppSelector } from '../../../store.ts';
+import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice.ts';
+import { setProject } from '../../../Redux/ProjectSlice.ts';
 import { Link } from 'react-router-dom';
-import ShippingAddressEditModal from '../Components/ShippingAddressEditModal.tsx';
 import { setCustomerShippingAddress } from '../../../Redux/PaymentSlice.ts';
+import { applyTemplateCustomizations } from '../../../Templates/Ecommerce/Components/ProductEditUtils.ts';
+import Navbar from '../../../Templates/Ecommerce/Components/Navbar.tsx';
+import ShippingAddressEditModal from '../../../Templates/Ecommerce/Components/ShippingAddressEditModal.tsx';
 
 interface ShippingAddressState {
   name: string;
@@ -104,8 +104,7 @@ const Checkout:React.FC = () => {
             )}
           </div>
         </div>
-      </div>
-      <section className="container">
+        <section className="container">
         {cartProducts.map(product => (
           <div className="cart-info">
             <img src={product.image} className='cart-product-image'/>
@@ -130,7 +129,7 @@ const Checkout:React.FC = () => {
             </div>
             <div className="cart-buttons">
               <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
-              {/* <button className="buy">Buy Now</button> */}
+              <button className="buy">Buy Now</button>
             </div>
           </div>
         ))}
@@ -144,6 +143,8 @@ const Checkout:React.FC = () => {
           </Link>
         </div>
       </section>
+      </div>
+      
     </>
   )
 }

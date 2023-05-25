@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { Link } from 'react-router-dom';
+import { applyTemplateCustomizations } from '../../../Templates/Ecommerce/Components/ProductEditUtils';
+import Navbar from '../../../Templates/Ecommerce/Components/Navbar';
+import { Footer } from '../../../Templates/Finance/Components/Footer';
 
 const Cart:React.FC = () => {
   const dispatch = useAppDispatch();
@@ -70,6 +70,7 @@ const Cart:React.FC = () => {
             </div>
             <div className="cart-buttons">
               <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
+              <button className="buy">Buy Now</button>
             </div>
           </div>
         ))}

@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import '../../assets/styles/dashboardStyles/ProjectPage.scss'
 import filelogo from '../../assets/svg/icons8-file.svg'
 import pluslogo from '../../assets/svg/icons8-plus-math-50.png'
 import { Link } from 'react-router-dom';
-import { BiLinkExternal } from 'react-icons/bi';
 
 type user = {
     [key: string]: any;

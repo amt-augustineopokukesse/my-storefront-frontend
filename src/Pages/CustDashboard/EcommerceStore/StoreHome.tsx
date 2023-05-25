@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react';
-import Navbar from '../Components/Navbar';
-import Header from '../Components/Header';
-import Hero from '../Components/Hero';
-import Carousel from '../Components/Carousel';
-import Main from '../Components/Main';
-import Footer from '../Components/Footer';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import CustomizedMain from '../Components/CustomizedMain';
-import FloatingButton from '../Components/FloatingButton';
-import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
+//import { ProjectState } from '../../../Redux/ProjectSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { useLocation } from 'react-router-dom';
+import { applyTemplateCustomizations } from '../../../Templates/Ecommerce/Components/ProductEditUtils';
+import Navbar from '../../../Templates/Ecommerce/Components/Navbar';
+import Header from '../../../Templates/Ecommerce/Components/Header';
+import Hero from '../../../Templates/Ecommerce/Components/Hero';
+import { Footer } from '../../../Templates/Finance/Components/Footer';
+import Carousel from '../../../Templates/Ecommerce/Components/Carousel';
+import CustomizedMain from '../../../Templates/Ecommerce/Components/CustomizedMain';
 
 
-const EcommerceHome:React.FC = () => {
+const EcommerceStoreHome:React.FC = () => {
   const project = useAppSelector((state) => state.project);
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -45,11 +44,10 @@ const EcommerceHome:React.FC = () => {
         <Header />
         <Hero />
         {project.template.carouselInclude ? <Carousel /> : ''}
-        {project.products.length > 0 ? <CustomizedMain/> : <Main />}
+        {project.products.length > 0 ? <CustomizedMain/> : ""}
         <Footer />
-        <FloatingButton/>
     </div>
   )
 }
 
-export default EcommerceHome
+export default EcommerceStoreHome

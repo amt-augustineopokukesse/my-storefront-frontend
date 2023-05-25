@@ -22,12 +22,14 @@ import Cart from './Templates/Ecommerce/Pages/Cart';
 import Checkout from './Templates/Ecommerce/Pages/Checkout';
 import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectCustomizationForm';
 import { EditTemplatePage } from './Pages/EditTemplate/EditTemplatePage';
+import StoreHome from './Pages/CustDashboard/EcommerceStore/StoreHome';
 import { Payment } from './Templates/Ecommerce/Pages/Payment';
 
 
 const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
   const loggedIn = window.localStorage.getItem('token');
+  const customerRole = window.localStorage.getItem('customer');
 
   return (
     <Provider store={store}>
@@ -45,8 +47,8 @@ const App: React.FC =() => {
             theme="colored"
           />
           <Routes>
-            <Route path='/' element={loggedIn ? <Dashboard/> : <LandingPage />}/>
-            <Route path='/CustDashboard/*' element={<CustDashboard />} />
+            <Route path='/' element={loggedIn && customerRole ? < CustDashboard/> : loggedIn && !customerRole ?<Dashboard/> : <LandingPage />}/>
+            <Route path='/custdashboard/*' element={<CustDashboard />} />
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/landing' element={<LandingPage/>}/>
@@ -59,12 +61,13 @@ const App: React.FC =() => {
             <Route path='/auth-success/:token' element={<SuccessfulAuthNotification/>}/>
             <Route path='/successful-reset' element={<SuccessfulReset/>}/>
             <Route path='/ecommerce' element={<EcommerceHome/>}/>
-            <Route path='/product/:productName' element={<ProductDescription />} />
+            <Route path='/product/:id' element={<ProductDescription />} />
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
             <Route path='/payment' element={<Payment />} />
             <Route path='/template-editor' element={<TemplateCustomizationForm/>}/>
             <Route path='/dashboard/project/templates/edit-template-page' element={<EditTemplatePage />} />
+            <Route path='/stores/ecommerce' element={<StoreHome />} />
           </Routes>
         </div>
       </Router>

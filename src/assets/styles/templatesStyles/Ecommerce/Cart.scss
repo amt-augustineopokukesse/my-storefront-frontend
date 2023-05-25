@@ -6,13 +6,13 @@ h2, p {
     margin: 3% auto;
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto';
-    color: #222222;
+    font-family: var(--body-font);
+    color: var(--body-font-color);
     .container-header {
-        font-family: 'Roboto';
+        font-family: var(--body-font);
         font-size: 32px;
         font-style: normal;
-        color: #222222;
+        color: var(--body-font-color);
         font-weight: 700;
     }
     .cart-info {
@@ -33,12 +33,12 @@ h2, p {
             padding: 0 3%;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 10%;
-            //align-items: center;
+            align-items: center;
             text-align: left;
             .cart-product-name {
                 font-style: normal;
@@ -62,7 +62,7 @@ h2, p {
             align-items: center;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             font-weight: 700;
             font-style: normal;
             font-size: 24px;
@@ -78,14 +78,14 @@ h2, p {
             align-items: center;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             .number-selector {
                 position: relative;
                 width: 90%;
                 height: 42px;
                 background-color: #F6F6F6;
                 box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-                border-radius: 10px;
+                border-radius: 4px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -99,12 +99,19 @@ h2, p {
                     font-weight: 700;
                     font-size: 30px;
                     line-height: 38px;
-                    color: #222222;
+                    color: var(--body-font-color);
+                }
+                .minus, .plus {
+                    cursor: pointer;
+                    &:hover {
+                        //background-color: #999898;
+                        color: #999898;
+                    }
                 }
                 .number {
                     background: #FFFFFF;
                     box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-                    border-radius: 10px;
+                    border-radius: 4px;
                     height: 100%;
                     padding: 0 5px;
                 }
@@ -121,27 +128,35 @@ h2, p {
             align-items: center;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
+            border-radius: 4px;
             .buy, .remove {
                 width: 80%;
                 height: 40px;
                 box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-                border-radius: 10px;
+                border-radius: 4px;
                 outline: none;
                 border: none;
-                font-family: 'Roboto';
+                font-family: var(--body-font);
                 font-style: normal;
                 font-weight: 600;
                 font-size: 20px;
                 cursor: pointer;
             }
             .remove {
-                background-color: #FFFFFF;
-                color: #15616B;
+                background-color: var(--secondary-color);
+                color: var(--primary-color);
+                &:hover {
+                    background-color: var(--primary-color);
+                    color: var(--secondary-color);
+                }
             }
             .buy {
-                background-color: #15616B;
-                color: #FFFFFF;
+                background-color: var(--primary-color);
+                color: var(--secondary-color);
+                &:hover {
+                    background-color: var(--secondary-color);
+                    color: var(--primary-color);
+                }
             }
         }
     }
@@ -158,7 +173,7 @@ h2, p {
             width: 65%;
             background-color: #FFFFFF;
             box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
-            border-radius: 10px 0 0 10px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             box-sizing: border-box;
@@ -167,13 +182,19 @@ h2, p {
         }
         .checkout-button {
             width: 35%;
-            background-color: #15616B;
-            color: #FFFFFF;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
             border: none;
             outline: none;
-            border-radius: 0px 10px 10px 0px;
+            border-radius: 4px;
             cursor: pointer;
-
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover {
+                background-color: var(--secondary-color);
+                color: var(--primary-color);
+            }
         }
     }
 }

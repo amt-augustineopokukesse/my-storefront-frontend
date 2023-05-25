@@ -26,13 +26,30 @@
         outline: none;
         border: none;
         background-color: var(--secondary-color);
-        border-radius: 10px;
+        border-radius: 4px;
         font-family: inherit;
         font-size: 20px;
         font-weight: 600;
         color: var(--primary-color);
         line-height: 23px;
         cursor: pointer;
+    }
+    .cart-link {
+        position: relative;
+        .cart-indicator {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            border-radius: 4px;
+        }
     }
     .login-signup-buttons {
         display: flex;
@@ -53,7 +70,7 @@
         .signup {
             width: 148px;
             height: 40px;
-            border-radius: 10px;
+            border-radius: 4px;
             background-color: var(--secondary-color);
             color: var(--primary-color);
             outline: none;
