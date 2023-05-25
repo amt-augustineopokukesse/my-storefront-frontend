@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
-//import leatherJacketSmall from '../../../assets/images/Templates/Ecommerce/leatherJacketSmall.png';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
@@ -71,7 +70,6 @@ const Cart:React.FC = () => {
             </div>
             <div className="cart-buttons">
               <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
-              <button className="buy">Buy Now</button>
             </div>
           </div>
         ))}
