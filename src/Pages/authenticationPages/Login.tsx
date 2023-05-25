@@ -8,7 +8,7 @@ import Email from '../../components/authComponents/Email';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import Password from '../../components/authComponents/Password';
 import { userLogin } from '../../Redux/AuthSlice';
-import facebookButton from '../../assets/svg/fb.svg';
+//import facebookButton from '../../assets/svg/fb.svg';
 import googleButton from '../../assets/svg/google.svg';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
 import { toast } from 'react-toastify';
@@ -78,9 +78,9 @@ const Login: React.FC = () => {
       }
   };
 
-  const handleFacebook = () =>{
-    window.open(`${API_BASE_URL}/auth/facebook`,'_self')    
-    }
+  // const handleFacebook = () =>{
+  //   window.open(`${API_BASE_URL}/auth/facebook`,'_self')    
+  //   }
   
   const handleGoogle = () =>{
     window.open(`${API_BASE_URL}/auth/google`,'_self')     
@@ -160,7 +160,7 @@ const Login: React.FC = () => {
         <p className='sm-text'>Log in with</p>
         <div className='sm-buttons'>
             <img src={googleButton} alt="google icon" className='sm-icon' onClick={handleGoogle} />
-            <img src={facebookButton} alt="facebook icon" className='sm-icon' onClick={handleFacebook}/>
+            {/* <img src={facebookButton} alt="facebook icon" className='sm-icon' onClick={handleFacebook}/> */}
         </div>
 
         <p className="not-member"> Not a member? <Link to='/signup' className="sign-up-link">Sign up</Link> </p>

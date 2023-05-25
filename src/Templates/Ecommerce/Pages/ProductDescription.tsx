@@ -8,7 +8,9 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { useParams } from 'react-router-dom';
-import StaticProductDescription from '../../../staticDB/StaticProductDescription';
+//import StaticProductDescription from '../../../staticDB/StaticProductDescription';
+import AddToCart from '../Components/AddToCart';
+import { decreaseQuantity, increaseQuantity } from '../../../Redux/CartSlice';
 
 const ProductDescription: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -23,15 +25,25 @@ const ProductDescription: React.FC = () => {
   }, [dispatch]);
 
   const project = useAppSelector((state) => state.project);
-  console.log(project);
+  const products = useAppSelector((state) => state.cart.products);
+  // console.log(project);
 
   useEffect(() => {
     applyTemplateCustomizations(project);
   }, [project]);
 
-  const { productName } = useParams<{ productName: string }>();
-  const [product] = project.products.filter(item => item.productName === productName);
-  console.log(product);
+  const { id } = useParams<{ id: string }>();
+  const [product] = products.filter(item => item.id === id);
+  const [projectProduct] = project.products.filter(item => item.id === id);
+  console.log(projectProduct);
+  
+  const handleQuantityIncrement = () => {
+    dispatch(increaseQuantity(product.id));
+  };
+
+  const handleQuantityDecrement = () => {
+    dispatch(decreaseQuantity(product.id));
+  };
 
   return (
     <>
@@ -50,29 +62,17 @@ const ProductDescription: React.FC = () => {
                 <p className='rating-text'>Seller: James cottage</p>
               </div>
               <div className="price">
-                  GH&#8373; {product.price}
+                  {project.currency} {(product.price * product.quantity).toLocaleString()}
               </div>
-              {/* <div className="colors">
-                <button className="color-button black">Black</button>
-                <button className="color-button brown">Brown</button>
-                <button className="color-button grey">Grey</button>
-              </div>
-              <p className="size-text">Size</p>
-              <div className="sizes">
-                <button className="size medium">M</button>
-                <button className="size large">L</button>
-                <button className="size extra">X</button>
-                <button className="size xlarge">XL</button>
-                <button className="size xxlarge">XXL</button>
-              </div> */}
+              
               <div className='number-selector'>
-                <p className="minus">-</p>
-                <p className='number'>1</p>
-                <p className="plus">+</p>
+                <p className="minus" onClick={handleQuantityDecrement}>-</p>
+                <p className='number'>{product.quantity}</p>
+                <p className="plus" onClick={handleQuantityIncrement}>+</p>
               </div>
               <div className="buttons">
                 <button className="buy">Buy Now</button>
-                <button className="cart">Add to cart</button>
+                <AddToCart product={product}/>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ const ProductDescription: React.FC = () => {
             </ul>
           </div>
         </section>) : (
-          <StaticProductDescription />
+          'Sorry page unavailable'
         )}
       <Footer />
     </>
