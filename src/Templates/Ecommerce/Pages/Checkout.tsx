@@ -104,7 +104,8 @@ const Checkout:React.FC = () => {
             )}
           </div>
         </div>
-        <section className="container">
+      </div>
+      <section className="container">
         {cartProducts.map(product => (
           <div className="cart-info">
             <img src={product.image} className='cart-product-image'/>
@@ -129,7 +130,7 @@ const Checkout:React.FC = () => {
             </div>
             <div className="cart-buttons">
               <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
-              <button className="buy">Buy Now</button>
+              {/* <button className="buy">Buy Now</button> */}
             </div>
           </div>
         ))}
@@ -143,8 +144,6 @@ const Checkout:React.FC = () => {
           </Link>
         </div>
       </section>
-      </div>
-      
     </>
   )
 }

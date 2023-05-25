@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 const Navbar: React.FC = () => {
   const cartProducts = useAppSelector((state) => state.cart.products);
 
-  const cartItemCount = cartProducts.reduce((total, product) => total + product.quantity, 0);
+  //const cartItemCount = cartProducts.reduce((total, product) => total + product.quantity, 0);
+  const cartItemCount = cartProducts.length;
 
   return (
     <>

@@ -10,6 +10,16 @@ export interface ProductState {
     sku?: string;
     [key:string]: any;
   }
+
+  export const InitialProductState: ProductState = {
+    productName: '',
+    category: '',
+    unit: '',
+    description: '',
+    price: 0,
+    image: '',
+    discount: 0,
+  }
   
   export interface ProjectState {
     name: string;
