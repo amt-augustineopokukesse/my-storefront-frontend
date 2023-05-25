@@ -4,47 +4,49 @@ import filelogo from '../../assets/svg/icons8-file.svg'
 import pluslogo from '../../assets/svg/icons8-plus-math-50.png'
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
-import { setProject } from '../../Redux/ProjectSlice';
+import { getStores, setProject } from '../../Redux/ProjectSlice';
 import { initialProjectState } from '../../Redux/ProjectInitialState';
+import { toast } from 'react-toastify';
+import { AuthLoader } from '../../components/authComponents/AuthLoader';
 
-type user = {
+type store = {
     [key: string]: any;
 }
 
-export const ProjectPage: React.FC<user> = (props) => {
+export const ProjectPage: React.FC<store> = (props) => {
 
-    const { merchantUser } = props;
-    const [ merchantExists, setmerchantExists ] = useState(merchantUser);
+    const { allStores } = props;
+    const [ stores, setStores ] = useState(allStores);
+    const [loader, setLoader] = useState<boolean>(false);
+
+
     const dispatch = useAppDispatch();
-    
-    useEffect(() => {
-        const merchant = localStorage.getItem("merchant");
-        if (merchant) {
-            setmerchantExists(JSON.parse(merchant));
+
+    const getAllStores = async () => {
+        try {
+            const response = await dispatch(getStores());
+            if (response) {
+                setStores(response.payload.data);
+                setTimeout(()=>{
+                    setLoader(false);
+                }, 500);
+            }
+        } catch (error) {
+            setLoader(false);
+            // console.log(error)
+            toast.error("Error Retrieving Storefront Stores")
+            return;
         }
-    }, [])
+    }
+    useEffect(() => {
+        setLoader(true);
+        getAllStores();
+    },[]);
 
     const handleTakeDownProject = () => {
         localStorage.removeItem('project');
         dispatch(setProject(initialProjectState));
     }
-
-    // const columns: GridColDef[] = [
-    //     { field: "id", headerName: "ID", width: 70 },
-    //     { field: "projectName", headerName: "Project Name", width: 180 },
-    //     { field: "projectCategory", headerName: "Category", width: 180 },
-    //     { field: "projectPublished", headerName: "Published", width: 180 },
-    //     { field: "projectAddress", headerName: "Address", width: 180 },
-    //     { field: "Link", headerName: "Link", width: 50}
-    // ]
-
-    // const row = (project: any, idx: number) => {
-    //     return { id: idx, projectName: project.name, projectCategory: project.category, projectPublished: project.published, projectAddress: project.address, Link: <Link to='/' state={""}>vbvb</Link> }
-    // }
- 
-    // const rows = merchantExists ? 
-    //         merchantExists.business.projects.map((project:any, index: number) => row(project, index))
-    //     :   { id: 0, projectName: "",  projectCategory: "", projectPublished: "", projectAddress: "" }
     
 
     return (
@@ -60,32 +62,16 @@ export const ProjectPage: React.FC<user> = (props) => {
             </Link>
             <div className="recent-projects">
                 {
-                    merchantExists && merchantExists.business.projects.length ? 
-
-                    <>
-                    
+                    stores && stores.projects.length ?                     
                         <h3 className='recent-projects-header'>Recents</h3>
-                        {/* <div style={{ height: 400, width: "100%", margin: "2rem" }}>
-                            <DataGrid
-                                rows={rows}
-                                columns={columns}
-                                initialState={{
-                                pagination: {
-                                    paginationModel: { page: 0, pageSize: 5 },
-                                },
-                                }}
-                                pageSizeOptions={[5, 10]}
-                                checkboxSelection
-                            />
-                        </div> */}
-                    </>
                     : <h3 className='recent-projects-header'>You have no recent projects</h3>
                 }
             <div className='display-projects'>
+                {loader && <AuthLoader />}
                 {
-                    merchantExists && merchantExists.business.projects.length ? 
+                    stores && stores.projects.length ? 
                     
-                    merchantExists.business.projects.map((project:any, index: number) => 
+                    stores.projects.map((project:any, index: number) => 
                     <Link to="templates/edit-template-page" state={{linkedProject: project}}>
                         <div key={index} className='project-display' style={{backgroundImage: `url(${project.bannerUrl})`}}>
                             <div className='project-words'>

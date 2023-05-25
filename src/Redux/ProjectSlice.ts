@@ -25,13 +25,35 @@ const getProjectId = async () => {
   } else return ""
 };
 
+
+// handle Get All Stores
+export const getStores = createAsyncThunk(
+  "project/getStores",
+  async () => {
+    try {
+      const business_id = await getBusinessId()
+      const response = await api.get(`/project/all/${business_id}`);
+      return response.data;
+    } catch (error) {
+      console.log(error)
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.log("API error:", error.response.data.message); // Log the API error message
+          return error.response.data.message;
+        }
+      }
+      console.log("An error occurred:", error); // Log any other errors that occur
+      return "An error occurred";
+    }
+  }
+);
+
 // handle GetAll Published Stores
 export const getPublishedStores = createAsyncThunk(
   "project/getPublishedstores",
   async () => {
     try {
       const response = await api.get("/market/stores");
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error)

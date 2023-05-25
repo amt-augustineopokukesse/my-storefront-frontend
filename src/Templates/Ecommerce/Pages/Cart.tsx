@@ -160,7 +160,7 @@ const Cart:React.FC<user> = (props) => {
         
         <div className="checkout">
           <div className="checkout-amount">
-            GH&#8373; {totalAmount.toLocaleString()}
+            {project.currency} {totalAmount.toLocaleString()}
           </div>
           <div onClick={openModal} className="checkout-button">
             Order Now
