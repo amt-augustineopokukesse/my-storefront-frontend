@@ -1,28 +1,51 @@
 import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/DashboardPage.scss'
+import { useAppDispatch } from '../../store';
+import { toast } from 'react-toastify';
+import { getStores } from '../../Redux/ProjectSlice';
+import { AuthLoader } from '../../components/authComponents/AuthLoader';
 
-type user = {
+type store = {
     [key: string]: any;
 }
 
-export const DashboardPage: React.FC<user> = (props) => {
+export const DashboardPage: React.FC<store> = (props) => {
 
-    const { merchantUser } = props;
-    const [ merchantExists, setmerchantExists ] = useState(merchantUser)
-    
-    useEffect(() => {
-        const merchant = localStorage.getItem("merchant");
-        if (merchant) {
-            setmerchantExists(JSON.parse(merchant));
+    const { allStores } = props;
+    const [ stores, setStores ] = useState(allStores);
+    const [loader, setLoader] = useState<boolean>(false);
+
+
+    const dispatch = useAppDispatch();
+
+    const getAllStores = async () => {
+        try {
+            const response = await dispatch(getStores());
+            if (response) {
+                setStores(response.payload.data)
+                setTimeout(()=>{
+                    setLoader(false);
+                }, 500)
+            }
+        } catch (error) {
+            setLoader(false);
+            // console.log(error)
+            toast.error("Error Retrieving Storefront Stores")
+            return;
         }
-    }, [])
+    }
+    useEffect(() => {
+        setLoader(true);
+        getAllStores();
+    },[]);
+
 
     return (
         <div className='dashboard-page'>
             <div className='top-containers'>
                 <div className='site-created-div block-view'>
                     <h3>Sites Created</h3>
-                    <p>{merchantExists ? merchantExists.business.projects.length : 0}</p>
+                    <p>{stores && stores.projects ? stores.projects.length : 0}</p>
 
                 </div>
                 <div className='views-div block-view'>
@@ -41,6 +64,7 @@ export const DashboardPage: React.FC<user> = (props) => {
             <div className="grid-container">
                   <h3 className='grid-header'></h3>  
             </div>
+            {loader ? <AuthLoader /> : ''} 
         </div>
     )
 }

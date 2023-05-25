@@ -56,19 +56,18 @@ const ProjectCustomizationForm: React.FC = () => {
     try {
       const response = await dispatch(saveProject(project));
       localStorage.setItem('project', JSON.stringify(response.payload.data));
-      const merchant = localStorage.getItem('merchant');
-      if (merchant && response.payload.data) {
-        var oldMerchant = JSON.parse(merchant);
-        var { business, ...values } = oldMerchant;
-        var { projects, ...items } = business;
-        projects = [...projects, response.payload.data]
-        localStorage.setItem('merchant', JSON.stringify({ ...values, business: {...items, projects} }));
-      } else return;
-      toast.success("Created project successfully")
-      setLoader(false);
-      setActive(true);
-      navigate("/dashboard/project/");
+      
+      if (response.payload.data) {
+        toast.success("Created project successfully 👏 You can publish it Now! or Later")
+        setTimeout(()=>{
+          setLoader(false);
+        }, 500)
+        setActive(true);
+        navigate("/dashboard/project/");
+        return;
+      } else throw Error("")
     } catch (error) {
+      setLoader(false);
       console.log(error)
       toast.error("Error Saving Project")
       return;
@@ -80,21 +79,17 @@ const ProjectCustomizationForm: React.FC = () => {
     try {
       const response = await dispatch(updateProject(project));
       localStorage.setItem('project', JSON.stringify(response.payload.data));
-      const merchant = localStorage.getItem('merchant');
-      if (merchant && response.payload.data) {
-        var oldMerchant = JSON.parse(merchant);
-        var { business, ...values } = oldMerchant;
-        var { projects, ...items } = business;
-        const index = projects.findIndex((x: { id: string; [key: string]: any }) => x.id === response.payload.data.id)
-        projects[index] = response.payload.data;
-        localStorage.setItem('merchant', JSON.stringify({ ...values, business: {...items, projects} }));
-      } else return;
-      toast.info("You have updated the Project successfully!")
-      setLoader(false);
-      setActive(true);
-      navigate("/dashboard/project/");
-      // localStorage.setItem('project', JSON.stringify(updateResponse.payload.data));
+      if (response.payload.data) {
+        toast.success("Updated the project successfully")
+        setTimeout(()=>{
+          setLoader(false);
+        }, 500)
+        setActive(true);
+        navigate("/dashboard/project/");
+        return;
+      } else throw Error("")
     } catch (error) {
+      setLoader(false);
       console.log(error)
       toast.error("Error Saving Project")
       return;
@@ -106,19 +101,15 @@ const ProjectCustomizationForm: React.FC = () => {
     try {
       const response = await dispatch(publishProject());
       localStorage.setItem('project', JSON.stringify(response.payload.data));
-      const merchant = localStorage.getItem('merchant');
-      if (merchant && response.payload.data) {
-        var oldMerchant = JSON.parse(merchant);
-        var { business, ...values } = oldMerchant;
-        var { projects, ...items } = business;
-        const index = projects.findIndex((x: { id: string; [key: string]: any }) => x.id === response.payload.data.id)
-        projects[index] = response.payload.data;
-        localStorage.setItem('merchant', JSON.stringify({ ...values, business: {...items, projects} }));
-      } else return;
-      toast.info("You have published the Project successfully!")
-      setLoader(false);
-      setActive(true);
-      navigate("/dashboard/project/");
+      if (response.payload.data) {
+        toast.success("Huraayy 🥳🎉 Your Project Live 👍 Our Customers can make purchases on your New Website👏 Make MONEY 💵!!🤝");
+        setTimeout(()=>{
+          setLoader(false);
+        }, 500);
+        setActive(true);
+        navigate("/dashboard/project/");
+        return;
+      } else throw Error("")
     } catch (error) {
       console.log(error)
       toast.error("Error Publishing Project")

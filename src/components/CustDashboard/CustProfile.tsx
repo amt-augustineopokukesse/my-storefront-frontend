@@ -9,12 +9,12 @@ type user = {
 
 export const CustProfile: React.FC<user> = (props) => {
     const { custUser } = props;
-    const [ customerExists, setmerchantExists ] = useState(custUser)
+    const [ customerExists, setCustomerExists ] = useState(custUser)
     
     useEffect(() => {
         const customer = localStorage.getItem("customer");
         if (customer) {
-            setmerchantExists(JSON.parse(customer));
+            setCustomerExists(JSON.parse(customer));
         }
     }, [])
     
@@ -27,7 +27,7 @@ export const CustProfile: React.FC<user> = (props) => {
 
     return (
         <div className='profile-photo-menu'>
-            <img className="profile-photo" src={profile} alt="" />
+            <img className="profile-photo" src={customerExists?.profile_picture} alt="" />
             <div className="profile-menu">
                 <button className="profile-button" onClick={handleClick}>
                     { customerExists? customerExists.first_name : "Customer"}

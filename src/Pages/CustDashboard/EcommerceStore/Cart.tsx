@@ -48,7 +48,23 @@ const Cart:React.FC = () => {
         <h2 className="container-header">Cart ({cartItemCount})</h2>
         {cartProducts.map(product => (
           <div className="cart-info">
-            <img src={product.image} className='cart-product-image'/>
+            <div className='cart-div-one'>
+              <div style={{backgroundImage: `url(${product.image})`}} className='cart-image-div'></div>
+              <div className='cart-product-detail'>
+                <h5 className='product-name'><b>Name: </b>{product.productName}</h5>
+                <p className='product-seller'><b>Seller: </b>{project.name}</p>
+                <p className='stock-available'><b>Stock: </b>{product.initialStock} Available</p>
+              </div>
+            </div>
+            <div className='cart-div-two'>
+              <div className='math-calc'>
+                <p onClick={() => handleQuantityDecrement(product.id)}>-</p>
+                <p className='math-space'>{product.quantity}</p>
+                <p onClick={() => handleQuantityIncrement(product.id)}>+</p>
+              </div>
+              <h4 className='product-value'>{project.currency} {(product.price * product.quantity).toLocaleString()}</h4>
+            </div>
+            {/* <img src={product.image} className='cart-product-image'/>
             <div className="cart-product-info">
               <h2 className="cart-product-name">{product.productName}</h2>
               <p className="cart-product-seller">Seller: {project.name}</p>
@@ -70,8 +86,7 @@ const Cart:React.FC = () => {
             </div>
             <div className="cart-buttons">
               <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
-              <button className="buy">Buy Now</button>
-            </div>
+            </div> */}
           </div>
         ))}
         
