@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { useParams } from 'react-router-dom';
-import StaticProductDescription from '../../../staticDB/StaticProductDescription';
+//import StaticProductDescription from '../../../staticDB/StaticProductDescription';
 import AddToCart from '../Components/AddToCart';
 import { decreaseQuantity, increaseQuantity } from '../../../Redux/CartSlice';
 
@@ -34,7 +34,8 @@ const ProductDescription: React.FC = () => {
 
   const { id } = useParams<{ id: string }>();
   const [product] = products.filter(item => item.id === id);
-  
+  const [projectProduct] = project.products.filter(item => item.id === id);
+  console.log(projectProduct);
   
   const handleQuantityIncrement = () => {
     dispatch(increaseQuantity(product.id));
@@ -83,7 +84,7 @@ const ProductDescription: React.FC = () => {
             </ul>
           </div>
         </section>) : (
-          <StaticProductDescription />
+          'Sorry page unavailable'
         )}
       <Footer />
     </>

@@ -5,7 +5,6 @@ import Navbar from "../Components/Navbar";
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
-import StaticCart from '../../../staticDB/StaticCart';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { Link } from 'react-router-dom';
@@ -46,7 +45,7 @@ const Cart:React.FC = () => {
   return (
     <>
       <Navbar />
-      {cartProducts.length > 0 ? (<section className="container">
+      <section className="container">
         <h2 className="container-header">Cart ({cartItemCount})</h2>
         {cartProducts.map(product => (
           <div className="cart-info">
@@ -85,9 +84,7 @@ const Cart:React.FC = () => {
             Checkout
           </Link>
         </div>
-      </section>) : (
-        <StaticCart />
-      )}
+      </section>
       <Footer />
     </>
   );

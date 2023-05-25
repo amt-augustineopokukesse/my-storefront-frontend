@@ -1,65 +1,143 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar';
 import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
-import leatherJacketSmall from '../../../assets/images/Templates/Ecommerce/leatherJacketSmall.png';
-import { useAppSelector } from '../../../store';
+import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
+import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
+import { setProject } from '../../../Redux/ProjectSlice';
+import { Link } from 'react-router-dom';
+import ShippingAddressEditModal from '../Components/ShippingAddressEditModal.tsx';
 
+interface ShippingAddressState {
+  name: string;
+  phoneNumber: string;
+  address: string;
+  pickupMode: string;
+}
 
 const Checkout:React.FC = () => {
-  const project = useAppSelector((state) => state.project);
-  console.log(project);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [shippingAddress, setShippingAddress] = useState<ShippingAddressState>({
+    name: 'Robert Elinam',
+    phoneNumber: '0240 000 000',
+    address: 'Western Region Sekondi Takoradi Metro Takoradi 17/8 old john saba road.',
+    pickupMode: 'Self-pick: Takoradi office',
+  });
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const dispatch = useAppDispatch();
+  
+  useEffect(() => {
+    const storedProject = localStorage.getItem('project');
+    if (storedProject) {
+      const savedProject = JSON.parse(storedProject);
+      dispatch(setProject(savedProject));
+      //setActive(true);
+    }
+  }, [dispatch]);
+
+  const project = useAppSelector((state) => state.project);
+  const cartProducts = useAppSelector((state) => state.cart.products);
+  
   useEffect(() => {
     applyTemplateCustomizations(project);
   }, [project]);
+
+  const handleQuantityIncrement = (id: string) => {
+    dispatch(increaseQuantity(id));
+  };
   
+  const handleQuantityDecrement = (id: string) => {
+    dispatch(decreaseQuantity(id));
+  };
+  const handleRemove = (id: string) => {
+    dispatch(removeFromCart(id));
+  };
+
+  const totalAmount = cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
+
+  const handleAddressSubmit = (data: ShippingAddressState) => {
+    setShippingAddress(data);
+    closeModal();
+  };
+
   return (
     <>
       <Navbar />
-      <div className='checkout-container'>
-        <div className='process-stages'>
-          Payment process stages
+      <div className="checkout-container">
+        <div className="process-stages">Payment process stages</div>
+        <h2 className="address-header">Shipping Address</h2>
+        <div className="shipping-info">
+          <div className="information">
+            <div className="name-and-number">
+              <h2>{shippingAddress.name}</h2>
+              <p>{shippingAddress.phoneNumber}</p>
+            </div>
+            <div className="address">
+              <p>{shippingAddress.address}</p>
+              <p>{shippingAddress.pickupMode}</p>
+            </div>
+          </div>
+          <div className="change">
+            <button className="change-button" onClick={openModal}>
+              Change
+            </button>
+            {isModalOpen && (
+              <ShippingAddressEditModal
+                onClose={closeModal}
+                initialData={shippingAddress}
+                onSubmit={handleAddressSubmit}
+              />
+            )}
+          </div>
         </div>
-        <h2 className='address-header'>Shipping Address</h2>
-        <div className='shipping-info'>
-            <div className='information'>
-              <div className='name-and-number'>
-                <h2>Robert Elinam</h2>
-                <p>0240 000 000</p>
+        <section className="container">
+        {cartProducts.map(product => (
+          <div className="cart-info">
+            <img src={product.image} className='cart-product-image'/>
+            <div className="cart-product-info">
+              <h2 className="cart-product-name">{product.productName}</h2>
+              <p className="cart-product-seller">Seller: {project.name}</p>
+              <p className="product-number-available">{product.initialStock} available</p>
+            </div>
+            <div className="cart-product-price">
+              {project.currency} {(product.price * product.quantity).toLocaleString()}
+            </div>
+            <div className="quantity">
+              <div className="number-selector">
+                <p className="minus" onClick={() => handleQuantityDecrement(product.id)}>
+                  -
+                </p>
+                <p className="number">{product.quantity}</p>
+                <p className="plus" onClick={() => handleQuantityIncrement(product.id)}>
+                  +
+                </p>
               </div>
-              <div className='address'>
-                <p>Western Region Sekondi Takoradi Metro Takoradi 17/8 old john saba road.</p>
-                <p>Self-pick: Takoradi office</p>
-              </div>
             </div>
-            <div className='change'>
-              <button className='change-button'>change</button>
+            <div className="cart-buttons">
+              <button className="remove" onClick={() => handleRemove(product.id)}>Remove</button>
+              <button className="buy">Buy Now</button>
             </div>
-          
+          </div>
+        ))}
+        
+        <div className="checkout">
+          <div className="checkout-amount">
+            GH&#8373; {totalAmount.toLocaleString()}
+          </div>
+          <Link to='/checkout' className="checkout-button">
+            Checkout
+          </Link>
         </div>
-        <div className="cart-info">
-          <img src={leatherJacketSmall} className='cart-product-image'/>
-          <div className="cart-product-info">
-            <h2 className="cart-product-name">Leather Jacket with polished cotton</h2>
-            <p className="cart-product-seller">Seller: James Cottage</p>
-            <p className="product-number-available">2 Available</p>
-          </div>
-          <div className="cart-product-price">
-            GH&#8373; 2,093.00
-          </div>
-          <div className="quantity">
-            <div className='number-selector'>
-              <p className="minus">-</p>
-              <p className='number'>1</p>
-              <p className="plus">+</p>
-            </div>
-          </div>
-          <div className="cart-buttons">
-            <button className="remove">Remove</button>
-            <button className="buy">Buy Now</button>
-          </div>
-        </div>
+      </section>
       </div>
       
     </>

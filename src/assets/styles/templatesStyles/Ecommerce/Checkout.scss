@@ -37,13 +37,17 @@ p {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        //height: 100%;
         .information {
-            width: 60%;
+            width: 80%;
+            height: 80%;
             display: flex;
             flex-direction: column;
+            gap: 10px;
             .name-and-number {
                 display: flex;
-                width: 50%;
+                max-width: 100%;
+                
                 justify-content: space-between;
                 align-items: center;
             }
