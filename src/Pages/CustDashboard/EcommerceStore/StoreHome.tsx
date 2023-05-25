@@ -10,7 +10,6 @@ import Hero from '../../../Templates/Ecommerce/Components/Hero';
 import { Footer } from '../../../Templates/Finance/Components/Footer';
 import Carousel from '../../../Templates/Ecommerce/Components/Carousel';
 import CustomizedMain from '../../../Templates/Ecommerce/Components/CustomizedMain';
-import Main from '../../../Templates/Ecommerce/Components/Main';
 
 
 const EcommerceStoreHome:React.FC = () => {

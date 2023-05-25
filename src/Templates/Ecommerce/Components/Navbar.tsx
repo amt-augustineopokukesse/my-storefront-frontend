@@ -1,21 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../../assets/styles/templatesStyles/Ecommerce/Navbar.scss';
 import Search from "./Search";
 import shoppingCart from "../../../assets/svg/templates-svg/🦆 icon _shopping cart outline_.svg";
-import { useAppSelector } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../store";
 import { Link } from "react-router-dom";
+import { resetAuthState } from "../../../Redux/AuthSlice";
 
 
 const Navbar: React.FC = () => {
+
+  const project = useAppSelector((state) => state.project);
+
   const cartProducts = useAppSelector((state) => state.cart.products);
 
   const cartItemCount = cartProducts.reduce((total, product) => total + product.quantity, 0);
 
+  let loggedIn = window.localStorage.getItem('token');
+    const dispatch = useAppDispatch();
+
+    const signOut = () => {
+        window.localStorage.clear();
+        loggedIn = ""
+        dispatch(resetAuthState());
+        // navigate('/');
+        window.location.href = '/';
+    }
+
   return (
     <>
       <div className="navbar">
-        <h3 className="logo">LOGO</h3>
-        <button className="whole-sale-button">Wholesale</button>
+        <h3 className="logo">{project.name}</h3>
         <Search />
         <Link to="/cart" className="cart-link">
           <img src={shoppingCart} alt="shopping cart" />
@@ -23,8 +37,9 @@ const Navbar: React.FC = () => {
         </Link>
         
         <div className="login-signup-buttons">
-          <button className="login">Login</button>
-          <button className="signup">Sign Up</button>
+        { !loggedIn && <Link to='/login'><button className="login">Login</button> </Link>}
+        { !loggedIn && <Link to='/signup'><button className="signup">Sign Up</button></Link>}
+        {loggedIn &&  <button className="signup" onClick={signOut}>Logout</button>}
         </div>
       </div>
     </>

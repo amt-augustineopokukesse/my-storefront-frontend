@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../assets/styles/templatesStyles/Ecommerce/Header.scss';
 import { useAppSelector } from '../../../store';
 import { extractCategories } from './ProductEditUtils';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const project = useAppSelector((state) => state.project);
@@ -19,11 +20,7 @@ const Header: React.FC = () => {
         </ul>
         ) : (
           <ul className="menu">
-            <li className="menu-item">Women</li>
-            <li className="menu-item">Men</li>
-            <li className="menu-item">Kids</li>
-            <li className="menu-item">Accessories</li>
-            <li className="menu-item">Wishlist</li>
+            <li className="menu-item"><Link to="/stores/ecommerce">Home</Link></li>
         </ul>
         )}
         
