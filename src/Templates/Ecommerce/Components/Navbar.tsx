@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import '../../../assets/styles/templatesStyles/Ecommerce/Navbar.scss';
 import Search from "./Search";
 import shoppingCart from "../../../assets/svg/templates-svg/🦆 icon _shopping cart outline_.svg";
@@ -13,7 +13,8 @@ const Navbar: React.FC = () => {
 
   const cartProducts = useAppSelector((state) => state.cart.products);
 
-  const cartItemCount = cartProducts.reduce((total, product) => total + product.quantity, 0);
+  //const cartItemCount = cartProducts.reduce((total, product) => total + product.quantity, 0);
+  const cartItemCount = cartProducts.length;
 
   let loggedIn = window.localStorage.getItem('token');
     const dispatch = useAppDispatch();
