@@ -36,19 +36,21 @@ const CustomizedMain: React.FC = () => {
 
             <div className="section-items">
               {products.map((product) => (
-                <Link to={`/product/${encodeURIComponent(product.productName)}`} key={product.productName} className="tile">
-                  <div className="image">
-                    <img src={product.image} alt="" className="item-image" />
+                <div className="tile">
+                  <Link to={`/product/${product.id}`} key={product.id} className='link'>
+                    <div className="image">
+                      <img src={product.image} alt="" className="item-image" />
+                    </div>
                     <p>{product.productName}</p>
-                  </div>
-                  <div className="price">
-                    GH&#8373; {product.price}
-                  </div>
-                  <div className="available">
-                    <p className="number-available">{product.initialStock} Available</p>
-                    <AddToCart product={product}/>
-                  </div>
-                </Link>
+                    <div className="price">
+                      GH&#8373; {product.price}
+                    </div>
+                    <div className="available">
+                      <p className="number-available">{product.initialStock} Available</p>
+                    </div>
+                  </Link>
+                  <AddToCart product={product}/>
+                </div>
               ))}
             </div>
           </div>

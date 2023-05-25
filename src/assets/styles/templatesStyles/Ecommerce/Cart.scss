@@ -6,13 +6,13 @@ h2, p {
     margin: 3% auto;
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto';
-    color: #222222;
+    font-family: var(--body-font);
+    color: var(--body-font-color);
     .container-header {
-        font-family: 'Roboto';
+        font-family: var(--body-font);
         font-size: 32px;
         font-style: normal;
-        color: #222222;
+        color: var(--body-font-color);
         font-weight: 700;
     }
     .cart-info {
@@ -99,7 +99,14 @@ h2, p {
                     font-weight: 700;
                     font-size: 30px;
                     line-height: 38px;
-                    color: #222222;
+                    color: var(--body-font-color);
+                }
+                .minus, .plus {
+                    cursor: pointer;
+                    &:hover {
+                        //background-color: #999898;
+                        color: #999898;
+                    }
                 }
                 .number {
                     background: #FFFFFF;
@@ -129,19 +136,19 @@ h2, p {
                 border-radius: 10px;
                 outline: none;
                 border: none;
-                font-family: 'Roboto';
+                font-family: var(--body-font);
                 font-style: normal;
                 font-weight: 600;
                 font-size: 20px;
                 cursor: pointer;
             }
             .remove {
-                background-color: #FFFFFF;
-                color: #15616B;
+                background-color: var(--secondary-color);
+                color: var(--primary-color);
             }
             .buy {
-                background-color: #15616B;
-                color: #FFFFFF;
+                background-color: var(--primary-color);
+                color: var(--secondary-color);
             }
         }
     }
@@ -167,13 +174,15 @@ h2, p {
         }
         .checkout-button {
             width: 35%;
-            background-color: #15616B;
-            color: #FFFFFF;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
             border: none;
             outline: none;
             border-radius: 0px 10px 10px 0px;
             cursor: pointer;
-
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
