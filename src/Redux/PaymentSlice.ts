@@ -1,17 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ProductState } from './ProjectInitialState';
 
 interface PaymentState {
-  shippingAddress: ShippingAddress;
+  orderDetails: OrderState;
   paymentDetails: PaymentDetails;
 //   loading: boolean;
 //   error: string | null;
 }
 
-interface ShippingAddress {
-  name: string;
-  phoneNumber: string;
-  address: string;
+interface OrderState {
+  shipping_reciepient_names: string;
+  shipping_reciepient_contacts: string;
+  shipping_reciepient_address: string;
   pickupMode: string;
+  project_id: string;
+  products: ProductState[];
+  userId: string;
+  amount?: number;
+  payment_method: string;
+  associated_account_number?: string;
 }
 
 export interface PaymentDetails {
@@ -25,12 +32,24 @@ export interface PaymentDetails {
 
 }
 
+const storedProject = localStorage.getItem('project');
+let savedProject;
+if (storedProject) {
+  savedProject = JSON.parse(storedProject);
+}
+
 const initialState: PaymentState = {
-  shippingAddress: {
-    name: '',
-    phoneNumber: '',
-    address: '',
+  orderDetails: {
+    shipping_reciepient_names: string,
+    shipping_reciepient_contacts: '',
+    shipping_reciepient_address: '',
     pickupMode: '',
+    project_id: savedProject.id,
+    products: [],
+    userId: string,
+    amount: 0,
+    payment_method: '',
+    associated_account_number: '',
   },
   paymentDetails: {
     paymentMethod: 'visa',

@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-//import api from "./Authentication/axiosClient";
 import { ProductState, ProjectState, initialProjectState } from "./ProjectInitialState";
 import api from "./Authentication/axiosClient";
 
