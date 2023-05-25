@@ -22,6 +22,7 @@ import Cart from './Templates/Ecommerce/Pages/Cart';
 import Checkout from './Templates/Ecommerce/Pages/Checkout';
 import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectCustomizationForm';
 import { EditTemplatePage } from './Pages/EditTemplate/EditTemplatePage';
+import StoreHome from './Pages/CustDashboard/EcommerceStore/StoreHome';
 
 
 const App: React.FC =() => {
@@ -45,7 +46,7 @@ const App: React.FC =() => {
           />
           <Routes>
             <Route path='/' element={loggedIn ? <Dashboard/> : <LandingPage />}/>
-            <Route path='/CustDashboard/*' element={<CustDashboard />} />
+            <Route path='/custdashboard/*' element={<CustDashboard />} />
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/landing' element={<LandingPage/>}/>
@@ -63,6 +64,7 @@ const App: React.FC =() => {
             <Route path='/checkout' element={<Checkout/>}/>
             <Route path='/template-editor' element={<TemplateCustomizationForm/>}/>
             <Route path='/dashboard/project/templates/edit-template-page' element={<EditTemplatePage />} />
+            <Route path='/stores/ecommerce' element={<StoreHome />} />
           </Routes>
         </div>
       </Router>

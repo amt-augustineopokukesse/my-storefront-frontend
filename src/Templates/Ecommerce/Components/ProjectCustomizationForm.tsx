@@ -7,7 +7,7 @@ import { StylingForm } from './StylingForm';
 import UploadForm from './UploadForm';
 import ProductsForm from './ProductsForm';
 import ProjectDetailsForm from './ProjectDetailsForm';
-import { publishProject, saveProject, setProject, updateProject } from '../../../Redux/ProjectSlice';
+import { publishProject, saveProject, updateProject } from '../../../Redux/ProjectSlice';
 import { AuthLoader } from '../../../components/authComponents/AuthLoader';
 import { toast } from 'react-toastify';
 //import AddPagesForm from './AddPagesForm';
@@ -104,7 +104,7 @@ const ProjectCustomizationForm: React.FC = () => {
   const handlePublish = async () => {
     setLoader(true);
     try {
-      const response = await dispatch(publishProject(project));
+      const response = await dispatch(publishProject());
       localStorage.setItem('project', JSON.stringify(response.payload.data));
       const merchant = localStorage.getItem('merchant');
       if (merchant && response.payload.data) {

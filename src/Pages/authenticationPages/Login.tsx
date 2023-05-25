@@ -103,9 +103,9 @@ const Login: React.FC = () => {
         if (userLoginSuccessOrError && userLoginSuccessOrError.success) {
           toast.success(userLoginSuccessOrError.message);
           window.localStorage.setItem('token', userLoginSuccessOrError.data.token)
-          window.localStorage.setItem("merchant", JSON.stringify(userLoginSuccessOrError.data));
+          window.localStorage.setItem(userLoginSuccessOrError.data.role, JSON.stringify(userLoginSuccessOrError.data));
           setLoader(false);
-          navigate(userLoginSuccessOrError.data.role === "customer" ? "/landing" : userLoginSuccessOrError.data.role === "merchant" ? "/dashboard" : "/login");
+          navigate(userLoginSuccessOrError.data.role === "customer" ? "/custdashboard" : userLoginSuccessOrError.data.role === "merchant" ? "/dashboard" : "/login");
           return;
         } else if (userLoginSuccessOrError && !userLoginSuccessOrError.success) {
           toast.error(userLoginSuccessOrError);
