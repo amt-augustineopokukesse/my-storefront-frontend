@@ -10,6 +10,7 @@
     height: 87vh;
 }
 .image-name{
+    position: relative;
     margin-top: 4rem;
     display: flex;
     gap: 2rem;
@@ -107,7 +108,7 @@ input[type="text"]:focus{
 .location-edit-button {
     position: absolute;
     top: 12px;
-    right: -15px;
+    right: 10px;
     background-color: transparent;
     border: none;
 }
@@ -116,4 +117,23 @@ button:disabled {
     opacity: 0.5;
     outline-offset: 2px;
     outline: 1px solid #00284C;
+}
+#profile-photo{
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    background-color: #978f8f;
+}
+.upload-input{
+    border-radius: 50%;
+    background-color: #00284C;
+    left: 6.5rem;
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+}
+#upload-input{
+    width: 15rem;
+    height: 15rem;
+
 }

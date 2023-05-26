@@ -93,12 +93,26 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
     },
   });
 
+  const previewFile = (event:React.ChangeEvent<HTMLInputElement>) => {
+    if(event.target.files && event.target.files[0]){
+        const file = event.target.files[0];
+        const preview: any = document.querySelector('#profile-photo');
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            preview.src = reader.result
+        }
+        reader.readAsDataURL(file)
+    }
+   
+}
+
   return (
     <div className="profile-details">
       {loader ? <AuthLoader /> : ""}
 
       <div className="image-name">
-        <img className="photo" src={profilephoto} alt="" />
+        <img className="photo" id="profile-photo" src={profilephoto} alt="" />
+        <input type="file" onChange={previewFile} className="upload-input" id="upload-input"/>
         <h3 className="name">
           {merchantExists ? merchantExists.business_name : "Merchant"}
         </h3>
