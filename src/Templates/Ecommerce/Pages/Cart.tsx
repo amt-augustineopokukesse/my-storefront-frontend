@@ -9,7 +9,7 @@ import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Red
 import { setProject } from '../../../Redux/ProjectSlice';
 import { MdCancel } from "react-icons/md";
 import ShippingAddressEditModal from '../Components/ShippingAddressEditModal';
-import { setCustomerShippingAddress } from '../../../Redux/PaymentSlice';
+import { OrderState, setCustomerShippingAddress } from '../../../Redux/PaymentSlice';
 
 interface ShippingAddressState {
   name: string;
@@ -37,11 +37,16 @@ const Cart:React.FC<user> = (props) => {
   
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [shippingAddress, setShippingAddress] = useState<ShippingAddressState>({
-    name: '',
-    phoneNumber: '',
-    address: '',
+  const [shippingAddress, setShippingAddress] = useState<OrderState>({
+    shipping_reciepient_names: '',
+    shipping_reciepient_contacts: '',
+    shipping_reciepient_address: '',
     pickupMode: '',
+    products: [],
+    userId: '',
+    amount: 0,
+    payment_method: '',
+    associated_account_number: '',
   });
 
   const openModal = () => {

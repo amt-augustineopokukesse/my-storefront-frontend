@@ -8,16 +8,16 @@ interface PaymentState {
 //   error: string | null;
 }
 
-interface OrderState {
-  shipping_reciepient_names: string;
-  shipping_reciepient_contacts: string;
-  shipping_reciepient_address: string;
-  pickupMode: string;
-  project_id: string;
-  products: ProductState[];
-  userId: string;
+export interface OrderState {
+  shipping_reciepient_names?: string;
+  shipping_reciepient_contacts?: string;
+  shipping_reciepient_address?: string;
+  pickupMode?: string;
+  project_id?: string;
+  products?: ProductState[];
+  userId?: string;
   amount?: number;
-  payment_method: string;
+  payment_method?: string;
   associated_account_number?: string;
 }
 
@@ -40,13 +40,13 @@ if (storedProject) {
 
 const initialState: PaymentState = {
   orderDetails: {
-    shipping_reciepient_names: string,
+    shipping_reciepient_names: '',
     shipping_reciepient_contacts: '',
     shipping_reciepient_address: '',
     pickupMode: '',
-    project_id: savedProject.id,
+    project_id: savedProject ? savedProject.id || '' : '',
     products: [],
-    userId: string,
+    userId: '',
     amount: 0,
     payment_method: '',
     associated_account_number: '',
@@ -68,20 +68,14 @@ const PaymentSlice = createSlice({
     name: 'payment',
     initialState,
     reducers: {
-      setCustomerShippingAddress: (state, action: PayloadAction<ShippingAddress>) => {
-        state.shippingAddress = action.payload;
+      setCustomerShippingAddress: (state, action: PayloadAction<OrderState>) => {
+        state.orderDetails = action.payload;
       },
       setCustomerPaymentDetails: (state, action: PayloadAction<PaymentDetails>) => {
         state.paymentDetails = action.payload;
       },
-    //   setLoading: (state, action: PayloadAction<boolean>) => {
-    //     state.loading = action.payload;
-    //   },
-    //   setError: (state, action: PayloadAction<string | null>) => {
-    //     state.error = action.payload;
-    //   },
-    },
-});
+    }
+})
 
 export const { setCustomerShippingAddress, setCustomerPaymentDetails } = PaymentSlice.actions;
 
