@@ -4,7 +4,7 @@ import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
-import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
+//import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { Link } from 'react-router-dom';
 import ShippingAddressEditModal from '../Components/ShippingAddressEditModal.tsx';
@@ -54,17 +54,6 @@ const Checkout:React.FC = () => {
   useEffect(() => {
     applyTemplateCustomizations(project);
   }, [project]);
-
-  const handleQuantityIncrement = (id: string) => {
-    dispatch(increaseQuantity(id));
-  };
-  
-  const handleQuantityDecrement = (id: string) => {
-    dispatch(decreaseQuantity(id));
-  };
-  const handleRemove = (id: string) => {
-    dispatch(removeFromCart(id));
-  };
 
   const totalAmount = cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
 

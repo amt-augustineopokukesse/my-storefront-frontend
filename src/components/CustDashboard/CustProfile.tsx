@@ -1,4 +1,4 @@
-import profile from '../../assets/images/Ellipse 3.png';
+//mport profile from '../../assets/images/Ellipse 3.png';
 import { useEffect, useState } from 'react';
 import '../../assets/styles//custDashboardStyles/CustProfile.scss';
 import SignOut from '../Dashboard/SignOut';
