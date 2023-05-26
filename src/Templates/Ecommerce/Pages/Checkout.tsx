@@ -55,17 +55,6 @@ const Checkout:React.FC = () => {
     applyTemplateCustomizations(project);
   }, [project]);
 
-  const handleQuantityIncrement = (id: string) => {
-    dispatch(increaseQuantity(id));
-  };
-  
-  const handleQuantityDecrement = (id: string) => {
-    dispatch(decreaseQuantity(id));
-  };
-  const handleRemove = (id: string) => {
-    dispatch(removeFromCart(id));
-  };
-
   const totalAmount = cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
 
   const handleAddressSubmit = (data: ShippingAddressState) => {

@@ -34,9 +34,6 @@ const Cart:React.FC = () => {
   const handleQuantityDecrement = (id: string) => {
     dispatch(decreaseQuantity(id));
   };
-  const handleRemove = (id: string) => {
-    dispatch(removeFromCart(id));
-  };
 
   const cartItemCount = cartProducts.reduce((total, product) => total + product.quantity, 0);
   const totalAmount = cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
