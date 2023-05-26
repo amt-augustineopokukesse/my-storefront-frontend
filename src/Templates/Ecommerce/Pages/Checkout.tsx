@@ -4,7 +4,7 @@ import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
-import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
+//import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { Link } from 'react-router-dom';
 import ShippingAddressEditModal from '../Components/ShippingAddressEditModal.tsx';

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
+import { decreaseQuantity, increaseQuantity } from '../../../Redux/CartSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { Link } from 'react-router-dom';
 import { applyTemplateCustomizations } from '../../../Templates/Ecommerce/Components/ProductEditUtils';
