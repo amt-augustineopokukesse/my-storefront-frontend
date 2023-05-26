@@ -106,7 +106,6 @@ export const updateProject =  createAsyncThunk(
         template: template,
         ...values
       });
-      // console.log(response.data);
       //const response = await axios.post('https://reqres.in/api/users', project);
       return response.data;
     } catch (error: unknown) {

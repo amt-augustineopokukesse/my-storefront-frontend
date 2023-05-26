@@ -55,9 +55,10 @@ const ProjectCustomizationForm: React.FC = () => {
     setLoader(true);
     try {
       const response = await dispatch(saveProject(project));
-      localStorage.setItem('project', JSON.stringify(response.payload.data));
       
       if (response.payload.data) {
+        localStorage.setItem('project', JSON.stringify(response.payload.data));
+      
         toast.success("Created project successfully 👏 You can publish it Now! or Later")
         setTimeout(()=>{
           setLoader(false);
@@ -78,8 +79,9 @@ const ProjectCustomizationForm: React.FC = () => {
     setLoader(true);
     try {
       const response = await dispatch(updateProject(project));
-      localStorage.setItem('project', JSON.stringify(response.payload.data));
+      
       if (response.payload.data) {
+        localStorage.setItem('project', JSON.stringify(response.payload.data));
         toast.success("Updated the project successfully")
         setTimeout(()=>{
           setLoader(false);
@@ -100,8 +102,9 @@ const ProjectCustomizationForm: React.FC = () => {
     setLoader(true);
     try {
       const response = await dispatch(publishProject());
-      localStorage.setItem('project', JSON.stringify(response.payload.data));
+      
       if (response.payload.data) {
+        localStorage.setItem('project', JSON.stringify(response.payload.data));
         toast.success("Huraayy 🥳🎉 Your Project Live 👍 Our Customers can make purchases on your New Website👏 Make MONEY 💵!!🤝");
         setTimeout(()=>{
           setLoader(false);

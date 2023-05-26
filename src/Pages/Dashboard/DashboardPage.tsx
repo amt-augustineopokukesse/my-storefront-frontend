@@ -64,7 +64,7 @@ export const DashboardPage: React.FC<store> = (props) => {
             <div className="grid-container">
                   <h3 className='grid-header'></h3>  
             </div>
-            {loader ? <AuthLoader /> : ''} 
+            {loader && <AuthLoader />}
         </div>
     )
 }

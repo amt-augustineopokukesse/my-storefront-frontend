@@ -29,19 +29,24 @@ export const CustDashboardPage: React.FC<store> = (props) => {
         getStores();
     },[]);
 
-    useEffect(() => {
-        console.log(stores)
-    },[stores])
 
     return (
         <div style={{padding: "20px"}} className='dashboard-page'>
-            <h1>Stores</h1>
+            {
+                stores && stores.length ?
+                <h1>Stores</h1> :
+                <h1>Check soon for stores</h1>
+            }
             <div className='store-display'>
                 {
                     stores && stores.length ? 
                     stores.map((pStore: store, index: number)=>
-                    <div className='store-object' key={index}>
-                        <Link to="/stores/ecommerce" state={{linkedProject: pStore}}><p>Visit Store</p></Link>
+                    <div style={{backgroundImage: `url(${pStore.bannerUrl})`}} className='store-object' key={index}>
+                        <Link to="/stores/ecommerce" state={{linkedProject: pStore}}><p className='visit-store'>Visit Store</p></Link>
+                        <div className='object-details'>
+                            <p><b>Store: </b> {pStore.name}</p>
+                            <p><b>Category: </b> {pStore.category}</p>
+                        </div>
                     </div>) 
                     : ""
                 }
