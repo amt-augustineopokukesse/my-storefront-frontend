@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../../assets/styles/templatesStyles/Ecommerce/CustomizationModal.scss';
-import { OrderState } from '../../../Redux/Payment/PaymentInitialState';
+import { OrderState } from '../../../Redux/PaymentInitialState';
 
 const ShippingAddressEditModal: React.FC<{
   onClose: () => void;
