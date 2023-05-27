@@ -199,30 +199,33 @@ export interface TemplateDataType {
   }
   
 
-const TemplateData: TemplateDataType = {
+const TemplateData= {
     globalRobotoFont: {font:'roboto'},
     globalPoppinsFont: {font: 'poppins'},
     topBar: {
         components: {
+            globalFontStyle: {
+                text: {
+                    fontSize: '16px'
+                }
+            },
             logo: {
                 content: 'LOGO',
                 style: {
-                    fontSize: '35px',
                     color: '#FC7225',
+                    fontSize: '40px'
                 }
             },
             loginButton: {
                 content: 'Login',
                 style: {
                     color: '#222222',
-                    fontSize: '16px'
                 }
             },
             registerButton: {
                 content: 'Register',
                 style: {
                     color: '#FC7225',
-                    fontSize: '16px'
                 }
             }
         },
