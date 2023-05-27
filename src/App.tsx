@@ -24,6 +24,7 @@ import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectC
 import { EditTemplatePage } from './Pages/EditTemplate/EditTemplatePage';
 import StoreHome from './Pages/CustDashboard/EcommerceStore/StoreHome';
 import { Payment } from './Templates/Ecommerce/Pages/Payment';
+import { Finance } from './Templates/Finance/Pages/Finance';
 
 
 const App: React.FC =() => {
@@ -68,6 +69,7 @@ const App: React.FC =() => {
             <Route path='/template-editor' element={<TemplateCustomizationForm/>}/>
             <Route path='/dashboard/project/templates/edit-template-page' element={<EditTemplatePage />} />
             <Route path='/stores/ecommerce' element={<StoreHome />} />
+            <Route path='/finance' element={<Finance />} />
           </Routes>
         </div>
       </Router>

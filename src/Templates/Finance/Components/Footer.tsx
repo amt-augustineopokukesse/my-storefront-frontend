@@ -11,11 +11,14 @@ export const Footer: React.FC = () => {
     
   
     return (
-        <div className='footer'>
-            <span className='footer-logo'>
+        <div className='footer' 
+        style={TemplateData.footer.style}>
+            <span className='footer-logo' 
+            style={TemplateData.footer.components.globalFontStyle.headerStyle}>
                 {project.name}
             </span>
-            <div className='footer-text'>
+            <div className='footer-text' 
+            style={TemplateData.footer.components.globalFontStyle.textStyle}>
                 <p>{project.description}</p>
                 <p>{project.address !== "Add your Address" ? project.address : ""}</p>
                 <p>{project.location !== "Add your location" ? project.location : ""}</p>
@@ -26,7 +29,7 @@ export const Footer: React.FC = () => {
                     <a href={project.instagramURL || "https://www.instagram.com"}><img src={instagramlogo} alt="" /></a>
                     <a href={project.twitterURL || "https://www.instagram.com"}><img src={twitterlogo} alt="" /></a> 
                 </span>
-                <p>{TemplateData.footer.p1}</p>
+                <p>{TemplateData.footer.components.p1.content}</p>
                 <p>{project.phoneNumber !== "024 12 345 6789" ? project.phoneNumber : "Store has no contact"}</p>
             </div>
         </div>

@@ -1,19 +1,15 @@
+$heroImage: url('../../../images/farmers.png');
+
 .finance-template{
     height: 50rem;
     width: 100%;
     .finance-top-bar{
         display: flex;
         align-items: center;
-        background-color: #FFFFFF;
         justify-content: space-around;
         gap: 35vw;
         width: 100%;
         height: 5rem;
-        .finance-top-bar-header{
-            font-size: 35px;
-            font-family: roboto;
-            color: #FC7225;
-        } 
         .search-bar-buttons-span{
             display: flex;
             justify-content: space-between;
@@ -75,7 +71,6 @@
                 font-weight: 400;
             }
             .login-button{
-                color: #222222;
                 position: relative;
                 width: 5rem;
                 height: 2rem;
@@ -93,7 +88,6 @@
                 width: 1rem;
             }
             .register-button{
-                color: #FC7225;
                 width: 6rem;
                 height: 2rem;
                 padding: 0;
@@ -102,11 +96,10 @@
             }
         }
     }
-    
     .finance-hero-section {
         position: relative;
         display: flex;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../../images/farmers.png'), #767676;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),$heroImage , #767676;
         justify-content: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -114,13 +107,10 @@
         height: 38rem;
         .finance-hero-section-header{
             margin: 0;
-            font-size: 30px;
-            font-weight: 700;
         }
         .finance-hero-section-text{
-            font-size: 18px;
-            width: 27rem;
             font-weight: 400;
+            width: 27rem;
             margin-top: 0.5rem;
         }
         .hero-message{
@@ -137,7 +127,6 @@
         display: flex;
         align-items: center;
         height: 13rem;
-        background-color: #FC7225;
     }
     .toggle-div-personal-mode{
         justify-content: center;
@@ -153,11 +142,10 @@
         align-items: center;
         width: 10rem;
         height: 10rem;
-        border-radius: 4px;
+        border-radius: 50%;
         font-size: 15px;
-        font-weight: 500;
         font-family: 'roboto';
-        background-color: #FFFFFF;
+        font-weight: 500;
         box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.25);
         .text{
             max-width: 7.5rem;
@@ -169,7 +157,7 @@
         }
     }
     .toggle-buttons-span{
-        border-radius: 4px;
+        border-radius: 10px;
         position: absolute;
         top: 80%;
         width: 30rem;
@@ -178,7 +166,6 @@
         .toggle-button{
             cursor: pointer;
             background-color: #FFFFFF;
-            color: #FC7225;
             font-weight: 400;
             font-family: 'roboto';
             font-size: 25px;
@@ -193,10 +180,6 @@
         .toggle-button:nth-child(2){
             border-top-right-radius: inherit;
             border-bottom-right-radius: inherit;
-        }
-        .active{
-            background-color: #FC7225;
-            color: #FFFFFF;
         }
 }
     .section3{
@@ -227,9 +210,7 @@
                 width: 31rem;
                 height: 15rem;
                 h3{
-                    font-size: 40px;
                     margin: 0;
-                    font-family: 'poppins';
                 }
                 p{
                     margin: 0;
@@ -269,13 +250,10 @@
                 width: 31rem;
                 height: 15rem;
                 h3{
-                    font-size: 40px;
                     margin: 0;
-                    font-family: 'poppins';
                 }
                 p{
                     margin: 0;
-                    font-family: 'roboto';
                     font-weight: 400;
                 }
             }
@@ -288,6 +266,7 @@
         gap: 10rem;
         width: 100%;
         height: 35rem;
+        margin: 0;
         background: linear-gradient(0deg, rgba(221, 79, 0, 0.10), rgba(221, 79, 0, 0.10)), url('../../../images//Rectangle.png'), #D9D9D9;
         .image-span{
             height: 26rem;
@@ -300,10 +279,6 @@
         }
     }
 }
-
-
-
-
 
 
 
