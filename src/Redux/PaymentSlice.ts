@@ -1,50 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductState } from './ProjectInitialState';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { OrderState, PaymentDetails, PaymentState } from './PaymentInitialState';
+import axios, { AxiosError } from 'axios';
 
-interface PaymentState {
-  orderDetails: OrderState;
-  paymentDetails: PaymentDetails;
-//   loading: boolean;
-//   error: string | null;
-}
-
-export interface OrderState {
-  shipping_reciepient_names?: string;
-  shipping_reciepient_contacts?: string;
-  shipping_reciepient_address?: string;
-  pickupMode?: string;
-  project_id?: string;
-  products?: ProductState[];
-  userId?: string;
-  amount?: number;
-  payment_method?: string;
-  associated_account_number?: string;
-}
-
-export interface PaymentDetails {
-  paymentMethod: 'visa';
-  bank: string;
-  accountHolder: string;
-  branch: string;
-  cardNumber: string;
-  cvc: string;
-  expiryDate: string;
-
-}
-
-const storedProject = localStorage.getItem('project');
-let savedProject;
-if (storedProject) {
-  savedProject = JSON.parse(storedProject);
-}
-
-const initialState: PaymentState = {
+export const initialPaymentState: PaymentState = {
   orderDetails: {
     shipping_reciepient_names: '',
     shipping_reciepient_contacts: '',
     shipping_reciepient_address: '',
     pickupMode: '',
-    project_id: savedProject ? savedProject.id || '' : '',
+    //project_id: savedProject ? savedProject.id || '' : '',
+    project_id: '',
     products: [],
     userId: '',
     amount: 0,
@@ -60,24 +25,52 @@ const initialState: PaymentState = {
     cvc: '',
     expiryDate: '',
   },
-//   loading: false,
-//   error: null,
+
 };
 
-const PaymentSlice = createSlice({
+export const makeOrder = createAsyncThunk(
+  "payment/makeOrder",
+  async (order: OrderState) => {
+    try {
+      const response = await axios.post('https://reqres.in/api/users', order);
+      //const response = await api.post(`/api/${usertype}/signup`, user);
+      if (response.data) return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          return error.response.data.message;
+        }
+      }
+      return "An error occurred";
+    }
+  }
+);
+
+export const PaymentSlice = createSlice({
     name: 'payment',
-    initialState,
+    initialState: initialPaymentState,
     reducers: {
-      setCustomerShippingAddress: (state, action: PayloadAction<OrderState>) => {
-        state.orderDetails = action.payload;
-      },
+      // setCustomerOrderDetails: (state, action: PayloadAction<OrderState>) => {
+      //   state.orderDetails = action.payload;
+      // },
       setCustomerPaymentDetails: (state, action: PayloadAction<PaymentDetails>) => {
         state.paymentDetails = action.payload;
       },
+    //   setLoading: (state, action: PayloadAction<boolean>) => {
+    //     state.loading = action.payload;
+    //   },
+    //   setError: (state, action: PayloadAction<string | null>) => {
+    //     state.error = action.payload;
+    //   },
+    },
+    extraReducers: (builder) => {
+      builder.addCase(makeOrder.fulfilled, (state, action) => {
+        state.orderDetails = action.payload;
+      });
     }
-})
+});
 
-export const { setCustomerShippingAddress, setCustomerPaymentDetails } = PaymentSlice.actions;
+export const { setCustomerPaymentDetails } = PaymentSlice.actions;
 
 export default PaymentSlice.reducer;
 
