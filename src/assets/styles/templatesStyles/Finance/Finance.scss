@@ -60,10 +60,11 @@ $heroImage: url('../../../images/farmers.png');
         .login-register-buttons{
             display: flex;
             height: 100%;
+            background-color: transparent;
             justify-content: space-between;
             gap: 5rem;
             button{
-                background-color: transparent;
+                background: transparent;
                 border: none;
                 cursor: pointer;
                 font-size: 18px;

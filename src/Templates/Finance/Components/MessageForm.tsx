@@ -1,10 +1,11 @@
 import '../../../assets/styles/templatesStyles/Finance/MessageForm.scss'
-import TemplateData from '../../../staticDB/FinanceData'
+import { useAppSelector } from '../../../store'
 
 export const MessageForm: React.FC = () => {
+    const messageData = useAppSelector(state => state.finance.messageSection)
     return (
         <div className='finance-form-div' 
-        style={TemplateData.messageSection.style}>
+        style={messageData.style}>
             <form action="" className='form'>
                 <input type="text" placeholder="Type name here" className='name-input'/>
                 <input type="text" placeholder="test1@gmail.com" className='email-input'/>
