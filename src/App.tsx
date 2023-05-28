@@ -19,11 +19,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import EcommerceHome from './Templates/Ecommerce/Pages/EcommerceHome';
 import ProductDescription from './Templates/Ecommerce/Pages/ProductDescription';
 import Cart from './Templates/Ecommerce/Pages/Cart';
-import Checkout from './Templates/Ecommerce/Pages/Checkout';
+//import Checkout from './Templates/Ecommerce/Pages/Checkout';
 import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectCustomizationForm';
 import { EditTemplatePage } from './Pages/EditTemplate/EditTemplatePage';
 import StoreHome from './Pages/CustDashboard/EcommerceStore/StoreHome';
-import { Payment } from './Templates/Ecommerce/Pages/Payment';
+//import { Payment } from './Templates/Ecommerce/Pages/Payment';
 import { Finance } from './Templates/Finance/Pages/Finance';
 import { FinanceEditForm } from './Templates/Finance/Components/FinanceEditForm';
 
@@ -65,8 +65,8 @@ const App: React.FC =() => {
             <Route path='/ecommerce' element={<EcommerceHome/>}/>
             <Route path='/product/:id' element={<ProductDescription />} />
             <Route path='/cart' element={<Cart/>}/>
-            <Route path='/checkout' element={<Checkout/>}/>
-            <Route path='/payment' element={<Payment />} />
+            {/* <Route path='/checkout' element={<Checkout/>}/> */}
+            {/* <Route path='/payment' element={<Payment />} /> */}
             <Route path='/template-editor' element={<TemplateCustomizationForm/>}/>
             <Route path='/dashboard/project/templates/edit-template-page' element={<EditTemplatePage />} />
             <Route path='/stores/ecommerce' element={<StoreHome />} />

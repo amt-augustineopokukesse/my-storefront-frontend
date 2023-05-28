@@ -5,45 +5,68 @@ import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { applyTemplateCustomizations } from '../Components/ProductEditUtils';
-import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
-import { setProject } from '../../../Redux/ProjectSlice';
 import { MdCancel } from "react-icons/md";
 import ShippingAddressEditModal from '../Components/ShippingAddressEditModal';
-import { setCustomerShippingAddress } from '../../../Redux/PaymentSlice';
+import { OrderState, initialOrderState } from '../../../Redux/PaymentInitialState';
+import { makeOrder } from '../../../Redux/PaymentSlice';
+import { setProject } from '../../../Redux/ProjectSlice';
+import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../../Redux/CartSlice';
 
-interface ShippingAddressState {
-  name: string;
-  phoneNumber: string;
-  address: string;
-  pickupMode: string;
-}
-
-type user = {
-  [key: string]: any;
-}
-
-const Cart:React.FC<user> = (props) => {
+const Cart:React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const { custUser } = props;
-  const [ customerExists, setCustomerExists ] = useState(custUser)
+  useEffect(() => {
+    const storedProject = localStorage.getItem('project');
+    if (storedProject) {
+      const savedProject = JSON.parse(storedProject);
+      dispatch(setProject(savedProject));
+    }
+  }, [dispatch]);
+
+  const project = useAppSelector((state) => state.project);
 
   useEffect(() => {
-    const customer = localStorage.getItem("customer");
-    if (customer) {
-        setCustomerExists(JSON.parse(customer));
-    }
-  }, [])
+    applyTemplateCustomizations(project);
+  }, [project]);
   
+  const cartProducts = useAppSelector((state) => state.cart.products);
+  const cartItemCount = cartProducts.length;
+  const totalAmount = cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [shippingAddress, setShippingAddress] = useState<ShippingAddressState>({
-    name: '',
-    phoneNumber: '',
-    address: '',
-    pickupMode: '',
+  const [orderDetails, setOrderDetails] = useState<OrderState>({
+    ...initialOrderState, 
+    shipping_reciepient_names: '',
+    products: cartProducts,
+    amount: totalAmount,
+    userId: '',
   });
 
+  useEffect(() => {
+    const fetchCustomer = () => {
+      const customer = localStorage.getItem("customer");
+      if (customer) {
+        const parsedCustomer = JSON.parse(customer);
+        setOrderDetails((prevOrderDetails) => ({
+          ...prevOrderDetails,
+          shipping_reciepient_names: `${parsedCustomer.first_name} ${parsedCustomer.last_name}`,
+          userId: parsedCustomer.id || '',
+        }));
+      }
+    };
+  
+    fetchCustomer();
+  }, []);
+
+  useEffect(() => {
+    setOrderDetails(prevOrderDetails => ({
+      ...prevOrderDetails,
+      amount: totalAmount,
+      products: cartProducts
+    }));
+  }, [totalAmount, cartProducts]);
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -52,46 +75,17 @@ const Cart:React.FC<user> = (props) => {
     setIsModalOpen(false);
   };
 
-  const handleAddressSubmit = (data: ShippingAddressState) => {
-    setShippingAddress(data);
+  const handleOrderSubmit = async (data: OrderState) => {
+    const updatedOrderDetails = {
+      ...orderDetails,
+      ...data
+    };
+    setOrderDetails(updatedOrderDetails);
     closeModal();
-    dispatch(setCustomerShippingAddress(data));
+    await dispatch(makeOrder(updatedOrderDetails));
+    
   };
-
   
-  useEffect(() => {
-    const storedProject = localStorage.getItem('project');
-    if (storedProject) {
-      const savedProject = JSON.parse(storedProject);
-      dispatch(setProject(savedProject));
-      //setActive(true);
-    }
-  }, [dispatch]);
-
-  const project = useAppSelector((state) => state.project);
-  const cartProducts = useAppSelector((state) => state.cart.products);
-  const payment = useAppSelector((state) => state.payment);
-
-  console.log(payment);
-  
-  useEffect(() => {
-    applyTemplateCustomizations(project);
-  }, [project]);
-
-  
-  useEffect(() => {
-    const storedProject = localStorage.getItem('project');
-    if (storedProject) {
-      const savedProject = JSON.parse(storedProject);
-      dispatch(setProject(savedProject));
-      //setActive(true);
-    }
-  }, [dispatch]);
-
-  
-  useEffect(() => {
-    applyTemplateCustomizations(project);
-  }, [project]);
 
   const handleQuantityIncrement = (id: string) => {
     dispatch(increaseQuantity(id));
@@ -103,9 +97,7 @@ const Cart:React.FC<user> = (props) => {
   const handleRemove = (id: string) => {
     dispatch(removeFromCart(id));
   };
-
-  const cartItemCount = cartProducts.reduce((total, product) => total + product.quantity, 0);
-  const totalAmount = cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
+  
 
   return (
     <>
@@ -130,28 +122,6 @@ const Cart:React.FC<user> = (props) => {
               </div>
               <h4 className='product-value'>{project.currency} {(product.price * product.quantity).toLocaleString()}</h4>
             </div>
-            {/* <img src={product.image} className='cart-product-image'/>
-            <div className="cart-product-info">
-              <h2 className="cart-product-name">{product.productName}</h2>
-              <p className="cart-product-seller">Seller: {project.name}</p>
-              <p className="product-number-available">{product.initialStock} available</p>
-            </div>
-            <div className="cart-product-price">
-              {project.currency} {(product.price * product.quantity).toLocaleString()}
-            </div>
-            <div className="quantity">
-              <div className="number-selector">
-                <p className="minus" onClick={() => handleQuantityDecrement(product.id)}>
-                  -
-                </p>
-                <p className="number">{product.quantity}</p>
-                <p className="plus" onClick={() => handleQuantityIncrement(product.id)}>
-                  +
-                </p>
-              </div>
-            </div>
-            
-             */}
              
               <MdCancel onClick={() => handleRemove(product.id)} />
             
@@ -169,12 +139,12 @@ const Cart:React.FC<user> = (props) => {
         <div className="shipping-info">
           <div className="information">
             <div className="name-and-number">
-              <h2>{ customerExists? customerExists.first_name + " " +  customerExists.last_name : "Customer"}</h2>
-              <p>No contact added for Delivery</p>
+              <h2>{orderDetails.shipping_reciepient_names}</h2>
+              <p>{orderDetails.shipping_reciepient_contacts}</p>
             </div>
             <div className="address">
-              <p>No address added for delivery</p>
-              <p>No pickup mode set for delivery</p>
+              <p>{orderDetails.shipping_reciepient_address}</p>
+              <p>{orderDetails.pickupMode}</p>
             </div>
           </div>
           <div className="change">
@@ -184,8 +154,8 @@ const Cart:React.FC<user> = (props) => {
             {isModalOpen && (
               <ShippingAddressEditModal
                 onClose={closeModal}
-                initialData={shippingAddress}
-                onSubmit={handleAddressSubmit}
+                initialData={orderDetails}
+                onSubmit={handleOrderSubmit}
               />
             )}
           </div>

@@ -1,6 +1,6 @@
 import '../../../assets/styles/templatesStyles/Ecommerce/PaymentSteps.scss'
 
-export const PaymenySteps: React.FC = () => {
+export const PaymentSteps: React.FC = () => {
     return (
         <div className="payment-steps-div">
             <span className='step'>
