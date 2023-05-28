@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import '../../../assets/styles/templatesStyles/Finance/FinanceEditForm.scss'
 import { TopBarForm } from './TopBarForm';
-import { Finance } from '../Pages/Finance';
 import { Section2EditForm } from './Section2EditForm';
 import { Section3EditForm } from './Section3EditForm';
 import { Section4EditForm } from './Section4EditForm';
@@ -20,7 +19,6 @@ export const FinanceEditForm: React.FC = () => {
     
     return (
         <>
-        <Finance />
         <div className='finance-edit-form'>
             {activeButton === 'section1' ? <TopBarForm /> : ''}
             {activeButton === 'section2' ?  <Section2EditForm /> : ''}
