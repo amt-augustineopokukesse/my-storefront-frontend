@@ -2,7 +2,7 @@ import '../../../assets/styles/templatesStyles/Finance/TopBarForm.scss'
 
 export const TopBarForm: React.FC = () => {
     return(
-        <div className="section1">
+        <div className="section1-form">
             <h4>Section 1</h4>
             <span className='label-input-span'>
                 <label htmlFor="logo">Logo</label>
@@ -35,6 +35,10 @@ export const TopBarForm: React.FC = () => {
             </span>
             <span className='label-input-span'>
                     <label htmlFor="button1">Colour</label>
+                    <input type="color" name='button 2'/>
+            </span>
+            <span className='label-input-span'>
+                    <label htmlFor="button1">Background colour</label>
                     <input type="color" name='button 2'/>
             </span>
               

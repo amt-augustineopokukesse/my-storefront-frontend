@@ -2,12 +2,20 @@ import React, { useState } from 'react'
 import '../../../assets/styles/templatesStyles/Finance/FinanceEditForm.scss'
 import { TopBarForm } from './TopBarForm';
 import { Finance } from '../Pages/Finance';
+import { Section2EditForm } from './Section2EditForm';
+import { Section3EditForm } from './Section3EditForm';
+import { Section4EditForm } from './Section4EditForm';
+import { Section5EditForm } from './Section5EditForm';
+import { Section6EditForm } from './Section6EditForm';
+import { Section7EditForm } from './Section7EditForm';
+
 
 export const FinanceEditForm: React.FC = () => {
     const [activeButton, setActiveButton] = useState('');
 
     const openSection =(event: React.MouseEvent) => {
         setActiveButton(event.currentTarget.id);
+        console.log(activeButton)
     }
     
     return (
@@ -15,6 +23,12 @@ export const FinanceEditForm: React.FC = () => {
         <Finance />
         <div className='finance-edit-form'>
             {activeButton === 'section1' ? <TopBarForm /> : ''}
+            {activeButton === 'section2' ?  <Section2EditForm /> : ''}
+            {activeButton === 'section3' ? <Section3EditForm /> : ''}
+            {activeButton === 'section4' ? <Section4EditForm /> : ''}
+            {activeButton === 'section5' ? <Section5EditForm /> : ''}
+            {activeButton === 'section6' ? <Section6EditForm /> : ''}
+            {activeButton === 'section7' ? <Section7EditForm /> : ''}
 
 
             <div className='section-buttons'>
@@ -24,7 +38,7 @@ export const FinanceEditForm: React.FC = () => {
                     Section 1
                 </button>
                 <button className="section-button"
-                 id='section3' 
+                 id='section2' 
                  onClick={openSection}>
                     Section 2
                 </button>

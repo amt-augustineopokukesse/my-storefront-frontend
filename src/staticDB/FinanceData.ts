@@ -204,11 +204,6 @@ const TemplateData= {
     globalPoppinsFont: {font: 'poppins'},
     topBar: {
         components: {
-            globalFontStyle: {
-                text: {
-                    fontSize: '16px'
-                }
-            },
             logo: {
                 content: 'LOGO',
                 style: {
@@ -237,19 +232,12 @@ const TemplateData= {
         components: {
             heroHeader: {
                 content: 'Disover Lorem Ipsum',
-                style: {
-                    fontSize: '30px',
-                    fontWeight: '700'
-                }
             },
             heroParagraph: {
                 content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis 
                 molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan,
                  risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget 
                  condimentum velit, sit amet feugiat lectus.`,
-                 style: {
-                    fontSize: '18px'
-                 }
             }
         },
         style: {
@@ -274,10 +262,6 @@ const TemplateData= {
     },
     toggleDiv: {
         components: {
-            globalFontStyle: {
-                color: '#222222',
-                backgroundColor: '#FFFFFF',
-            },
             personal: [
                 {
                     text: {
