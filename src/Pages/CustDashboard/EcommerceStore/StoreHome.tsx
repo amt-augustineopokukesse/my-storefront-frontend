@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store';
 //import { ProjectState } from '../../../Redux/ProjectSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
@@ -16,6 +16,12 @@ const EcommerceStoreHome:React.FC = () => {
   const project = useAppSelector((state) => state.project);
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const [search, setSearch] = useState("");
+
+  const handleSearchValue = (value: string) => {
+    // console.log(value, "I hanndle here")
+    setSearch(String(value).toLowerCase());
+  }
 
 
   useEffect(() => {
@@ -40,11 +46,11 @@ const EcommerceStoreHome:React.FC = () => {
 
   return (
     <div>
-        <Navbar />
+        <Navbar sendSearchValue={handleSearchValue} />
         <Header />
         <Hero />
         {project.template.carouselInclude ? <Carousel /> : ''}
-        {project.products.length > 0 ? <CustomizedMain/> : ""}
+        {project.products.length > 0 ? <CustomizedMain searchValue={search} /> : ""}
         <Footer />
     </div>
   )

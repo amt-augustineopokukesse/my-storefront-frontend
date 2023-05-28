@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Header from '../Components/Header';
 import Hero from '../Components/Hero';
@@ -17,6 +17,12 @@ const EcommerceHome:React.FC = () => {
   const project = useAppSelector((state) => state.project);
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const [search, setSearch] = useState("");
+
+  const handleSearchValue = (value: string) => {
+    // console.log(value, "I hanndle here")
+    setSearch(String(value).toLowerCase());
+  }
 
 
   useEffect(() => {
@@ -41,11 +47,11 @@ const EcommerceHome:React.FC = () => {
 
   return (
     <div>
-        <Navbar />
+        <Navbar sendSearchValue={handleSearchValue} />
         <Header />
         <Hero />
         {project.template.carouselInclude ? <Carousel /> : ''}
-        {project.products.length > 0 ? <CustomizedMain/> : <Main />}
+        {project.products.length > 0 ? <CustomizedMain searchValue={search} /> : <Main />}
         <Footer />
         <FloatingButton/>
     </div>

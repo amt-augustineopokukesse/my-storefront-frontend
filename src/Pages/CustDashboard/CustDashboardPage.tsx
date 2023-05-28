@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../../assets/styles/custDashboardStyles/CustDashboardPage.scss';
 import { useAppDispatch } from '../../store';
 import { toast } from 'react-toastify';
-import { getPublishedStores } from '../../Redux/ProjectSlice';
+import { addToViewCount, getPublishedStores } from '../../Redux/ProjectSlice';
 import { Link } from 'react-router-dom';
 
 type store = {
@@ -30,6 +30,16 @@ export const CustDashboardPage: React.FC<store> = (props) => {
     },[]);
 
 
+    const handleAddToViews = async (id: string) => {
+        try {
+            const response = await dispatch(addToViewCount(id));
+            if (response) console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <div style={{padding: "20px"}} className='dashboard-page'>
             {
@@ -41,7 +51,7 @@ export const CustDashboardPage: React.FC<store> = (props) => {
                 {
                     stores && stores.length ? 
                     stores.map((pStore: store, index: number)=>
-                    <div style={{backgroundImage: `url(${pStore.bannerUrl})`}} className='store-object' key={index}>
+                    <div onClick={() => handleAddToViews(pStore.id)} style={{backgroundImage: `url(${pStore.bannerUrl})`}} className='store-object' key={index}>
                         <Link to="/stores/ecommerce" state={{linkedProject: pStore}}><p className='visit-store'>Visit Store</p></Link>
                         <div className='object-details'>
                             <p><b>Store: </b> {pStore.name}</p>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AddToCart from './AddToCart';
 import { useAppSelector } from '../../../store';
 import '../../../assets/styles/templatesStyles/Ecommerce/CustomizedMain.scss';
@@ -9,7 +9,20 @@ interface GroupedProducts {
   [category: string]: ProductState[];
 }
 
-const CustomizedMain: React.FC = () => {
+interface cb {
+  searchValue: string;
+}
+
+const CustomizedMain: React.FC<cb> = (props) => {
+
+  const { searchValue } = props;
+
+  const [ search, setSearch ] = useState('');
+
+  useEffect(() => {
+    setSearch(searchValue);
+  }, [searchValue])
+
   const project = useAppSelector((state) => state.project);
 
   // Group products by category
@@ -35,7 +48,7 @@ const CustomizedMain: React.FC = () => {
             </div>
 
             <div className="section-items">
-              {products.map((product) => (
+              {products.filter((item) => item.productName.toLowerCase().includes(search)).map((product) => (
                 <div className="tile">
                   <Link to={`/product/${product.id}`} key={product.id} className='link'>
                     <div className="image">

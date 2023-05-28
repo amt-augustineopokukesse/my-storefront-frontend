@@ -1,13 +1,18 @@
 import React from "react";
 import '../../../assets/styles/templatesStyles/Ecommerce/Navbar.scss';
-import Search from "./Search";
 import shoppingCart from "../../../assets/svg/templates-svg/🦆 icon _shopping cart outline_.svg";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { Link } from "react-router-dom";
 import { resetAuthState } from "../../../Redux/AuthSlice";
+import '../../../assets/styles/templatesStyles/Ecommerce/Search.scss';
+import searchLogo from '../../../assets/svg/templates-svg/icon-search.svg';
 
+interface cb {
+  sendSearchValue: (value: string) => void;
+}
+const Navbar: React.FC<cb> = ({ sendSearchValue }) => {
 
-const Navbar: React.FC = () => {
+  // const { sendSearchValue } = props;
 
   const project = useAppSelector((state) => state.project);
 
@@ -27,11 +32,23 @@ const Navbar: React.FC = () => {
         window.location.href = '/';
     }
 
+  const sendData = (value: string) => {
+    sendSearchValue(value);
+  }
+
   return (
     <>
       <div className="navbar">
         <Link to={"."}><h3 className="logo">{project.name}</h3></Link>
-        <Search />
+        <form className='search'>
+          <input
+            type="text"
+            placeholder="Search any product..."
+            onChange={(e) => sendData(e.target.value)}
+            
+          />
+          <img className="button" src={searchLogo} alt="Search Logo" />
+        </form>
         <Link to="/cart" className="cart-link">
           <img src={shoppingCart} alt="shopping cart" />
           {cartItemCount > 0 && <span className="cart-indicator">{cartItemCount}</span>}

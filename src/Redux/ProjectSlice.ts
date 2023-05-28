@@ -26,6 +26,28 @@ const getProjectId = async () => {
 };
 
 
+// handle Add to Store view count
+export const addToViewCount = createAsyncThunk(
+  "project/addViews",
+  async (id: string) => {
+    try {
+      const response = await api.put(`/market/store/views`, { storeId: id});
+      return response;
+    } catch (error) {
+      console.log(error)
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.log("API error:", error.response.data.message); // Log the API error message
+          return error.response.data.message;
+        }
+      }
+      console.log("An error occurred:", error); // Log any other errors that occur
+      return "An error occurred";
+    }
+  }
+);
+
+
 // handle Get All Stores
 export const getStores = createAsyncThunk(
   "project/getStores",

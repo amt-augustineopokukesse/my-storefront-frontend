@@ -40,6 +40,7 @@ export const DashboardPage: React.FC<store> = (props) => {
     },[]);
 
 
+
     return (
         <div className='dashboard-page'>
             <div className='top-containers'>
@@ -50,7 +51,7 @@ export const DashboardPage: React.FC<store> = (props) => {
                 </div>
                 <div className='views-div block-view'>
                     <h3>Views</h3>
-                    <p>0</p>
+                    <p>{stores && stores.projects ? stores.projects.reduce((accumulator: number, currentValue: { view_count: number; }) => accumulator + currentValue.view_count, 0) : 0}</p>
                 </div>
                 <div className='order-div block-view'>
                     <h3>Orders</h3>
