@@ -32,7 +32,7 @@ const CustomizedMain: React.FC<cb> = (props) => {
     }
     grouped[product.category].push(product);
     return grouped;
-  }, {} as GroupedProducts); // Specify the type assertion here
+  }, {} as GroupedProducts); 
 
   return (
     <section className="main-container">
