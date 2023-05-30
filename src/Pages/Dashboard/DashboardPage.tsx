@@ -60,7 +60,7 @@ export const DashboardPage: React.FC<store> = (props) => {
             }
         } catch (error) {
             setLoader(false);
-            // console.log(error)
+            console.log(error)
             toast.error("Error Retrieving Storefront Stores")
             return;
         }
