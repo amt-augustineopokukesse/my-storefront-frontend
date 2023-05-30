@@ -9,11 +9,25 @@ type store = {
     [key: string]: any;
 }
 
+interface Order {
+    paid: boolean;
+    amount: number;
+}
+  
+interface Project {
+    id: number;
+    orders: Order[];
+}
+
 export const DashboardPage: React.FC<store> = (props) => {
 
     const { allStores } = props;
     const [ stores, setStores ] = useState(allStores);
     const [loader, setLoader] = useState<boolean>(false);
+    const [earnings, setEarnings] = useState(0);
+    const [orders, setOrders] = useState(0);
+    const [views, setViews] = useState(0);
+    const [totalStores, setTotalStores] = useState(0);
 
 
     const dispatch = useAppDispatch();
@@ -23,7 +37,23 @@ export const DashboardPage: React.FC<store> = (props) => {
             const response = await dispatch(getStores());
             if (response) {
                 console.log(response.payload.data);
-                setStores(response.payload.data)
+                setStores(response.payload.data);
+                if (response.payload.data) {
+                    const store = response.payload.data;
+                    const totalAmountPaid: number = store.projects.reduce((accumulator: number, project: Project) => {
+                        const paidOrders: Order[] = project.orders.filter((order: Order) => order.paid);
+                        const paidAmounts: number[] = paidOrders.map((order: Order) => order.amount);
+                        return accumulator + paidAmounts.reduce((sum: number, amount: number) => sum + amount, 0);
+                    }, 0);
+                    const totalOrders: number = store.projects.reduce((accumulator: number, currentValue: Project) => accumulator + currentValue.orders.length, 0);
+
+                    const totalViews: number = store.projects.reduce((accumulator: number, currentValue: { view_count: number; }) => accumulator + currentValue.view_count, 0);
+
+                    setTotalStores(store.projects.length)
+                    setEarnings(totalAmountPaid);
+                    setOrders(totalOrders);
+                    setViews(totalViews);
+                }
                 setTimeout(()=>{
                     setLoader(false);
                 }, 500)
@@ -41,26 +71,27 @@ export const DashboardPage: React.FC<store> = (props) => {
     },[]);
 
 
+    
 
     return (
         <div className='dashboard-page'>
             <div className='top-containers'>
                 <div className='site-created-div block-view'>
                     <h3>Sites Created</h3>
-                    <p>{stores && stores.projects ? stores.projects.length : 0}</p>
+                    <p>{ totalStores }</p>
 
                 </div>
                 <div className='views-div block-view'>
                     <h3>Views</h3>
-                    <p>{stores && stores.projects ? stores.projects.reduce((accumulator: number, currentValue: { view_count: number; }) => accumulator + currentValue.view_count, 0) : 0}</p>
+                    <p>{views}</p>
                 </div>
                 <div className='order-div block-view'>
                     <h3>Orders</h3>
-                    <p>{stores && stores.projects ? stores.projects.reduce((accumulator: number, currentValue: { orders: string | any[]; }) => accumulator + currentValue.orders.length, 0) : 0 }</p>
+                    <p>{orders }</p>
                 </div>
                 <div className="earnings-div block-view">
                     <h3>Earnings</h3>
-                    <p>GH &#8373; 0.00</p>
+                    <p>GH &#8373; {earnings}</p>
                 </div>
             </div>
             <div className="grid-container">

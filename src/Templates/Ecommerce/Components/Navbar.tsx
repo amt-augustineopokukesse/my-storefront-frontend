@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { resetAuthState } from "../../../Redux/AuthSlice";
 import '../../../assets/styles/templatesStyles/Ecommerce/Search.scss';
 import searchLogo from '../../../assets/svg/templates-svg/icon-search.svg';
+// import { FaHome } from "react-icons/fa";
+import { MdKeyboardBackspace } from "react-icons/md";
 
 interface cb {
   sendSearchValue: (value: string) => void;
@@ -39,13 +41,15 @@ const Navbar: React.FC<cb> = ({ sendSearchValue }) => {
   return (
     <>
       <div className="navbar">
+      <div className="login-signup-buttons">
+          <Link to={"/custdashboard/"}><button className="signup"><MdKeyboardBackspace />Dashboard</button></Link>
+        </div>
         <Link to={"."}><h3 className="logo">{project.name}</h3></Link>
         <form className='search'>
           <input
             type="text"
             placeholder="Search any product..."
-            onChange={(e) => sendData(e.target.value)}
-            
+            onChange={(e) => sendData(e.target.value)}            
           />
           <img className="button" src={searchLogo} alt="Search Logo" />
         </form>
@@ -53,12 +57,6 @@ const Navbar: React.FC<cb> = ({ sendSearchValue }) => {
           <img src={shoppingCart} alt="shopping cart" />
           {cartItemCount > 0 && <span className="cart-indicator">{cartItemCount}</span>}
         </Link>
-        
-        <div className="login-signup-buttons">
-        { !loggedIn && <Link to='/login'><button className="login">Login</button> </Link>}
-        { !loggedIn && <Link to='/signup'><button className="signup">Sign Up</button></Link>}
-        {loggedIn &&  <button className="signup" onClick={signOut}>Logout</button>}
-        </div>
       </div>
     </>
   );
