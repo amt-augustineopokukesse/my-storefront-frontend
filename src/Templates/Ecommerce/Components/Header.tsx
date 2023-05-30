@@ -3,6 +3,7 @@ import '../../../assets/styles/templatesStyles/Ecommerce/Header.scss';
 import { useAppSelector } from '../../../store';
 import { extractCategories } from './ProductEditUtils';
 import { Link } from 'react-router-dom';
+import { IoMdArrowRoundForward } from "react-icons/io";
 
 interface cb {
   sendPagesValue: (value: Pages) => void;
@@ -46,12 +47,12 @@ const Header: React.FC<cb> = ({ sendPagesValue }) => {
         </ul>
       </div>
       <div className="header-two">
-        { project.products.length && <h2 style={{display: `${navmap.home}`}}>Categories</h2>}
+        { project.products.length ? <h2 className='category-header' style={{display: `${navmap.home}`}}>Categories <IoMdArrowRoundForward /></h2>: ""}
         <ul className="menu">
           {
             project.products.length !== 0 ?
                 categories.map(category => (
-                  <a href={`#${category}`}><li style={{display: `${navmap.home}`}} key={category} className="menu-item">{category}</li></a>
+                  <a href={`#${category}`}><li style={{display: `${navmap.home}`}} key={category} className="menu-item">{category} </li></a>
                 ))
             : ""
           }
