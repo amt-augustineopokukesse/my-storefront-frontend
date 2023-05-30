@@ -1,4 +1,3 @@
-import profile from '../../assets/images/Ellipse 3.png';
 import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/MerchantProfile.scss';
 import SignOut from './SignOut';
