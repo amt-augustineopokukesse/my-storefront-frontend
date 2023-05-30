@@ -42,7 +42,7 @@ export const initialOrderState = {
     shipping_reciepient_contacts: 'No contact added for Delivery',
     shipping_reciepient_address: 'No address added for Delivery',
     pickupMode: 'No pickup mode included',
-    project_id: savedProject.id,
+    project_id: savedProject ? savedProject.id || '' : '',
     products: [],
     userId: '',
     amount: 0,

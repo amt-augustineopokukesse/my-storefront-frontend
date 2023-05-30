@@ -22,13 +22,13 @@ export const CustOrdersPage: React.FC<user> = (props) => {
         { field: "id", headerName: "ID", width: 70 },
         { field: "orderDate", headerName: "Order Date", width: 180 },
         { field: "orderAmount", headerName: "Amount", width: 180 },
-        { field: "orderPaid", headerName: "Paid", width: 180 },
+        { field: "orderPaid", headerName: "Status", width: 180 },
         { field: "deliveryComplete", headerName: "Delivered", width: 180 },
         { field: "shippingAddress", headerName: "Shipping Address", width: 180}
     ]
 
     const row = (order: any, idx: number) => {
-        return { id: idx, orderDate: order.created_at, orderAmount: order.amount, orderPaid: order.paid, deliveryComplete: order.delivery_completed, shippingAddress: order.shipping_reciepient_address}
+        return { id: idx, orderDate: new Date(order.created_at).toLocaleDateString(), orderAmount: order.amount, orderPaid: order.paid ? "Paid" : "Not Paid", deliveryComplete: order.delivery_completed ? "Yes" : "No", shippingAddress: order.shipping_reciepient_address}
     }
  
     const rows = customerExists &&  customerExists.orders.length ? 

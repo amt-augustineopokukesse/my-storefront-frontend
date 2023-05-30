@@ -32,10 +32,9 @@ export const CustDashboardPage: React.FC<store> = (props) => {
 
     const handleAddToViews = async (id: string) => {
         try {
-            const response = await dispatch(addToViewCount(id));
-            if (response) console.log(response);
+            await dispatch(addToViewCount(id));
         } catch (error) {
-            console.log(error);
+            console.error(error)
         }
     }
 

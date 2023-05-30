@@ -22,6 +22,7 @@ export const DashboardPage: React.FC<store> = (props) => {
         try {
             const response = await dispatch(getStores());
             if (response) {
+                console.log(response.payload.data);
                 setStores(response.payload.data)
                 setTimeout(()=>{
                     setLoader(false);
@@ -55,7 +56,7 @@ export const DashboardPage: React.FC<store> = (props) => {
                 </div>
                 <div className='order-div block-view'>
                     <h3>Orders</h3>
-                    <p>0</p>
+                    <p>{stores && stores.projects ? stores.projects.reduce((accumulator: number, currentValue: { orders: string | any[]; }) => accumulator + currentValue.orders.length, 0) : 0 }</p>
                 </div>
                 <div className="earnings-div block-view">
                     <h3>Earnings</h3>
