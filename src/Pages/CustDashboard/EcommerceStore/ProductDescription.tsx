@@ -45,7 +45,7 @@ const ProductDescription: React.FC = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {product ? (
         <section className="container">
           <div className="product">
