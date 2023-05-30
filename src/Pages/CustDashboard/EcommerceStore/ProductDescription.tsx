@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 //import StaticProductDescription from '../../../staticDB/StaticProductDescription';
 import { decreaseQuantity, increaseQuantity } from '../../../Redux/CartSlice';
 import { applyTemplateCustomizations } from '../../../Templates/Ecommerce/Components/ProductEditUtils';
-import Navbar from '../../../Templates/Ecommerce/Components/Navbar';
+//awaiting ..../import Navbar from '../../../Templates/Ecommerce/Components/Navbar';
 import AddToCart from '../../../Templates/Ecommerce/Components/AddToCart';
 import { Footer } from '../../../Templates/Finance/Components/Footer';
 
