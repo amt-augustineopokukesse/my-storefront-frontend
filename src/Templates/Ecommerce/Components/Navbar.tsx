@@ -3,7 +3,7 @@ import '../../../assets/styles/templatesStyles/Ecommerce/Navbar.scss';
 import shoppingCart from "../../../assets/svg/templates-svg/🦆 icon _shopping cart outline_.svg";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { Link } from "react-router-dom";
-import { resetAuthState } from "../../../Redux/AuthSlice";
+import { resetAuthState } from "../../../Redux/Authentication/AuthSlice";
 import '../../../assets/styles/templatesStyles/Ecommerce/Search.scss';
 import searchLogo from '../../../assets/svg/templates-svg/icon-search.svg';
 import { MdKeyboardBackspace } from "react-icons/md";

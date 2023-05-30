@@ -2,12 +2,12 @@ import React, {useState, useRef} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHero from '../../components/authComponents/AuthHero';
 import '../../assets/styles/authenticationStyles/Login.scss';
-import { User } from '../../Redux/Authentication/initialState';
+import { User } from '../../Redux/Authentication/authInitialStates';
 import { useAppDispatch } from '../../store';
 import Email from '../../components/authComponents/Email';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import Password from '../../components/authComponents/Password';
-import { userLogin } from '../../Redux/AuthSlice';
+import { userLogin } from '../../Redux/Authentication/AuthSlice'
 //import facebookButton from '../../assets/svg/fb.svg';
 import googleButton from '../../assets/svg/google.svg';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
