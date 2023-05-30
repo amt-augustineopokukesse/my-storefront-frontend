@@ -1,4 +1,3 @@
-import profile from '../../assets/images/Ellipse 3.png';
 import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/MerchantProfile.scss';
 import SignOut from './SignOut';
@@ -27,7 +26,7 @@ export const MerchantProfile: React.FC<user> = (props) => {
 
     return (
         <div className='profile-photo-menu'>
-            <img className="profile-photo" src={profile} alt="" />
+            <img className="profile-photo" src={merchantExists?merchantExists.profile_picture : ""} alt="" />
             <div className="profile-menu">
                 <button className="profile-button" onClick={handleClick}>
                     { merchantExists? merchantExists.business_name : "Merchant"}
