@@ -101,9 +101,7 @@ const Cart:React.FC = () => {
 
   return (
     <>
-      <Navbar sendSearchValue={function (value: string): void {
-        throw new Error('Function not implemented.');
-      } } />
+      <Navbar />
       <section className="container">
         <h2 className="container-header">Cart ({cartItemCount})</h2>
         {cartProducts.map(product => (

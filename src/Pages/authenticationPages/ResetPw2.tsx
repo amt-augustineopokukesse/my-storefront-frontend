@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useRef } from 'react';
 import '../../assets/styles/authenticationStyles/ResetPw.scss';
 import Password from '../../components/authComponents/Password';
-import { NewPassword } from '../../Redux/Authentication/initialState';
+import { NewPassword } from '../../Redux/Authentication/authInitialStates'
 import { handlePasswordCheck, handleValidPassword, validatePassword } from '../../components/authComponents/AuthUtils';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { resetPassword } from '../../Redux/AuthSlice';
+import { resetPassword } from '../../Redux/Authentication/AuthSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
 import { toast } from 'react-toastify';
@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 const initialPasswordState: NewPassword = {
   id: '',
   password: '',
+  confirm_password: ''
 };
 
 const ResetPw2: React.FC = () => {
