@@ -1,7 +1,7 @@
 import "../../assets/styles/custDashboardStyles/CustProfile.scss";
 import profilephoto from "../../assets/images/Ellipse 15.png";
 import editLogo from "../../assets/svg/icons8-edit.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { useFormik } from "formik";
 import { AuthLoader } from "../../components/authComponents/AuthLoader";
 import { toast } from "react-toastify";
@@ -17,23 +17,10 @@ export const CustProfilePage: React.FC<user> = (props) => {
   const { custUser } = props;
   const [customerExists, setCutomerExists] = useState(custUser);
   const [loader, setLoader] = useState<boolean>(false);
-  
 
-  useEffect(() => {
-    const customer = localStorage.getItem("customer");
-    if (customer) {
-      const hasCustomer = JSON.parse(customer);
-      setCutomerExists(hasCustomer);
-      if (hasCustomer && hasCustomer.email) {
-        formik.values.email = hasCustomer.email || "";
-        formik.values.contact = hasCustomer?.contact || "";
-        formik.values.address = hasCustomer?.address || "";
-      }
-    }
-  }, []);
-    
-    const [contact, setContact] = useState({ value: "", editmode: true });
-    const [address, setAddress] = useState({ value: "", editmode: true });
+  const [contact, setContact] = useState({ value: "", editmode: true });
+  const [address, setAddress] = useState({ value: "", editmode: true });
+  const [profilePicture, setProfilePicture] = useState<string | null>(null);
 
   const handleAddressChange = () =>
     setAddress({
@@ -78,12 +65,84 @@ export const CustProfilePage: React.FC<user> = (props) => {
     },
   });
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        // Set the image preview URL
+        setProfilePicture(reader.result as string);
+      };
+
+      // Read the image file as a data URL
+    }
+  };
+  // console.log(profilePicture)
+
+  const handleProfilePictureUpload = async () => {
+    try {
+      if (profilePicture) {
+        setLoader(true);
+        const response = await api.put(`/api/customer/profile-picture`, {
+          profilePicture,
+        });
+        if (response.data.data) {
+          toast.info("You have updated your information!!");
+
+          localStorage.setItem("customer", JSON.stringify(response.data.data));
+          console.log(response.data.data.profile_picture);
+          setTimeout(() => {
+            window.location.reload();
+            setLoader(false);
+          }, 300);
+        } else throw Error("");
+      }
+    } catch (error) {
+      setLoader(false);
+
+      console.error("An error occurred:", error);
+      alert(
+        `Something went wrong, cannot upload image. Kindly contact storefront administrator`
+      );
+    }
+  };
+
+  useEffect(() => {
+    handleProfilePictureUpload();
+  }, [profilePicture]);
+
+  useEffect(() => {
+    const customer = localStorage.getItem("customer");
+    if (customer) {
+      const hasCustomer = JSON.parse(customer);
+      setCutomerExists(hasCustomer);
+      if (hasCustomer && hasCustomer.email) {
+        formik.values.email = hasCustomer.email || "";
+        formik.values.contact = hasCustomer?.contact || "";
+        formik.values.address = hasCustomer?.address || "";
+      }
+    }
+  }, []);
+
   return (
     <div className="profile-details">
       {loader ? <AuthLoader /> : ""}
 
       <div className="image-name">
-        <img className="photo" src={profilephoto} alt="" />
+        <img
+          className="photo"
+          id="profile-photo"
+          src={customerExists ? customerExists.profile_picture : ""}
+          alt=""
+        />
+        <input
+          type="file"
+          onChange={handleInputChange}
+          className="upload-input"
+          id="upload-input"
+        />
         <h3 className="name">
           {customerExists ? customerExists.first_name : "Merchant"}
         </h3>

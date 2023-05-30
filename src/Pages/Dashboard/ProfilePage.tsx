@@ -128,6 +128,8 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
   useEffect(() => {
     handleProfilePictureUpload();
   }, [profilePicture]);
+
+
   useEffect(() => {
     const merchant = localStorage.getItem("merchant");
     if (merchant) {
