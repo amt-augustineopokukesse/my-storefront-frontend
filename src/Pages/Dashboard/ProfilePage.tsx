@@ -1,7 +1,6 @@
 import "../../assets/styles/dashboardStyles/ProfilePage.scss";
-import profilephoto from "../../assets/images/Ellipse 15.png";
 import editLogo from "../../assets/svg/icons8-edit.svg";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { AuthLoader } from "../../components/authComponents/AuthLoader";
@@ -32,23 +31,12 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
   const { user } = props;
 
   const [merchantExists, setmerchantExists] = useState(user);
-  const [loader, setLoader] = useState<boolean>(false);
-
-  useEffect(() => {
-    const merchant = localStorage.getItem("merchant");
-    if (merchant) {
-      const hasMerchant = JSON.parse(merchant);
-      setmerchantExists(hasMerchant);
-      if (hasMerchant && hasMerchant.email) {
-        formik.values.email = hasMerchant.email || "";
-        formik.values.contact = hasMerchant?.contact || "";
-        formik.values.address = hasMerchant?.address || "";
-      }
-    }
-  }, []);
+  
 
   const [contact, setContact] = useState({ value: "", editmode: true });
   const [address, setAddress] = useState({ value: "", editmode: true });
+  const [profilePicture, setProfilePicture] = useState<string | null>(null);
+  const [loader, setLoader] = useState<boolean>(false);
 
   const handleAddressChange = () =>
     setAddress({
@@ -93,26 +81,85 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
     },
   });
 
-  const previewFile = (event:React.ChangeEvent<HTMLInputElement>) => {
-    if(event.target.files && event.target.files[0]){
-        const file = event.target.files[0];
-        const preview: any = document.querySelector('#profile-photo');
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            preview.src = reader.result
-        }
-        reader.readAsDataURL(file)
+  const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        // Set the image preview URL
+        setProfilePicture(reader.result as string);
+      };
+
+      // Read the image file as a data URL
     }
-   
-}
+  };
+  // console.log(profilePicture)
+
+  const handleProfilePictureUpload = async () => {
+    try {
+      if (profilePicture) {
+        setLoader(true);
+        const response = await api.put(`/api/merchant/profile-picture`, {
+          profilePicture,
+        });
+        if (response.data.data) {
+          toast.info("You have updated your information!!");
+
+          localStorage.setItem("merchant", JSON.stringify(response.data.data));
+          console.log(response.data.data.profile_picture);
+          setTimeout(() => {
+            window.location.reload();
+            setLoader(false);
+          }, 300);
+        } else throw Error("");
+      }
+    } catch (error) {
+      setLoader(false);
+
+      console.error("An error occurred:", error);
+      alert(
+        `Something went wrong, cannot upload image. Kindly contact storefront administrator`
+      );
+    }
+  };
+
+  useEffect(() => {
+    handleProfilePictureUpload();
+  }, [profilePicture]);
+  useEffect(() => {
+    const merchant = localStorage.getItem("merchant");
+    if (merchant) {
+      const hasMerchant = JSON.parse(merchant);
+      setmerchantExists(hasMerchant);
+      
+      if (hasMerchant && hasMerchant.email) {
+        formik.values.email = hasMerchant.email || "";
+        formik.values.contact = hasMerchant?.contact || "";
+        formik.values.address = hasMerchant?.address || "";
+      }
+    }
+  }, []);
 
   return (
     <div className="profile-details">
       {loader ? <AuthLoader /> : ""}
 
       <div className="image-name">
-        <img className="photo" id="profile-photo" src={profilephoto} alt="" />
-        <input type="file" onChange={previewFile} className="upload-input" id="upload-input"/>
+        <img
+          className="photo"
+          id="profile-photo"
+          src={merchantExists.profile_picture}
+          alt=""
+        />
+        <input
+          type="file"
+          onChange={handleFileInputChange}
+          className="upload-input"
+          id="upload-input"
+        />
+        {loader ? <AuthLoader /> : ""}
         <h3 className="name">
           {merchantExists ? merchantExists.business_name : "Merchant"}
         </h3>
