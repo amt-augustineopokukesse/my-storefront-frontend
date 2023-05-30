@@ -5,9 +5,6 @@ import { toast } from 'react-toastify';
 import { getStores } from '../../Redux/ProjectSlice';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
 
-type store = {
-    [key: string]: any;
-}
 
 interface Order {
     paid: boolean;
@@ -19,10 +16,8 @@ interface Project {
     orders: Order[];
 }
 
-export const DashboardPage: React.FC<store> = (props) => {
+export const DashboardPage: React.FC = () => {
 
-    const { allStores } = props;
-    const [ stores, setStores ] = useState(allStores);
     const [loader, setLoader] = useState<boolean>(false);
     const [earnings, setEarnings] = useState(0);
     const [orders, setOrders] = useState(0);
@@ -37,7 +32,6 @@ export const DashboardPage: React.FC<store> = (props) => {
             const response = await dispatch(getStores());
             if (response) {
                 console.log(response.payload.data);
-                setStores(response.payload.data);
                 if (response.payload.data) {
                     const store = response.payload.data;
                     const totalAmountPaid: number = store.projects.reduce((accumulator: number, project: Project) => {

@@ -4,12 +4,13 @@ import '../../assets/styles//custDashboardStyles/CustProfile.scss';
 import SignOut from '../Dashboard/SignOut';
 
 type user = {
-    [key: string]: any;
+    first_name: string;
+    profile_picture: string;
 }
 
 export const CustProfile: React.FC<user> = (props) => {
-    const { custUser } = props;
-    const [ customerExists, setCustomerExists ] = useState(custUser)
+    const { first_name, profile_picture } = props;
+    const [ customerExists, setCustomerExists ] = useState({ first_name, profile_picture })
     
     useEffect(() => {
         const customer = localStorage.getItem("customer");
