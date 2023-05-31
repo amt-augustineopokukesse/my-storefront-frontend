@@ -1,10 +1,11 @@
 import "../../assets/styles/dashboardStyles/ProfilePage.scss";
+import profilephoto from "../../assets/images/Ellipse 15.png";
 import editLogo from "../../assets/svg/icons8-edit.svg";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { AuthLoader } from "../../components/authComponents/AuthLoader";
-import api from "../../Redux/Authentication/axiosClient";
+import api from "../../Redux/axiosClient";
 
 type User = {
   profile_picture: string;
@@ -33,12 +34,24 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
   const { user } = props;
 
   const [merchantExists, setmerchantExists] = useState(user);
-  
+  const [loader, setLoader] = useState<boolean>(false);
+
+  useEffect(() => {
+    const merchant = localStorage.getItem("merchant");
+    if (merchant) {
+      const hasMerchant = JSON.parse(merchant);
+      setmerchantExists(hasMerchant);
+      if (hasMerchant && hasMerchant.email) {
+        formik.values.email = hasMerchant.email || "";
+        formik.values.contact = hasMerchant?.contact || "";
+        formik.values.address = hasMerchant?.address || "";
+      }
+    }
+  }, []);
 
   const [contact, setContact] = useState({ value: "", editmode: true });
   const [address, setAddress] = useState({ value: "", editmode: true });
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
-  const [loader, setLoader] = useState<boolean>(false);
 
   const handleAddressChange = () =>
     setAddress({
@@ -97,53 +110,32 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
       // Read the image file as a data URL
     }
   };
-  // console.log(profilePicture)
 
-  const handleProfilePictureUpload = async () => {
+  const uploadProfilePicture = async () => {
     try {
       if (profilePicture) {
         setLoader(true);
-        const response = await api.put(`/api/merchant/profile-picture`, {
+        const upload = await api.put(`/api/merchant/profile-picture`, {
           profilePicture,
         });
-        if (response.data.data) {
+        if (upload.data.data) {
           toast.info("You have updated your information!!");
-
-          localStorage.setItem("merchant", JSON.stringify(response.data.data));
-          console.log(response.data.data.profile_picture);
-          setTimeout(() => {
-            window.location.reload();
-            setLoader(false);
-          }, 300);
-        } else throw Error("");
+          localStorage.setItem("merchant", JSON.stringify(upload.data.data));
+          window.location.reload()
+          setLoader(true)
+        } else throw new Error("Image upload failed");
       }
     } catch (error) {
-      setLoader(false);
-
       console.error("An error occurred:", error);
       alert(
         `Something went wrong, cannot upload image. Kindly contact storefront administrator`
       );
     }
   };
-useEffect(() => {
-    const merchant = localStorage.getItem("merchant");
-    if (merchant) {
-      const hasMerchant = JSON.parse(merchant);
-      setmerchantExists(hasMerchant);
-      
-      if (hasMerchant && hasMerchant.email) {
-        formik.values.email = hasMerchant.email || "";
-        formik.values.contact = hasMerchant?.contact || "";
-        formik.values.address = hasMerchant?.address || "";
-      }
-  }
-  handleProfilePictureUpload();
-}, [profilePicture]);
- 
 
-
-  
+  useEffect(() => {
+    uploadProfilePicture();
+  }, [profilePicture]);
 
   return (
     <div className="profile-details">
@@ -154,7 +146,7 @@ useEffect(() => {
           className="photo"
           id="profile-photo"
           src={merchantExists?.profile_picture}
-          alt="Profile Picture"
+          alt=""
         />
         <input
           type="file"
@@ -164,7 +156,7 @@ useEffect(() => {
         />
         {loader ? <AuthLoader /> : ""}
         <h3 className="name">
-          {merchantExists ? merchantExists?.business_name : "Merchant"}
+          {merchantExists ? merchantExists.business_name : "Merchant"}
         </h3>
       </div>
       <form className="form" onSubmit={formik.handleSubmit}>
