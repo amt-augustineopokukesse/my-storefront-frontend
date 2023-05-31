@@ -7,7 +7,7 @@ type User = {
 }
 
 type OrderType = {
-    amount: string;
+    amount: number;
     created_at: string;
     paid: boolean;
     delivery_completed: boolean;
@@ -17,7 +17,7 @@ type OrderType = {
 export const CustOrdersPage: React.FC = () => {
 
     const orderInit: OrderType = {
-        amount: "",
+        amount: 0,
         created_at: "",
         paid: false,
         delivery_completed: false,
