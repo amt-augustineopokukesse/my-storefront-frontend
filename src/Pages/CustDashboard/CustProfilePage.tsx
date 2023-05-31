@@ -1,5 +1,4 @@
 import "../../assets/styles/custDashboardStyles/CustProfile.scss";
-import profilephoto from "../../assets/images/Ellipse 15.png";
 import editLogo from "../../assets/svg/icons8-edit.svg";
 import { useEffect, useState, ChangeEvent } from "react";
 import { useFormik } from "formik";

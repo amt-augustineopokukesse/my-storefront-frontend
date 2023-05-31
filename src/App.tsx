@@ -23,7 +23,8 @@ import Cart from './Templates/Ecommerce/Pages/Cart';
 import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectCustomizationForm';
 import { EditTemplatePage } from './Pages/EditTemplate/EditTemplatePage';
 import StoreHome from './Pages/CustDashboard/EcommerceStore/StoreHome';
-import ProtectRoute from './Pages/authenticationPages/protectRoute';
+import ProtectRoute from './Pages/authenticationPages/ProtectRoute';
+
 //import { Payment } from './Templates/Ecommerce/Pages/Payment';
 
 
