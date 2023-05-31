@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
+//awaiting ..../import Navbar from "../Components/Navbar";
 import '../../../assets/styles/templatesStyles/Ecommerce/Checkout.scss';
 import '../../../assets/styles/templatesStyles/Ecommerce/Cart.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
@@ -101,7 +101,7 @@ const Cart:React.FC = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar/> */}
       <section className="container">
         <h2 className="container-header">Cart ({cartItemCount})</h2>
         {cartProducts.map(product => (

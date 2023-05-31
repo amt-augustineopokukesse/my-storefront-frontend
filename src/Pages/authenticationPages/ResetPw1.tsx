@@ -3,9 +3,9 @@ import '../../assets/styles/authenticationStyles/ResetPw.scss';
 import Email from '../../components/authComponents/Email';
 import { validateEmail, handleEmailCheck } from '../../components/authComponents/AuthUtils';
 import { useNavigate } from 'react-router-dom';
-import { ResetPwEmail } from '../../Redux/Authentication/initialState';
+import { ResetPwEmail } from '../../Redux/Authentication/authInitialStates'
 import { useAppDispatch, useAppSelector } from '../../store';
-import { sendEmail } from '../../Redux/AuthSlice';
+import { sendEmail } from '../../Redux/Authentication/AuthSlice';
 import { AuthLoader } from '../../components/authComponents/AuthLoader';
 
 

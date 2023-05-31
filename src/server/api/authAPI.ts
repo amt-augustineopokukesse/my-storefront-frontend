@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NewUser } from "../../Redux/Authentication/initialState";
+import { NewUser } from "../../Redux/Authentication/authInitialStates";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

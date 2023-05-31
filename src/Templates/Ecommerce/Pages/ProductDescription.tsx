@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
+//awaiting...../import Navbar from "../Components/Navbar";
 //import leatherJacket from '../../../assets/images/Templates/Ecommerce/leather-jacket.png';
 import '../../../assets/styles/templatesStyles/Ecommerce/ProductDescription.scss';
 //import Rating from '../Components/Rating';
@@ -59,7 +59,7 @@ const ProductDescription: React.FC = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {product ? (
         <section className="container">
           <div className="product">
