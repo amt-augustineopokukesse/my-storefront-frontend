@@ -1,7 +1,7 @@
 import React from "react";
 import '../../../assets/styles/templatesStyles/Ecommerce/Navbar.scss';
 import shoppingCart from "../../../assets/svg/templates-svg/🦆 icon _shopping cart outline_.svg";
-import { useAppDispatch, useAppSelector } from "../../../store";
+import { useAppSelector } from "../../../store";
 import { Link } from "react-router-dom";
 import '../../../assets/styles/templatesStyles/Ecommerce/Search.scss';
 import searchLogo from '../../../assets/svg/templates-svg/icon-search.svg';
@@ -22,7 +22,6 @@ const Navbar: React.FC<cb> = ({ sendSearchValue }) => {
   const cartItemCount = cartProducts.length;
 
   let loggedIn = window.localStorage.getItem('token');
-  const dispatch = useAppDispatch();
 
 
   const sendData = (value: string) => {
