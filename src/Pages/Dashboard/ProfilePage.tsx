@@ -124,13 +124,7 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
       );
     }
   };
-
-  useEffect(() => {
-    handleProfilePictureUpload();
-  }, [profilePicture]);
-
-
-  useEffect(() => {
+useEffect(() => {
     const merchant = localStorage.getItem("merchant");
     if (merchant) {
       const hasMerchant = JSON.parse(merchant);
@@ -141,8 +135,13 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
         formik.values.contact = hasMerchant?.contact || "";
         formik.values.address = hasMerchant?.address || "";
       }
-    }
-  }, []);
+  }
+  handleProfilePictureUpload();
+}, [profilePicture]);
+ 
+
+
+  
 
   return (
     <div className="profile-details">
@@ -152,8 +151,8 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
         <img
           className="photo"
           id="profile-photo"
-          src={merchantExists.profile_picture}
-          alt=""
+          src={merchantExists?.profile_picture}
+          alt="Profile Picture"
         />
         <input
           type="file"
@@ -163,7 +162,7 @@ export const ProfilePage: React.FC<EditUser> = (props) => {
         />
         {loader ? <AuthLoader /> : ""}
         <h3 className="name">
-          {merchantExists ? merchantExists.business_name : "Merchant"}
+          {merchantExists ? merchantExists?.business_name : "Merchant"}
         </h3>
       </div>
       <form className="form" onSubmit={formik.handleSubmit}>

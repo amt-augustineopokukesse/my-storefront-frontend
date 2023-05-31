@@ -133,7 +133,7 @@ export const CustProfilePage: React.FC<user> = (props) => {
         <img
           className="photo"
           id="profile-photo"
-          src={customerExists ? customerExists.profile_picture : ""}
+          src={customerExists ? customerExists?.profile_picture : ""}
           alt=""
         />
         <input
