@@ -21,7 +21,7 @@ const EcommerceHome:React.FC = () => {
   const [ pages, setPages ] = useState({ home: "flex", about: "none", contact: "none"});
 
   const handleSearchValue = (value: string) => {
-    // console.log(value, "I hanndle here")
+    console.log(pages);
     setSearch(String(value).toLowerCase());
   }
 
