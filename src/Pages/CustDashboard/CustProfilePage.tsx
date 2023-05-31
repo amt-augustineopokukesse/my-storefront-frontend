@@ -1,10 +1,10 @@
 import "../../assets/styles/custDashboardStyles/CustProfile.scss";
 import editLogo from "../../assets/svg/icons8-edit.svg";
-import { useEffect, useState, ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { AuthLoader } from "../../components/authComponents/AuthLoader";
 import { toast } from "react-toastify";
-import api from "../../Redux/Authentication/axiosClient";
+import api from "../../Redux/axiosClient";
 
 type user = {
   [key: string]: any;
@@ -16,10 +16,23 @@ export const CustProfilePage: React.FC<user> = (props) => {
   const { custUser } = props;
   const [customerExists, setCutomerExists] = useState(custUser);
   const [loader, setLoader] = useState<boolean>(false);
+  const [profilePicture, setProfilePicture] = useState<string | null>(null);
+
+  useEffect(() => {
+    const customer = localStorage.getItem("customer");
+    if (customer) {
+      const hasCustomer = JSON.parse(customer);
+      setCutomerExists(hasCustomer);
+      if (hasCustomer && hasCustomer.email) {
+        formik.values.email = hasCustomer.email || "";
+        formik.values.contact = hasCustomer?.contact || "";
+        formik.values.address = hasCustomer?.address || "";
+      }
+    }
+  }, []);
 
   const [contact, setContact] = useState({ value: "", editmode: true });
   const [address, setAddress] = useState({ value: "", editmode: true });
-  const [profilePicture, setProfilePicture] = useState<string | null>(null);
 
   const handleAddressChange = () =>
     setAddress({
@@ -64,7 +77,7 @@ export const CustProfilePage: React.FC<user> = (props) => {
     },
   });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -75,32 +88,25 @@ export const CustProfilePage: React.FC<user> = (props) => {
         setProfilePicture(reader.result as string);
       };
 
-      // Read the image file as a data URL
+
     }
   };
-  // console.log(profilePicture)
 
-  const handleProfilePictureUpload = async () => {
+  const uploadProfilePicture = async () => {
     try {
       if (profilePicture) {
         setLoader(true);
-        const response = await api.put(`/api/customer/profile-picture`, {
+        const upload = await api.put(`/api/customer/profile-picture`, {
           profilePicture,
         });
-        if (response.data.data) {
+        if (upload.data.data) {
           toast.info("You have updated your information!!");
-
-          localStorage.setItem("customer", JSON.stringify(response.data.data));
-          console.log(response.data.data.profile_picture);
-          setTimeout(() => {
-            window.location.reload();
-            setLoader(false);
-          }, 300);
-        } else throw Error("");
+          localStorage.setItem("customer", JSON.stringify(upload.data.data));
+          window.location.reload()
+          setLoader(true)
+        } else throw new Error("Image upload failed");
       }
     } catch (error) {
-      setLoader(false);
-
       console.error("An error occurred:", error);
       alert(
         `Something went wrong, cannot upload image. Kindly contact storefront administrator`
@@ -109,21 +115,8 @@ export const CustProfilePage: React.FC<user> = (props) => {
   };
 
   useEffect(() => {
-    handleProfilePictureUpload();
+    uploadProfilePicture();
   }, [profilePicture]);
-
-  useEffect(() => {
-    const customer = localStorage.getItem("customer");
-    if (customer) {
-      const hasCustomer = JSON.parse(customer);
-      setCutomerExists(hasCustomer);
-      if (hasCustomer && hasCustomer.email) {
-        formik.values.email = hasCustomer.email || "";
-        formik.values.contact = hasCustomer?.contact || "";
-        formik.values.address = hasCustomer?.address || "";
-      }
-    }
-  }, []);
 
   return (
     <div className="profile-details">
@@ -133,15 +126,16 @@ export const CustProfilePage: React.FC<user> = (props) => {
         <img
           className="photo"
           id="profile-photo"
-          src={customerExists ? customerExists?.profile_picture : ""}
+          src={customerExists?.profile_picture}
           alt=""
         />
         <input
           type="file"
-          onChange={handleInputChange}
+          onChange={handleFileInputChange}
           className="upload-input"
           id="upload-input"
         />
+        {loader ? <AuthLoader /> : ""}
         <h3 className="name">
           {customerExists ? customerExists.first_name : "Merchant"}
         </h3>
