@@ -15,10 +15,10 @@ export const ReviewModal: React.FC<modalProp> = ({ openModal, setOpenModal }) =>
         style={{
             content: {
                 width: '50vw',
-                height: '50vh',
+                height: '60vh',
                 display: 'flex',
-                position: 'absolute',
-                top: '25vh',
+                position: 'relative',
+                top: '10vh',
                 overflow: 'hidden',
                 contain: 'content',
                 WebkitOverflowScrolling: 'touch',
