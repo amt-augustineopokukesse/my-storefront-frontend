@@ -1,73 +1,46 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { ProductState, ProjectState, initialProjectState } from "./ProjectInitialState";
-import api from "./Authentication/axiosClient";
-
+import {
+  ProductState,
+  ProjectState,
+  initialProjectState,
+} from "./ProjectInitialState";
+import api from "./axiosClient";
 
 
 const getBusinessId = async () => {
-  const merchant = localStorage.getItem("merchant"); 
-  
+  const merchant = localStorage.getItem("merchant");
+
   if (merchant) {
-    const mX = JSON.parse(merchant)
+    const mX = JSON.parse(merchant);
     return mX.business.id;
-  } else return ""
+  } else return "";
 };
 
 const getProjectId = async () => {
-  const project = localStorage.getItem("project"); 
-  
+  const project = localStorage.getItem("project");
+
   if (project) {
-    const pX = JSON.parse(project)
-    console.log("project ID: ", pX.id)
+    const pX = JSON.parse(project);
     return pX.id;
-  } else return ""
+  } else return "";
 };
 
-
-// handle Add to Store view count
-export const addToViewCount = createAsyncThunk(
-  "project/addViews",
-  async (id: string) => {
-    try {
-      const response = await api.put(`/market/store/views`, { storeId: id});
-      return response;
-    } catch (error) {
-      console.log(error)
-      if (error instanceof AxiosError) {
-        if (error.response) {
-          console.log("API error:", error.response.data.message); // Log the API error message
-          return error.response.data.message;
-        }
-      }
-      console.log("An error occurred:", error); // Log any other errors that occur
-      return "An error occurred";
-    }
-  }
-);
-
-
 // handle Get All Stores
-export const getStores = createAsyncThunk(
-  "project/getStores",
-  async () => {
-    try {
-      const business_id = await getBusinessId()
-      const response = await api.get(`/project/all/${business_id}`);
-      return response.data;
-    } catch (error) {
-      console.log(error)
-      if (error instanceof AxiosError) {
-        if (error.response) {
-          console.log("API error:", error.response.data.message); // Log the API error message
-          return error.response.data.message;
-        }
+export const getStores = createAsyncThunk("project/getStores", async () => {
+  try {
+    const business_id = await getBusinessId();
+    const response = await api.get(`/project/all/${business_id}`);
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      if (error.response) {
+        return error.response.data.message;
       }
-      console.log("An error occurred:", error); // Log any other errors that occur
-      return "An error occurred";
     }
+    return "An error occurred";
   }
-);
+});
 
 // handle GetAll Published Stores
 export const getPublishedStores = createAsyncThunk(
@@ -77,21 +50,18 @@ export const getPublishedStores = createAsyncThunk(
       const response = await api.get("/market/stores");
       return response.data;
     } catch (error) {
-      console.log(error)
       if (error instanceof AxiosError) {
         if (error.response) {
-          console.log("API error:", error.response.data.message); // Log the API error message
           return error.response.data.message;
         }
       }
-      console.log("An error occurred:", error); // Log any other errors that occur
       return "An error occurred";
     }
   }
 );
 
 // handleSave
-export const saveProject =  createAsyncThunk(
+export const saveProject = createAsyncThunk(
   "project/saveProject",
   async (project: ProjectState) => {
     try {
@@ -99,25 +69,20 @@ export const saveProject =  createAsyncThunk(
         business_id: await getBusinessId(),
         ...project,
       });
-      // console.log(response.data);
-      //const response = await axios.post('https://reqres.in/api/users', project);
       return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         if (error.response) {
-          console.log("API error:", error.response.data.message); // Log the API error message
           return error.response.data.message;
         }
       }
-      console.log("An error occurred:", error); // Log any other errors that occur
       return "An error occurred";
     }
   }
 );
 
-
 // handleUpdate
-export const updateProject =  createAsyncThunk(
+export const updateProject = createAsyncThunk(
   "project/updateProject",
   async (project: ProjectState) => {
     try {
@@ -125,49 +90,57 @@ export const updateProject =  createAsyncThunk(
       const response = await api.put("/project/update", {
         project_id: await getProjectId(),
         template: template,
-        ...values
+        ...values,
       });
-      //const response = await axios.post('https://reqres.in/api/users', project);
       return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         if (error.response) {
-          console.log("API error:", error.response.data.message); // Log the API error message
           return error.response.data.message;
         }
       }
-      console.log("An error occurred:", error); // Log any other errors that occur
       return "An error occurred";
     }
   }
 );
 
-
+/**Add to store view count */
+export const addToViewCount = createAsyncThunk(
+  "project/addViews",
+  async (id: string) => {
+    try {
+      const response = await api.put("/market/store/views", { storeId: id });
+      return response;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          return error.response.data.message;
+        }
+      }
+      return "An error occurred";
+    }
+  }
+);
 
 // handlePublish
-export const publishProject =  createAsyncThunk(
+export const publishProject = createAsyncThunk(
   "project/publishProject",
   async () => {
     try {
       const response = await api.put("/project/publish", {
         project_id: await getProjectId(),
       });
-      // console.log(response.data);
-      //const response = await axios.post('https://reqres.in/api/users', project);
       return response.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         if (error.response) {
-          console.log("API error:", error.response.data.message); // Log the API error message
           return error.response.data.message;
         }
       }
-      console.log("An error occurred:", error); // Log any other errors that occur
       return "An error occurred";
     }
   }
 );
-
 
 const ProjectSlice = createSlice({
   name: "project",

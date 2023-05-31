@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import '../../assets/styles/dashboardStyles/MerchantProfile.scss';
 import SignOut from './SignOut';
 
-type user = {
-    [key: string]: any;
+type User = {
+    profile_picture: string;
+    business_name: string;
 }
 
-export const MerchantProfile: React.FC<user> = (props) => {
-    const { merchantUser } = props;
-    const [ merchantExists, setmerchantExists ] = useState(merchantUser)
+export const MerchantProfile: React.FC = () => {
+    const user: User = { profile_picture: "", business_name: "" };
+    const [ merchantExists, setmerchantExists ] = useState(user)
     
     useEffect(() => {
         const merchant = localStorage.getItem("merchant");
@@ -26,7 +27,7 @@ export const MerchantProfile: React.FC<user> = (props) => {
 
     return (
         <div className='profile-photo-menu'>
-            <img className="profile-photo" src={merchantExists?merchantExists.profile_picture : ""} alt="" />
+            <img className="profile-photo" src={merchantExists?merchantExists.profile_picture : "MN"} alt="" />
             <div className="profile-menu">
                 <button className="profile-button" onClick={handleClick}>
                     { merchantExists? merchantExists.business_name : "Merchant"}
