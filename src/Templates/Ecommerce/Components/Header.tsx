@@ -41,9 +41,9 @@ const Header: React.FC<cb> = ({ sendPagesValue }) => {
     <>
       <div className="header">
         <ul className="menu">
-          <Link to={"."}><li onClick={handleHomeClick} className="menu-item">Home</li></Link>
-          { project.template.aboutUs && <Link to={"."}><li onClick={handleAboutClick} className="menu-item">About Us</li></Link>}
-          { project.template.contactUs && <Link to={"."}><li onClick={handleContactClick} className="menu-item">Contact Us</li></Link> }
+          <Link to={"."}><li onClick={handleHomeClick} className="menu-item" style={navmap.home === "flex" ? {backgroundColor: "gold", color: "#fff"} : { color: ""}}>Home</li></Link>
+          { project.template.aboutUs && <Link to={"."}><li onClick={handleAboutClick} className="menu-item" style={navmap.about === "flex" ? {backgroundColor: "var(--primary-color)", color: "#fff"} : { color: ""}}>About Us</li></Link>}
+          { project.template.contactUs && <Link to={"."}><li onClick={handleContactClick} className="menu-item" style={navmap.contact === "flex" ? {backgroundColor: "var(--primary-color)", color: "#fff"} : { color: ""}}>Contact Us</li></Link> }
         </ul>
       </div>
       <div className="header-two">

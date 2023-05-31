@@ -1,0 +1,13 @@
+.other-pages {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 50px;
+    display: flex;
+    flex-flow: column;
+}
+
+.other-header {
+    color: var(--primary-color);
+    border-left: 4px solid gold;
+    padding-left: 10px;
+}

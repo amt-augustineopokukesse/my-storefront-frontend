@@ -20,11 +20,11 @@ export const CustDashboardPage: React.FC<store> = (props) => {
             const response = await dispatch(getPublishedStores());
             if (response) setStores(response.payload.data)
         } catch (error) {
-            // console.log(error)
             toast.error("Error Retrieving Storefront Stores")
             return;
         }
     }
+
     useEffect(() => {
         getStores();
     },[]);
@@ -50,7 +50,7 @@ export const CustDashboardPage: React.FC<store> = (props) => {
                 {
                     stores && stores.length ? 
                     stores.map((pStore: store, index: number)=>
-                    <div onClick={() => handleAddToViews(pStore.id)} style={{backgroundImage: `url(${pStore.bannerUrl})`}} className='store-object' key={index}>
+                    <div onClick={() => handleAddToViews(pStore.id)} style={{border: `5px solid rgb(${Math.floor(Math.random() * 254)}, ${Math.floor(Math.random() * 254)}, ${Math.floor(Math.random() * 254)})`, backgroundImage: `url(${pStore.bannerUrl})`}} className='store-object' key={index}>
                         <Link to="/stores/ecommerce" state={{linkedProject: pStore}}><p className='visit-store'>Visit Store</p></Link>
                         <div className='object-details'>
                             <p><b>Store: </b> {pStore.name}</p>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store';
-//import { ProjectState } from '../../../Redux/ProjectSlice';
 import { setProject } from '../../../Redux/ProjectSlice';
 import { useLocation } from 'react-router-dom';
 import { applyTemplateCustomizations } from '../../../Templates/Ecommerce/Components/ProductEditUtils';
@@ -10,6 +9,8 @@ import Hero from '../../../Templates/Ecommerce/Components/Hero';
 import { Footer } from '../../../Templates/Finance/Components/Footer';
 import Carousel from '../../../Templates/Ecommerce/Components/Carousel';
 import CustomizedMain from '../../../Templates/Ecommerce/Components/CustomizedMain';
+import '../../../assets/styles/templatesStyles/Ecommerce/OtherPages.scss';
+
 
 
 const EcommerceStoreHome:React.FC = () => {
@@ -57,8 +58,12 @@ const EcommerceStoreHome:React.FC = () => {
           {project.template.carouselInclude ? <Carousel /> : ''}
           {project.products.length > 0 ? <CustomizedMain searchValue={search} /> : ""}
         </div>
-        <div style={{display: `${pages.contact}`}} id='contact-us'>Contact Us Page</div>
-        <div style={{display: `${pages.about}`}} id='contact-us'>About Us Page</div>
+        <div style={{display: `${pages.contact}`}} className='other-pages' >
+          <h1 className='other-header'>Contact Us</h1>
+        </div>
+        <div style={{display: `${pages.about}`}} className='other-pages' >
+          <h1 className='other-header'>About Us</h1>
+        </div>
         <Footer />
     </div>
   )
