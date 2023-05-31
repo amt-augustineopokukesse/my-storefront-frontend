@@ -1,21 +1,26 @@
 import "../../assets/styles/custDashboardStyles/CustProfile.scss";
-import profilephoto from "../../assets/images/Ellipse 15.png";
 import editLogo from "../../assets/svg/icons8-edit.svg";
 import { useEffect, useState, ChangeEvent } from "react";
 import { useFormik } from "formik";
 import { AuthLoader } from "../../components/authComponents/AuthLoader";
 import { toast } from "react-toastify";
 import api from "../../Redux/Authentication/axiosClient";
+import { CgProfile } from "react-icons/cg";
 
-type user = {
-  [key: string]: any;
+type User = {
+  profile_picture: string;
+  first_name: string;
+  email: string;
 };
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const CustProfilePage: React.FC<user> = (props) => {
-  const { custUser } = props;
-  const [customerExists, setCutomerExists] = useState(custUser);
+export const CustProfilePage: React.FC = () => {
+
+
+
+  const userInit: User =  { profile_picture: "", first_name: "", email: "" };
+  const [customerExists, setCutomerExists] = useState(userInit);
   const [loader, setLoader] = useState<boolean>(false);
 
   const [contact, setContact] = useState({ value: "", editmode: true });
@@ -131,12 +136,15 @@ export const CustProfilePage: React.FC<user> = (props) => {
       {loader ? <AuthLoader /> : ""}
 
       <div className="image-name">
+        { customerExists && customerExists.profile_picture ?
         <img
           className="photo"
           id="profile-photo"
-          src={customerExists ? customerExists.profile_picture : ""}
+          src={customerExists.profile_picture}
           alt=""
         />
+        : <CgProfile style={{width: "200px", height: "200px"}}/>
+        }
         <input
           type="file"
           onChange={handleInputChange}
@@ -144,7 +152,7 @@ export const CustProfilePage: React.FC<user> = (props) => {
           id="upload-input"
         />
         <h3 className="name">
-          {customerExists ? customerExists.first_name : "Merchant"}
+          {customerExists ? customerExists.first_name : "Customer"}
         </h3>
       </div>
       <form className="form" onSubmit={formik.handleSubmit}>
@@ -189,7 +197,6 @@ export const CustProfilePage: React.FC<user> = (props) => {
             name="address"
             value={formik.values.address}
             placeholder="edit your address..."
-            maxLength={15}
           />
           <img
             className="edit-button location-edit-button"
