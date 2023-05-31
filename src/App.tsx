@@ -23,6 +23,7 @@ import Cart from './Templates/Ecommerce/Pages/Cart';
 import TemplateCustomizationForm from './Templates/Ecommerce/Components/ProjectCustomizationForm';
 import { EditTemplatePage } from './Pages/EditTemplate/EditTemplatePage';
 import StoreHome from './Pages/CustDashboard/EcommerceStore/StoreHome';
+import ProtectRoute from './Pages/authenticationPages/protectRoute';
 //import { Payment } from './Templates/Ecommerce/Pages/Payment';
 
 
@@ -30,12 +31,13 @@ const App: React.FC =() => {
   //const loggedIn = window.localStorage.getItem('isLoggedIn');
   const loggedIn = window.localStorage.getItem('token');
   const customerRole = window.localStorage.getItem('customer');
+  
 
   return (
     <Provider store={store}>
       <Router>
-        <div className='app'>
-          <ToastContainer 
+        <div className="app">
+          <ToastContainer
             newestOnTop
             rtl={false}
             position="top-center"
@@ -47,32 +49,54 @@ const App: React.FC =() => {
             theme="colored"
           />
           <Routes>
-            <Route path='/' element={loggedIn && customerRole ? < CustDashboard/> : loggedIn && !customerRole ?<Dashboard/> : <LandingPage />}/>
-            <Route path='/custdashboard/*' element={<CustDashboard />} />
-            <Route path='/signup' element={<SignUp/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/landing' element={<LandingPage/>}/>
-            <Route path='/social/landing/:id' element={<LandingPage/>}/>
-            <Route path='/resetpw1' element={<ResetPw1/>}/>
-            <Route path='/resetpw2/:id' element={<ResetPw2/>}/>
+            <Route
+              path="/"
+              element={
+                loggedIn && customerRole ? (
+                  <CustDashboard />
+                ) : loggedIn && !customerRole ? (
+                  <Dashboard />
+                ) : (
+                  <LandingPage />
+                )
+              }
+            />
+            <Route path="/custdashboard/*" element={<CustDashboard />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/landing" element={<LandingPage />} />
+            <Route path="/social/landing/:id" element={<LandingPage />} />
+            <Route path="/resetpw1" element={<ResetPw1 />} />
+            <Route path="/resetpw2/:id" element={<ResetPw2 />} />
             {/* <Route path='/homepage' element={<HomePage/>}/> */}
-            <Route path='/dashboard/*' element={<Dashboard/>}/>
-            <Route path='/authnotification' element={<AuthNotification/>}/>
-            <Route path='/auth-success/:token' element={<SuccessfulAuthNotification/>}/>
-            <Route path='/successful-reset' element={<SuccessfulReset/>}/>
-            <Route path='/ecommerce' element={<EcommerceHome/>}/>
-            <Route path='/product/:id' element={<ProductDescription />} />
-            <Route path='/cart' element={<Cart/>}/>
+            <Route
+              path="/dashboard/*" element={<ProtectRoute> <Dashboard /> </ProtectRoute>}
+            />
+            <Route path="/authnotification" element={<AuthNotification />} />
+            <Route
+              path="/auth-success/:token"
+              element={<SuccessfulAuthNotification />}
+            />
+            <Route path="/successful-reset" element={<SuccessfulReset />} />
+            <Route path="/ecommerce" element={<EcommerceHome />} />
+            <Route path="/product/:id" element={<ProductDescription />} />
+            <Route path="/cart" element={<Cart />} />
             {/* <Route path='/checkout' element={<Checkout/>}/> */}
             {/* <Route path='/payment' element={<Payment />} /> */}
-            <Route path='/template-editor' element={<TemplateCustomizationForm/>}/>
-            <Route path='/dashboard/project/templates/edit-template-page' element={<EditTemplatePage />} />
-            <Route path='/stores/ecommerce' element={<StoreHome />} />
+            <Route
+              path="/template-editor"
+              element={<TemplateCustomizationForm />}
+            />
+            <Route
+              path="/dashboard/project/templates/edit-template-page"
+              element={<EditTemplatePage />}
+            />
+            <Route path="/stores/ecommerce" element={<StoreHome />} />
           </Routes>
         </div>
       </Router>
     </Provider>
-  )
+  );
 }
 
 export default App
