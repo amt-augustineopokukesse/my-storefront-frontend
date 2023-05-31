@@ -18,10 +18,15 @@ const EcommerceHome:React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const [search, setSearch] = useState("");
+  const [ pages, setPages ] = useState({ home: "flex", about: "none", contact: "none"});
 
   const handleSearchValue = (value: string) => {
     // console.log(value, "I hanndle here")
     setSearch(String(value).toLowerCase());
+  }
+
+  const handlePagesValue = (value: { home: string; about: string, contact: string}) => {
+    setPages(value)
   }
 
 
@@ -48,7 +53,7 @@ const EcommerceHome:React.FC = () => {
   return (
     <div>
         <Navbar sendSearchValue={handleSearchValue} />
-        <Header />
+        <Header sendPagesValue={handlePagesValue} />
         <Hero />
         {project.template.carouselInclude ? <Carousel /> : ''}
         {project.products.length > 0 ? <CustomizedMain searchValue={search} /> : <Main />}

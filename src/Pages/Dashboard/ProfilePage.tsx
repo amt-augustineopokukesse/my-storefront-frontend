@@ -8,7 +8,9 @@ import { AuthLoader } from "../../components/authComponents/AuthLoader";
 import api from "../../Redux/axiosClient";
 
 type User = {
-  [key: string]: any;
+  profile_picture: string;
+  business_name: string;
+  email: string;
 };
 
 type EditForm = {

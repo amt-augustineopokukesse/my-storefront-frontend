@@ -2,14 +2,33 @@ import '../../assets/styles/custDashboardStyles/CustOrdersPage.scss';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 
-type user = {
-    [key: string]: any;
+type User = {
+    orders: OrderType[];
 }
 
-export const CustOrdersPage: React.FC<user> = (props) => {
+type OrderType = {
+    amount: number;
+    created_at: string;
+    paid: boolean;
+    delivery_completed: boolean;
+    shipping_reciepient_address: string;
+}
 
-    const { customerUser } = props;
-    const [ customerExists, setcustomerExists ] = useState(customerUser)
+export const CustOrdersPage: React.FC = () => {
+
+    const orderInit: OrderType = {
+        amount: 0,
+        created_at: "",
+        paid: false,
+        delivery_completed: false,
+        shipping_reciepient_address: ""
+    }
+
+    const userInit: User = {
+        orders: [ orderInit ]
+    }
+    
+    const [ customerExists, setcustomerExists ] = useState<User>(userInit);
     
     useEffect(() => {
         const customer = localStorage.getItem("customer");
@@ -27,18 +46,18 @@ export const CustOrdersPage: React.FC<user> = (props) => {
         { field: "shippingAddress", headerName: "Shipping Address", width: 180}
     ]
 
-    const row = (order: any, idx: number) => {
+    const row = (order: OrderType, idx: number) => {
         return { id: idx, orderDate: new Date(order.created_at).toLocaleDateString(), orderAmount: order.amount, orderPaid: order.paid ? "Paid" : "Not Paid", deliveryComplete: order.delivery_completed ? "Yes" : "No", shippingAddress: order.shipping_reciepient_address}
     }
  
-    const rows = customerExists &&  customerExists.orders.length ? 
-            customerExists.orders.map((order:any, index: number) => row(order, index))
+    const rows = customerExists && customerExists.orders &&  customerExists.orders.length ? 
+            customerExists.orders.map((order: OrderType, index: number) => row(order, index))
         :   []
 
     return (
         <div style={{padding: "30px"}} className="orders-container">
             {
-                customerExists &&  customerExists.orders.length ?
+                customerExists && customerExists.orders &&  customerExists.orders.length ?
                 <h1>Orders</h1> : <h2>You have not made any Orders </h2>
             }
             <div style={{ height: 400, width: "fit-content", margin: "2rem" }}>

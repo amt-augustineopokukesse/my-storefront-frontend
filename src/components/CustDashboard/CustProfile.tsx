@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import '../../assets/styles//custDashboardStyles/CustProfile.scss';
 import SignOut from '../Dashboard/SignOut';
 
-type user = {
+type User = {
     first_name: string;
     profile_picture: string;
 }
 
-export const CustProfile: React.FC<user> = (props) => {
-    const { first_name, profile_picture } = props;
-    const [ customerExists, setCustomerExists ] = useState({ first_name, profile_picture })
+export const CustProfile: React.FC = () => {
+    const user: User = { first_name: "", profile_picture: "" };
+    const [ customerExists, setCustomerExists ] = useState(user)
     
     useEffect(() => {
         const customer = localStorage.getItem("customer");
