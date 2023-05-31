@@ -19,6 +19,7 @@ export const CustDashboardPage: React.FC<store> = (props) => {
         try {
             const response = await dispatch(getPublishedStores());
             if (response) setStores(response.payload.data)
+            
         } catch (error) {
             toast.error("Error Retrieving Storefront Stores")
             return;

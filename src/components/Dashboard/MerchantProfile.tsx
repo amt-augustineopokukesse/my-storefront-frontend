@@ -27,7 +27,7 @@ export const MerchantProfile: React.FC = () => {
 
     return (
         <div className='profile-photo-menu'>
-            <img className="profile-photo" src={merchantExists?merchantExists.profile_picture : ""} alt="" />
+            <img className="profile-photo" src={merchantExists?merchantExists.profile_picture : "MN"} alt="" />
             <div className="profile-menu">
                 <button className="profile-button" onClick={handleClick}>
                     { merchantExists? merchantExists.business_name : "Merchant"}

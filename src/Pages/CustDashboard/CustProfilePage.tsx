@@ -140,7 +140,11 @@ export const CustProfilePage: React.FC = () => {
         <img
           className="photo"
           id="profile-photo"
+<<<<<<< HEAD
           src={customerExists.profile_picture}
+=======
+          src={customerExists ? customerExists?.profile_picture : ""}
+>>>>>>> c6115dd8216b9ca711c06ed2ccbf3bad38c23a1c
           alt=""
         />
         : <CgProfile style={{width: "200px", height: "200px"}}/>
