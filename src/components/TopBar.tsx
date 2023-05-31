@@ -4,7 +4,7 @@ import { useState } from "react"
 import burger from '../assets/images/menu-hamburger.svg';
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../store";
-import { resetAuthState } from "../Redux/AuthSlice";
+import { resetAuthState } from "../Redux/Authentication/AuthSlice";
 
 export const TopBar = () => {
 

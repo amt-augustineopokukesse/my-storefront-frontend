@@ -1,4 +1,4 @@
-import { NewUser, NewPassword } from "../../Redux/Authentication/initialState";
+import { NewUser, NewPassword } from "../../Redux/Authentication/authInitialStates";
 //import { useNavigate } from "react-router-dom";
 
 export const validateEmail = (email: string): boolean => {

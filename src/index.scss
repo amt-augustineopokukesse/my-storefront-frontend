@@ -12,6 +12,7 @@
 
 * {
   box-sizing: border-box;
+  transition: all 300ms;
 }
 
 a {
@@ -27,4 +28,5 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #f6f6f6;
+  transition: all 300ms;
 }
