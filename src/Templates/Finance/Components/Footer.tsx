@@ -4,10 +4,17 @@ import twitterlogo from '../../../assets/svg/templates-svg/twitter.svg'
 import '../../../assets/styles/templatesStyles/Finance/Footer.scss'
 import TemplateData from '../../../staticDB/FinanceData'
 import { useAppSelector } from '../../../store'
+import { useState } from 'react'
+import { ReviewModal } from './ReviewModal'
   
 export const Footer: React.FC = () => {
 
     const project = useAppSelector((state) => state.project);
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleReviewModal = () => {
+        setOpenModal(true);
+    }
     
   
     return (
@@ -15,6 +22,9 @@ export const Footer: React.FC = () => {
             <span className='footer-logo'>
                 {project.name}
             </span>
+            <button className='review-button'
+            onClick={handleReviewModal}>Leave a review</button>
+            <ReviewModal openModal={openModal} setOpenModal={setOpenModal}/>
             <div className='footer-text'>
                 <p>{project.description}</p>
                 <p>{project.address !== "Add your Address" ? project.address : ""}</p>

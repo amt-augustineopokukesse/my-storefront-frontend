@@ -55,9 +55,9 @@ export const TemplatesPreview: React.FC<TemplatePreviewProps> = (props) => {
                 <Modal isOpen={openModal} preventScroll={true} style={{
                     content: {
                         width: '80vw',
-                        height: '80vh',
+                        height: '100vh',
                         display: 'flex',
-                        position: 'absolute',
+                        position: 'relative',
                         top: '0',
                         overflow: 'hidden',
                         contain: 'content',
